@@ -1,0 +1,38 @@
+	<table class="show_page" width="70%">
+		<tr>
+  			<th>Student Name:</th>
+  			<td><%=h @student.name %></td>
+		</tr>
+		<tr>
+  			<th>Roll number</th>
+  			<td><%=h @student.roll_number %></td>
+		</tr>
+		<tr>
+  			<th>Parent Name</th>
+  			<td><%=h @student.parent %></td>
+		</tr>
+		<tr>
+  			<th>Contact Number:</th>
+  			<td><%=h @student.number %></td>
+  		</tr>
+  		<tr> 
+  			<th>Address:</th>
+  			<td><%=h @student.address %></td>
+  		</tr>
+  		<tr>
+  			<th>Email:</th>
+  			<td><%=h @student.email %></td>
+  		</tr>
+  		<tr>
+  			<th> Classes/groups:</th>
+  			<td><%= find_groups(@student)%></td>
+        	</tr>
+  		<tr>
+  			<td></td>
+  			<td class="facebox_btn"><%= link_to 'Edit', edit_student_path(@student) %>  <%= link_to 'Delete', @student, :confirm => 'This action will delete the student record. Are you sure?', :method => :delete %>
+  			</td>
+  		</tr>
+  	</table>
+
+
+

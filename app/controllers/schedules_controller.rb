@@ -1,0 +1,84 @@
+class SchedulesController < ApplicationController
+ layout "main"
+	 before_filter :set_thread_user
+	def index
+  	@search =  Schedule.search(params[:search])
+    @search.user_id = current_user.id
+    @search.order ||= "descend_by_created_at"
+    @schedules = @search.all.paginate :page => params[:page],:per_page => 25
+    respond_to do |format|
+      format.html # index.html.erb
+      format.xml  { render :xml => @schedules }
+    end
+  end
+ 
+ def show
+    @schedule = current_user.schedules.find(params[:id])
+    @students = @schedule.students.find(:all)
+    respond_to do |format|
+      format.html # show.html.erb
+      format.xml  { render :xml => @schedule }
+    end
+  end
+  
+   def status_update
+        @schedule = Schedule.find(params[:id])
+       	schedules = @schedule.schedule_students
+       	MessageSchedule.user = current_user.server_user_name
+        MessageSchedule.password = current_user.server_password
+       	unless schedules.blank?
+       	  schedules.each do |schedule|
+          	sms = MessageSchedule.find(schedule.sms_id)
+          	sms.save   #calling update method of the API
+          	schedule.update_attribute('status', sms.status)
+      	 end 
+      else
+      	sms = MessageSchedule.find(@schedule.sms_id)
+        sms.save   #calling update method of the API
+        @schedule.update_attribute('status', sms.status)
+      end  
+      respond_to do |format|
+        format.html { redirect_to(schedule_url(@schedule))} 
+        format.xml  { render :xml => @schedule }
+      end
+      rescue #ActiveResource::ResourceInvalid => e  
+      	flash[:error] = 'Some thing went wrong. Please try again latter.'    
+      	redirect_to(schedules_url) 
+   end
+  
+	 
+	 def destroy
+   	 @schedule = Schedule.find(params[:id])
+     schedules = @schedule.schedule_students
+     MessageSchedule.user = current_user.server_user_name
+     MessageSchedule.password = current_user.server_password
+     unless schedules.blank?
+       schedules.each do |schedule|
+       res = MessageSchedule.delete(schedule.sms_id)   #calling destroy method of the API.
+       schedule.update_attribute('status', 'Cancelled') if res.code == '200'
+      end 
+     else 
+       res = MessageSchedule.delete(@schedule.sms_id)   #calling destroy method of the API.
+       @schedule.update_attribute('status', 'Cancelled') if res.code == '200'
+     end  
+      respond_to do |format|
+        format.html { redirect_to(schedule_url(@schedule))} 
+        format.xml  { render :xml => @schedule }
+      end
+    end
+
+   
+   def render_message_template
+    @message_template = MessageTemplate.find(params[:schedule_id]).message_body rescue ''
+     render :update do |page|
+      page << "jQuery('#schedule_message_body').val('#{@message_template}')"
+      end
+      end
+  private
+    def set_thread_user
+      Thread.current["user"] = current_user
+   end
+  end  
+
+
+

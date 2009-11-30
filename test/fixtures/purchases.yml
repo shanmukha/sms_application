@@ -1,0 +1,19 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  date: 2009-09-25
+  amount: 1
+  credits: 1
+  payment_date: 2009-09-25
+  payment_mode: MyString
+  instrument_number: 1
+  other_detail: MyText
+
+two:
+  date: 2009-09-25
+  amount: 1
+  credits: 1
+  payment_date: 2009-09-25
+  payment_mode: MyString
+  instrument_number: 1
+  other_detail: MyText

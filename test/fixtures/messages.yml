@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  date: 2009-09-25
+  client_id: 1
+  message_text: MyText
+  numbers: 1
+
+two:
+  date: 2009-09-25
+  client_id: 1
+  message_text: MyText
+  numbers: 1

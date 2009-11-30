@@ -1,0 +1,5 @@
+<%fields_for :sms do |f|%>
+     <%= f.text_field :scheduled_date,:class =>'textbox-small' ,:id => 'date'%>
+  
+    <%= time_select "schedule", "scheduled_time", { :default => Time.now.change(:hour => 21), :simple_time_select => true, :minute_interval => 5, :time_separator => "" } %>
+ <%end%>

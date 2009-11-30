@@ -1,0 +1,13 @@
+development:
+  adapter: mysql
+  database: smsclient_development
+  username: root
+  password: isiri
+  host: localhost
+  
+production:
+  adapter: mysql
+  database: smsclient_development
+  username: root
+  password: isiri
+  host: localhost

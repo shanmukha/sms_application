@@ -1,0 +1,46 @@
+<% form_for(@group || Group.new,:html => {:id =>'main-form'}) do |f| %>
+<%= f.error_messages %>
+<div class="create_new">
+	<fieldset>
+  		<p>
+   			<%= f.label :Name %><br />
+    			<%= f.text_field :name %>
+  		</p>
+		<br />
+   		<table class="student_list" border="1">
+    			
+			<tr>
+		   <th><input type='checkbox' title ="Check All/Uncheck" name='checkall' onclick='checkedAll();'/></th>
+     				<th>Student name</th>
+				<th>Roll Number</th>
+			</tr>
+   			<%current_user.students.find(:all).each do |student| %>
+  			<tr class="<%=cycle("odd", "even")%>">
+       				<td><%= check_box_tag("students[]", student.id, false,:id=> student.id)%></td>
+    				<td><%=h student.name %></td>
+				<td><%=h student.roll_number%></td>
+			</tr>	
+    				<%end%>
+		</table>
+    		<span>
+    		<%= f.submit 'Create' %> or <%= link_to_function "Cancel",
+		"jQuery('#group').hide(); jQuery('#show').show();jQuery('#hide').hide()"%>
+  		</span>
+  	</fieldset>
+</div>
+<div id="select_group">
+	<table class="student_group" width="100%" border="1" cellpadding="5px">
+		<tr>
+			<th>
+    				Copy students from  another class.
+			
+		
+     			<%= select_tag :group_id,
+                       		%{<option value="">Please Select...</option>} +
+                       		options_for_select(all_groups) %> 
+			</th>
+		</tr>
+     </table>
+</div> 
+<% end %>
+

@@ -1,0 +1,31 @@
+<h1>New letter</h1>
+
+<% form_for(@letter,:html => {:id => 'main-form'}) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :content %><br />
+    <%= f.text_area :content%>
+  </p>
+  <div id="group_students">
+        <%= f.select :group_id, all_groups, options={:prompt => 'SELECT CLASS/GROUP'}%>
+      	      		<%= image_tag("spinner.gif",
+              		:align => "absmiddle",
+               		:border => 0,
+              		:id => "spinner1",
+             	 	 :style =>"display: none;" ) %>  
+          
+         <%= observe_field("letter_group_id", :frequency => 1,
+                  :before => "jQuery('#spinner1').show();",
+                  :success => "jQuery('#spinner1').hide();",
+                  :url => {:action=>'group_students'}, :method => :get,
+                  :with => "'group_id=' + value")%>
+       </div>
+  <div id="students"> </div>
+ 
+  <p>
+    <%= f.submit 'Print letter' %> or <%= link_to 'Cancel & return to letters list', letters_path %>or 
+  </p>
+<% end %>
+
+

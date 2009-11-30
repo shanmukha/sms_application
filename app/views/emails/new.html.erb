@@ -1,0 +1,37 @@
+<% form_for(@email) do |f| %>
+  <%= f.error_messages %>
+ <div class="Errors_left">
+ <p>
+    <%= f.label :Subject %><br />
+    <%= f.text_field :subject %>
+  </p>
+  
+  <p>
+    <%= f.label :body %><br />
+    <%= f.text_area :body %>
+  </p>
+ <span>
+    <%= f.submit 'Send' %>or <%= link_to 'Cancel & return to sent mails list', emails_path %>
+  </span>
+</div>
+  <div class="Errors_right">
+    	        <%= f.select :group_id, all_groups, options={:prompt => 'SELECT CLASS/GROUP'}%>
+      	      <%= image_tag("spinner.gif",
+              	:align => "absmiddle",
+               	:border => 0,
+              	:id => "spinner1",
+             	  :style =>"display: none;" ) %>  
+         </div>
+
+        
+          <%= observe_field("email_group_id", :frequency => 1,
+                  :before => "jQuery('#spinner1').show();",
+                  :success => "jQuery('#spinner1').hide();",
+                  :url => {:action=>'group_students'}, :method => :get,
+                  :with => "'group_id=' + value")%>
+    	    <div id="students"> </div>
+        </div>
+  
+<% end %>
+<div class="clear"></div>
+

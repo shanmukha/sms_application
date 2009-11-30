@@ -1,0 +1,61 @@
+<div id="listing_file">
+	<h1>Listing all messages sent</h1>
+	<table class="listing">
+  		<tr>
+    			<th><%= order @search, :by => :created_at, :as => "Sent Date"%></th>
+    			<th>Message</th>
+    			<th>Class/Mobile no.</th>
+     			<th>View</th>
+  		</tr>
+		<% @messages.each do |message| %>
+  		<tr class="<%=cycle("odd", "even")%>">
+    			<td><%=h Time.parse(message.created_at.to_s).strftime('%Y-%m-%d') %></td>
+    			<td><%=h message_body_filter(message.message_body)%></td>
+    			<%unless message.group_id.nil?%>
+    			<td><%=h message.group.name%></td>
+    			<%else%>
+    			 <td><%=h message.number%></td>
+    			<%end%>
+    			<td class="view"><%= link_to '<img src="/images/view.gif" title="View"/>', message_service_path(message)%></td>
+  		</tr>
+		<% end %>
+	</table>
+	<div id="pg"><%=will_paginate @messages%></div>
+</div>
+<div class="sidebar">
+	<h1>Search </h1>
+	<% form_for @search do |f| %>
+ 		<table>
+     			<tr>
+      				<th>Message</th>
+			</tr>
+			<tr>
+				<td><%= f.text_field :message_body_like %></td>
+			</tr>
+			<tr>
+       				<th>Class Name</th>
+			</tr>
+			
+			<tr>
+				<td><%= f.text_field :group_name_like%></td>
+			</tr>
+				<tr>
+       				<th>Mobile number</th>
+			</tr>
+			<tr>
+				<td><%= f.text_field :number_like%></td>
+			</tr>
+			
+			<tr>
+       				<th>Student Name</th>
+			</tr>
+			<tr>
+				<td><%= f.text_field :students_name_like%></td>
+			</tr>
+			<tr>
+       				<td class="btn"><%= f.submit "Search" %> <input type="reset" value="Reset"></td>
+  			</tr>
+  		</table>
+  	<%end%>
+</div>
+<div class="clear" ></div>

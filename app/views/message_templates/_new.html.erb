@@ -1,0 +1,21 @@
+<div class="create_new">
+	<% form_for(@message_template||MessageTemplate.new) do |f| %>
+	<fieldset>
+  		<%= f.error_messages %>
+ 		<p>
+    			<%= f.label :message_title %><br />
+    			<%= f.text_field :message_title %>
+  		</p>
+  		<p>
+    			<%= f.label :message_body %>&nbsp;&nbsp;(For paragraph use \n)<br />
+    			<%= f.text_area :message_body %>
+  		</p>
+ 		<span>
+    			<%= f.submit 'Create' %>or <%= link_to_function "Cancel",
+			"jQuery('#saved_message').hide();jQuery('#show').show();jQuery('#hide').hide()"%>
+  		</span>
+	<% end %>
+	</fieldset>
+</div>
+
+

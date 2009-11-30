@@ -1,0 +1,57 @@
+<div class="create_new">
+	<% form_for(@student||Student.new) do |f| %>
+	<fieldset>
+	<%= f.error_messages %>
+		<p>
+    			<%= f.label :Student_name %><br />
+    			<%= f.text_field :name %>
+  		</p>
+ 		
+ 		<p>
+       			<%= f.label :Roll_number %><br />
+       			<%= f.text_field :roll_number%>
+      		</p>
+      
+ 		<p>
+    			<%= f.label :Parent_name %><br />
+    			<%= f.text_field :parent %>
+  		</p>
+  	  
+  		<p>
+    			<%= f.label :Mobile_number %><br />
+    			<%= f.text_field :number %>
+  		</p>
+  		<p>
+    			<%= f.label :address %><br />
+    			<%= f.text_area :address %>
+  		</p>
+  		<p>
+    			<%= f.label :email %><br />
+    			<%= f.text_field :email %>
+  		</p>
+  		<span> <%= f.submit 'Create record' %> or <%= link_to_function "Cancel",
+	"jQuery('#student').hide(); jQuery('#show').show();jQuery('#hide').hide() "%>
+		</span>
+	</fieldset>
+</div>
+<div id="select_group">
+	 <%unless @groups.blank?%>
+	<table class="student_group" width="100%" border="1" cellpadding="5px">
+		<tr>
+			<th>
+			     <h3>Select class/groups this student belongs to:</h3>
+			</th>
+		</tr>
+		<%for group in @groups%>
+  		<tr>
+			<td valign="top">
+ 			<%= check_box_tag("groups[]", group.id, false,:id=> group.id)%> <b><%=group.name %></b>
+			</td>
+		</tr>
+		<%end%>
+		<% end %>
+	</table>  
+	<%end%>
+</div>
+
+

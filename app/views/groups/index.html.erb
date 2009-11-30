@@ -1,0 +1,56 @@
+	<div id = 'hide' style ="display:none">
+ 		<span><%= link_to_function '<img src="/images/cancel.gif" title="Cancel"/>', "jQuery('#group').hide(); jQuery('#show').show(); jQuery	('#hide').hide();return false;" %> </span>
+	</div>
+	<div id = 'group' style ="display:none ; clear:both">
+  		<%= render :partial =>"new"%>
+	</div>
+	<div id="listing_file">
+		<div id = 'show'>
+          		<span> <%= link_to_function 'Create new class', "jQuery('#group').show(); jQuery('#hide').show(); jQuery('#show').hide(); return false;" %></span>
+    		</div>
+		<h1>Listing all classes/groups</h1>
+			 <table class="listing">
+                       		<tr>
+    					<th><%= order @search, :by => :name ,:as => "Name"%></th>
+    		   			<th><%= order @search, :by => :status ,:as => "Status"%></th>
+    					<th>Actions</th>
+  				</tr>
+					<% @groups.each do |group| %>
+  				<tr class="<%=cycle("odd", "even")%>">
+    					<td><%=h group.name %></td>
+    					<td><%= h group.status%>
+    					<td class="view"><%= link_to '<img src="/images/view.gif" title="View"/>', group%> 
+       					<%if group.status=='Active'%>
+        				<%= link_to 'Make Inactive', make_inactive_group_path(group) %> 
+         				<%else%>
+       					<%= link_to 'Make Active', make_active_group_path(group) %> 
+        				<%end%>
+    					</td>
+  				</tr>
+			<% end %>
+			</table>
+			<div id="pg"><%=will_paginate @groups%>	</div>
+	</div>
+	<div class="sidebar">
+		<h1>Search</h1>
+		<% form_for @search do |f| %>
+		 <table>
+    			<tr>
+      				<th>Name</th>
+			</tr>
+				<td><%= f.text_field :name_like %></td>
+			</tr>
+			<tr>
+       				<th>Student Name</th>
+			</tr>
+			<tr>
+				<td><%= f.text_field :students_name_like%></td>
+			</tr>
+			<tr>
+       				<td class="btn"><%= f.submit "Search" %> <input type="reset" value="Reset"></td>
+  			</tr>
+  		</table>
+  		<%end%>
+	</div>
+	<div class="clear" ></div>
+

@@ -1,0 +1,77 @@
+<div id="listing_file">
+	<h1>Listing all Schedules</h1>
+	<table class="listing">
+  		<tr>
+    			<th><%= order @search, :by => :scheduled_date, :as => "Scheduled Date"%></th>
+    			<th>Scheduled Time</th>
+    			<th>Message</th>
+    			<th>Class/Mobile no.</th>
+    			<th>View</th> 
+  		</tr>
+		<% @schedules.each do |schedule| %>
+  		<tr class="<%=cycle("odd", "even")%>">
+    			<td><%=h schedule.scheduled_date%></td>
+    			<td><%= Time.parse(schedule.scheduled_time.to_s).strftime('%H:%M') %></td>
+    			<td><%=h message_body_filter(schedule.message_body)%></td>
+    		   <%unless schedule.group_id.nil?%>
+    			    <td><%=h schedule.group.name%></td>
+    			  <%else%>
+    			    <td><%=h schedule.number%></td>
+    			 <%end%>
+    		   	  <td class="view"><%= link_to '<img src="/images/view.gif" title="View"/>', schedule %></td>
+  		</tr>
+		<% end %>
+	</table>
+	<div id="pg"><%=will_paginate @schedules%></div>
+</div>
+<div class="sidebar">
+	<h1>Search </h1>
+	<% form_for @search do |f| %>
+ 		<table>
+     			<tr>
+      				<th>Scheduled Date</th>
+			</tr>
+			<tr>	
+				<td><%= f.text_field :scheduled_date_like %></td>
+			</tr>
+     			<tr>
+       				<th>Scheduled Time</th>
+			</tr>
+			<tr>
+				<td><%= f.text_field :scheduled_time_equals%></td>
+			</tr>
+			<tr>
+       				<th>Message</th>
+			</tr>
+			<tr>
+				<td><%= f.text_field :message_body_like%></td>
+			</tr>
+			
+			<tr>
+       				<th>Mobile number</th>
+			</tr>
+			<tr>
+				<td><%= f.text_field :number_like%></td>
+			</tr>
+			
+			<tr>
+       				<th>Class Name</th>
+			</tr>
+			<tr>	
+				<td><%= f.text_field :group_name_like%></td>
+			</tr>
+			
+			<tr>
+       				<th>Student Name</th>
+			</tr>
+			<tr>
+				<td><%= f.text_field :students_name_like%></td>
+			</tr>
+			<tr>
+       				<td class="btn"><%= f.submit "Search" %> <input type="reset" value="Reset"></td>
+  			</tr>
+  		</table>
+  	<%end%>
+</div>
+<div class="clear" ></div>
+

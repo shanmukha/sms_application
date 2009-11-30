@@ -1,0 +1,14 @@
+<div class="clear"></div>
+<div class="Edit_show">
+	<fieldset>
+		<% form_for(@letter) do |f| %>
+  		<%= f.error_messages %>
+		<p>
+    			<%= f.label :content %><br />
+    			<%= f.text_area :content %>
+  		</p>
+  		<p>
+    			<span><%= f.submit 'Update' %></span>
+  		</p>
+			<% end %>
+,</div>

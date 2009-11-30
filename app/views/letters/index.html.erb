@@ -1,0 +1,61 @@
+<div id = 'hide' style ="display:none">
+ 	<span><%= link_to_function '<img src="/images/cancel.gif" title="Cancel"/>', "jQuery('#letter').hide(); jQuery('#show').show(); jQuery('#hide').hide();return false;" %> </span>
+</div>
+
+<div id = 'letter' style ="display:none ; clear:both">
+  		<%= render :partial =>"new"%>
+</div>
+
+<div id="listing_file">
+   	<div id = 'show'>
+        	<span> <%= link_to_function 'New letter', "jQuery('#letter').show(); jQuery('#hide').show(); jQuery('#show').hide(); return false;" %></span>
+    	</div>
+	 <h1>Listing letters</h1>
+   	<table class ="listing">
+  		<tr>
+    			<th>Content</th>
+    			<th>Class</th>
+    			<th>View</th>
+  		</tr>
+		<% @letters.each do |letter| %>
+  		<tr class="<%=cycle("odd", "even")%>">
+    			<td><%= message_body_filter(letter.content)%></td>
+     			<td><%= letter.group.name %></td>
+    			<td class="view"><%= link_to '<img src="/images/view.gif" title="View"/>', letter%></td>
+  		</tr>
+		<% end %>
+	</table>
+	<%=will_paginate @letters%>
+<br />
+</div>
+<div class="sidebar">
+	<h1>Search </h1>
+	<% form_for @search do |f| %>
+ 		<table>
+     		
+			<tr>
+      				<th>Email Body </th>
+			</tr>
+			<tr>
+				<td><%= f.text_field :content_like %></td>
+			</tr>
+			<tr>
+       				<th>Student Name </th>
+			</tr>
+			<tr>
+				<td><%= f.text_field :students_name_like%></td>
+			</tr>
+			<tr>
+       				<th>Class Name </th>
+			</tr>
+			<tr>
+				<td><%= f.text_field :group_name_like%></td>
+			</tr>
+			<tr>
+       				<td class="btn"><%= f.submit "Search" %> <input type="reset" value="Reset"></td>
+  			</tr>
+  		</table>
+  	<%end%>
+</div>
+<div class="clear" ></div>
+

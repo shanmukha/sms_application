@@ -1,0 +1,44 @@
+<% form_for(@student||Student.new) do |f| %>
+	<%= f.error_messages %>
+	<div class="Errors_left">
+  	 <p>
+    		 <%= f.label :Student_name %><br />
+    		 <%= f.text_field :name %>
+  	 </p>
+  	 <p>
+    		 <%= f.label :Roll_number %><br />
+    		 <%= f.text_field :roll_number%>
+  	 </p>
+  	 <p>
+    		<%= f.label :Parent_name %><br />
+    		<%= f.text_field :parent %>
+  	 </p>
+  	 <p>
+    		<%= f.label :Mobile_number %><br />
+    		<%= f.text_field :number %>
+        </p>
+        <p>
+    		<%= f.label :address %><br />
+    		<%= f.text_area :address,:rows =>"5" %>
+     	</p>
+        <p>
+    		<%= f.label :email %><br />
+    		<%= f.text_field :email %>
+       </p>
+       <span>
+    		<%= f.submit 'Create record' %> or <%= link_to 'Cancel & return to students list', students_path %>
+      </span> 
+      </div>
+     <div class="Errors_right">
+             <%unless current_user.groups.find(:all,:conditions =>['status =?','Active']).blank?%>
+             <b>Select the  classes/groups this Student belongs to:
+             <%end%>
+ 		<br /></b>
+		<%for group in  current_user.groups.find(:all,:conditions =>['status =?','Active'])%>
+   		<%= check_box_tag("groups[]", group.id, false,:id=> group.id)%> <%=group.name %>
+ 		<br />
+	<%end%>
+     </div> 
+<% end %>
+<div class="clear"></div>
+

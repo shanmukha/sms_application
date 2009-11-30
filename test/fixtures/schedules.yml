@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  scheduled_date: 2009-10-05
+  message_body: MyText
+  scheduled_time: 2009-10-05 12:19:56
+  user_id: 1
+
+two:
+  scheduled_date: 2009-10-05
+  message_body: MyText
+  scheduled_time: 2009-10-05 12:19:56
+  user_id: 1

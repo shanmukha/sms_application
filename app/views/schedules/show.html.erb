@@ -1,0 +1,55 @@
+<div class="showpage_content">
+	<table class="show_page">
+		<tr>
+  			<th>Scheduled Date:</th>
+  			<td><%=h @schedule.scheduled_date %></td>
+		</tr>
+		<tr>
+  			<th>Scheduled Time:</th>
+  			<td><%=h Time.parse(@schedule.scheduled_time.to_s).strftime('%H:%M')%></td>
+		</tr>
+		<tr>
+			<th>Message Body:</th>
+  			<td><%=h @schedule.message_body %></td>
+		</tr>
+		<tr>
+	 	<%unless @schedule.group_id.nil?%>
+      			<th>Class/group:</th>
+    			<td><%=h @schedule.group.name%></td>
+		</tr>
+		<tr>
+    		<%else%>
+    	 		<th>Mobile number:</th>
+    		 	<td><%=h @schedule.number%></td>
+    		<%end%>
+		</tr>
+	</table>
+	<table class="student_letter" border="1" >
+  		<%if !@students.blank? and @schedule.sms_id==nil%>
+	  	<tr>
+		 	<th>Student name</th>
+		 	<th>Roll Number</th>
+		 	<th>Status</th>
+		</tr>
+		<%@students.each do  |student|%>
+		<tr>
+			<td><%= student.name%></td>
+			<td><%= student.roll_number%></td>
+   			<td><%= find_schedule_status(@schedule,student)%></td>
+		</tr>
+		<%end%>
+		<%end%>
+		<%if @schedule.sms_id==nil and @students.blank?%>
+	  	<tr>
+			<td><h3>Status: Sent failed<h3></td>
+		</tr>
+		<%end%>
+	 	<%if @schedule.sms_id!=nil%>
+	   	<tr>
+		 	<td><h3>Status: <%= @schedule.status%></h3></td>
+		</tr>
+	<%end%>
+ </table>
+<%= link_to "Update status", status_update_schedule_path(@schedule)%> | <%= link_to 'Cancel', @schedule, :confirm => 'This action will delete the schedule record. Are you sure?', :method => :delete %>
+</div>
+

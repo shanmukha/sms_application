@@ -1,0 +1,66 @@
+<% form_for(:sms, :url => message_services_path, :html => {:id => 'main-form'}) do |f| %>
+	<%= f.error_messages %>
+	<div class="message_left" >
+       		<div class = 'message_div_top'>
+         		<div class ='left heading'>Message Content </div>
+         		<div class = 'right'>
+    	    	<%= f.select :id, all_templates, options={:prompt => 'SELECT SAVED MESSAGE'} %>
+            	<%= image_tag("spinner.gif",
+              	        :align => "absmiddle",
+               	        :border => 0,
+                  	:id => "spinner",
+                  	:style =>"display: none;" ) %>  
+          		</div>
+          		<div class = 'clear'></div>
+      		 </div>
+ 		<p><%= f.text_area :message_body %> </p>
+         	<p><span id="counter"></span> characters left to complete one message.</p>
+
+  	   	<div id = 's'>
+       	      		<%= f.submit "Send message now" %> or 
+              		<%= link_to_function 'Click here to schedule message sending.', "jQuery('#schedule').show(); jQuery('#s').hide(); return false;" %>
+           	</div>
+           	<div id = 'schedule' style ="display:none"> 
+             		<%= render :partial =>"schedule"%> <br /><br /><span><%= f.submit "Schedule message sending on selected date & time" %> </span> or 
+              		<%= link_to_function "Cancel message scheduling.", "jQuery('#schedule').hide(); jQuery('#s').show(); return false;" %> 
+            	</div>  
+	</div>     
+    
+     	<%= observe_field("sms_id", :frequency => 1,
+                  :before => "jQuery('#spinner').show();",
+                  :success => "jQuery('#spinner').hide();",
+                  :url => {:action=>'render_message_template'}, :method => :get,
+                  :with => "'sms_id=' + value")%>
+                  
+      	<div class="message_right">
+        	<div class = 'message_div_top'>
+           		<div class ='left heading'>Student List</div> 
+           		<div class = 'right'>
+    	      		<%= f.select :group_id, all_groups, options={:prompt => 'SELECT CLASS/GROUP'}%>
+      	      		<%= image_tag("spinner.gif",
+              			:align => "absmiddle",
+               			:border => 0,
+              			:id => "spinner1",
+             	  		:style =>"display: none;" ) %>  
+           		</div>
+           		<div class = 'clear'> </div>
+       		</div>
+         
+              	<%= observe_field("sms_group_id", :frequency => 1,
+                  :before => "jQuery('#spinner1').show();",
+                  :success => "jQuery('#spinner1').hide();",
+                  :url => {:action=>'student_groups'}, :method => :get,
+                  :with => "'group_id=' + value")%>
+    	    	<div id="students"> 
+        		<%= render :partial =>"mobile_number"%>
+	   	</div>
+       </div>
+       <div class ='clear'></div>
+<% end %>
+<div class="clear"></div>
+	<script type="text/javascript">
+	jQuery(document).ready(function()
+	{
+	jQuery('#sms_message_body').simplyCountable();
+	});
+	</script>

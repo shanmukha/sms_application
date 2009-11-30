@@ -1,0 +1,74 @@
+	<div id = 'hide' style ="display:none">
+ 		<span><%= link_to_function '<img src="/images/cancel.gif" title="Cancel"/>', "jQuery('#student').hide(); jQuery('#show').show(); jQuery('#hide').hide();return false;" %> </span>
+	</div>
+	<div id = 'student' style ="display:none ; clear:both">
+  		<%= render :partial =>"new"%>
+	</div>
+	<div id="listing_file">
+		<div id = 'show'>
+	          	<span><%= link_to_function 'New Student Record', "jQuery('#student').show(); jQuery('#hide').show(); jQuery('#show').hide(); return false;" %></span>
+         	</div>
+		<h1>Listing Students</h1>
+		<table class="listing">
+   			<tr>
+   			    <th><%= order @search, :by => :roll_number ,:as => "Roll NO."%></th>
+     				<th><%= order @search, :by => :name ,:as => "Student Name"%></th>
+     	   			<th>Mobile NO.</th>
+     		  		<th>View</th>
+  			</tr>
+				<% @students.each do |student| %>
+  			 <tr class="<%=cycle("odd", "even")%>">
+  			      <td><%=h student.roll_number %></td>
+    				<td><%=h student.name %></td>
+    	    	<td><%=h student.number %></td>
+    				<td class="view">
+				<%= link_to '<img src="/images/view.gif" title="View"/>',student_path(student),:rel =>"facebox"%></td>
+  			</tr>
+			<% end %>
+			
+		</table>
+ 		<div id="pg"><%=will_paginate @students%></div>
+	</div>
+	<div class="sidebar">
+		<h1>Search </h1>
+		<% form_for @search do |f| %>
+ 			<table>
+  				<tr>
+      					<th>Student Name </th>
+				</tr>
+				<tr>
+					<td> <%= f.text_field :name_like %></td>
+				</tr>
+		        	<tr>
+      					<th>Parent Name </th>
+				</tr>
+				<tr>
+					<td><%= f.text_field :parent_like %></td>
+				</tr>
+				<tr>
+      					<th>Roll Number </th>
+				</tr>
+				<tr>
+					<td><%= f.text_field :roll_number_like %></td>
+				</tr>
+				
+				<tr>
+      					<th>Mobile Number</th>	
+				</tr>
+				<tr>
+					<td><%= f.text_field :number_equals%></td>
+				</tr>
+				<tr>
+      					<th>Class Name </th>
+				</tr>
+				<tr>
+					<td><%= f.text_field :groups_name_like%></td>
+				</tr>
+				<tr>
+       					<td class="btn"> <%= f.submit "Search" %> <input type="reset" value="Reset"></td>
+  				</tr>
+  			</table>
+  		<%end%>
+	</div>
+	<div class="clear" ></div>
+

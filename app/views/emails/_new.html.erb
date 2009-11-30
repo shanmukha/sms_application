@@ -1,0 +1,35 @@
+<% form_for(@email||Email.new,:html => {:id => 'main-form'}) do |f| %>
+     <div class="create_new">
+	<fieldset>
+  		<%= f.error_messages %>
+ 		<p>
+    		<%= f.label :Subject %><br />
+    		<%= f.text_field :subject %>
+  		</p>
+  		<p>
+    		<%= f.label :body %><br />
+    		<%= f.text_area :body %>
+  		</p>
+
+   		<span>
+    		   <%= f.submit 'Send' %> or <%= link_to_function "Cancel", "jQuery('#mail').hide();jQuery('#show').show();jQuery('#hide').hide()"%>
+  		</span>
+	</fieldset>
+     </div>
+     <div id="select_group">
+        <%= f.select :group_id, all_groups, options={:prompt => 'SELECT CLASS/GROUP'}%>
+      	      		<%= image_tag("spinner.gif",
+              		:align => "absmiddle",
+               		:border => 0,
+              		:id => "spinner1",
+             	 	 :style =>"display: none;" ) %>  
+          
+         <%= observe_field("email_group_id", :frequency => 1,
+                  :before => "jQuery('#spinner1').show();",
+                  :success => "jQuery('#spinner1').hide();",
+                  :url => {:action=>'group_students'}, :method => :get,
+                  :with => "'group_id=' + value")%>
+       </div>
+       <div id="students"></div>
+<% end %>
+

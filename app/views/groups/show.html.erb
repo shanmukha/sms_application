@@ -1,0 +1,20 @@
+<div class="showpage_content">
+	<table class="show_page">
+		<tr>
+			<th>Class Name: </th><td><%=h @group.name %></td>
+		</tr>
+	</table>
+	<table  class="student_letter" border="1" >
+		<tr>
+			<th>Student name</th>
+			<th>Roll No</th>
+		</tr>
+			<% for student in @students%>
+		<tr class="<%=cycle("odd", "even")%>">
+			<td><%= student.name%></td>
+			<td><%= student.roll_number%></td>
+		</tr>
+		<%end%>
+ 	</table>
+	<%= link_to 'Edit', edit_group_path(@group) %>
+</div>

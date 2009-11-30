@@ -1,0 +1,51 @@
+	<div id = 'hide' style ="display:none">
+ 		<span><%= link_to_function '<img src="/images/cancel.gif" title="Cancel"/>', "jQuery('#saved_message').hide(); jQuery('#show').show(); 			jQuery('#hide').hide();return false;" %> </span>
+	</div>
+	<div id = 'saved_message' style ="display:none ; clear:both">
+  		<%= render :partial =>"new"%>
+	</div>
+	<div id="listing_file">
+   		<div id = 'show'>
+        	<span> <%= link_to_function 'New Saved Message', "jQuery('#saved_message').show(); jQuery('#hide').show(); jQuery('#show').hide(); return false;" %></span>
+    		</div>
+   	
+		<h1>Listing all Saved messages</h1>
+		<table class="listing">
+  			<tr>
+    				<th><%= order @search, :by => :message_title,:as => "Message Title"%></th>
+    				<th>Message Body</th>
+    				<th>View</th>
+    			</tr>
+				<% @message_templates.each do |message_template| %>
+  			<tr class="<%=cycle("odd", "even")%>">
+   				<td><%=h message_template.message_title %></td>
+   				<td><%=h message_body_filter(message_template.message_body)%></td>
+    				<td class="view"><%= link_to '<img src="/images/view.gif" title="View"/>',message_template_path(message_template),:rel => "facebox"%></td>
+  			</tr>
+			<% end %>
+		</table>
+		<div id="pg"><%=will_paginate @message_templates%></div>
+	</div>
+	<div class="sidebar">
+		<h1>Search </h1>
+ 		<% form_for @search do |f| %>
+ 			<table>
+  				<tr>
+    					<th>Message Title </th>
+				</tr>
+				<tr>
+					<td><%= f.text_field :message_title_like %></td>
+				</tr>
+				<tr>
+    					<th>Message </th>
+				</tr>
+				<tr>
+					<td><%= f.text_field :message_body_like%></td>
+				</tr>
+				<tr>
+      					<td class="btn"><%= f.submit "Search" %>  <input type="reset" value="Reset"></td>
+  				</tr>
+  			</table>
+  		<%end%>
+	</div>
+	<div class="clear" ></div>

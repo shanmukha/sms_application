@@ -1,0 +1,48 @@
+<div id="user-show">
+<p>
+  <b>Name:</b>
+  <%=h @user.name %>
+</p>
+
+<p>
+  <b>User name:</b>
+  <%=h @user.username %>
+</p>
+
+<p>
+  <b>Password:</b>
+   **************
+</p>
+<% if current_user.has_role?('admin')%>
+<p>
+  <b>Server user name:</b>
+  <%=h @user.server_user_name%>
+
+</p>
+
+<p>
+  <b>Server password:</b>
+  <%=h @user.server_password %>
+</p>
+<%end%>
+<p>
+  <b>Designation:</b>
+  <%=h @user.designation %>
+</p>
+
+<p>
+  <b>Email:</b>
+   <%=h @user.mail_id%>
+  </p>
+  
+<p>
+  <b>Balance:</b>
+  
+  <%=h @user.balance %>
+
+</p>
+
+<%= link_to 'Edit', edit_user_path(@user) %> &nbsp;&nbsp;&nbsp;  <% if current_user.has_role?('admin')%>
+<%= link_to 'Destroy', @user, :confirm => 'Are you sure?', :method => :delete %>
+<%end%>
+</div>

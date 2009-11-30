@@ -1,0 +1,34 @@
+<%= link_to 'New user', new_user_path %>
+<h1>Users</h1>
+<% form_for @search do |f| %>
+ 		Client name:<%= f.text_field :name_like %>
+		<%= f.submit "Search" %><input type="reset" value="Reset">
+<%end%>
+<table class="listing">
+  <tr>
+    <th>Name</th>
+    <th>User name</th>
+     <th>Server username</th>
+     <th>Server password</th>
+     <th>Designation</th>
+    <th>Email</th>
+    <th>Balance</th>
+    <th>View</th>
+   </tr>
+
+<% @users.each do |user| %>
+  <tr class="<%=cycle("odd", "even")%>">
+    <td><%=h user.name %></td>
+    <td><%=h user.username %></td>
+     <td><%=h user.server_user_name %></td>
+     <td><%=h user.server_password %>
+     <td><%=h user.designation %></td>
+    <td><%=h user.mail_id %></td>
+    <td><%=h user.balance %></td>
+    <td><%= link_to 'View', user_path(user)%></td>
+   </tr>
+<% end %>
+</table>
+<%= will_paginate @users%>
+<br />
+
