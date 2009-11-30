@@ -24,7 +24,7 @@ class EmailsController < ApplicationController
   def new
     @email = Email.new
     respond_to do |format|
-      format.html # new.html.erb
+      format.html 
       format.xml  { render :xml => @email }
     end
   end
