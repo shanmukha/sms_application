@@ -13,18 +13,24 @@
   <b>Password:</b>
    **************
 </p>
-<% if current_user.has_role?('admin')%>
+<% if current_user.has_role?('super_admin')%>
 <p>
   <b>Server user name:</b>
   <%=h @user.server_user_name%>
-
 </p>
 
 <p>
   <b>Server password:</b>
   <%=h @user.server_password %>
+  </p>
+  <p>
+  <b>Balance:</b>
+  
+  <%=h @user.balance %>
+
 </p>
 <%end%>
+
 <p>
   <b>Designation:</b>
   <%=h @user.designation %>
@@ -35,12 +41,7 @@
    <%=h @user.mail_id%>
   </p>
   
-<p>
-  <b>Balance:</b>
-  
-  <%=h @user.balance %>
 
-</p>
 
 <%= link_to 'Edit', edit_user_path(@user) %> &nbsp;&nbsp;&nbsp;  <% if current_user.has_role?('admin')%>
 <%= link_to 'Destroy', @user, :confirm => 'Are you sure?', :method => :delete %>

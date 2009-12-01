@@ -11,6 +11,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :server_password
       t.string :password_salt
       t.string :persistence_token
+      t.integer:parent_id
       t.timestamps
     end
    create_table :roles do |t|
@@ -26,16 +27,17 @@ class CreateUsers < ActiveRecord::Migration
     
 
     # Create admin role and user
-    user_role = Role.create(:name => 'user')
+    super_admin_role = Role.create(:name => 'super_admin')
     admin_role = Role.create(:name => 'admin') 
+    teacher_role = Role.create(:name =>'teacher')
     admin = User.create do |u|
-      u.name ='admin'
-      u.username = 'admin'
-      u.password = u.password_confirmation = 'admin'
-      u.mail_id ='admin@gmail.com'
+      u.name ='super_admin'
+      u.username = 'super_admin'
+      u.password = u.password_confirmation = 'password'
+      u.mail_id ='super_admin@gmail.com'
       u.designation = 'Software engineer'
      end
-      admin.roles<< admin_role
+      admin.roles<< super_admin_role
    end
     
   def self.down

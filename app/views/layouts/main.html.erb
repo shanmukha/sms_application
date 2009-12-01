@@ -33,20 +33,15 @@
 <div id="header">
 	<div class="header_links">
 		<%if current_user%>
-		<% if current_user.has_role?('admin')%>
+		  	
 		<ul>
-          		
-          			<li class='<%= request.request_uri == "/users"? 'active': 'link' %>'> <%= link_to "Users list", users_path %>| </li> 
-            	<li class='<%= request.request_uri == "/users/#{current_user.id}/edit"? 'active': 'link' %>'> <%= link_to "Settings",edit_user_path(current_user) %>| </li> 
+		  <%if current_user.has_role?('super_admin') || current_user.has_role?('admin')%>
+          <li class='<%= request.request_uri == "/users"? 'active': 'link' %>'> <%= link_to "Users list", users_path %>| </li> 
+         <%end%>
+              <li class='<%= request.request_uri == "/users/#{current_user.id}/edit"? 'active': 'link' %>'> <%= link_to "Settings",edit_user_path(current_user) %>| </li> 
           		<li><%= link_to "Logout", logout_path %></li>
          	</ul>
-         		<% else %>
-        	<ul>
-          		<li class='<%= request.request_uri == "/users/#{current_user.id}/edit"? 'active': 'link' %>'> <%= link_to "Settings",edit_user_path(current_user) unless current_user.nil? %> |</li> 
-          		<li><%= link_to "Logout", logout_path %></li>
-          	</ul>
-        		<% end %>
-        		<%else%>
+         <%else%>
         	<ul>
           		<li><%= link_to "Login", login_path %></li>
           	</ul>	
@@ -60,19 +55,18 @@
 		<% if current_user %> 
 		<div id="menu">
             <ul>
-		     <% if request.request_uri == "/message_services/new"%>
-			    <li class='<%= request.request_uri == "/message_services/new"? 'active': 'link' %>'> <%= link_to "New Message", new_message_service_path%></li>
-			 
-			  <%elsif request.request_uri == "/"%>
-			  <li class='<%= request.request_uri == "/"? 'active': 'link' %>'><%= link_to "New Message", new_message_service_path %></li>
+		     <% if request.request_uri == "/messages/new"%>
+			    <li class='<%= request.request_uri == "/messages/new"? 'active': 'link' %>'> <%= link_to "New Message", new_message_path%></li>
+			 <%elsif request.request_uri == "/"%>
+			  	<li class='<%= request.request_uri == "/"? 'active': 'link' %>'><%= link_to "New Message", new_message_path %></li>
 			  <%else%>
-			  <li><%= link_to "New Message", new_message_service_path %></li>
+			  <li><%= link_to "New Message", new_message_path %></li>
 			<%end%>
             	<li class='<%= request.request_uri =~ /students/? 'active': 'link' %>'> <%= link_to "Students List", students_path%></li> 
             	<li class='<%= request.request_uri =~ /message_templates/? 'active': 'link' %>'> <%= link_to "Saved Messages", message_templates_path%></li> 	
                 <li class='<%= request.request_uri =~ /groups/? 'active': 'link' %>'><%= link_to "Classes",    groups_path%></li>
                 <li class='<%= request.request_uri =~ /schedules/? 'active': 'link' %>'><%= link_to "Schedules",  schedules_path%></li>
-                <li class='<%= request.request_uri =~ /message_services/? 'active': 'link' %>'><%= link_to "Sent messages", message_services_path%></li>
+                <li class='<%= request.request_uri =~ /messages/? 'active': 'link' %>'><%= link_to "Sent messages", messages_path%></li>
                 <li class='<%= request.request_uri =~ /emails/? 'active': 'link' %>'><%= link_to "Emails", emails_path%></li>
          	<li class='<%= request.request_uri =~ /letters/? 'active last': 'link last' %>'><%= link_to "Letters", letters_path%></li>
              </ul>

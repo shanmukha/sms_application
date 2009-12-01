@@ -16,7 +16,7 @@
     			<%else%>
     			 <td><%=h message.number%></td>
     			<%end%>
-    			<td class="view"><%= link_to '<img src="/images/view.gif" title="View"/>', message_service_path(message)%></td>
+    			<td class="view"><%= link_to '<img src="/images/view.gif" title="View"/>', message_path(message)%></td>
   		</tr>
 		<% end %>
 	</table>

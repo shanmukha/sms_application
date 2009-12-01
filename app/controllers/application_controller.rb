@@ -17,12 +17,8 @@ class ApplicationController < ActionController::Base
      end  
    end
 
-  def check_role(role)
-  	list ||= current_user.roles.collect(&:name)
-    role = list.include?(role)
-    if role==true
-      return
-    else
+  def check_role(super_admin_role,admin_role)
+  	  unless ((current_user.has_role?(super_admin_role)) ||(current_user.has_role?(admin_role)) )
        flash[:notice]= "Permission denied."
        redirect_to root_path
      end  

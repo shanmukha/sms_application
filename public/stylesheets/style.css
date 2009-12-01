@@ -1184,22 +1184,21 @@ table.student_letter tr.even:hover{
 	  background:url(/images/users.png) no-repeat;
   } 
 .user-search {
-  font-size:13px;
+  font-size:18px;
   font-weight:bold;
   width:48%;
   border:2px solid #ccc;
-  padding :20px 20px 20px 20px;
+  padding :20px 20px 30px 20px;
   margin:20px 20px 20px 20px;
   background-color:#eeecde;
   }
  .user-search span input{
-	 width:70px;
 	 height:25px;
-	 padding:0px 0px 3px 0px;
+	 padding:0px 4px 3px 0px;
 	 border:0px solid #575656;
 	 background: url(/images/button.jpg) no-repeat top;
 	 font-weight:bold;
-	 margin:25px 0px 0px 0px;
+	 margin:25px 0px 0px 20px;
 	 font-family: Verdana, Helvetica, Arial;
 	
 }

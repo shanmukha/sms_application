@@ -1,4 +1,4 @@
-<div class="create_new">
+
 	<fieldset>
 <% form_for @user do |f| %>
   <%= f.error_messages %>
@@ -19,7 +19,7 @@
     <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation %>
   </p>
-    <% if current_user.has_role?('admin')%>
+    <% if current_user.has_role?('super_admin')%>
     <p>
     <%= f.label :Server_username %><br />
     <%= f.text_field :server_user_name %>
@@ -28,6 +28,10 @@
      <p>
       <%= f.label :Server_password %><br />
       <%= f.password_field :server_password %>
+  </p>
+   <p>
+    <%= f.label :Balance %><br />
+    <%=  f.text_field :balance %>
   </p>
   <%end%>
    
@@ -39,12 +43,9 @@
     <%= f.label :designation %><br />
     <%= f.text_field :designation %>
   </p>
-  <p>
-    <%= f.label :Balance %><br />
-    <%=  f.text_field :balance %>
-  </p>
+ 
  <span><%= f.submit "Submit" %></span>
 <% end %>
 </fieldset>
-</div>
+
 <div class="clear"></div>

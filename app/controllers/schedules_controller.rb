@@ -24,8 +24,9 @@ class SchedulesController < ApplicationController
    def status_update
         @schedule = Schedule.find(params[:id])
        	schedules = @schedule.schedule_students
-       	MessageSchedule.user = current_user.server_user_name
-        MessageSchedule.password = current_user.server_password
+        admin = current_user.parent_id==1 ? current_user : User.find(current_user.parent_id)
+       	MessageSchedule.user = admin.server_user_name
+        MessageSchedule.password = admin.server_password
        	unless schedules.blank?
        	  schedules.each do |schedule|
           	sms = MessageSchedule.find(schedule.sms_id)
@@ -50,8 +51,9 @@ class SchedulesController < ApplicationController
 	 def destroy
    	 @schedule = Schedule.find(params[:id])
      schedules = @schedule.schedule_students
-     MessageSchedule.user = current_user.server_user_name
-     MessageSchedule.password = current_user.server_password
+     admin = current_user.parent_id==1 ? current_user : User.find(current_user.parent_id)
+     MessageSchedule.user = admin.server_user_name
+     MessageSchedule.password = admin.server_password
      unless schedules.blank?
        schedules.each do |schedule|
        res = MessageSchedule.delete(schedule.sms_id)   #calling destroy method of the API.

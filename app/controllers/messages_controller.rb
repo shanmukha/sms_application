@@ -1,6 +1,5 @@
-class MessageServicesController < ApplicationController
- before_filter :set_thread_user
-  layout proc{ |c| ['new'].include?(c.action_name)? 'message' : 'main'}
+class MessagesController < ApplicationController
+ layout proc{ |c| ['new'].include?(c.action_name)? 'message' : 'main'}
 	def new
    @message = Message.new
    @groups = current_user.groups.find(:all,:conditions =>['status =?','Active'])
@@ -8,7 +7,8 @@ class MessageServicesController < ApplicationController
 
 	def index
      @search =  Message.search(params[:search]) 
-     @search.user_id = current_user.id
+     @search.user_id = current_user.id if current_user.has_role?('teacher')
+     @search.user_id = user_ids if current_user.has_role?('admin')
      @search.order ||= "descend_by_created_at"
      @messages = @search.all.paginate :page => params[:page],:per_page => 25
      respond_to do |format|
@@ -31,19 +31,20 @@ class MessageServicesController < ApplicationController
     @message = current_user.messages.find(params[:id])
     @message.destroy
     respond_to do |format|
-      format.html { redirect_to(message_services_url) }
+      format.html { redirect_to(message_s_url) }
       format.xml  { head :ok }
     end
   end
  
  def create
 	 begin
+	   admin = current_user.parent_id==1 ? current_user : User.find(current_user.parent_id)
 	   no_of_sms = params[:students].nil? ? 1 : params[:students].size
 	   balance = current_user.balance.to_i - no_of_sms
-	   MessageService.user = current_user.server_user_name
-     MessageService.password = current_user.server_password
-     MessageSchedule.user = current_user.server_user_name
-     MessageSchedule.password = current_user.server_password
+	   MessageService.user = admin.server_user_name
+     MessageService.password = admin.server_password
+     MessageSchedule.user = admin.server_user_name
+     MessageSchedule.password = admin.server_password
 	   if balance >= 0
 	     if params[:sms][:scheduled_date].blank?  
 	        @message = current_user.messages.new(params[:sms]) 
@@ -80,29 +81,30 @@ class MessageServicesController < ApplicationController
        	   	   sms = MessageSchedule.create(:sms => params[:sms])
        	       @message.update_attributes({:status => "Scheduled", :sms_id => sms.id}) 
             end	   
-             current_user.update_attribute('balance', current_user.balance.to_i - 1)   
+             admin.update_attribute('balance', admin.balance.to_i - 1)   
 	       end
 	       
 	       flash[:notice] = 'The Message is pushed to the network. We will update the delivery status'   
-         redirect_to(new_message_service_url)
+         redirect_to(new_message_url)
 	     else  #@message.save check
          render :action => "new"
        end 
 	   else #no sufficient balance
 	     flash[:notice] = "Please ensure you have suffecient balance in your account."   
-       redirect_to(new_message_service_url) 
+       redirect_to(new_message_url) 
 	   end
 	   rescue #ActiveResource::ResourceInvalid => e  
        flash[:error] = 'Some thing went wrong. Please try again latter.'    
-       redirect_to(new_message_service_url) 
+       redirect_to(new_message_url) 
      end
   end
   
 	def status_update
   	@message = Message.find(params[:id])
   	messages = @message.message_students
-    MessageService.user = current_user.server_user_name
-    MessageService.password = current_user.server_password
+  	admin = current_user.parent_id==1 ? current_user : User.find(current_user.parent_id)
+    MessageService.user = admin.server_user_name
+    MessageService.password = admin.server_password
     unless messages.blank?
       messages.each do |msg|
       	sms = MessageService.find(msg.sms_id)
@@ -116,12 +118,12 @@ class MessageServicesController < ApplicationController
       end  
       respond_to do |format|
         flash[:notice] = 'Status successfully updated.'
-        format.html { redirect_to(message_service_url(@message))} 
+        format.html { redirect_to(message_url(@message))} 
         format.xml  { render :xml => @message }
       end
        rescue #ActiveResource::ResourceInvalid => e  
          flash[:error] = 'Some thing went wrong. Please try again latter.'    
-         redirect_to(message_services_url) 
+         redirect_to(messages_url) 
     end
   
 	
@@ -147,11 +149,13 @@ class MessageServicesController < ApplicationController
      	page.replace_html 'students', :partial => 'group_student'
    end
   end 
-  
-
   private
-    def set_thread_user
-      Thread.current["user"] = current_user
-   end
+  
+  def user_ids
+      array  = []
+      array << current_user.id
+      User.find(:all,:conditions =>['parent_id = ?',current_user.id]).map{|object|array << object.id}
+     return array
   end
+ end 
   
