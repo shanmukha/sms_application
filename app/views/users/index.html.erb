@@ -1,8 +1,9 @@
-<%= link_to 'New user', new_user_path %>
-<h1>Users</h1>
+<div id ="user-new"><%= link_to 'New user', new_user_path %></div>
+<h1 class ="users-list">Listing users</h1>
+<br /><br /><br />
 <% form_for @search do |f| %>
- 		Client name:<%= f.text_field :name_like %>
-		<%= f.submit "Search" %><input type="reset" value="Reset">
+ 	<div class="user-search">Client name:<%= f.text_field :name_like %>
+		<span><%= f.submit "Search" %><input type="reset" value="Reset"></span></div>
 <%end%>
 <table class="listing">
   <tr>
