@@ -22,7 +22,7 @@
   		</tr>
 		<% @emails.each do |email| %>
   		<tr class="<%=cycle("odd", "even")%>">
-  		     <td><%= email.current_user.name%>
+  		     <td><%= email.user.name%>
      			<td><%=h email.subject %></td>
      			<td><%=h message_body_filter(email.body) %></td>
      			<td><%=h email.group.name%></td>
