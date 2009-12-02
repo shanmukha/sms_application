@@ -28,35 +28,38 @@
       	jQuery('a[rel*=facebox]').facebox() })
 	</script>
 </head>
+
 <body>
-<div id="header">
+  <div id="body_wrapper">
+     <div id="header">
 	<div class="header_links">
-		<%if current_user%>
-		<% if current_user.has_role?('admin')%>
-			<ul>
-          		
-          			<li class='<%= request.request_uri == "/users"? 'active': 'link' %>'> <%= link_to "Users list", users_path %>| </li> 
-            	<li class='<%= request.request_uri == "/users/#{current_user.id}/edit"? 'active': 'link' %>'> <%= link_to "Settings",edit_user_path(current_user) %>| </li> 
-          		<li><%= link_to "Logout", logout_path %></li>
+	   <%if current_user%>
+	      <% if current_user.has_role?('admin')%>
+		 <ul>
+          	    <li class='<%= request.request_uri == "/users"? 'active': 'link' %>'> <%= link_to "Users list", users_path %>| </li> 
+            	    <li class='<%= request.request_uri == "/users/#{current_user.id}/edit"? 'active': 'link' %>'> <%= link_to "Settings",edit_user_path(current_user) %>| </li> 
+          	    <li><%= link_to "Logout", logout_path %></li>
          	</ul>
-         		<% else %>
+              <% else %>
         	<ul>
-          		<li class='<%= request.request_uri == "/users/#{current_user.id}/edit"? 'active': 'link' %>'> <%= link_to "Settings",edit_user_path(current_user) unless current_user.nil? %> |</li> 
-          		<li><%= link_to "Logout", logout_path %></li>
+          	    <li class='<%= request.request_uri == "/users/#{current_user.id}/edit"? 'active': 'link' %>'> <%= link_to "Settings",edit_user_path(current_user) unless current_user.nil? %> |</li> 
+          	    <li><%= link_to "Logout", logout_path %></li>
           	</ul>
-        		<% end %>
-        		<%else%>
+              <% end %>
+           <%else%>
         	<ul>
           		<li><%= link_to "Login", login_path %></li>
           	</ul>	
         		<%end%>	
 	 </div>
          <div id = "site_heading">
-		<h1>School IT<span> - Short Message Service</span></h1>
+		<h1><%= image_tag('logo.gif') %><span> - Short Message Service</span></h1>
 	 </div>
 			 
 		<% if current_user %> 
-      	<div id="menu">
+        <div class = 'clear'> </div>
+
+      	  <div id="menu">
             	<ul>
          <% if request.request_uri == "/message_services/new"%>
 			    <li class='<%= request.request_uri == "/message_services/new"? 'active': 'link' %>'> <%= link_to "New Message", new_message_service_path%></li>
@@ -75,6 +78,7 @@
          		<li class='<%= request.request_uri =~ /letters/? 'active last': 'link last' %>'><%= link_to "Letters", letters_path%></li>
                  </ul>
           </div>
+
          	<%end%>
 </div> <!-- end of header -->
 
@@ -82,6 +86,9 @@
    		<p style="color:green"><%= flash[:notice] %></p>
    		<p style="color:red"><%= flash[:error] %></p>
 </div> 
+<div id = 'page-heading'>
+  Creating new message
+</div>
 
 <div id = 'message_wrapper'>			  
 	<div id = 'message'>		  
@@ -92,10 +99,14 @@
 <div class="clear" ></div>
 	
 <script type="text/javascript">
- 	jQuery("#header1").corner("corner 10px")
+ 	jQuery("#body_wrapper").corner("corner 10px")
 	jQuery("#message_wrapper").corner("corner 5px")
-	jQuery("#meXnu").corner("corner 5px")
+        jQuery(".message_div_top").corner("top 5px")
+        jQuery(".message_left").corner("corner 10px")
+        jQuery(".message_right").corner("corner 10px")
+	jQuery("#menu").corner("corner 5px")
 </script>	
+</div>
 </body>	
 </html>
 

@@ -30,7 +30,8 @@
 	</script>
 </head>
 <body>
-<div id="header">
+   <div id="body_wrapper">
+     <div id="header">
 	<div class="header_links">
 		<%if current_user%>
 		<% if current_user.has_role?('admin')%>
@@ -53,11 +54,12 @@
         		<%end%>	
 	</div>
         <div id = "site_heading">
-		<h1>School IT<span> - Short Message Service</span></h1>
+		<h1><%= image_tag('logo.gif') %><span> - Short Message Service</span></h1>
 	</div>
 	
 		
 		<% if current_user %> 
+                <div class="clear" ></div>
 		<div id="menu">
             <ul>
 		     <% if request.request_uri == "/message_services/new"%>
@@ -94,9 +96,11 @@
 
 <script type="text/javascript">
 	jQuery("#content_wrapper").corner("corner 5px")
+        jQuery("#body_wrapper").corner("corner 10px")
 	jQuery("#wrapper").corner("corner 5px")
 	jQuery("#menu").corner("corner 5px")
 </script>
+</div>
 </body>	
 </html>
 

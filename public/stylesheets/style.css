@@ -6,15 +6,17 @@ caption, th, td {text-align : left; font-weight : normal}
 blockquote:before, blockquote:after, q:before, q:after {content : ""}
 blockquote, q {quotes : "" ""}
 
+body { margin: 5px 10px 10px; padding: 0px; background: rgb(211, 202, 170) url('/images/bg.jpg') repeat-x scroll 0% 0%; color: rgb(0, 0, 0); font-family: Verdana,Arial,Tahoma; font-style: normal; font-variant: normal; font-weight: normal; font-size: 12px; line-height: normal; font-size-adjust: none; font-stretch: normal; -x-system-font: none; }
+/*
 body {
 	margin: 0px;
 	padding: 0px;
 	font-family : "arial", helvetica, sans-serif;
 	font-size:12px;
 	color: #666;
-	background: #ebead1 url(/images/bg.jpg) repeat-x;	
+	background: #fff url(/images/bg.jpg) repeat-x;	
 }
-
+*/
 p {
 	margin: 0px;
 	padding: 0px;
@@ -26,6 +28,12 @@ img {
 	border: none;
 }
 /*..................................................header............................*/
+#body_wrapper{
+  margin: 20px 10px 20px 10px;
+  background: #fff;
+  padding-bottom: 20px;
+
+}
 #notice{
 	width:970px;
 	margin:0 auto;
@@ -33,9 +41,9 @@ img {
 }
 
 #header {
-	width: 970px;
+        width: 96%;
 	height: 100px;
-	margin: 0px auto 20px auto;
+	margin: 0px auto 40px auto;
         padding: 5px;
 }
 
@@ -54,8 +62,8 @@ img {
 }
 
 #header #site_heading h1 span {
-	color: #fff;
-	font-size: 22px;
+	color: #ca3a85;
+	font-size: 18px;
 	font-style: normal;
 	letter-spacing: 1px;
 }
@@ -81,33 +89,27 @@ img {
 }
 
 .header_links ul li a{
-	color: #fff;
+	color: #000;
 	font-size:11px;
 	display:inline;
 	font-weight:bold;
 	text-decoration:none;
 }
 
-.header_links ul li a:hover{
+.header_links ul li a:hover{b4d7ec
 	color:#86b050;
 	text-decoration:underline;
 }
-/* end of header **********************/
 
 /* menu *******************************************************************************/
-
-#menu {
-	background:url(/images/menu.jpg) repeat-x;
-        margin: 0px;
-	padding: 0px 0px 0px 0px;
-	border-bottom:none;
-	clear:both;
-	height:33px;
-	margin: 0px 2px 0px 2px;
+#menu-wrapper {background: #c2d2e3; padding: 1px; margin: 10px auto 10px auto;}
+#menu { 
+	background: #e2f2ff url(/images/menu.gif) repeat-x;
+        height:37px;
+	margin: 15px 3px 10px 3px;
 }
 
-#menu ul {
-	margin: 0 0 0 0px;
+#menu ul {
 	padding: 0px;
 	list-style: none;
 }
@@ -116,50 +118,53 @@ img {
 	float: left;
 	background: url(/images/line.gif) no-repeat right;
 	display:inline;	
-	padding: 8px 1px 8px 1px;	
+        margin-top: 10px;
 }
 
 #menu ul li a{
 	text-align:left;
 	font-size: 13px;
 	text-decoration: none;
-	color: #000;	
+	color: #fff;	
 	font-weight: bold;
 	text-transform:uppercase;
 	outline: none;
-	padding:15px 10px 15px 2px;
+	padding:12px 5px 15px 0px;
 	margin:5px 10px 0px 10px;
 	font-family : "arial", helvetica, sans-serif;
 }
 
-#menu ul li.active a{
-	color:#964515;		
-}
+#menu ul li.active a{ color:#b4d7ec; }
 
 #menu li a:hover{
 	color: #0e8ab8;
 	
 }
-.header_links ul li.active a{
-	color:#964515;		
-}
+.header_links ul li.active a{ color:#964515; }
 
-.header_links li a:hover{
-	color: #0e8ab8;
-	}
-/* end of menu*******************************/
+.header_links li a:hover{color: #0e8ab8; }
 
 /*..............................message-services(new message)................................*/
-#message_wrapper{
-	width: 950px;
-  	margin: 0 auto;
- 	padding: 10px;
-  	background: #fff;
+
+#page-heading{
+ font-size: 18px;
+ width: 94%;
+ margin: 10px auto 10px auto;
+ padding: 0px;
+ background: #fff;
+ color: #ca3a85;
 }
 
-#message{
- 	padding: 20px;
- 	background: #fff;
+#message_wrapper{
+        clear: both;
+	width: 92%;
+  	margin: 10px auto 10px auto;
+  	background: #ddd;
+        padding: 20px;
+}
+
+#message{
+
 }
 
 .left{	
@@ -175,25 +180,26 @@ img {
 }
 
 .message_left{
-  padding: 0px 0px 10px 0px;
+        padding: 0px 0px 10px 0px;
 	float:left;
 	min-height:350px;
 	width:48%;
 	margin: 0;
-	background: #f0f0f0;
+	background: #fff;
 }
 
 .message_div_top{
- 	background: #ebead1;
- 	padding: 8px 5px 8px 0px;
-  border-bottom: 1px solid #ccc;
+        font-family : "arial", helvetica, sans-serif;
+ 	background: url(/images/message-top.jpg) repeat-x;
+ 	padding: 4px 8px 4px 0px;
+       border-bottom: 1px solid #ccc;
 }
 .message_div_top .heading{
-	font-size: 15px;
-	padding: 0px 0px 0px 20px;
-	margin: 0px 0px 2px 15px;
+	font-size: 16px;
+	padding: 0px 0px 0px 25px;
+	margin: 2px 0px 2px 15px;
 	width: 35%;
-	color:#000;
+	color:#fff;
 	font-weight:bold;
 	float:left;
 	letter-spacing:1px;
@@ -227,23 +233,23 @@ select{
 }
 
 .message_left  textarea{
-	border:1px solid #ccc;
+	border:2px solid #ddd;
 	padding:0px;
-	margin: 20px 0px 0px 12px;
-	background-color:#fff;
-	width: 90%;
+	margin: 20px auto 0px auto;
+	background-color:#f6f6f6;
+	width: 400px;
 	height: 175px;
 }
 
 .message_left  textarea:focus{
-	border:1px solid #bbb;
+	border:2px solid #bbb;
 }
 
 .message_right{
 	float:right;
 	margin: 0;
-	background: #f0f0f0 url(/images/right_form_bg.gif) no-repeat center;
-	width:49%;
+	background: #fff url(/images/right_form_bg.gif) no-repeat center;
+	width:50%;
 	height: auto;
 	min-height: 350px;
   padding: 0px 0px 10px 0px;
@@ -338,11 +344,11 @@ select{
 
 #content_wrapper{
 	min-height: 500px;
-	background-color:#e0deb1;
+	background-color:#eee;
 	margin: 0 auto;
 	clear: both;
-	width: 968px;
-	padding: 2px;
+	width: 95%;
+	padding: 5px;
 	border-top: none;
 }
 
@@ -449,10 +455,10 @@ select{
 #listing_file {
 	padding:0px;
 	height:0 auto;
-	width:71%;
+	width:72%;
   	float:left;
 	clear:both;
-	margin:29px 0px 30px 0px;
+	margin:29px 0px 30px 6px;
 }
 
 #listing_file h1 {
@@ -639,11 +645,11 @@ table.student_group tr.even:hover{
 
 
 .sidebar{
-			background: #EEECDE; 
+	/*background: #EEECDE; */
     	margin: 0px 0px 0px 10px;
     	padding: 0px 0px 150px 0px;
     	height:0 auto;
-    	border-left:1px solid #cecece;
+    	/*border-left:1px solid #cecece;*/
     	width:25%;
     	float:right;
 }
