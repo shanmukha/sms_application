@@ -3,6 +3,7 @@
 	<table class="listing">
   		<tr>
     			<th><%= order @search, :by => :created_at, :as => "Sent Date"%></th>
+    			<th>Sent by</th>
     			<th>Message</th>
     			<th>Class/Mobile no.</th>
      			<th>View</th>
@@ -10,13 +11,14 @@
 		<% @messages.each do |message| %>
   		<tr class="<%=cycle("odd", "even")%>">
     			<td><%=h Time.parse(message.created_at.to_s).strftime('%Y-%m-%d') %></td>
+    			<td><%= message.user.name%></td>
     			<td><%=h message_body_filter(message.message_body)%></td>
     			<%unless message.group_id.nil?%>
     			<td><%=h message.group.name%></td>
     			<%else%>
     			 <td><%=h message.number%></td>
     			<%end%>
-    			<td class="view"><%= link_to '<img src="/images/view.gif" title="View"/>', message_service_path(message)%></td>
+    			<td class="view"><%= link_to '<img src="/images/view.gif" title="View"/>', message_path(message)%></td>
   		</tr>
 		<% end %>
 	</table>

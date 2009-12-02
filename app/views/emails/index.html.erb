@@ -14,6 +14,7 @@
 	<h1>Listing Sent Mails</h1>
 	<table class ="listing">
   		<tr>
+  		    <th>Sent by</th>
     			<th>Subject</th>
     			<th>Body</th>
     			<th>Class</th>
@@ -21,6 +22,7 @@
   		</tr>
 		<% @emails.each do |email| %>
   		<tr class="<%=cycle("odd", "even")%>">
+  		     <td><%= email.user.name%>
      			<td><%=h email.subject %></td>
      			<td><%=h message_body_filter(email.body) %></td>
      			<td><%=h email.group.name%></td>

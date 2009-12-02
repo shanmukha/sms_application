@@ -3,7 +3,8 @@ class MessageTemplatesController < ApplicationController
  	
  	def index
   	@search = MessageTemplate.search(params[:search])
-    @search.user_id = current_user.id
+    @search.user_id = current_user.id if current_user.has_role?('teacher') 
+    @search.user_id = user_ids if current_user.has_role?('admin')
     @search.order ||= "descend_by_created_at"
     @message_templates = @search.all.paginate :page => params[:page],:per_page => 25
     respond_to do |format|
@@ -13,7 +14,7 @@ class MessageTemplatesController < ApplicationController
   end
  
   def show
-    @message_template = current_user.message_templates.find(params[:id])
+    @message_template = Letter.find(params[:id])
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @message_template }
@@ -29,7 +30,7 @@ class MessageTemplatesController < ApplicationController
   end
 
   def edit
-    @message_template = current_user.message_templates.find(params[:id])
+    @message_template = Letter.find(params[:id])
   end
 
   def create
@@ -47,7 +48,7 @@ class MessageTemplatesController < ApplicationController
   end
  
 	def update
-    @message_template = current_user.message_templates.find(params[:id])
+    @message_template = Letter.find(params[:id])
     respond_to do |format|
       if @message_template.update_attributes(params[:message_template])
         flash[:notice] = 'MessageTemplate was successfully updated.'
@@ -61,11 +62,18 @@ class MessageTemplatesController < ApplicationController
   end
  
   def destroy
-    @message_template = current_user.message_templates.find(params[:id])
+    @message_template = Letter.find(params[:id])
     @message_template.destroy
     respond_to do |format|
       format.html { redirect_to(message_templates_url) }
       format.xml  { head :ok }
     end
+  end
+   private
+  	 def user_ids
+      user_ids  = []
+      user_ids << current_user.id
+      User.find(:all,:conditions =>['parent_id = ?',current_user.id]).map{|object|user_ids << object.id}
+     return user_ids
   end
 end

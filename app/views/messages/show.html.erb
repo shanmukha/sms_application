@@ -1,10 +1,13 @@
 <div class="showpage_content">
 	<table class="show_page">
-		<tr>
-			<th>Message:</th><td><%=h @message.message_body %></td>
-		</tr>
 		<tr>		
 			<th>Sent date: </th><td><%=h Time.parse(@message.created_at.to_s).strftime('%Y-%m-%d') %></td>
+		</tr>
+   <tr>		
+			<th>Sent by: </th><td><%=h @message.user.name %></td>
+		</tr>
+		<tr>
+			<th>Message:</th><td><%=h @message.message_body %></td>
 		</tr>
     <%unless @message.group_id.nil?%>
 		<tr>
@@ -46,6 +49,6 @@
 		</tr>
 		<%end%>
 	</table>
-	<%= link_to "Update status", status_update_message_service_path(@message)%> <!-- | <%= link_to 'Delete',message_service_path(@message), :confirm => 'This action will delete the message.Are you sure?', :method => :delete %> -->
+	<%= link_to "Update status", status_update_message_path(@message)%> 
 </div>
 

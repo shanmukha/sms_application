@@ -3,7 +3,8 @@ class EmailsController < ApplicationController
   
   def index
   	@search =  Email.search(params[:search]) 
-    @search.user_id = current_user.id
+    @search.user_id = current_user.id if current_user.has_role?('teacher') 
+    @search.user_id = user_ids if current_user.has_role?('admin')
     @search.order ||= "descend_by_created_at"
     @emails = @search.all.paginate :page => params[:page],:per_page => 25
     respond_to do |format|
@@ -13,7 +14,7 @@ class EmailsController < ApplicationController
   end
   
   def show
-  	@email = current_user.emails.find(params[:id])
+  	@email = Email.find(params[:id])
     @students = @email.students.find(:all)
     respond_to do |format|
       format.html # show.html.erb
@@ -29,13 +30,7 @@ class EmailsController < ApplicationController
     end
   end
 
- 
-  def edit
-    @email = current_user.emails.find(params[:id])
-  end
-
-  
-	def create
+  def create
   	@email = current_user.emails.new(params[:email]) if params[:students]
     respond_to do |format|
     	if @email.save
@@ -64,22 +59,8 @@ class EmailsController < ApplicationController
        redirect_to(emails_url)
   end
  
-	def update
-    @email = current_user.emails.find(params[:id])
-    respond_to do |format|
-      if @email.update_attributes(params[:email])
-        flash[:notice] = 'Email was successfully updated.'
-        format.html { redirect_to(@email) }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @email.errors, :status => :unprocessable_entity }
-      end
-    end
-  end
-	
-	def destroy
-    @email = current_user.emails.find(params[:id])
+  def destroy
+    @email = Email.find(params[:id])
     @email.destroy
     respond_to do |format|
       format.html { redirect_to(emails_url) }
@@ -93,4 +74,12 @@ class EmailsController < ApplicationController
      		page.replace_html 'students', :partial => 'group_student'
    end
   end 
+ 
+  private
+   def user_ids
+      user_ids  = []
+      user_ids << current_user.id
+      User.find(:all,:conditions =>['parent_id = ?',current_user.id]).map{|object|user_ids << object.id}
+     return user_ids
+  end
 end

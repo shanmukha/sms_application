@@ -1,50 +1,7 @@
 <div class="create_new">
-	<% if !current_user.has_role?('admin')%>
+	<% if current_user.has_role?('admin')%>
 		<h3>Sms balance: <%= current_user.balance%></h3>
 	<%end%>
-	<fieldset>
-		<% form_for @user do |f| %>
-  		<%= f.error_messages %>
-  		<p>
-    			<%= f.label :name %><br />
-    			<%= f.text_field :name %>
-  		</p>
-  		<p>
-    			<%= f.label :username %><br />
-    			<%= f.text_field :username %>
-  		</p>
-   		<p>
-    			<%= f.label :password %><br />
-    			<%= f.password_field :password %>
-  		</p>
-  		<p>
-    			<%= f.label :password_confirmation %><br />
-    			<%= f.password_field :password_confirmation %>
-  		</p>
-    			<% if current_user.has_role?('admin')%>
-    		<p>
-    			<%= f.label :Server_username %><br />
-    			<%= f.text_field :server_user_name %>
-  		</p>
-    		<p>
-      			<%= f.label :Server_password %><br />
-      			<%= f.text_field :server_password %>
-  		</p>
-   		<p>
-    			<%= f.label :Balance %><br />
-    			<%=  f.text_field :balance %>
-  		</p>
-  		<%end%>
-   		<p>
-    			<%= f.label :email %><br />
-    			<%= f.text_field :mail_id %>
-  		</p>
- 		<p>
-    			<%= f.label :designation %><br />
-    			<%= f.text_field :designation %>
-  		</p>
-  		<span><%= f.submit "Submit" %></span>
-		<% end %>
-	</fieldset>
-</div>
-<div class="clear"></div>
+	<%= render :partial =>"form"%>
+	</div>
+	<div class="clear"></div> 

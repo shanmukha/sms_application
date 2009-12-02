@@ -2,18 +2,20 @@
 <h1 class ="users-list">Listing users</h1>
 <br /><br /><br />
 <% form_for @search do |f| %>
- 	<div class="user-search">Client name:<%= f.text_field :name_like %>
+ 	<div class="user-search">Name:<%= f.text_field :name_like %>
 		<span><%= f.submit "Search" %><input type="reset" value="Reset"></span></div>
 <%end%>
 <table class="listing">
   <tr>
     <th>Name</th>
     <th>User name</th>
+    <% if current_user.has_role?('super_admin')%>
      <th>Server username</th>
      <th>Server password</th>
+     <th>Balance</th>
+    <%end%>
      <th>Designation</th>
     <th>Email</th>
-    <th>Balance</th>
     <th>View</th>
    </tr>
 
@@ -21,11 +23,13 @@
   <tr class="<%=cycle("odd", "even")%>">
     <td><%=h user.name %></td>
     <td><%=h user.username %></td>
+     <% if current_user.has_role?('super_admin')%>
      <td><%=h user.server_user_name %></td>
      <td><%=h user.server_password %>
+     <td><%=h user.balance %></td>
+       <%end%>  
      <td><%=h user.designation %></td>
-    <td><%=h user.mail_id %></td>
-    <td><%=h user.balance %></td>
+     <td><%=h user.mail_id %></td>
     <td><%= link_to 'View', user_path(user)%></td>
    </tr>
 <% end %>
