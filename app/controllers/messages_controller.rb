@@ -2,12 +2,11 @@ class MessagesController < ApplicationController
  layout proc{ |c| ['new'].include?(c.action_name)? 'message' : 'main'}
 	def new
    @message = Message.new
-   @groups = current_user.groups.find(:all,:conditions =>['status =?','Active'])
   end
 
 	def index
      @search =  Message.search(params[:search]) 
-     @search.user_id = current_user.id if current_user.has_role?('teacher')
+     @search.user_id = current_user.id if current_user.has_role?('teacher') 
      @search.user_id = user_ids if current_user.has_role?('admin')
      @search.order ||= "descend_by_created_at"
      @messages = @search.all.paginate :page => params[:page],:per_page => 25
@@ -19,7 +18,7 @@ class MessagesController < ApplicationController
 	
 
 	def show
-    @message = current_user.messages.find(params[:id])
+    @message =  Message.find(params[:id])
     @students = @message.students.find(:all)
     respond_to do |format|
       format.html # show.html.erb
@@ -28,7 +27,7 @@ class MessagesController < ApplicationController
   end
 	
 	def destroy
-    @message = current_user.messages.find(params[:id])
+    @message = Message.find(params[:id])
     @message.destroy
     respond_to do |format|
       format.html { redirect_to(message_s_url) }
@@ -38,7 +37,7 @@ class MessagesController < ApplicationController
  
  def create
 	 begin
-	   admin = current_user.parent_id==1 ? current_user : User.find(current_user.parent_id)
+	   admin = current_user.has_role?('admin') ? current_user : User.find(current_user.parent_id)
 	   no_of_sms = params[:students].nil? ? 1 : params[:students].size
 	   balance = current_user.balance.to_i - no_of_sms
 	   MessageService.user = admin.server_user_name
@@ -102,7 +101,7 @@ class MessagesController < ApplicationController
 	def status_update
   	@message = Message.find(params[:id])
   	messages = @message.message_students
-  	admin = current_user.parent_id==1 ? current_user : User.find(current_user.parent_id)
+  	admin = current_user.has_role?('admin') ? current_user : User.find(current_user.parent_id)
     MessageService.user = admin.server_user_name
     MessageService.password = admin.server_password
     unless messages.blank?
@@ -127,15 +126,6 @@ class MessagesController < ApplicationController
     end
   
 	
-	def show
-     @message = current_user.messages.find(params[:id])
-     @students = @message.students.find(:all)
-     respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @message }
-    end
-  end
-	
 	def render_message_template
     @message_template = MessageTemplate.find(params[:sms_id]).message_body rescue ''
     render :update do |page|
@@ -152,10 +142,10 @@ class MessagesController < ApplicationController
   private
   
   def user_ids
-      array  = []
-      array << current_user.id
-      User.find(:all,:conditions =>['parent_id = ?',current_user.id]).map{|object|array << object.id}
-     return array
+      user_ids  = []
+      user_ids << current_user.id
+      User.find(:all,:conditions =>['parent_id = ?',current_user.id]).map{|object|user_ids << object.id}
+     return user_ids
   end
  end 
   

@@ -1,9 +1,10 @@
 class SchedulesController < ApplicationController
  layout "main"
-	 before_filter :set_thread_user
+
 	def index
   	@search =  Schedule.search(params[:search])
-    @search.user_id = current_user.id
+    @search.user_id = current_user.id if current_user.has_role?('teacher') 
+    @search.user_id = user_ids if current_user.has_role?('admin')
     @search.order ||= "descend_by_created_at"
     @schedules = @search.all.paginate :page => params[:page],:per_page => 25
     respond_to do |format|
@@ -13,7 +14,7 @@ class SchedulesController < ApplicationController
   end
  
  def show
-    @schedule = current_user.schedules.find(params[:id])
+    @schedule = Schedule.find(params[:id])
     @students = @schedule.students.find(:all)
     respond_to do |format|
       format.html # show.html.erb
@@ -24,7 +25,7 @@ class SchedulesController < ApplicationController
    def status_update
         @schedule = Schedule.find(params[:id])
        	schedules = @schedule.schedule_students
-        admin = current_user.parent_id==1 ? current_user : User.find(current_user.parent_id)
+        admin = current_user.has_role?('admin') ? current_user : User.find(current_user.parent_id)
        	MessageSchedule.user = admin.server_user_name
         MessageSchedule.password = admin.server_password
        	unless schedules.blank?
@@ -51,7 +52,7 @@ class SchedulesController < ApplicationController
 	 def destroy
    	 @schedule = Schedule.find(params[:id])
      schedules = @schedule.schedule_students
-     admin = current_user.parent_id==1 ? current_user : User.find(current_user.parent_id)
+     admin = current_user.has_role?('admin') ? current_user : User.find(current_user.parent_id)
      MessageSchedule.user = admin.server_user_name
      MessageSchedule.password = admin.server_password
      unless schedules.blank?
@@ -75,11 +76,15 @@ class SchedulesController < ApplicationController
      render :update do |page|
       page << "jQuery('#schedule_message_body').val('#{@message_template}')"
       end
-      end
+    end
+    
   private
-    def set_thread_user
-      Thread.current["user"] = current_user
-   end
+     def user_ids
+      user_ids  = []
+      user_ids << current_user.id
+      User.find(:all,:conditions =>['parent_id = ?',current_user.id]).map{|object|user_ids << object.id}
+     return user_ids
+  end
   end  
 
 

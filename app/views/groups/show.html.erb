@@ -16,5 +16,12 @@
 		</tr>
 		<%end%>
  	</table>
-	<%= link_to 'Edit', edit_group_path(@group) %>
+	<%= link_to 'Edit', edit_group_path(@group) %> 
+	      <%if current_user.has_role?('admin')%>
+        <%if @group.status=='Active'%>
+        <%= link_to 'Make Inactive', make_inactive_group_path(@group) %> 
+         <%else%>
+       	<%= link_to 'Make Active', make_active_group_path(@group) %> 
+        	<%end%>
+       <%end%>
 </div>

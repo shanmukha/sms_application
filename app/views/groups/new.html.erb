@@ -15,7 +15,7 @@
 				<th>Roll Number</th>
 			</tr>
   
-   			<%current_user.students.find(:all).each do |student| %>
+   			<%User.find.students.find(:all).each do |student| %>
   			<tr class="<%=cycle("odd", "even")%>">
        				<td><%= check_box_tag("students[]", student.id, false,:id=> student.id)%></td>
     				<td><%=h student.name %></td>

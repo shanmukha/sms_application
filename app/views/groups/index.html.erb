@@ -6,25 +6,23 @@
 	</div>
 	<div id="listing_file">
 		<div id = 'show'>
+		   <%if current_user.has_role?('admin')%>
           		<span> <%= link_to_function 'Create new class', "jQuery('#group').show(); jQuery('#hide').show(); jQuery('#show').hide(); return false;" %></span>
+          		<%end%>
     		</div>
 		<h1>Listing all classes/groups</h1>
 			 <table class="listing">
                        		<tr>
     					<th><%= order @search, :by => :name ,:as => "Name"%></th>
     		   			<th><%= order @search, :by => :status ,:as => "Status"%></th>
-    					<th>Actions</th>
+    					<th>View</th>
   				</tr>
 					<% @groups.each do |group| %>
   				<tr class="<%=cycle("odd", "even")%>">
     					<td><%=h group.name %></td>
     					<td><%= h group.status%>
     					<td class="view"><%= link_to '<img src="/images/view.gif" title="View"/>', group%> 
-       					<%if group.status=='Active'%>
-        				<%= link_to 'Make Inactive', make_inactive_group_path(group) %> 
-         				<%else%>
-       					<%= link_to 'Make Active', make_active_group_path(group) %> 
-        				<%end%>
+       				  
     					</td>
   				</tr>
 			<% end %>

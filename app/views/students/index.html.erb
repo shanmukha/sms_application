@@ -6,7 +6,9 @@
 	</div>
 	<div id="listing_file">
 		<div id = 'show'>
+		<% if current_user.has_role?('admin')%>
 	          	<span><%= link_to_function 'New Student Record', "jQuery('#student').show(); jQuery('#hide').show(); jQuery('#show').hide(); return false;" %></span>
+	         <%end%> 	
          	</div>
 		<h1>Listing Students</h1>
 		<table class="listing">

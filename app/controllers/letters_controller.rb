@@ -3,7 +3,8 @@ class LettersController < ApplicationController
 	
 	def index
   	@search =  Letter.search(params[:search]) 
-    @search.user_id = current_user.id
+    @search.user_id = current_user.id if current_user.has_role?('teacher') 
+    @search.user_id = user_ids if current_user.has_role?('admin')
     @search.order ||= "descend_by_created_at"
     @letters = @search.all.paginate :page => params[:page],:per_page => 25
     respond_to do |format|
@@ -13,7 +14,7 @@ class LettersController < ApplicationController
   end
 	
 	def show
-    @letter = current_user.letters.find(params[:id])
+    @letter = Letter.find(params[:id])
     @students = @letter.students.find(:all)
     respond_to do |format|
     	format.html # new.html.erb
@@ -22,7 +23,7 @@ class LettersController < ApplicationController
   end
 
  def print
-    @letter = current_user.letters.find(params[:id])
+    @letter = Letter.find(params[:id])
     @students = @letter.students.find(:all)
     respond_to do |format|
     format.pdf  {
@@ -38,10 +39,6 @@ class LettersController < ApplicationController
       format.html # new.html.erb
       format.xml  { render :xml => @letter }
     end
-  end
-	
-	def edit
-    @letter = current_user.letters.find(params[:id])
   end
 	
 	def create
@@ -64,22 +61,10 @@ class LettersController < ApplicationController
        redirect_to(letters_url)
   end
 	
-	def update
-    @letter = current_user.letters.find(params[:id])
-    respond_to do |format|
-      if @letter.update_attributes(params[:letter])
-        flash[:notice] = 'Letter was successfully updated.'
-        format.html { redirect_to(@letter) }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @letter.errors, :status => :unprocessable_entity }
-      end
-    end
-  end
+	
 
  def destroy
-    @letter = current_user.letters.find(params[:id])
+    @letter = Letter.find(params[:id])
     @letter.destroy
     respond_to do |format|
       format.html { redirect_to(letters_url) }
@@ -93,4 +78,12 @@ class LettersController < ApplicationController
      	page.replace_html 'students', :partial => 'group_student'
    end
   end 
+ 
+  private
+   def user_ids
+      user_ids  = []
+      user_ids << current_user.id
+      User.find(:all,:conditions =>['parent_id = ?',current_user.id]).map{|object|user_ids << object.id}
+     return user_ids
+  end
 end

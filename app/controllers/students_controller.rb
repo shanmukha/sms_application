@@ -1,11 +1,14 @@
 class StudentsController < ApplicationController
- layout "main",:except => "show"
+  layout "main",:except => "show"
+  before_filter :check_admin_role, :except =>[:index,:show]
+	
 	def index
+	  admin = current_user.has_role?('admin') ? current_user : User.find(current_user.parent_id)
     @search = Student.search(params[:search])
-    @search.user_id = current_user.id 
+    @search.user_id = admin.id 
     @search.order ||= "descend_by_created_at"
     @students = @search.all.paginate :page => params[:page],:per_page => 25
-    @groups = current_user.groups.find(:all,:conditions =>['status =?','Active'])
+    @groups = admin.groups.find(:all,:conditions =>['status =?','Active'])
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @students }
@@ -13,7 +16,8 @@ class StudentsController < ApplicationController
   end
 	
 	def show
-    @student = current_user.students.find(params[:id])
+	  admin = current_user.has_role?('admin') ? current_user : User.find(current_user.parent_id)
+    @student = admin.students.find(params[:id])
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @student }

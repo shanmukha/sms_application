@@ -1,9 +1,11 @@
 class GroupsController < ApplicationController
   layout "main"
- 
-	def index
+  before_filter :check_admin_role, :except =>[:index,:show]
+
+ 	def index
+    admin = current_user.has_role?('admin') ? current_user : User.find(current_user.parent_id) 
     @search =  Group.search(params[:search]) 
-    @search.user_id = current_user.id
+    @search.user_id = admin.id
     @search.order ||= "ascend_by_status"
     @groups = @search.all.paginate :page => params[:page],:per_page => 25
     respond_to do |format|
@@ -13,7 +15,8 @@ class GroupsController < ApplicationController
   end
 	
 	def show
-     @group = current_user.groups.find(params[:id])
+	   admin = current_user.has_role?('admin') ? current_user : User.find(current_user.parent_id)
+     @group = admin.groups.find(params[:id])
      @students = @group.students
     respond_to do |format|
       format.html # show.html.erb
