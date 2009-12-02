@@ -12,12 +12,14 @@
 		<h1>Listing all Saved messages</h1>
 		<table class="listing">
   			<tr>
+  			    <th>Created by</td>
     				<th><%= order @search, :by => :message_title,:as => "Message Title"%></th>
     				<th>Message Body</th>
     				<th>View</th>
     			</tr>
 				<% @message_templates.each do |message_template| %>
   			<tr class="<%=cycle("odd", "even")%>">
+  			   <td><%= message_template.user.name%>
    				<td><%=h message_template.message_title %></td>
    				<td><%=h message_body_filter(message_template.message_body)%></td>
     				<td class="view"><%= link_to '<img src="/images/view.gif" title="View"/>',message_template_path(message_template),:rel => "facebox"%></td>
@@ -42,6 +44,13 @@
 				<tr>
 					<td><%= f.text_field :message_body_like%></td>
 				</tr>
+				<tr>
+       				<th>Creater name </th>
+			</tr>
+			<tr>
+				<td><%= f.text_field :user_name_like%></td>
+			</tr>
+				
 				<tr>
       					<td class="btn"><%= f.submit "Search" %>  <input type="reset" value="Reset"></td>
   				</tr>

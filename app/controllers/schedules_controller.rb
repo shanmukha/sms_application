@@ -3,7 +3,7 @@ class SchedulesController < ApplicationController
 
 	def index
   	@search =  Schedule.search(params[:search])
-    @search.user_id = current_user.id if current_user.has_role?('teacher') 
+    @search.user_id = current_user.id if current_user.has_role?('teacher') || current_user.has_role?('super_admin')
     @search.user_id = user_ids if current_user.has_role?('admin')
     @search.order ||= "descend_by_created_at"
     @schedules = @search.all.paginate :page => params[:page],:per_page => 25

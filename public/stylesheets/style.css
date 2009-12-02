@@ -1190,11 +1190,11 @@ table.student_letter tr.even:hover{
 	  background:url(/images/users.png) no-repeat;
   } 
 .user-search {
-  font-size:18px;
+  font-size:15px;
   font-weight:bold;
   width:48%;
   border:2px solid #ccc;
-  padding :20px 20px 30px 20px;
+  padding :8px 20px 30px 20px;
   margin:20px 20px 20px 20px;
   background-color:#eeecde;
   }

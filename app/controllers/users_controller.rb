@@ -42,7 +42,7 @@ class UsersController < ApplicationController
    end
   
    def edit
-     if current_user.has_role?('super_admin')
+     if current_user.has_role?('super_admin') || current_user.has_role?('admin')
       @user = User.find(params[:id]) 
      else
        @user = User.find(current_user.id)
@@ -50,15 +50,15 @@ class UsersController < ApplicationController
    end
   
   def update
-    if current_user.has_role?('super_admin')
+    if current_user.has_role?('super_admin')|| current_user.has_role?('admin')
      @user = User.find(params[:id])
     else
       @user = User.find(current_user.id)
     end  
     if @user.update_attributes(params[:user])
       flash[:notice] = "Successfully updated profile."
-      redirect_to user_path(@user)  if current_user.has_role?('super_admin')
-      redirect_to root_path  if !current_user.has_role?('super_admin')
+      redirect_to user_path(@user)  if current_user.has_role?('super_admin') || current_user.has_role?('admin')
+      redirect_to root_path  if current_user.has_role?('teacher')
     else
       render :action => 'edit'
     end

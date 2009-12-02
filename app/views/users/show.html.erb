@@ -41,9 +41,7 @@
    <%=h @user.mail_id%>
   </p>
   
-
-
-<%= link_to 'Edit', edit_user_path(@user) %> &nbsp;&nbsp;&nbsp;  <% if current_user.has_role?('admin')%>
+<%= link_to 'Edit', edit_user_path(@user) %> &nbsp;&nbsp;&nbsp;  
 <%= link_to 'Destroy', @user, :confirm => 'Are you sure?', :method => :delete %>
-<%end%>
+
 </div>

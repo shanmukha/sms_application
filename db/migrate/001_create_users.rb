@@ -35,6 +35,7 @@ class CreateUsers < ActiveRecord::Migration
       u.username = 'super_admin'
       u.password = u.password_confirmation = 'password'
       u.mail_id ='super_admin@gmail.com'
+      u.parent_id = 1
       u.designation = 'Software engineer'
      end
       admin.roles<< super_admin_role

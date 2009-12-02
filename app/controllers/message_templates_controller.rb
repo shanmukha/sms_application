@@ -3,7 +3,7 @@ class MessageTemplatesController < ApplicationController
  	
  	def index
   	@search = MessageTemplate.search(params[:search])
-    @search.user_id = current_user.id if current_user.has_role?('teacher') 
+    @search.user_id = current_user.id if current_user.has_role?('teacher') || current_user.has_role?('super_admin')
     @search.user_id = user_ids if current_user.has_role?('admin')
     @search.order ||= "descend_by_created_at"
     @message_templates = @search.all.paginate :page => params[:page],:per_page => 25
@@ -14,7 +14,7 @@ class MessageTemplatesController < ApplicationController
   end
  
   def show
-    @message_template = Letter.find(params[:id])
+    @message_template = MessageTemplate.find(params[:id])
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @message_template }
@@ -30,7 +30,7 @@ class MessageTemplatesController < ApplicationController
   end
 
   def edit
-    @message_template = Letter.find(params[:id])
+    @message_template = MessageTemplate.find(params[:id])
   end
 
   def create
@@ -48,7 +48,7 @@ class MessageTemplatesController < ApplicationController
   end
  
 	def update
-    @message_template = Letter.find(params[:id])
+    @message_template = MessageTemplate.find(params[:id])
     respond_to do |format|
       if @message_template.update_attributes(params[:message_template])
         flash[:notice] = 'MessageTemplate was successfully updated.'
@@ -62,7 +62,7 @@ class MessageTemplatesController < ApplicationController
   end
  
   def destroy
-    @message_template = Letter.find(params[:id])
+    @message_template = MessageTemplate.find(params[:id])
     @message_template.destroy
     respond_to do |format|
       format.html { redirect_to(message_templates_url) }

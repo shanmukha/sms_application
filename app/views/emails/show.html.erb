@@ -1,5 +1,9 @@
 <div class="showpage_content">
 	<table class="show_page">
+	<tr>
+			<th>Sent by:</th>
+  			<td><%=h @email.user.name%></td>
+		</tr>
 		<tr>
 			<th>Body:</th>
   			<td><%=h @email.body %></td>
