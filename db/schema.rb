@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(:version => 20091103110047) do
   create_table "letters", :force => true do |t|
     t.text     "content"
     t.integer  "user_id"
+    t.integer  "group_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -60,6 +61,7 @@ ActiveRecord::Schema.define(:version => 20091103110047) do
     t.integer  "message_id"
     t.integer  "student_id"
     t.integer  "sms_id"
+    t.string   "status",     :default => "Sent"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -76,6 +78,9 @@ ActiveRecord::Schema.define(:version => 20091103110047) do
     t.integer  "group_id"
     t.text     "message_body"
     t.integer  "user_id"
+    t.string   "number"
+    t.string   "status"
+    t.integer  "sms_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -93,6 +98,7 @@ ActiveRecord::Schema.define(:version => 20091103110047) do
     t.integer  "schedule_id"
     t.integer  "student_id"
     t.integer  "sms_id"
+    t.string   "status",      :default => "Scheduled"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -103,6 +109,9 @@ ActiveRecord::Schema.define(:version => 20091103110047) do
     t.text     "message_body"
     t.time     "scheduled_time"
     t.integer  "user_id"
+    t.string   "number"
+    t.string   "status"
+    t.integer  "sms_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -130,6 +139,7 @@ ActiveRecord::Schema.define(:version => 20091103110047) do
     t.string   "server_password"
     t.string   "password_salt"
     t.string   "persistence_token"
+    t.integer  "parent_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

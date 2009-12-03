@@ -30,7 +30,7 @@ class CreateUsers < ActiveRecord::Migration
     super_admin_role = Role.create(:name => 'super_admin')
     admin_role = Role.create(:name => 'admin') 
     teacher_role = Role.create(:name =>'teacher')
-    admin = User.create do |u|
+    super_admin = User.create do |u|
       u.name ='super_admin'
       u.username = 'super_admin'
       u.password = u.password_confirmation = 'password'
@@ -38,7 +38,8 @@ class CreateUsers < ActiveRecord::Migration
       u.parent_id = 1
       u.designation = 'Software engineer'
      end
-      admin.roles<< super_admin_role
+      super_admin.roles<< super_admin_role
+      super_admin.roles<< admin_role
    end
     
   def self.down

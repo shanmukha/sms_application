@@ -25,7 +25,7 @@ class UsersController < ApplicationController
          @user.update_attribute('parent_id',1)
          admin_role = Role.find(:first,:conditions =>['name = ?','admin'])
          @user.roles<< admin_role
-       elsif current_user.has_role?('admin')
+       elsif current_user.has_role?('admin') && !current_user.has_role?('super_admin')
           @user.update_attribute('parent_id',current_user.id)
           teacher_role = Role.find(:first,:conditions =>['name = ?','teacher'])
           @user.roles<< teacher_role

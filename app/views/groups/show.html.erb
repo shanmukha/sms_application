@@ -16,8 +16,8 @@
 		</tr>
 		<%end%>
  	</table>
-	<%= link_to 'Edit', edit_group_path(@group) %> 
-	      <%if current_user.has_role?('admin')%>
+    <%if current_user.has_role?('admin')%>
+	      <%= link_to 'Edit', edit_group_path(@group) %> 
         <%if @group.status=='Active'%>
         <%= link_to 'Make Inactive', make_inactive_group_path(@group) %> 
          <%else%>

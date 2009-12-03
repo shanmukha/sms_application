@@ -3,8 +3,8 @@ class LettersController < ApplicationController
 	
 	def index
   	@search =  Letter.search(params[:search]) 
-    @search.user_id = current_user.id if current_user.has_role?('teacher') 
-    @search.user_id = user_ids if current_user.has_role?('admin')
+    @search.user_id = current_user.id if current_user.has_role?('teacher') || current_user.has_role?('super_admin')
+    @search.user_id = user_ids if current_user.has_role?('admin') && !current_user.has_role?('super_admin')
     @search.order ||= "descend_by_created_at"
     @letters = @search.all.paginate :page => params[:page],:per_page => 25
     respond_to do |format|
