@@ -1,22 +1,32 @@
-	<div id = 'hide' style ="display:none">
- 		<span><%= link_to_function '<img src="/images/cancel.gif" title="Cancel"/>', "jQuery('#saved_message').hide(); jQuery('#show').show(); 			jQuery('#hide').hide();return false;" %> </span>
-	</div>
-	<div id = 'saved_message' style ="display:none ; clear:both">
-  		<%= render :partial =>"new"%>
-	</div>
-	<div id="listing_file">
-   		<div id = 'show'>
-        	<span> <%= link_to_function 'New Saved Message', "jQuery('#saved_message').show(); jQuery('#hide').show(); jQuery('#show').hide(); return false;" %></span>
-    		</div>
-   	
-		<h1>Listing all Saved messages</h1>
-		<table class="listing">
-  			<tr>
-  			    <th>Created by</td>
-    				<th><%= order @search, :by => :message_title,:as => "Message Title"%></th>
-    				<th>Message Body</th>
-    				<th>View</th>
-    			</tr>
+<div id = 'top' style ="display:none ; clear:both">
+     <div class = 'right'> 
+        <%= link_to_function image_tag("cancel.gif", :title=> "Cancel"), "jQuery('#top').hide(); jQuery('#button').show(); return false;" %> 
+     </div>
+     <%= render :partial =>"new"%>
+     <div class = 'clear'> </div>
+</div>
+
+<div id = 'listing-top'>
+    <% if current_user.has_role?('admin')%>
+       <div id = 'button'>
+	   <span>
+               <%= link_to_function 'New saved message', "jQuery('#top').show(); jQuery('#button').hide(); return false;" %>
+           </span>
+       </div>
+    <%end%> 	
+         
+    <h1>Listing all saved message templates</h1>
+    <div class="clear"></div>
+</div>
+
+<div id="listing_file">
+    <table class="listing">
+  	<tr>
+  	   <th>Created by</td>
+    	   <th><%= order @search, :by => :message_title,:as => "Message Title"%></th>
+    	   <th>Message Body</th>
+    	   <th>View</th>
+    	</tr>
 				<% @message_templates.each do |message_template| %>
   			<tr class="<%=cycle("odd", "even")%>">
   			   <td><%= message_template.user.name%>
@@ -27,8 +37,9 @@
 			<% end %>
 		</table>
 		<div id="pg"><%=will_paginate @message_templates%></div>
-	</div>
-	<div class="sidebar">
+</div>
+	
+<div class="sidebar">
 		<h1>Search </h1>
  		<% form_for @search do |f| %>
  			<table>

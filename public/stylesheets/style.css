@@ -160,7 +160,7 @@ img {
         clear: both;
 	width: 92%;
   	margin: 10px auto 10px auto;
-  	background: #eee;
+  	background: #eee url(/images/container-bg.png) repeat-x;
         padding: 20px;
 }
 
@@ -346,9 +346,8 @@ select{
 /* General ********************************************************************/
 
 #content_wrapper{
-
-	background-color:#eee;
-	margin: 0 auto;
+	background:#eee url(/images/container-bg.png) repeat-x;
+	margin: 0 auto 10px auto;
 	clear: both;
 	width: 95%;
 	padding: 5px;
@@ -367,10 +366,10 @@ select{
 
 .listing th {
 	  background: #ddd url(/images/table_header.jpg) repeat-x;
-    color: #202946;
-    text-align: left;
-    padding: 0.6em .5em .5em .5em;
-    font-weight: bold; 
+          color: #202946;
+          text-align: left;
+          padding: 0.6em .5em .5em .5em;
+          font-weight: bold; 
  	  font-size:13px;
 	  letter-spacing:1px;
     
@@ -703,7 +702,7 @@ table.student_group tr.even:hover{
 
 /*...............................................create new record.......................*/
 
-#student{background: #fff; margin: 10px 10px 5px 4px; border-bottom: 2px solid #ccc; }
+#top{background: #fff; margin: 10px 10px 5px 4px; border-bottom: 2px solid #ccc; }
 
 .create_new{
 	float:left;
