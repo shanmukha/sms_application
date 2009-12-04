@@ -4,6 +4,7 @@ class CreateMessageTemplates < ActiveRecord::Migration
       t.text :message_body
       t.string :message_title
       t.integer :user_id
+      t.integer :tag_id
       t.timestamps
     end
   end
