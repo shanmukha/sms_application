@@ -13,15 +13,16 @@
           		</div>
           		<div class = 'clear'></div>
       		 </div>
- 		<p><%= f.text_area :message_body %> </p>
-         	<p><span id="counter"></span> characters left to complete one message.</p>
-
-  	   	<div id = 's'>
+ 		<div class ='center_message'><%= f.text_area :message_body %> 
+         	  <p><span id="counter"></span> characters left to complete one message.</p>
+               
+  	   	  <div id = 's'>
        	      		<%= f.submit "Send message now" %> or 
-              		<%= link_to_function 'Click here to schedule message sending.', "jQuery('#schedule').show(); jQuery('#s').hide(); return false;" %>
-           	</div>
+              		<%= link_to_function 'Schedule message sending.', "jQuery('#schedule').show(); jQuery('#s').hide(); return false;" %>
+           	  </div>
+                </div>
            	<div id = 'schedule' style ="display:none"> 
-             		<%= render :partial =>"schedule"%> <br /><br /><span><%= f.submit "Schedule message sending on selected date & time" %> </span> or 
+             		<%= render :partial =>"schedule"%> <br /><span><%= f.submit "Schedule on selected date & time" %> </span> or 
               		<%= link_to_function "Cancel message scheduling.", "jQuery('#schedule').hide(); jQuery('#s').show(); return false;" %> 
             	</div>  
 	</div>     

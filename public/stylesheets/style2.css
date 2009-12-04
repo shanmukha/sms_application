@@ -129,7 +129,7 @@ img {
 	font-weight: bold;
 	text-transform:uppercase;
 	outline: none;
-	padding:12px 5px 15px 3px;
+	padding:12px 5px 15px 0px;
 	margin:5px 10px 0px 10px;
 	font-family : "arial", helvetica, sans-serif;
 }
@@ -147,8 +147,7 @@ img {
 /*..............................message-services(new message)................................*/
 
 #page-heading{
- font-size: 15px;
- font-weight: bold;
+ font-size: 18px;
  width: 94%;
  margin: 10px auto 10px auto;
  padding: 0px;
@@ -160,7 +159,7 @@ img {
         clear: both;
 	width: 92%;
   	margin: 10px auto 10px auto;
-  	background: #eee;
+  	background: #ddd;
         padding: 20px;
 }
 
@@ -233,18 +232,17 @@ select{
 	margin-left:12px;
 }
 
-.center_message { width: 500px; margin: 40px auto 0px auto;}
 .message_left  textarea{
-	border:5px solid #eee;
+	border:2px solid #ddd;
 	padding:0px;
-
+	margin: 20px auto 0px auto;
 	background-color:#f6f6f6;
-	width: 450px;
-	height: 150px;
+	width: 400px;
+	height: 175px;
 }
 
 .message_left  textarea:focus{
-	border:5px solid #ddd;
+	border:2px solid #bbb;
 }
 
 .message_right{
@@ -256,7 +254,6 @@ select{
 	min-height: 350px;
   padding: 0px 0px 10px 0px;
 }
-
 
 .message_right p{
 	font-size:14px;
@@ -346,7 +343,7 @@ select{
 /* General ********************************************************************/
 
 #content_wrapper{
-
+	min-height: 500px;
 	background-color:#eee;
 	margin: 0 auto;
 	clear: both;
@@ -356,10 +353,10 @@ select{
 }
 
 #wrapper{ 
-
+	min-height: 500px;
 	margin: 0px;
-        padding:0px 0px 30px 10px;
-        
+        padding:0px 0px 30px 65px;
+        background: url(/images/main_line_lt.gif) repeat-y;
 }
 
 /*---------------------------------Table styles ---------------------*/
@@ -373,7 +370,6 @@ select{
     font-weight: bold;text-transform:uppercase;
  	  font-size:13px;
 	  letter-spacing:1px;
-    
 }
  
 .listing td { 
@@ -384,12 +380,11 @@ select{
  
 .listing { 
 	border-collapse: collapse;
-        width: 98%;
+        width: 99%;
         color: #000;
 	margin: 27px 5px 0px 10px;
       	float:left;
 	font-family : "arial", helvetica, sans-serif;
-        border: 1px solid #e0e0e0;
 }
  
 .listing a { 
@@ -458,23 +453,19 @@ select{
 /*...................................content.......................*/
 
 #listing_file {
-        background: #fff url(/images/main_line_lt.gif) repeat-y;
 	padding:0px;
 	height:0 auto;
-	width:69%;
+	width:72%;
   	float:left;
 	clear:both;
-	margin:10px 0px 15px 0px;
-        padding-left: 65px;
-        min-height: 500px;
-
+	margin:29px 0px 30px 6px;
 }
 
 #listing_file h1 {
 	font-size:16px;
 	color:#6d8e13;
 	font-family : "arial", helvetica, sans-serif;
-	margin:6px 0px 0px 7px;
+	margin:9px 0px 0px 7px;
 	font-weight:bold;
 	padding:0px 50px 10px 28px;
 	width:45%;
@@ -483,7 +474,7 @@ select{
 	background:url(/images/users.png) no-repeat;
 }
 
-#button span a{
+#show span a{
 	padding:2px 5px 2px 5px;
 	color:#000;
 	font-size:13px;
@@ -496,7 +487,7 @@ select{
 }
 	
 
-#button span a:hover{
+#show span a:hover{
 	color:#6b881c;
 	text-decoration:none;
 }
@@ -587,7 +578,7 @@ table.student_list tr.even:hover{
 table.student_group{
 	border-collapse: collapse; 
 	width: 400px; 
-	border: #b4b8bd 1px solid;
+	border: #bdcedc 1px solid;
 }
 
 table.student_group tr th{
@@ -654,12 +645,12 @@ table.student_group tr.even:hover{
 
 
 .sidebar{
-	background: #fff;
-    	margin: 10px 10px 0px 5px;
-    	padding: 0px 0px 15px 0px;
+	/*background: #EEECDE; */
+    	margin: 0px 0px 0px 10px;
+    	padding: 0px 0px 150px 0px;
     	height:0 auto;
     	/*border-left:1px solid #cecece;*/
-    	width:24%;
+    	width:25%;
     	float:right;
 }
 
@@ -712,16 +703,13 @@ table.student_group tr.even:hover{
 	font-family: Verdana, Helvetica, Arial;
 	
 }
-
+/* end of sidebar */
 /*...............................................create new record.......................*/
-
-#student{background: #fff; margin: 10px 10px 5px 4px; border-bottom: 2px solid #ccc; }
 
 .create_new{
 	float:left;
 	padding:10px 0px 15px 10px;
 	margin-top:21px;
-
 }
 
 .create_new fieldset{
@@ -1041,8 +1029,8 @@ table.student_letter tr.even:hover{
 	background-color:#f6f6f6;
 }
 
-#footer {background-color:#e0e0e0;
-	width: 94%;
+#footer {
+	width: 920px;
 	padding: 30px;
 	margin: 0 auto;
 	color: #828c96;
@@ -1202,11 +1190,11 @@ table.student_letter tr.even:hover{
 	  background:url(/images/users.png) no-repeat;
   } 
 .user-search {
-  font-size:18px;
+  font-size:15px;
   font-weight:bold;
   width:48%;
   border:2px solid #ccc;
-  padding :20px 20px 30px 20px;
+  padding :8px 20px 30px 20px;
   margin:20px 20px 20px 20px;
   background-color:#eeecde;
   }

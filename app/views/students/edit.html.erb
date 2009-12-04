@@ -1,5 +1,5 @@
 <div class="clear"></div>
-<div class="Edit_show">
+<div class="Edit_show" id = 'student'>
 	<fieldset>
 		<% form_for(@student,:html => {:id => 'main-form'}) do |f| %>
   		<%= f.error_messages %>
@@ -48,5 +48,10 @@
     			<span><%= f.submit 'Update' %></span>
   		</p>
 		<% end %>
+
+                    <% if current_user.has_role?('admin')%>
+  			 <%= link_to 'Delete', @student, :confirm => 'Are you sure? You want to delete the student record.', :method => :delete %>
+  		    <%end%>
+  		 
 	</fieldset>
 </div>

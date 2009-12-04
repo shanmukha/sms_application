@@ -27,13 +27,7 @@
   			<th> Classes/groups:</th>
   			<td><%= find_groups(@student)%></td>
         	</tr>
-  		<tr>
-  			<td></td>
-  				<% if current_user.has_role?('admin')%>
-  			<td class="facebox_btn"><%= link_to 'Edit', edit_student_path(@student) %>  <%= link_to 'Delete', @student, :confirm => 'This action will delete the student record. Are you sure?', :method => :delete %>
-  			</td>
-  			<%end%>
-  		</tr>
+  		
   	</table>
 
 
