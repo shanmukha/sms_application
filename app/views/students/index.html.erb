@@ -4,33 +4,37 @@
      <div class = 'clear'> </div>
 </div>
 
-<div id="listing_file">
+
+ <div id = 'listing-top'>
    <div id = 'button'>
       <% if current_user.has_role?('admin')%>
 	 <span>
-            <%= link_to_function 'New Student Record', "jQuery('#student').show(); jQuery('#button').hide(); return false;" %>
+            <%= link_to_function 'New student record', "jQuery('#student').show(); jQuery('#button').hide(); return false;" %>
          </span>
       <%end%> 	
    </div>
    
-   <h1>Listing Students</h1>
+   <h1>Listing students</h1>
+   <div class="clear" ></div>
+ </div>
+<div id="listing_file">
    <table class="listing">
    			<tr>
-   			    <th><%= order @search, :by => :roll_number ,:as => "Roll NO."%></th>
+   			    <th><%= order @search, :by => :roll_number ,:as => "Roll No."%></th>
      				<th><%= order @search, :by => :name ,:as => "Student Name"%></th>
-                               	<th>Mobile NO.</th>
+                               	<th>Mobile No.</th>
      		  		<th>View</th>
                                 <th>Edit</th>
   			</tr>
 		     <% @students.each do |student| %>
   			 <tr class="<%=cycle("odd", "even")%>">
   			      <td><%=h student.roll_number %></td>
-    				<td><%=h student.name %></td>
+    				<td> <%= image_tag('student.gif')%> <%=h student.name %></td>
     	    	                <td><%=h student.number %></td>
-    				<td class="view">
+    				<td>
 				   <%= link_to image_tag('view.gif', :title=> "View"), student_path(student),:rel =>"facebox"%>
                                 </td>
-                                <td class="view">
+                                <td>
 				   <%= link_to image_tag('edit.gif', :title=> "Edit"), edit_student_path(student)%>
                                 </td> 
   			   </tr>
@@ -48,6 +52,12 @@
 				</tr>
 				<tr>
 					<td> <%= f.text_field :name_like %></td>
+				</tr>
+                                <tr>
+      					<th>Class Name </th>
+				</tr>
+				<tr>
+					<td><%= f.text_field :groups_name_like%></td>
 				</tr>
 		        	<tr>
       					<th>Parent Name </th>
@@ -68,12 +78,7 @@
 				<tr>
 					<td><%= f.text_field :number_equals%></td>
 				</tr>
-				<tr>
-      					<th>Class Name </th>
-				</tr>
-				<tr>
-					<td><%= f.text_field :groups_name_like%></td>
-				</tr>
+				
 				<tr>
        					<td class="btn"> <%= f.submit "Search" %> <input type="reset" value="Reset"></td>
   				</tr>

@@ -367,10 +367,10 @@ select{
 
 .listing th {
 	  background: #ddd url(/images/table_header.jpg) repeat-x;
-    color: #000;
+    color: #202946;
     text-align: left;
     padding: 0.6em .5em .5em .5em;
-    font-weight: bold;text-transform:uppercase;
+    font-weight: bold; 
  	  font-size:13px;
 	  letter-spacing:1px;
     
@@ -412,15 +412,15 @@ select{
 }
 
 .listing tr.even td {
-      height: 32px;
-      padding: .5em .5em .5em .8em;
+      height: 30px;
+      padding: .5em .5em .4em .8em;
       border-top: #dadeec 1px solid;
       border-bottom: #dadeec 1px solid;
 }
 
 .listing tr.odd td {
-      height: 32px;
-      padding: .5em .5em .5em .8em;
+      height: 30px;
+      padding: .5em .5em .4em .8em;
       border-top: #dadeec 1px solid;
       border-bottom: #dadeec 1px solid;
 }
@@ -440,20 +440,6 @@ select{
           
 }
 
-.listing tr.even td.view {
-      height:18px;
-      padding:0px 0px 0px 15px;
-      border-top: #dadeec 1px solid;
-      border-bottom: #dadeec 1px solid;
-}
-
-.listing tr.odd td.view {
-      height:18px;
-      padding:0px 0px 0px 15px;  
-      border-top: #dadeec 1px solid;
-      border-bottom: #dadeec 1px solid;
-}
-
 
 /*...................................content.......................*/
 
@@ -461,22 +447,24 @@ select{
         background: #fff url(/images/main_line_lt.gif) repeat-y;
 	padding:0px;
 	height:0 auto;
-	width:69%;
+	width:70%;
   	float:left;
 	clear:both;
-	margin:10px 0px 15px 0px;
+	margin: 0px 0px 15px 0px;
         padding-left: 65px;
+        padding-top: 5px;
         min-height: 500px;
 
 }
 
-#listing_file h1 {
-	font-size:16px;
-	color:#6d8e13;
+#listing-top{ clear: both; margin: 2px 2px 6px 4px; padding-top: 2px; width:69%;}
+
+#listing-top h1 {
+	font-size:18px;
+	color: #005ca1;
 	font-family : "arial", helvetica, sans-serif;
-	margin:6px 0px 0px 7px;
 	font-weight:bold;
-	padding:0px 50px 10px 28px;
+	padding:0px 0px 0px 28px;
 	width:45%;
 	float:left;
 	letter-spacing:1px;
@@ -484,15 +472,15 @@ select{
 }
 
 #button span a{
-	padding:2px 5px 2px 5px;
+	padding:4px 5px 4px 5px;
 	color:#000;
-	font-size:13px;
-	margin-top:7px;
+	font-size:14px;
 	font-family: Verdana, Helvetica, Arial;
-	background: url(/images/button.gif) repeat-x;
-	border:1px solid #ccc;
+	background: url(/images/button.gif) repeat-x bottom;
+	border:1px solid #bbb;
 	float:right;
 	letter-spacing:1px;
+        text-decoration: none;
 }
 	
 
@@ -633,7 +621,7 @@ table.student_group tr.even:hover{
 
 #select_group{
 	float:left;
-	margin:31px 0px 0px 10px;
+	margin:31px 0px 0px 40px;
 	padding:0px 10px 0px 0px;
 }
 
@@ -654,8 +642,8 @@ table.student_group tr.even:hover{
 
 
 .sidebar{
-	background: #fff;
-    	margin: 10px 10px 0px 5px;
+
+    	margin: 0px 10px 0px 0px;
     	padding: 0px 0px 15px 0px;
     	height:0 auto;
     	/*border-left:1px solid #cecece;*/
@@ -664,12 +652,12 @@ table.student_group tr.even:hover{
 }
 
 .sidebar h1{
-	font-size:16px;
-	color: #6d8e13;
+	font-size:18px;
+	color: #005ca1;
 	font-family: Verdana, Helvetica, Arial;
-	margin:28px 0px 0px 7px;
-  font-weight:bold;
-	padding:7px 5px 10px 40px;
+	margin:0px 0px 0px 7px;
+        font-weight:bold;
+	padding:2px 5px 10px 40px;
 	background:url(/images/search.gif) no-repeat left;
 }
 
