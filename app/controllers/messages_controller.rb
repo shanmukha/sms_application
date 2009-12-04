@@ -39,7 +39,7 @@ class MessagesController < ApplicationController
 	 begin
 	   admin = current_user.has_role?('admin') ? current_user : User.find(current_user.parent_id)
 	   no_of_sms = params[:students].nil? ? 1 : params[:students].size
-	   balance = current_user.balance.to_i - no_of_sms
+	   balance = admin.balance.to_i - no_of_sms
 	   MessageService.user = admin.server_user_name
      MessageService.password = admin.server_password
      MessageSchedule.user = admin.server_user_name
@@ -68,7 +68,7 @@ class MessagesController < ApplicationController
                sms = MessageSchedule.create(:sms => params[:sms].merge!({:number => student_record.number}))  
                schedule_student = ScheduleStudent.create(:schedule_id => @message.id,:student_id => student_id,:sms_id => sms.id)
              end
-             current_user.update_attribute('balance', current_user.balance.to_i - 1)
+             admin.update_attribute('balance', admin.balance.to_i - 1)
              message.gsub!(/#{student}/,'@student') 
         	   message.gsub!(/#{parent}/,'@parent') 
         	 end  
@@ -83,7 +83,7 @@ class MessagesController < ApplicationController
              admin.update_attribute('balance', admin.balance.to_i - 1)   
 	       end
 	       
-	       flash[:notice] = 'The Message is pushed to the network. We will update the delivery status'   
+	       flash[:notice] = 'The Message is pushed to the network. We will update the delivery status.'   
          redirect_to(new_message_url)
 	     else  #@message.save check
          render :action => "new"

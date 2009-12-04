@@ -1,14 +1,14 @@
 class User < ActiveRecord::Base
   acts_as_authentic
   has_and_belongs_to_many :roles
-  has_many :groups
-  has_many :message_templates
-  has_many :schedules
+  has_many  :groups
+  has_many  :message_templates
+  has_many  :schedules
   has_many  :messages
   has_many  :emails
-  has_many :students
+  has_many  :students
   has_many  :letters
- 
+  has_many  :tags
   def has_role?(role)
    list ||= self.roles.collect(&:name)
    list.include?(role.to_s) 

@@ -35,9 +35,9 @@
 		<%if current_user%>
 		 <ul>
 		  <%if current_user.has_role?('super_admin') || current_user.has_role?('admin')%>
-          <li class='<%= request.request_uri == "/users"? 'active': 'link' %>'> <%= link_to "Users list", users_path %>| </li> 
-         <%end%>
-              <li class='<%= request.request_uri == "/users/#{current_user.id}/edit"? 'active': 'link' %>'> <%= link_to "Settings",edit_user_path(current_user) %>| </li> 
+         <li class='<%= request.request_uri == "/users"? 'active': 'link' %>'> <%= link_to "Administrative", users_path %>|</li>  
+        <%end%>
+              <li class='<%= request.request_uri == "/users/#{current_user.id}/edit"? 'active': 'link' %>'> <%= link_to "Settings",edit_user_path(current_user) %>|</li> 
           		<li><%= link_to "Logout", logout_path %></li>
             	</ul>
         		welcome <%= current_user.name%>

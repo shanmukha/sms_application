@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  layout "main"
+  layout "admin"
   before_filter :check_logged_in,:except =>"forgot_password"
  	before_filter "check_role('super_admin','admin')",:except =>[:edit,:update,:forgot_password] 
  

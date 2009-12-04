@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :tags
+
   map.resources :letters,:collection =>{:group_students => :get},:member => {:print => :any}
 
   map.resources :emails,:collection =>{:group_students => :get}

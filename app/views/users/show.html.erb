@@ -1,46 +1,47 @@
-<div id="user-show">
-<p>
-  <b>Name:</b>
-  <%=h @user.name %>
-</p>
+<div class="showpage_content">
+	<table class="show_page">
+<tr>
+  <th>Name:</th>
+  <td><%=h @user.name %></td>
+</tr>
 
-<p>
-  <b>User name:</b>
-  <%=h @user.username %>
-</p>
+<tr>
+  <th>User name:</th>
+  <td><%=h @user.username %></td>
+</tr>
 
-<p>
-  <b>Password:</b>
-   **************
-</p>
+<tr>
+<th>Password:</th>
+   <td>**************</td>
+</tr>
 <% if current_user.has_role?('super_admin')%>
-<p>
-  <b>Server user name:</b>
-  <%=h @user.server_user_name%>
-</p>
+<tr>
+  <th>Server user name:</th>
+  <td><%=h @user.server_user_name%></td>
+</tr>
 
-<p>
-  <b>Server password:</b>
-  <%=h @user.server_password %>
-  </p>
-  <p>
-  <b>Balance:</b>
+<tr>
+  <th>Server password:</th>
+  <td><%=h @user.server_password %></td>
+  </tr>
   
-  <%=h @user.balance %>
-
-</p>
+  <tr>
+  <th>Balance:</th>
+  
+ <td> <%=h @user.balance %></td>
+</tr>
 <%end%>
 
-<p>
-  <b>Designation:</b>
-  <%=h @user.designation %>
-</p>
+<tr>
+  <th>Designation:</th>
+  <td><%=h @user.designation %></td>
+</tr>
 
-<p>
-  <b>Email:</b>
-   <%=h @user.mail_id%>
-  </p>
-  
+<tr>
+  <th>Email:</th>
+   <td><%=h @user.mail_id%></td>
+  </tr>
+ </table> 
 <%= link_to 'Edit', edit_user_path(@user) %> &nbsp;&nbsp;&nbsp;  
 <%= link_to 'Destroy', @user, :confirm => 'Are you sure?', :method => :delete %>
 
