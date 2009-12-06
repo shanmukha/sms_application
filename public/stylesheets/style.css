@@ -6,7 +6,7 @@ caption, th, td {text-align : left; font-weight : normal}
 blockquote:before, blockquote:after, q:before, q:after {content : ""}
 blockquote, q {quotes : "" ""}
 
-body { margin: 5px 10px 10px; padding: 0px; background: rgb(211, 202, 170) url('/images/bg.jpg') repeat-x scroll 0% 0%; color: rgb(0, 0, 0); font-family: Verdana,Arial,Tahoma; font-style: normal; font-variant: normal; font-weight: normal; font-size: 12px; line-height: normal; font-size-adjust: none; font-stretch: normal; -x-system-font: none; }
+body { margin: 0px; padding: 0px; background: rgb(211, 202, 170) url('/images/bg.jpg') repeat-x scroll 0% 0%; color: rgb(0, 0, 0); font-family: Verdana,Arial,Tahoma; font-style: normal; font-variant: normal; font-weight: normal; font-size: 12px; line-height: normal; font-size-adjust: none; font-stretch: normal; -x-system-font: none; }
 /*
 body {
 	margin: 0px;
@@ -17,6 +17,7 @@ body {
 	background: #fff url(/images/bg.jpg) repeat-x;	
 }
 */
+
 p {
 	margin: 0px;
 	padding: 0px;
@@ -27,23 +28,25 @@ img {
 	padding: 0px;
 	border: none;
 }
+
 /*..................................................header............................*/
 #body_wrapper{
-  margin: 20px 10px 20px 10px;
+  margin: 17px;
   background: #fff;
   padding-bottom: 20px;
 
 }
+
 #notice{
-	width:970px;
-	margin:0 auto;
-	font-size:12px;	
+	    width:970px;
+	    margin:0 auto;
+	    font-size:12px;	
 }
 
 #header {
         width: 96%;
-	height: 100px;
-	margin: 0px auto 40px auto;
+	    height: 100px;
+	    margin: 0px auto 40px auto;
         padding: 5px;
 }
 
@@ -102,7 +105,7 @@ img {
 }
 
 /* menu *******************************************************************************/
-#menu-wrapper {background: #c2d2e3; padding: 1px; margin: 10px auto 10px auto;}
+
 #menu { 
 	background: #e2f2ff url(/images/menu.gif) repeat-x;
         height:37px;
@@ -198,8 +201,8 @@ img {
 .message_div_top .heading{
 	font-size: 16px;
 	padding: 0px 0px 0px 25px;
-	margin: 2px 0px 2px 15px;
-	width: 35%;
+	margin: 2px 0px 2px 5px;
+	width: 40%;
 	color:#fff;
 	font-weight:bold;
 	float:left;
@@ -234,13 +237,14 @@ select{
 }
 
 .center_message { width: 500px; margin: 40px auto 0px auto;}
+
 .message_left  textarea{
 	border:5px solid #eee;
 	padding:0px;
 
 	background-color:#f6f6f6;
-	width: 450px;
-	height: 150px;
+	width: 385px;
+	height: 125px;
 }
 
 .message_left  textarea:focus{
@@ -266,29 +270,33 @@ select{
 	padding:2px 5px 5px 25px;
 }
 
-#s{
-	margin:25px 0px 0px 0px;
+#message_left .button{
+
 }
 
-#s input{
-	margin:0px 0px 5px 22px;
-	padding:2px 2px 2px 2px;
+#send{
+	margin: 15px 0px 0px 22px;
+}
+
+#send input{
+ 
+	padding: 2px 2px 2px 2px;
 	color:#000;
 	font-size:13px;
-	height:25px;
-	text-transform:uppercase;
+	height: 25px;
+
 	font-weight:bold;
 	font-family: Verdana, Helvetica, Arial;
 	background: url(/images/button.gif) repeat-x;
 	border:1px solid #ccc;
 }
 
-#s input:hover{
+#send input:hover{
 	color:#0e8ab8;
 	text-decoration:underline;
 }
 
-#s a{
+#send a{
 	color:#000;
 	text-decoration:underline;
 	font-size:13px;
@@ -296,10 +304,11 @@ select{
 	font-family: Verdana, Helvetica, Arial;
 }
 
-#s a:hover{
+#send a:hover{
 	color:#000;
 	text-decoration:none;
 }
+
 
 #schedule{
 	margin:20px 0px 0px 0px;
@@ -357,7 +366,7 @@ select{
 #wrapper{ 
 
 	margin: 0px;
-        padding:0px 0px 30px 10px;
+        padding: 0px 0px 30px 10px;
         
 }
 
@@ -450,9 +459,9 @@ select{
   	float:left;
 	clear:both;
 	margin: 0px 0px 15px 0px;
-        padding-left: 65px;
-        padding-top: 5px;
-        min-height: 500px;
+    padding-left: 65px;
+    padding-top: 5px;
+    min-height: 500px;
 
 }
 
@@ -504,7 +513,7 @@ select{
 /*.............................................................Students......................................*/
 
 #students{
-  width: 98%; 
+    width: 94%; 
 	margin:41px 0px 20px 10px;
 	padding:0px 10px 0px 10px;
 }
@@ -643,10 +652,9 @@ table.student_group tr.even:hover{
 .sidebar{
 
     	margin: 0px 10px 0px 0px;
-    	padding: 0px 0px 15px 0px;
     	height:0 auto;
     	/*border-left:1px solid #cecece;*/
-    	width:24%;
+    	width:20%;
     	float:right;
 }
 
@@ -654,30 +662,29 @@ table.student_group tr.even:hover{
 	font-size:18px;
 	color: #005ca1;
 	font-family: Verdana, Helvetica, Arial;
-	margin:0px 0px 0px 7px;
-        font-weight:bold;
-	padding:2px 5px 10px 40px;
+	margin: 0px 0px 0px 7px;
+	font-weight:bold;
+	padding: 2px 5px 10px 40px;
 	background:url(/images/search.gif) no-repeat left;
 }
 
 .sidebar th {
 	  color: #000;
     text-align: left;
-    padding: 0.5em .5em .5em .5em;
+    padding: 0.5em 0em .5em 0em;
     font-size:13px;
 	  }
  
 .sidebar td { 
-	padding: .5em .5em .5em .5em; 
+	padding: .5em 0em .5em 0em; 
 	color: #000; 
 	font-size:13px;
 }
 
 .sidebar td input{ 
-	border:1px solid #afafb0;
-	padding:1px 0px 1px 0px;
-	width:90%;
-	background-color:#fff;
+ 
+	width: 96%;
+ 
 }
 
 .sidebar td input:focus{ 
@@ -685,7 +692,7 @@ table.student_group tr.even:hover{
 }
 
 .sidebar table {
-	margin:0px 0px 0px 5px;
+	margin:0px 0px 0px 0px;
 }
 
 .sidebar table tr td.btn input{
