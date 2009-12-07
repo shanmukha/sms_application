@@ -91,7 +91,7 @@ class MessagesController < ApplicationController
 	     flash[:notice] = "Please ensure you have suffecient balance in your account."   
        redirect_to(new_message_url) 
 	   end
-	   rescue #ActiveResource::ResourceInvalid => e  
+	  rescue #ActiveResource::ResourceInvalid => e  
     	  flash[:error] = 'Some thing went wrong. Please try again latter.'    
     	  redirect_to(new_message_url) 
      end
