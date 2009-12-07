@@ -45,6 +45,7 @@ class MessagesController < ApplicationController
      MessageSchedule.user = admin.server_user_name
      MessageSchedule.password = admin.server_password
 	   if balance >= 0
+	      params[:sms][:tag_id] = MessageTemplate.find(params[:sms][:id]).tag_id 
 	     if params[:sms][:scheduled_date].blank?  
 	        @message = current_user.messages.new(params[:sms]) 
 	     else  
@@ -52,7 +53,6 @@ class MessagesController < ApplicationController
 	        params[:sms][:scheduled_time] =  Time.parse(params[:schedule][:"scheduled_time(5i)"])
           @message = current_user.schedules.new(params[:sms])
        end
-	     
 	     if @message.save
 	       if !params[:students].nil?
 	         message = @message.message_body
@@ -73,7 +73,7 @@ class MessagesController < ApplicationController
         	   message.gsub!(/#{parent}/,'@parent') 
         	 end  
 	       else
-	          if  params[:sms][:scheduled_date].blank? 
+	        if  params[:sms][:scheduled_date].blank? 
        	  	  sms = MessageService.create(:sms => params[:sms]) 
        	      @message.update_attributes({:status => "Sent", :sms_id => sms.id}) 
        	    elsif  !params[:sms][:scheduled_date].blank?
@@ -93,8 +93,8 @@ class MessagesController < ApplicationController
        redirect_to(new_message_url) 
 	   end
 	   rescue #ActiveResource::ResourceInvalid => e  
-       flash[:error] = 'Some thing went wrong. Please try again latter.'    
-       redirect_to(new_message_url) 
+    	  flash[:error] = 'Some thing went wrong. Please try again latter.'    
+    	  redirect_to(new_message_url) 
      end
   end
   

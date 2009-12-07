@@ -7,6 +7,7 @@ class CreateMessages < ActiveRecord::Migration
       t.string  :number
       t.string  :status
       t.integer :sms_id
+      t.integer :tag_id
       t.timestamps
     end
   end

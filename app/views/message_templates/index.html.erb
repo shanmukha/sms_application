@@ -25,6 +25,7 @@
   	   <th>Created by</td>
     	   <th><%= order @search, :by => :message_title,:as => "Message Title"%></th>
     	   <th>Message Body</th>
+    	   <th>Tag name</th>
     	   <th>View</th>
     	</tr>
 				<% @message_templates.each do |message_template| %>
@@ -32,6 +33,7 @@
   			   <td><%= message_template.user.name%>
    				<td><%=h message_template.message_title %></td>
    				<td><%=h message_body_filter(message_template.message_body)%></td>
+   				 <td><%= message_template.tag.name%>
     				<td class="view"><%= link_to '<img src="/images/view.gif" title="View"/>',message_template_path(message_template),:rel => "facebox"%></td>
   			</tr>
 			<% end %>
