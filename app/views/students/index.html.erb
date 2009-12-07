@@ -27,7 +27,9 @@
      				<th><%= order @search, :by => :name ,:as => "Student Name"%></th>
                                	<th>Mobile No.</th>
      		  		<th>View</th>
-                                <th>Edit</th>
+                                  <% if current_user.has_role?('admin')%>
+                                  <th>Edit</th>
+                                  <%end%>
   			</tr>
 		     <% @students.each do |student| %>
   			 <tr class="<%=cycle("odd", "even")%>">
@@ -37,9 +39,11 @@
     				<td>
 				   <%= link_to image_tag('view.gif', :title=> "View"), student_path(student),:rel =>"facebox"%>
                                 </td>
+                                <% if current_user.has_role?('admin')%>
                                 <td>
 				   <%= link_to image_tag('edit.gif', :title=> "Edit"), edit_student_path(student)%>
                                 </td> 
+                              <%end%>  
   			   </tr>
 			<% end %>
 			

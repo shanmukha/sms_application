@@ -45,8 +45,7 @@ class MessagesController < ApplicationController
      MessageSchedule.user = admin.server_user_name
      MessageSchedule.password = admin.server_password
 	   if balance >= 0
-	      params[:sms][:tag_id] = MessageTemplate.find(params[:sms][:id]).tag_id 
-	     if params[:sms][:scheduled_date].blank?  
+	      if params[:sms][:scheduled_date].blank?  
 	        @message = current_user.messages.new(params[:sms]) 
 	     else  
 	        #sending on schedule 
@@ -128,8 +127,10 @@ class MessagesController < ApplicationController
 	
 	def render_message_template
     @message_template = MessageTemplate.find(params[:sms_id]).message_body rescue ''
+    @tag_id = MessageTemplate.find(params[:sms_id]).tag_id rescue ''
     render :update do |page|
        page << "jQuery('#sms_message_body').val('#{@message_template}')"
+       page << "jQuery('#sms_tag_id').val('#{@tag_id}')"
       end
   end
   
