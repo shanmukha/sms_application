@@ -9,6 +9,13 @@
 		<tr>
 			<th>Message:</th><td><%=h @message.message_body %></td>
 		</tr>
+     
+      <%unless @message.tag_id.nil?%>
+				<tr>
+				<th>Tag name:</th><td><%=h @message.tag.name%></td>
+			</tr>
+		  <%end%>
+		
     <%unless @message.group_id.nil?%>
 		<tr>
 			<th>Class/group:</th><td><%=h @message.group.name%></td>
@@ -24,7 +31,7 @@
  			<%if !@students.blank? and @message.sms_id==nil%>
 			<th>Student name</th>
 			<th>Roll Number</th>
-	   		<th>Status</th>
+	   	<th>Status</th>
 		</tr>
 		<%@students.each do  |student|%>
 		<tr class="<%=cycle("odd", "even")%>">

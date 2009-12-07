@@ -16,6 +16,12 @@
 			<th>Message Body:</th>
   			<td><%=h @schedule.message_body %></td>
 		</tr>
+		<%unless @schedule.tag_id.nil?%>
+				<tr>
+				<th>Tag name:</th><td><%=h @schedule.tag.name%></td>
+			</tr>
+		  <%end%>
+	
 		<tr>
 	 	<%unless @schedule.group_id.nil?%>
       			<th>Class/group:</th>

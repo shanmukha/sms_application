@@ -1,7 +1,10 @@
 <div id ="user-new"><%= link_to 'New tag', new_tag_path %></div>
-
-<h1>Listing tags</h1>
-
+<h1 class ="users-list">Listing tags</h1>
+<br /><br /><br />
+<% form_for @search do |f| %>
+ 	<div class="user-search">Name:<%= f.text_field :name_like %>
+		<span><%= f.submit "Search" %><input type="reset" value="Reset"></span></div>
+<%end%>
 <table class ="listing">
   <tr>
     <th>Name</th>
@@ -13,11 +16,11 @@
   <tr class="<%=cycle("odd", "even")%>">
     <td><%=h tag.name %></td>
     <td><%=h tag.description %></td>
-    <td><%= link_to 'View', tag%></td>
+    <td><%= link_to '<img src="/images/view.gif" title="View"/>', tag%></td>
   </tr>
 <% end %>
 </table>
-
+<%= will_paginate @tags%>
 <br />
   <div class="clear"></div>
 

@@ -3,8 +3,11 @@ class TagsController < ApplicationController
   # GET /tags.xml
   layout "admin"
   def index
-    @tags = current_user.tags
-    respond_to do |format|
+     @search = Tag.search(params[:search])
+     @search.user_id = current_user.id
+     @search.order ||= "descend_by_updated_at"
+     @tags = @search.all.paginate :page => params[:page],:per_page => 25
+     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @tags }
     end
