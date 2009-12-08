@@ -1,5 +1,5 @@
 class TagsController < ApplicationController
- 
+  before_filter :check_admin_role
   layout "admin"
   def index
      @search = Tag.search(params[:search])

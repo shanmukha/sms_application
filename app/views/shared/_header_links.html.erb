@@ -7,11 +7,10 @@
               <li class='<%= request.request_uri == "/users/#{current_user.id}/edit"? 'active': 'link' %>'> <%= link_to "Settings",edit_user_path(current_user) %>|</li> 
           		<li><%= link_to "Logout", logout_path %></li>
             	</ul>
-        		<%else%>
+        		welcome <%= current_user.name%>
+       <%else%>
         	<ul>
           		<li><%= link_to "Login", login_path %></li>
           	   </ul>	
             <%end%>	
 	    </div>
-	    <div class ="welcome"><%if current_user%>
-	     welcome <%= current_user.name%><%end%></div>
