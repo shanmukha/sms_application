@@ -241,7 +241,7 @@ select{
 .message_left  textarea{
 	border:5px solid #eee;
 	padding:0px;
-
+        margin-top: 15px;
 	background-color:#f6f6f6;
 	width: 385px;
 	height: 125px;
@@ -392,9 +392,9 @@ select{
  
 .listing { 
 	border-collapse: collapse;
-        width: 98%;
+        width: 99.5%;
         color: #000;
-	margin: 27px 5px 0px 10px;
+	margin: 27px 5px 0px 5px;
       	float:left;
 	font-family : "arial", helvetica, sans-serif;
         border: 1px solid #e0e0e0;

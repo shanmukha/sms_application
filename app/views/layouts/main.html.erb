@@ -31,46 +31,12 @@
 <body>
   <div id="body_wrapper">
     <div id="header">
-    <div class="header_links">
-		<%if current_user%>
-		 <ul>
-		  <%if current_user.has_role?('super_admin') || current_user.has_role?('admin')%>
-         <li class='<%= request.request_uri == "/users"? 'active': 'link' %>'> <%= link_to "Administrative", users_path %>|</li>  
-        <%end%>
-              <li class='<%= request.request_uri == "/users/#{current_user.id}/edit"? 'active': 'link' %>'> <%= link_to "Settings",edit_user_path(current_user) %>|</li> 
-          		<li><%= link_to "Logout", logout_path %></li>
-            	</ul>
-        		welcome <%= current_user.name%>
-       <%else%>
-        	<ul>
-          		<li><%= link_to "Login", login_path %></li>
-          	   </ul>	
-            <%end%>	
-	    </div>
+           <%= render :partial => 'shared/header_links' %>
 	   <div id = "site_heading">
 			<h1><%= image_tag('logo.gif') %><span> <%unless current_user.nil?%><%= current_user.has_role?('admin') ? current_user.name : User.find(current_user.parent_id).name%> <%end%></span></h1>
 	</div>
-	<% if current_user %> 
-    <div class="clear" ></div>
-		<div id="menu">
-            <ul>
-		     <% if request.request_uri == "/messages/new"%>
-			    	<li class='<%= request.request_uri == "/messages/new"? 'active': 'link' %>'> <%= link_to "New Message", new_message_path%></li>
-			 <%elsif request.request_uri == "/"%>
-			  		<li class='<%= request.request_uri == "/"? 'active': 'link' %>'><%= link_to "New Message", new_message_path %></li>
-			  <%else%>
-			  	<li><%= link_to "New Message", new_message_path %></li>
-			<%end%>
-            	<li class='<%= request.request_uri =~ /students/? 'active': 'link' %>'> <%= link_to "Students List", students_path%></li> 
-            	<li class='<%= request.request_uri =~ /message_templates/? 'active': 'link' %>'> <%= link_to "Saved Messages", message_templates_path%></li> 	
-                <li class='<%= request.request_uri =~ /groups/? 'active': 'link' %>'><%= link_to "Classes",    groups_path%></li>
-                <li class='<%= request.request_uri =~ /schedules/? 'active': 'link' %>'><%= link_to "Schedules",  schedules_path%></li>
-                <li class='<%= request.request_uri =~ /messages/? 'active': 'link' %>'><%= link_to "Sent messages", messages_path%></li>
-                <li class='<%= request.request_uri =~ /emails/? 'active': 'link' %>'><%= link_to "Emails", emails_path%></li>
-         	<li class='<%= request.request_uri =~ /letters/? 'active last': 'link last' %>'><%= link_to "Letters", letters_path%></li>
-             </ul>
-         </div>
-         <%end%>
+
+	<%= render :partial => 'shared/menu' %>
 </div> <!-- end of header -->
 
 <div id="notice">
