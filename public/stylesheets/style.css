@@ -72,7 +72,7 @@ img {
 }
 
 .header_links{ 
-	width:20%;
+	width:40%;
 	float:right;
 	margin: 0px 0px 0px 0px;
 	height:15px; 
@@ -103,7 +103,11 @@ img {
 	color:#86b050;
 	text-decoration:underline;
 }
-
+.welcome {
+  float:right;
+  padding: 10px 0px 0px 600px;
+  color:red;
+ }
 /* menu *******************************************************************************/
 
 #menu { 

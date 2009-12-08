@@ -1,6 +1,5 @@
 class TagsController < ApplicationController
-  # GET /tags
-  # GET /tags.xml
+ 
   layout "admin"
   def index
      @search = Tag.search(params[:search])
@@ -13,8 +12,7 @@ class TagsController < ApplicationController
     end
   end
 
-  # GET /tags/1
-  # GET /tags/1.xml
+  
   def show
     @tag = current_user.tags.find(params[:id])
     respond_to do |format|
@@ -23,8 +21,7 @@ class TagsController < ApplicationController
     end
   end
 
-  # GET /tags/new
-  # GET /tags/new.xml
+  
   def new
     @tag = current_user.tags.new
     respond_to do |format|
@@ -33,13 +30,12 @@ class TagsController < ApplicationController
     end
   end
 
-  # GET /tags/1/edit
+ 
   def edit
     @tag = current_user.tags.find(params[:id])
   end
 
-  # POST /tags
-  # POST /tags.xml
+ 
   def create
     @tag = current_user.tags.new(params[:tag])
     respond_to do |format|
@@ -54,8 +50,7 @@ class TagsController < ApplicationController
     end
   end
 
-  # PUT /tags/1
-  # PUT /tags/1.xml
+ 
   def update
     @tag = current_user.tags.find(params[:id])
     respond_to do |format|
@@ -70,8 +65,7 @@ class TagsController < ApplicationController
     end
   end
 
-  # DELETE /tags/1
-  # DELETE /tags/1.xml
+  
   def destroy
     @tag = current_user.tags.find(params[:id])
     @tag.destroy

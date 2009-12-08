@@ -34,13 +34,13 @@
      <div id="header">
 	<div class="header_links">
 	<%if current_user%>
-	       <ul>        <li> Welcome <%= current_user.name%> </li>
+	       <ul>        
 		            <li><%= link_to "Got to application", root_path %></li>
 		           <li class='<%= request.request_uri == "/users/#{current_user.id}/edit"? 'active': 'link' %>'> <%= link_to "Settings",edit_user_path(current_user) %>| </li>
 		           <li><%= link_to "Logout", logout_path %></li>
 		         
          	</ul>
-               
+              
         		<%else%>
 
         	<ul>
@@ -49,6 +49,8 @@
        
         		<%end%>	
 	 </div>
+	 <div class ="welcome"><%if current_user%>
+	     welcome <%= current_user.name%><%end%></div>
          <div id = "site_heading">
 		<h1><%= image_tag('logo.gif') %><span> <%unless current_user.nil?%><%= current_user.has_role?('admin') ? current_user.name : User.find(current_user.parent_id).name%> <%end%></span></h1>
 	 </div>
