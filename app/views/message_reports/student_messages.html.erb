@@ -1,5 +1,24 @@
 <%= render :partial => "share_message_links"%>
 <h1>Student wise message list</h1>
+<%= image_tag Gchart.line(:size => '200x150',
+:title => "Graph",
+:bg => 'efefef',
+:legend =>@students_name ,
+:bar_colors => 'FF0000,00FF00',
+:stacked => false,
+:data => @students_message_size) %>
+<br />
+
+<%= image_tag Gchart.bar(:size => '200x150',
+:title => "Graph",
+:bg => 'efefef',
+:legend =>@students_name ,
+:bar_colors => 'FF0000,00FF00',
+:stacked => false,
+:data => @students_message_size) %>
+
+
+
 <% for student in @students%>
 <br />
 <%= student.name%><br />

@@ -27,24 +27,20 @@ class User < ActiveRecord::Base
   def self.find_teachers_name_message_size(current_user,teachers)
      @teachers_name = find(:all,:conditions =>['parent_id = ?',current_user.id]).map{|object|object.name}
 	   @teachers_message_size = []
-	   @colors1 = 0x000000
+	  # @colors1 = 0xFF0000
 	   #@colors1 = dec2hex(@colors1)
-	   puts "ddddddddddddddddddddd #{@colors1}"
-	   i = 0
+	  # i = 0
 	   for teacher in teachers
 	      @teachers_message_size << teacher.messages.size
-	   		@colors1 = @colors1 + 5
-	   		puts "FFFFFFFFFFFFFFF #{@colors1}"
-	   		@colors1 = dec2hex(@colors1)
-       	@colors = "#{@colors1},#{@colors}" if i!=0
-       	@colors = "#{@colors1}" if i==0
-       	@colors1.hex
-       	@colors1 = Integer("0x" + @colors1)
-        i = i+1
-       	puts "DDDDDDDDDDDDD #{i}"
-        puts "SSSSSSSSSSSSSSSSSSSSS #{@colors}"
-	  end
-  return @teachers_name,@teachers_message_size,@colors
+	   #		@colors1 = @colors1 + 0xaaaaaa
+	   	#	@colors1 = dec2hex(@colors1)
+       #	@colors = "#{@colors1},#{@colors}" if i!=0
+       	#@colors = "#{@colors1}" if i==0
+       	#@colors1.hex
+       	#@colors1 = Integer("0x" + @colors1 )
+        #i = i+1
+      end
+  return @teachers_name,@teachers_message_size
 	end  
 
  def forgot_password

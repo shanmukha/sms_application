@@ -24,4 +24,13 @@ class Student < ActiveRecord::Base
      end
      return student,groups,non_groups
  end
+  
+  def self.find_students_name_message_size(current_user,students)
+     @students_name = current_user.students.map{|object|object.name}
+	   @students_message_size = []
+	   for student in students
+	   		@students_message_size << student.messages.size
+	  end
+  return @students_name,@students_message_size
+	end
 end 

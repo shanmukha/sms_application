@@ -1,5 +1,13 @@
 <%= render :partial => "share_message_links"%>
 <h1>Class wise message list</h1>
+<%= image_tag Gchart.line(:size => '200x150',
+:title => "Graph",
+:bg => 'efefef',
+:legend =>@classes_name ,
+:bar_colors => 'd7b2b2,eaa2a2',
+:stacked => false,
+:data => @classes_message_size) %>
+<br />
 <%= image_tag Gchart.bar(:size => '200x150',
 :title => "Graph",
 :bg => 'efefef',

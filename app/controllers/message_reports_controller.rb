@@ -4,9 +4,8 @@ class MessageReportsController < ApplicationController
  before_filter :check_admin_role
 	def teacher_messages
 	  @teachers = User.find_teachers(current_user)
-	  @teachers_name,@teachers_message_size,@colors = User.find_teachers_name_message_size(current_user,@teachers)
-    
-	 end  
+	  @teachers_name,@teachers_message_size = User.find_teachers_name_message_size(current_user,@teachers)
+ end  
  
  def tag_messages
    @tags = current_user.tags
@@ -20,6 +19,7 @@ class MessageReportsController < ApplicationController
   
   def student_messages
     @students = current_user.students
+    @students_name,@students_message_size = Student.find_students_name_message_size(current_user,@students)
   end
   
   def show
