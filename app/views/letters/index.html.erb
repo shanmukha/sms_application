@@ -1,16 +1,23 @@
-<div id = 'hide' style ="display:none">
- 	<span><%= link_to_function '<img src="/images/cancel.gif" title="Cancel"/>', "jQuery('#letter').hide(); jQuery('#show').show(); jQuery('#hide').hide();return false;" %> </span>
+<div id = 'top' style ="display:none ; clear:both">
+     <%= render :partial =>"new" %>
+     <div class = 'clear'> </div>
 </div>
 
-<div id = 'letter' style ="display:none ; clear:both">
-  		<%= render :partial =>"new"%>
+
+<div id = 'listing-top'>
+    <% if current_user.has_role?('admin')%>
+       <div id = 'button'>
+	   <span>
+               <%= link_to_function 'New letter', "jQuery('#top').show(); jQuery('#button').hide(); return false;" %>
+           </span>
+       </div>
+    <%end%> 	
+         
+    <h1>Listing all letters</h1>
+    <div class="clear"></div>
 </div>
 
 <div id="listing_file">
-   	<div id = 'show'>
-        	<span> <%= link_to_function 'New letter', "jQuery('#letter').show(); jQuery('#hide').show(); jQuery('#show').hide(); return false;" %></span>
-    	</div>
-	 <h1>Listing letters</h1>
    	<table class ="listing">
   		<tr>
   		    <th>Created by</th>

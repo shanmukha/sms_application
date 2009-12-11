@@ -45,8 +45,8 @@ img {
 
 #header {
         width: 96%;
-	    height: 100px;
-	    margin: 0px auto 40px auto;
+        height: auto;
+	margin: 0px auto 20px auto;
         padding: 5px;
 }
 
@@ -76,23 +76,25 @@ img {
 	float:right;
 	margin: 0px 0px 0px 0px;
 	height:15px; 
+        color: #142c4e;
 }
 
 .header_links ul {
-	margin:0px 20px 0px 0px;
+	margin:0px 10px 0px 0px;
 	padding:0px;
 	float:right;
 }
 
 .header_links ul li {
-	margin:0px;
+	
 	padding:0px;
 	display:inline;
-	color:#fff;
+	color:#142c4e;
 }
 
 .header_links ul li a{
-	color: #000;
+        margin:0px 5px 0px 5px;
+	color: #142c4e;
 	font-size:11px;
 	display:inline;
 	font-weight:bold;
@@ -128,6 +130,8 @@ img {
         margin-top: 10px;
 }
 
+#menu ul li.last { background: none; }
+
 #menu ul li a{
 	text-align:left;
 	font-size: 13px;
@@ -148,6 +152,7 @@ img {
 	
 }
 .header_links ul li.active a{ color:#964515; }
+
 
 .header_links li a:hover{color: #0e8ab8; }
 
@@ -243,7 +248,7 @@ select{
 .center_message { width: 500px; margin: 40px auto 0px auto;}
 
 .message_left  textarea{
-	border:5px solid #eee;
+	border:2px solid #eee;
 	padding:0px;
         margin-top: 15px;
 	background-color:#f6f6f6;
@@ -252,7 +257,7 @@ select{
 }
 
 .message_left  textarea:focus{
-	border:5px solid #ddd;
+	border:2px solid #ddd;
 }
 
 .message_right{
@@ -360,7 +365,7 @@ select{
 
 #content_wrapper{
 	background:#eee url(/images/container-bg.png) repeat-x;
-	margin: 0 auto 10px auto;
+	margin: 0px auto 10px auto;
 	clear: both;
 	width: 95%;
 	padding: 5px;
@@ -370,7 +375,7 @@ select{
 #wrapper{ 
 
 	margin: 0px;
-        padding: 0px 0px 30px 10px;
+        padding: 0px 0px 0px 10px;
         
 }
 
@@ -477,8 +482,19 @@ select{
 	font-family : "arial", helvetica, sans-serif;
 	font-weight:bold;
 	padding:0px 0px 0px 28px;
-	width:45%;
+	width:65%;
 	float:left;
+	letter-spacing:1px;
+	background:url(/images/users.png) no-repeat;
+}
+
+#top h1 {
+	font-size:18px;
+	color: #005ca1;
+	font-family : "arial", helvetica, sans-serif;
+	font-weight:bold;
+	padding:0px 0px 0px 28px;
+	width:45%;
 	letter-spacing:1px;
 	background:url(/images/users.png) no-repeat;
 }
@@ -516,11 +532,18 @@ select{
 
 /*.............................................................Students......................................*/
 
-#students{
-    width: 94%; 
-	margin:41px 0px 20px 10px;
+.message_right #students{
+        width: 94%; 
+	margin:30px 0px 20px 10px;
 	padding:0px 10px 0px 10px;
 }
+
+#students{
+        margin: 0;
+	padding:0;
+        width: 98%;  
+}
+
 
 #students input{
 	border:1px solid #ccc;
@@ -645,9 +668,8 @@ table.student_group tr.even:hover{
 }
 
 #select_groups{
-	float:left;
-	margin:31px 0px 0px 10px;
-	padding:0px 0px 0px 0px;
+  
+	
 }
 
 /*.........................sidebar.....................................*/
@@ -713,21 +735,16 @@ table.student_group tr.even:hover{
 
 /*...............................................create new record.......................*/
 
-#top{background: #fff; margin: 10px 10px 5px 4px; border-bottom: 2px solid #ccc; }
+#top{background: #fff; margin: 10px 10px 5px 4px; border-bottom: 5px solid #ccc; }
 
 .create_new{
-	float:left;
-	padding:10px 0px 15px 10px;
-	margin-top:21px;
-
+        float: left;
+        clear: both;
+        width: 90%;
+        background: #f1f1f1;
 }
 
-.create_new fieldset{
-	background:#eeedee;
-	border:1px solid #cecece;
-	padding-left:10px;
-	width:400px;
-}
+
 
 .create_new span input{
 	background-color:#771919;
@@ -759,13 +776,8 @@ table.student_group tr.even:hover{
 	
 }
 
-.create_new p textarea{
-	border:1px solid #8a8b8c;
-	padding:2px;
-	background:#fff url(/images/input.png) repeat-x bottom;
-	width:350px;
-	height:120px;
-}
+
+.create_new #letter_content {width:600px; height:400px; border: 1px solid #ccc;}
 
 .create_new p textarea:focus{
 	border:1px solid #d8b186;

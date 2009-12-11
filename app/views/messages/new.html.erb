@@ -15,8 +15,7 @@
 		</div>
 		<p><%= f.text_area :message_body %></p> 
         <p><span id="counter"></span>&nbsp; characters left to complete one message.</p>
-      	<p><%= f.label :Tag_name%><br />
-  			   <%= f.select :tag_id, all_tags, options={:prompt => 'Select tag'} %></p>         
+      	<p> <%= f.select :tag_id, all_tags, options={:prompt => 'Select tag'} %></p>         
   	   	<div id = 'send'>
 		   <%= f.submit "Send message now" %> or 
 		   <%= link_to_function 'Schedule message sending.', "jQuery('#schedule').show(); jQuery('#send').hide(); return false;" %>
