@@ -1,0 +1,25 @@
+<%= render :partial => "share_email_links"%>
+<h1>Student wise email list</h1>
+<% for student in @students%>
+<br />
+<%= student.name%><br />
+<table class ="listing">
+  		<tr>
+  		    <th>Sent by</th>
+    			<th>Subject</th>
+    			<th>Body</th>
+    			<th>Class</th>
+    			<th>View</th>
+  		</tr>
+	<% for email  in find_student_emails(student)%>
+  		<tr class="<%=cycle("odd", "even")%>">
+  		    <td><%= email.user.name%></td>
+     			<td><%=h email.subject %></td>
+     			<td><%=h message_body_filter(email.body) %></td>
+     			<td><%=h email.group.name%></td>
+     			<td class="view"><%= link_to '<img src="/images/view.gif" title="View"/>', email_report_path(email)%></td>
+      		</tr>
+		<% end %>
+	</table>
+	<div class = 'clear'> </div>
+	<% end %>

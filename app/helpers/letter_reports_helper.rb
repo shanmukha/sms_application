@@ -1,0 +1,2 @@
+module LetterReportsHelper
+end

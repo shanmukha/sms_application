@@ -1,0 +1,32 @@
+<%= render :partial => "share_schedule_links"%>
+<h1>Tag wise schedule message list</h1>
+<% for group in @classes%>
+<br />
+<%= group.name%><br />
+
+<table class="listing">
+  		<tr>
+  		<th>Created by</td>
+    			<th>Date</th>
+    			<th>Time</th>
+    			<th>Message</th>
+    			<th>Class/Mobile no.</th>
+    			<th>View</th> 
+  		</tr>
+	<% for schedule  in find_class_schedules(group)%>
+  		   <tr class="<%=cycle("odd", "even")%>">
+  		    <td><%= schedule.user.name%></td>
+    			<td><%=h schedule.scheduled_date%></td>
+    			<td><%= Time.parse(schedule.scheduled_time.to_s).strftime('%H:%M') %></td>
+    			<td><%=h message_body_filter(schedule.message_body)%></td>
+    		   <%unless schedule.group_id.nil?%>
+    			    <td><%=h schedule.group.name%></td>
+    			  <%else%>
+    			    <td><%=h schedule.number%></td>
+    			 <%end%>
+    		   	  <td class="view"><%= link_to '<img src="/images/view.gif" title="View"/>', schedule_report_path(schedule)%></td>
+  		</tr>
+		<% end %>
+	</table>
+		<div class = 'clear'> </div>
+		<% end %>

@@ -28,4 +28,13 @@ class Group < ActiveRecord::Base
      end
     return @group,@group_students,@non_group_students
   end
+ 
+  def self.find_classes_name_message_size(current_user,groups)
+     @classes_name = current_user.groups.map{|object|object.name}
+	   @groups_message_size = []
+	   for group in groups
+	   		@groups_message_size << group.messages.size
+	  end
+    return @groups_name,@groups_message_size
+	end  
 end

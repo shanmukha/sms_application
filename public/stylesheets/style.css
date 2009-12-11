@@ -151,6 +151,42 @@ img {
 	color: #0e8ab8;
 	
 }
+
+/*Drop down menu*/
+.dropdown dt:hover {background:url(images/header_over.gif)}
+.dropdown dd {position:absolute; overflow:hidden; width:208px; display:none; background:#fff; z-index:200; opacity:0; margin:40px 0px 0px 150px; }
+.dropdown ul {width:204px; border:0px solid #9ac1c9; list-style:none; border-top:none;}
+
+.dropdown li.report
+  {
+  text-align:left;
+	font-size: 13px;
+	text-decoration: none;
+	color: #fff;	
+	font-weight: bold;
+	text-transform:uppercase;
+	outline: none;
+	margin:5px 10px 0px 10px;
+	padding:0px 15px 0px 0px;
+	font-family : "arial", helvetica, sans-serif;
+       }
+.dropdown li.report:hover
+  {
+  	color: #0e8ab8;
+  }
+
+#menu ul li.Nav{
+	background: url(/images/space.gif) no-repeat right;
+	width:204px;
+}
+
+#menu ul li.Nav a{
+	color:#000;
+}
+
+#menu ul li.Nav a:hover{
+	color:red;
+}
 .header_links ul li.active a{ color:#964515; }
 
 

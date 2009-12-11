@@ -1,0 +1,36 @@
+<table>
+<tr>
+<td>
+<div class ="letter_show">
+	<table class="show_page">
+	
+		<tr>
+			  <td><%=h @letter.content %></td>
+		</tr>
+	
+	</table>
+
+	<%= link_to 'Print letter', print_letter_path(@letter) %>
+  	<!-- <%= link_to 'Delete', @letter, :confirm => 'Are you sure?', :method => :delete %> -->
+</div>
+</td>
+<td>
+		<table class="student_letter" border="1">
+		<tr>
+			<th>Student name</th>
+			<th>Roll number</th>
+		</tr>
+		<%@students.each do  |student|%>
+	 	<tr class="<%=cycle("odd", "even")%>">
+			<td><%= student.name%></td>
+			<td><%= student.roll_number%></td>
+  		</tr>
+  		<%end%>
+	</table>
+</td>
+</tr>
+</table>
+
+	
+
+ 

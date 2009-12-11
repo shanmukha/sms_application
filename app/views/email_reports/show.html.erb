@@ -1,0 +1,35 @@
+<div class="showpage_content">
+	<table class="show_page">
+	<tr>
+			<th>Sent by:</th>
+  			<td><%=h @email.user.name%></td>
+		</tr>
+		<tr>
+			<th>Body:</th>
+  			<td><%=h @email.body %></td>
+		</tr>
+		<tr>
+  			<th>Subject:</th>
+  			<td><%=h @email.subject %></td>
+		</tr>
+		<tr>
+  			<th>Class:</th>
+  			<td><%=h @email.group.name %></td>
+		</tr>
+	</table>
+	<table  class="student_letter" border="1" >
+		<tr>
+			<th>Student name</th>
+			<th>Roll No</th>
+		</tr>
+		<%@students.each do  |student|%>
+		<tr class="<%=cycle("odd", "even")%>">
+			<td><%= student.name%></td>
+			<td><%= student.roll_number%></td>
+  		</tr>
+  			<%end%>
+	</table>
+	<!-- <td><%= link_to 'Destroy', @email, :confirm => 'Are you sure?', :method => :delete %></td> -->
+</div>
+
+

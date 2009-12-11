@@ -28,4 +28,59 @@ module ApplicationHelper
     def find_schedule_status(schedule,student)
       ScheduleStudent.find(:first,:conditions =>['schedule_id = ? and student_id = ?',schedule,student]).status rescue ''
    end
+   def find_teacher_messages(teacher)
+  	teacher.messages
+ end 
+  
+ def find_tag_messages(tag)
+    tag.messages
+  end
+ 
+ def find_class_messages(group)
+   group.messages
+ end
+  
+  def find_student_messages(student)
+    student.messages.find(:all)
+  end
+   
+ 	def find_teacher_schedules(teacher)
+    teacher.schedules 
+  end
+  
+  def find_student_schedules(student)
+      student.schedules.find(:all)
+  end
+  
+  def find_tag_schedules(tag)
+    tag.schedules
+  end
+ 
+  def find_class_schedules(group)
+     group.messages 
+  end
+   
+  def find_teacher_emails(teacher)
+      teacher.emails
+  end 
+  
+  def  find_class_emails(group)
+       group.emails
+  end
+  
+  def find_student_emails(student)
+      student.emails.find(:all)
+   end    
+  
+  def find_teacher_letters(teacher)
+      teacher.letters
+  end
+  
+  def find_class_letters(group)
+     group.letters
+  end   
+  
+  def find_student_letters(student)
+       student.letters 
+  end
 end

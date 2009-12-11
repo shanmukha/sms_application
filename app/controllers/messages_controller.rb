@@ -16,7 +16,6 @@ class MessagesController < ApplicationController
     end
   end
 	
-
 	def show
     @message =  Message.find(params[:id])
     @students = @message.students.find(:all)
@@ -140,8 +139,8 @@ class MessagesController < ApplicationController
      	page.replace_html 'students', :partial => 'group_student'
    end
   end 
-  private
   
+  private
   def user_ids
       user_ids  = []
       user_ids << current_user.id

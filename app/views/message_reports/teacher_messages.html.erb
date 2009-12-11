@@ -1,0 +1,48 @@
+<%= render :partial => "share_message_links"%>
+<h1>Teacher wise message list</h1>
+ <%= image_tag Gchart.line(:size => '200x150',
+:title => "Graph",
+:bg => 'efefef',
+:legend =>@teachers_name ,
+:bar_colors => 'FF0000,00FF00',
+:stacked => false,
+:data => @teachers_message_size) %>
+<br />
+<%= image_tag Gchart.bar(:size => '200x150',
+:title => "Graph",
+:bg => 'efefef',
+:legend =>@teachers_name ,
+:bar_colors =>@colors,
+:stacked => false,
+:data => @teachers_message_size) %>
+
+<% for teacher in @teachers%>
+<br /><br />
+<%= teacher.name%><br />
+<table class="listing">
+  		<tr>
+    			<th>Sent Date</th>
+    			<th>Sent by</th>
+    			<th>Message</th>
+    			<th>Class/Mobile no.</th>
+     			<th>View</th>
+  		</tr>
+<% for message  in find_teacher_messages(teacher)%>
+      <tr class="<%=cycle("odd", "even")%>">
+    			<td><%=h Time.parse(message.created_at.to_s).strftime('%Y-%m-%d') %></td>
+    			<td><%= message.user.name%></td>
+    			<td><%=h message_body_filter(message.message_body)%></td>
+    			<%unless message.group_id.nil?%>
+    			<td><%=h message.group.name%></td>
+    			<%else%>
+    			 <td><%=h message.number%></td>
+    			<%end%>
+    			<td class="view"><%= link_to '<img src="/images/view.gif" title="View"/>', message_report_path(message)%></td>
+  		</tr>
+		<% end %>
+	</table>
+<div class = 'clear'> </div>
+<%end%>  
+  
+
+
