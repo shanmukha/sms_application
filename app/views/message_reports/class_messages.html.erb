@@ -18,7 +18,7 @@
 
 <% for group in @classes%>
 <br />
-<%= group.name%><br />
+<%= group.name%> (<%= find_class_messages(group).size %> )<br />
 <table class="listing">
   		<tr>
     		<th>Sent Date</th>

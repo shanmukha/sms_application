@@ -1,8 +1,23 @@
 <%= render :partial => "share_letter_links"%>
 <h1>Student wise letter list</h1>
+<%= image_tag Gchart.line(:size => '200x150',
+:title => "Graph",
+:bg => 'efefef',
+:legend =>@students_name ,
+:bar_colors => 'd7b2b2,eaa2a2',
+:stacked => false,
+:data => @students_letter_size) %>
+<br />
+<%= image_tag Gchart.bar(:size => '200x150',
+:title => "Graph",
+:bg => 'efefef',
+:legend =>@students_name  ,
+:bar_colors => 'd7b2b2,eaa2a2',
+:stacked => false,
+:data =>@students_letter_size) %>
 <% for student in @students%>
 <br />
-<%= student.name%><br />
+<%= student.name%> (<%= find_student_letters(student).size %>)<br />
 	
 	<table class ="listing">
   		<tr>

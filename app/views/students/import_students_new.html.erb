@@ -1,0 +1,10 @@
+<% form_for :students,:url => import_students_create_students_path,  :html => {:method => :post,:multipart => :true} do |f| %>
+	<%= f.error_messages %>
+	 <p>
+    		 <%= f.label :File%><br />
+    		 <%= f.file_field :file%>
+  	 </p>
+  	 <%= f.select_month :start, {:month_order => [2,3,4]}%>
+  	<%= f.submit 'Import' %>
+ <% end %> 	 
+  	 

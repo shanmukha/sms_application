@@ -6,7 +6,7 @@ caption, th, td {text-align : left; font-weight : normal}
 blockquote:before, blockquote:after, q:before, q:after {content : ""}
 blockquote, q {quotes : "" ""}
 
-body { margin: 0px; padding: 0px; background: #dbdcde url('/images/bg.jpg') repeat-x scroll 0% 0%; color: rgb(0, 0, 0); font-family: Verdana,Arial,Tahoma; font-style: normal; font-variant: normal; font-weight: normal; font-size: 12px; line-height: normal; font-size-adjust: none; font-stretch: normal; -x-system-font: none; }
+body { margin: 0px; padding: 0px; background: rgb(211, 202, 170) url('/images/bg.jpg') repeat-x scroll 0% 0%; color: rgb(0, 0, 0); font-family: Verdana,Arial,Tahoma; font-style: normal; font-variant: normal; font-weight: normal; font-size: 12px; line-height: normal; font-size-adjust: none; font-stretch: normal; -x-system-font: none; }
 /*
 body {
 	margin: 0px;
@@ -510,7 +510,7 @@ select{
 
 }
 
-#listing-top{ clear: both; margin: 2px 2px 6px 4px; padding-top: 2px; width:75%; }
+#listing-top{ clear: both; margin: 2px 2px 6px 4px; padding-top: 2px; width:75%; }/*................today....*/
 
 #listing-top h1 {
 	font-size:18px;
@@ -522,7 +522,7 @@ select{
 	float:left;
 	letter-spacing:1px;
 	background:url(/images/users.png) no-repeat;
-}/
+}/*................today....*/
 
 #top h1 {
 	font-size:18px;
@@ -538,7 +538,7 @@ select{
 #button  {
 	font-family: Verdana, Helvetica, Arial;
 	float:right
-
+}/*................today....*/
 
 #button span a{
 	padding:4px 5px 4px 5px;
@@ -550,16 +550,13 @@ select{
 	
 	letter-spacing:1px;
   text-decoration: none;
-}
+}/*................today....*/
 	
 
 #button span a:hover{
 	color:#6b881c;
 	text-decoration:none;
-}
- 
-
-
+}/*................today....*/
  
 #hide{ 
 	width:20%;
@@ -583,9 +580,9 @@ select{
 }
 
 #students{
-        margin: 0;
+  margin: 0;
 	padding:0;
-        width: 98%;  
+  width: 98%;  
 }
 
 
@@ -785,6 +782,7 @@ table.student_group tr.even:hover{
         float: left;
         clear: both;
         width: 90%;
+        background: #f1f1f1;
 }
 
 
@@ -821,13 +819,6 @@ table.student_group tr.even:hover{
 
 
 .create_new #letter_content {width:600px; height:400px; border: 1px solid #ccc;}
-
-.create_new p textarea {
-	border:1px solid #8a8b8c;
-	padding:2px;
-	background:#fff url(/images/input.png) repeat-x bottom;
-	width:350px;
-}
 
 .create_new p textarea:focus{
 	border:1px solid #d8b186;
@@ -1098,10 +1089,10 @@ table.student_letter tr.even:hover{
 	width: 100%;
 	clear:both;
 	border-top:5px solid #e1dfdf;
-	background-color:#fff;
+	background-color:#f6f6f6;
 }
 
-#footer {background-color:#fff;
+#footer {background-color:#e0e0e0;
 	width: 94%;
 	padding: 30px;
 	margin: 0 auto;

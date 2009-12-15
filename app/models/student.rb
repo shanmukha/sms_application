@@ -29,8 +29,37 @@ class Student < ActiveRecord::Base
      @students_name = current_user.students.map{|object|object.name}
 	   @students_message_size = []
 	   for student in students
-	   		@students_message_size << student.messages.size
+	   		@students_message_size << student.messages.find(:all).size
 	  end
   return @students_name,@students_message_size
 	end
+	
+	 def self.find_students_name_schedule_size(current_user,students)
+     @students_name = current_user.students.map{|object|object.name}
+	   @students_schedule_size = []
+	   for student in students
+	   		@students_schedule_size << student.schedules.find(:all).size
+	  end
+  return @students_name,@students_schedule_size
+	end
+	
+	
+	 def self.find_students_name_email_size(current_user,students)
+     @students_name = current_user.students.map{|object|object.name}
+	   @students_email_size = []
+	   for student in students
+	   		@students_email_size << student.emails.find(:all).size
+	  end
+  return @students_name,@students_email_size
+	end
+	
+	 def self.find_students_name_letter_size(current_user,students)
+     @students_name = current_user.students.map{|object|object.name}
+	   @students_letter_size = []
+	   for student in students
+	   		@students_letter_size << student.letters.find(:all).size
+	  end
+  return @students_name,@students_letter_size
+	end
+	
 end 

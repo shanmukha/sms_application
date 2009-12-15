@@ -21,7 +21,7 @@
 
 <% for student in @students%>
 <br />
-<%= student.name%><br />
+<%= student.name%> (<%= find_student_messages(student).size %> )<br />
 <table class="listing">
   		<tr>
     			<th>Sent Date</th>

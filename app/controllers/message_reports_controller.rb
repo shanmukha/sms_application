@@ -22,6 +22,12 @@ class MessageReportsController < ApplicationController
     @students_name,@students_message_size = Student.find_students_name_message_size(current_user,@students)
   end
   
+  def month_messages
+  	@from_date = params[:report][:from_date]
+  	@to_date =  params[:report][:to_date]
+  	@messages = Message.find_month_wise_report(@from_date,@to_date,current_user)
+  end
+  
   def show
      @message = Message.find(params[:id])
      @students = @message.students.find(:all)

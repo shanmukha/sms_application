@@ -1,8 +1,24 @@
 <%= render :partial => "share_schedule_links"%>
 <h1>Student wise schedule message list</h1>
+
+<%= image_tag Gchart.line(:size => '200x150',
+:title => "Graph",
+:bg => 'efefef',
+:legend =>@students_name ,
+:bar_colors => 'd7b2b2,eaa2a2',
+:stacked => false,
+:data => @students_schedule_size) %>
+<br />
+<%= image_tag Gchart.bar(:size => '200x150',
+:title => "Graph",
+:bg => 'efefef',
+:legend => @students_name ,
+:bar_colors => 'd7b2b2,eaa2a2',
+:stacked => false,
+:data =>@students_schedule_size) %>
 <% for student in @students%>
 <br />
-<%= student.name%><br />
+<%= student.name%> (<%= find_student_schedules(student).size%> )<br />
 
 <table class="listing">
   		<tr>

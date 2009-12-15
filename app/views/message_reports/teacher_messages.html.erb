@@ -18,7 +18,7 @@
 
 <% for teacher in @teachers%>
 <br /><br />
-<%= teacher.name%><br />
+<%= teacher.name%> (<%= find_teacher_messages(teacher).size%> )<br />
 <table class="listing">
   		<tr>
     			<th>Sent Date</th>

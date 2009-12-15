@@ -1,7 +1,7 @@
 class StudentsController < ApplicationController
-  layout "main",:except => "show"
+  layout "main",:except => [:show,:import_students_new]
   before_filter :check_admin_role, :except =>[:index,:show]
-	
+	require "csv"
 	def index
 	  admin = current_user.has_role?('admin') ? current_user : User.find(current_user.parent_id)
     @search = Student.search(params[:search])
@@ -90,4 +90,20 @@ class StudentsController < ApplicationController
       format.xml  { head :ok }
     end
   end
-end
+  
+  def import_students_new 
+  
+  end
+  
+  def import_students_create
+     @parsed_file =  CSV::Reader.parse(params[:students][:file])
+     #FasterCSV.foreach(params[:students][:file].path, :headers => :false) do |row|
+     @parsed_file.each do |row|
+     Student.create(:roll_number => row[0],:name => row[1],:parent => row[2],:address => row[3],:number => row[4],:email => row[5],:user_id => current_user.id) 
+    end
+     respond_to do |format|
+      format.html { redirect_to(students_url) }
+      format.xml  { head :ok }
+    end
+    end
+end  

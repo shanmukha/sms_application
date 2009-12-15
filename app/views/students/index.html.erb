@@ -11,11 +11,13 @@
     <% if current_user.has_role?('admin')%>
        <div id = 'button'>
 	   <span>
-               <%= link_to_function 'New student record', "jQuery('#top').show(); jQuery('#button').hide(); return false;" %>
+               <%= link_to_function 'New student record', "jQuery('#top').show(); jQuery('#button').hide(); return false;" %>  </span> or 
+             <span>  <%= link_to 'Import students from csv',import_students_new_students_path,:rel =>  "facebox"%>
            </span>
-       </div>
+           
+       </div>  
     <%end%> 	
-         
+       
     <h1>Listing students</h1>
     <div class="clear"></div>
 </div>

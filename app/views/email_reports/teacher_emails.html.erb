@@ -1,8 +1,23 @@
 <%= render :partial => "share_email_links"%>
 <h1>Teacher wise email list</h1>
+<%= image_tag Gchart.line(:size => '200x150',
+:title => "Graph",
+:bg => 'efefef',
+:legend =>@teachers_name ,
+:bar_colors => 'd7b2b2,eaa2a2',
+:stacked => false,
+:data => @teachers_email_size) %>
+<br />
+<%= image_tag Gchart.bar(:size => '200x150',
+:title => "Graph",
+:bg => 'efefef',
+:legend =>@teachers_name  ,
+:bar_colors => 'd7b2b2,eaa2a2',
+:stacked => false,
+:data =>@teachers_email_size) %>
 <% for teacher in @teachers%>
 <br />
-<%= teacher.name%><br />
+<%= teacher.name%> ( <%= find_teacher_emails(teacher).size %>)<br />
 <table class ="listing">
   		<tr>
   		    <th>Sent by</th>

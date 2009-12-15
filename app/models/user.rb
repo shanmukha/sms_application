@@ -43,6 +43,33 @@ class User < ActiveRecord::Base
   return @teachers_name,@teachers_message_size
 	end  
 
+def self.find_teachers_name_schedule_size(current_user,teachers)
+     @teachers_name = find(:all,:conditions =>['parent_id = ?',current_user.id]).map{|object|object.name}
+	   @teachers_schedule_size = []
+	   for teacher in teachers
+	      @teachers_schedule_size << teacher.schedules.size
+	  end
+  return @teachers_name,@teachers_schedule_size
+	end  
+ 
+ def self.find_teachers_name_email_size(current_user,teachers)
+     @teachers_name = find(:all,:conditions =>['parent_id = ?',current_user.id]).map{|object|object.name}
+	   @teachers_email_size = []
+	   for teacher in teachers
+	      @teachers_email_size << teacher.emails.size
+	  end
+  return @teachers_name,@teachers_email_size
+	end 
+ 
+ def self.find_teachers_name_letter_size(current_user,teachers)
+     @teachers_name = find(:all,:conditions =>['parent_id = ?',current_user.id]).map{|object|object.name}
+	   @teachers_letter_size = []
+	   for teacher in teachers
+	      @teachers_letter_size << teacher.letters.size
+	  end
+  return @teachers_name,@teachers_letter_size
+	end 
+
  def forgot_password
     password = "%08d"%rand(99999999) 
     	self.password = password

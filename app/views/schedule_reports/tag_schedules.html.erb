@@ -1,8 +1,23 @@
 <%= render :partial => "share_schedule_links"%>
 <h1>Tag wise schedule message list</h1>
+<%= image_tag Gchart.line(:size => '200x150',
+:title => "Graph",
+:bg => 'efefef',
+:legend =>@tags_name ,
+:bar_colors => 'd7b2b2,eaa2a2',
+:stacked => false,
+:data => @tags_schedule_size) %>
+<br />
+<%= image_tag Gchart.bar(:size => '200x150',
+:title => "Graph",
+:bg => 'efefef',
+:legend =>@tags_name  ,
+:bar_colors => 'd7b2b2,eaa2a2',
+:stacked => false,
+:data =>@tags_schedule_size) %>
 <% for tag in @tags%>
 <br />
-<%= tag.name%><br />
+<%= tag.name%>(<%= find_tag_schedules(tag).size%>)<br />
 
 <table class="listing">
   		<tr>

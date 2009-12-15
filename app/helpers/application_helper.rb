@@ -57,7 +57,7 @@ module ApplicationHelper
   end
  
   def find_class_schedules(group)
-     group.messages 
+     group.schedules 
   end
    
   def find_teacher_emails(teacher)
@@ -81,6 +81,6 @@ module ApplicationHelper
   end   
   
   def find_student_letters(student)
-       student.letters 
+       student.letters.find(:all) 
   end
 end
