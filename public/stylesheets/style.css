@@ -6,7 +6,7 @@ caption, th, td {text-align : left; font-weight : normal}
 blockquote:before, blockquote:after, q:before, q:after {content : ""}
 blockquote, q {quotes : "" ""}
 
-body { margin: 0px; padding: 0px; background: rgb(211, 202, 170) url('/images/bg.jpg') repeat-x scroll 0% 0%; color: rgb(0, 0, 0); font-family: Verdana,Arial,Tahoma; font-style: normal; font-variant: normal; font-weight: normal; font-size: 12px; line-height: normal; font-size-adjust: none; font-stretch: normal; -x-system-font: none; }
+body { margin: 0px; padding: 0px; background: #dbdcde url('/images/bg.jpg') repeat-x scroll 0% 0%; color: rgb(0, 0, 0); font-family: Verdana,Arial,Tahoma; font-style: normal; font-variant: normal; font-weight: normal; font-size: 12px; line-height: normal; font-size-adjust: none; font-stretch: normal; -x-system-font: none; }
 /*
 body {
 	margin: 0px;
@@ -777,7 +777,6 @@ table.student_group tr.even:hover{
         float: left;
         clear: both;
         width: 90%;
-        background: #f1f1f1;
 }
 
 
@@ -814,6 +813,13 @@ table.student_group tr.even:hover{
 
 
 .create_new #letter_content {width:600px; height:400px; border: 1px solid #ccc;}
+
+.create_new p textarea {
+	border:1px solid #8a8b8c;
+	padding:2px;
+	background:#fff url(/images/input.png) repeat-x bottom;
+	width:350px;
+}
 
 .create_new p textarea:focus{
 	border:1px solid #d8b186;
@@ -1084,10 +1090,10 @@ table.student_letter tr.even:hover{
 	width: 100%;
 	clear:both;
 	border-top:5px solid #e1dfdf;
-	background-color:#f6f6f6;
+	background-color:#fff;
 }
 
-#footer {background-color:#e0e0e0;
+#footer {background-color:#fff;
 	width: 94%;
 	padding: 30px;
 	margin: 0 auto;
