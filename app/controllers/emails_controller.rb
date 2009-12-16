@@ -31,11 +31,11 @@ class EmailsController < ApplicationController
   end
 
   def create
-  	@email = current_user.emails.new(params[:email]) if params[:students]
+  	@email = current_user.emails.new(params[:email])  if params[:students]
     respond_to do |format|
-    	if @email.save
-      	body = params[:email][:body]
-        params[:students].each do  |student_id|
+     if  @email.save
+      	  body = params[:email][:body]
+          params[:students].each do  |student_id|
         	student = Student.find(student_id)
           body.gsub!(/@student/, student.name) 
        	  body.gsub!(/@parent/, student.parent)
@@ -54,9 +54,9 @@ class EmailsController < ApplicationController
         format.xml  { render :xml => @email.errors, :status => :unprocessable_entity }
        end
      end
-     rescue #ActiveResource::ResourceInvalid => e  
-      flash[:error] = 'Some thing went wrong. Please try again latter.'    
-      render :action => 'index'
+     rescue 
+      flash[:notice] = 'Please select students under the class.'    
+      redirect_to(emails_url)  
   end
  
   def destroy

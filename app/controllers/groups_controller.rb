@@ -69,7 +69,7 @@ class GroupsController < ApplicationController
         		@group.students << Student.find(student)
         	end
         end
-        flash[:notice] = '#{@group.name} was successfully updated.'
+        flash[:notice] = '#{@group.name} is successfully updated.'
          format.html { redirect_to(groups_url) }
         format.xml  { head :ok }
       else

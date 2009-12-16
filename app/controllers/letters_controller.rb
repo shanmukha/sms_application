@@ -56,8 +56,8 @@ class LettersController < ApplicationController
            format.xml  { render :xml => @letter.errors, :status => :unprocessable_entity }
       end
     end
-     rescue #ActiveResource::ResourceInvalid => e  
-       flash[:error] = 'Some thing went wrong. Please try again latter.'    
+     rescue
+       flash[:notice] = 'Please select students under the class.'    
        redirect_to(letters_url)
   end
 	

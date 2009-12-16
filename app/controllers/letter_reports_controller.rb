@@ -22,6 +22,8 @@ class LetterReportsController < ApplicationController
   	@to_date =  params[:report][:to_date].to_date unless params[:report].nil?
   	@letter_months,@reports = Letter.find_month_wise_report(@from_date,@to_date,current_user) unless params[:report].nil?
   	@months = @letter_months.each_key {|key| key} unless @letter_months.nil?
+   rescue  
+    flash[:error] = 'Please check from date and to date selected or not.' 
   end
   
   def show
