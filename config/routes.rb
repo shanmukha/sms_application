@@ -1,9 +1,9 @@
 ActionController::Routing::Routes.draw do |map|
   map.resources :tags
   map.resources :message_reports,:collection =>{:teacher_messages => :get,:tag_messages => :get,:class_messages => :get,:student_messages => :get,:month_messages => :any}
-  map.resources :schedule_reports,:collection => {:student_schedules => :get,:teacher_schedules => :get,:tag_schedules => :get, :class_schedules => :get}
-  map.resources :email_reports,:collection => {:teacher_emails => :get,:class_emails => :get,:student_emails => :get,}
-  map.resources :letter_reports,:collection => {:student_letters => :get,:teacher_letters => :get,:class_letters => :get,:print => :get}
+  map.resources :schedule_reports,:collection => {:student_schedules => :get,:teacher_schedules => :get,:tag_schedules => :get, :class_schedules => :get,:month_schedules => :any}
+  map.resources :email_reports,:collection => {:teacher_emails => :get,:class_emails => :get,:student_emails => :get,:month_emails => :any}
+  map.resources :letter_reports,:collection => {:student_letters => :get,:teacher_letters => :get,:class_letters => :get,:print => :get,:month_letters => :any}
   map.resources :letters,:collection =>{:group_students => :get},:member => {:print => :any}
   map.resources :emails,:collection =>{:group_students => :get}
   map.resources :schedules,:collection =>{:render_message_template => :get,:student_groups => :get,:edit_student_groups => :get},:member => {:status_update => :any}

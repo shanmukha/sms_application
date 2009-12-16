@@ -1,0 +1,37 @@
+<%= render :partial => "share_email_links"%>
+<% form_for :report,:url => month_emails_email_reports_path,  :html => {:method => :post,:multipart => :true} do |f| %>
+ <p>
+    		 <%= f.label :from_date%><br />
+    		 <%= f.text_field :from_date,:class =>'textbox-small' ,:id => 'date'%>
+  	 </p>
+  	 <p>
+    		 <%= f.label :to_date%><br />
+    		 <%= f.text_field :to_date,:class =>'textbox-small' ,:id => 'date1'%>
+  	 </p>
+  	 <%= f.submit 'Report' %>
+ <% end %> 
+ <%unless @months.nil?%>
+   <% @months.each do |month| %>
+  <h1><%=h month_print(month.strftime("%m").to_i) %>   - <%=h month.strftime("%Y") %> (  <%=h @reports[month].nil? ? 0 :@reports[month] %> )</h1>
+  
+  <table class ="listing">
+  		<tr>
+  		    <th>Sent by</th>
+    			<th>Subject</th>
+    			<th>Body</th>
+    			<th>Class</th>
+    			<th>View</th>
+  		</tr>
+ <% @email_months[month].each do |email| %>
+  		<tr class="<%=cycle("odd", "even")%>">
+  		    <td><%= email.user.name%></td>
+     			<td><%=h email.subject %></td>
+     			<td><%=h message_body_filter(email.body) %></td>
+     			<td><%=h email.group.name%></td>
+     			<td class="view"><%= link_to '<img src="/images/view.gif" title="View"/>', email_report_path(email)%></td>
+      		</tr>
+		<% end %>
+	</table>
+	<div class = 'clear'> </div>
+	<% end %>
+<%end%>

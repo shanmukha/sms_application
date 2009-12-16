@@ -28,9 +28,14 @@ module ApplicationHelper
     def find_schedule_status(schedule,student)
       ScheduleStudent.find(:first,:conditions =>['schedule_id = ? and student_id = ?',schedule,student]).status rescue ''
    end
+   def month_print(month)
+      month_name= ["nil","January"," February"," March"," April"," May"," June"," July"," August"," September"," October"," November"," December"]
+      return month_name[month]
+     end
+     
    def find_teacher_messages(teacher)
   	teacher.messages
- end 
+   end 
   
  def find_tag_messages(tag)
     tag.messages

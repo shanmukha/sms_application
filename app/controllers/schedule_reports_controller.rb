@@ -22,6 +22,13 @@ class ScheduleReportsController < ApplicationController
      @students_name,@students_schedule_size = Student.find_students_name_schedule_size(current_user,@students)
   end 
   
+  def month_schedules
+      @from_date = params[:report][:from_date].to_date unless params[:report].nil?
+  	  @to_date =  params[:report][:to_date].to_date unless params[:report].nil?
+  	  @schedule_months,@reports = Schedule.find_month_wise_report(@from_date,@to_date,current_user) unless params[:report].nil?
+  	   @months = @schedule_months.each_key {|key| key} unless @schedule_months.nil?
+  end  
+  
    def show
      @schedule = Schedule.find(params[:id])
      @students = @schedule.students.find(:all)

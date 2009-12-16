@@ -18,6 +18,13 @@ class EmailReportsController < ApplicationController
        @students_name,@students_email_size = Student.find_students_name_email_size(current_user,@students)
    end
    
+    def month_emails
+      @from_date = params[:report][:from_date].to_date unless params[:report].nil?
+  	  @to_date =  params[:report][:to_date].to_date unless params[:report].nil?
+  	  @email_months,@reports = Email.find_month_wise_report(@from_date,@to_date,current_user) unless params[:report].nil?
+  	   @months = @email_months.each_key {|key| key} unless @email_months.nil?
+    end 
+   
    def show
      @email = Schedule.find(params[:id])
      @students = @email.students.find(:all)

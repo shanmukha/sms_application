@@ -23,10 +23,11 @@ class MessageReportsController < ApplicationController
   end
   
   def month_messages
-  	@from_date = params[:report][:from_date]
-  	@to_date =  params[:report][:to_date]
-  	@messages = Message.find_month_wise_report(@from_date,@to_date,current_user)
-  end
+  	@from_date = params[:report][:from_date].to_date unless params[:report].nil?
+  	@to_date =  params[:report][:to_date].to_date unless params[:report].nil?
+  	@message_months,@reports = Message.find_month_wise_report(@from_date,@to_date,current_user) unless params[:report].nil?
+  	@months = @message_months.each_key {|key| key} unless @message_months.nil?
+ end
   
   def show
      @message = Message.find(params[:id])

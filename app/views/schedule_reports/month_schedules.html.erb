@@ -1,0 +1,43 @@
+<%= render :partial => "share_schedule_links"%>
+<% form_for :report,:url => month_schedules_schedule_reports_path,  :html => {:method => :post,:multipart => :true} do |f| %>
+ <p>
+    		 <%= f.label :from_date%><br />
+    		 <%= f.text_field :from_date,:class =>'textbox-small' ,:id => 'date'%>
+  	 </p>
+  	 <p>
+    		 <%= f.label :to_date%><br />
+    		 <%= f.text_field :to_date,:class =>'textbox-small' ,:id => 'date1'%>
+  	 </p>
+  	 <%= f.submit 'Report' %>
+ <% end %> 
+ <%unless @months.nil?%>
+   <% @months.each do |month| %>
+  <h1><%=h month_print(month.strftime("%m").to_i) %>   - <%=h month.strftime("%Y") %> (  <%=h @reports[month].nil? ? 0 :@reports[month] %> )</h1>
+  
+ <table class="listing">
+  		<tr>
+  		<th>Created by</td>
+    			<th>Date</th>
+    			<th>Time</th>
+    			<th>Message</th>
+    			<th>Class/Mobile no.</th>
+    			<th>View</th> 
+  		</tr>
+	<% @schedule_months[month].each do |schedule| %>
+  		   <tr class="<%=cycle("odd", "even")%>">
+  		    <td><%= schedule.user.name%></td>
+    			<td><%=h schedule.scheduled_date%></td>
+    			<td><%= Time.parse(schedule.scheduled_time.to_s).strftime('%H:%M') %></td>
+    			<td><%=h message_body_filter(schedule.message_body)%></td>
+    		   <%unless schedule.group_id.nil?%>
+    			    <td><%=h schedule.group.name%></td>
+    			  <%else%>
+    			    <td><%=h schedule.number%></td>
+    			 <%end%>
+    		   	  <td class="view"><%= link_to '<img src="/images/view.gif" title="View"/>', schedule_report_path(schedule)%></td>
+  		</tr>
+		<% end %>
+	</table>
+		<div class = 'clear'> </div>
+		<% end %>
+				<% end %>

@@ -9,20 +9,15 @@ class Message < ActiveRecord::Base
  validates_presence_of :message_body
  
 	def self.find_month_wise_report(from_date,to_date,current_user)
+       reports = {}
        condition = {}
        condition[:created_at] = from_date..to_date
        condition[:user_id] = current_user.id if current_user.has_role?('super_admin')
-       condition[:user_id] = user_ids if current_user.has_role?('admin') && !current_user.has_role?('super_admin')
+       condition[:user_id] = User.user_ids(current_user)if current_user.has_role?('admin') && !current_user.has_role?('super_admin')
        message = Message.find(:all ,:conditions => condition)
        message_months = message.group_by { |t| t.created_at.beginning_of_month }
        message_months.each_key { |key| reports[key] = message_months[key].size  }
+      
+       return message_months,reports
 	  end
-	
-	private
-	 def user_ids
-      user_ids  = []
-      user_ids << current_user.id
-      User.find(:all,:conditions =>['parent_id = ?',current_user.id]).map{|object|user_ids << object.id}
-     return user_ids
-  end
-	end
+end
