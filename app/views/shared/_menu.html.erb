@@ -17,7 +17,7 @@
 		     <li class='<%= request.request_uri =~ /students/? 'active': 'link' %>'> <%= link_to "Students", students_path %> </li> 
                      <li class='<%= request.request_uri =~ /groups/? 'active': 'link' %>'><%= link_to "Classes",  groups_path %></li>
                      <li class='<%= request.request_uri =~ /messages$/? 'active': 'link' %>'><%= link_to "Sent messages", messages_path %></li>
-                     <li class='<%= request.request_uri =~ /message_templates/? 'active': 'link' %>'> <%= link_to "Saved Messages", message_templates_path%>  </li> 	
+                      	
 
                      <li class='<%= request.request_uri =~ /schedules/? 'active': 'link last' %>'><%= link_to "Scheduled messages",  schedules_path%></li>
                      

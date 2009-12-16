@@ -65,7 +65,8 @@
       <div id="menu">
       	   <% if request.request_uri != "/users/#{current_user.id}/edit"%> 
             	<ul>
-          <li class='<%= request.request_uri =~ /users/? 'active': 'link' %>'> <%= link_to "Users list", users_path %></li> 
+            <li class='<%= request.request_uri =~ /users/? 'active': 'link' %>'> <%= link_to "Users list", users_path %></li>
+            <li class='<%= request.request_uri =~ /message_templates/? 'active': 'link' %>'> <%= link_to "Saved Messages", message_templates_path%>  </li> 
             <li class='<%= request.request_uri =~ /tags/? 'active': 'link' %>'> <%= link_to "Tags", tags_path %> </li> 
             </li> 
             
