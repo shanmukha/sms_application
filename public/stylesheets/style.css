@@ -110,7 +110,7 @@ h1.heading {font-size:18px;
 
 .header_links ul li a{
         margin:10px 5px 0px 5px;
-	color: #ea9500;
+	color: #15416d;
 	font-size:11px;
 	display:inline;
 	font-weight:bold;
@@ -547,6 +547,7 @@ select{
 	background:url(/images/users.png) no-repeat;
 }
 
+#listing-top a{ font-weight: bold; color: #235d94; font-size: 14px; font-family : "arial", helvetica, sans-serif;}
  
 
 #top h1 {

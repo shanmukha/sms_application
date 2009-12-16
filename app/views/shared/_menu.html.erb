@@ -16,11 +16,8 @@
                  <ul class = 'right'>
 		     <li class='<%= request.request_uri =~ /students/? 'active': 'link' %>'> <%= link_to "Students", students_path %> </li> 
                      <li class='<%= request.request_uri =~ /groups/? 'active': 'link' %>'><%= link_to "Classes",  groups_path %></li>
-                     <li class='<%= request.request_uri =~ /messages$/? 'active': 'link' %>'><%= link_to "Sent messages", messages_path %></li>
-                      	
-
-                     <li class='<%= request.request_uri =~ /schedules/? 'active': 'link last' %>'><%= link_to "Scheduled messages",  schedules_path%></li>
-                     
+                     <li class='<%= request.request_uri =~ /messages$/? 'active': 'link last' %>'><%= link_to "Sent messages", messages_path %></li>
+                   
                  </ul>
              </div>
         <%end%>
