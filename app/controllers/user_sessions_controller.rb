@@ -1,5 +1,5 @@
 class UserSessionsController < ApplicationController
-   layout "main"
+   layout "login"
     skip_before_filter :check_logged_in 
   def new
     @user_session = UserSession.new
@@ -18,7 +18,6 @@ class UserSessionsController < ApplicationController
   def destroy
     @user_session = UserSession.find
     @user_session.destroy
-    flash[:notice] = "Successfully logged out."
     redirect_to new_user_session_path
    end
 end

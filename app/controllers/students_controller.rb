@@ -15,7 +15,7 @@ class StudentsController < ApplicationController
     end
   end
 	
-	def show
+  def show
 	  admin = current_user.has_role?('admin') ? current_user : User.find(current_user.parent_id)
     @student = admin.students.find(params[:id])
     respond_to do |format|
@@ -24,7 +24,7 @@ class StudentsController < ApplicationController
     end
   end
 
-	def new
+  def new
     @student = Student.new
     @groups = current_user.groups.find(:all,:conditions =>['status =?','Active'])
     respond_to do |format|
@@ -33,11 +33,11 @@ class StudentsController < ApplicationController
     end
   end
 	
-	def edit
+  def edit
     @student,@groups,@non_groups = Student.find_student_all_groups(params[:id],current_user)
   end
 	
-	def create
+  def create
     @student = Student.new(params[:student])
     @student.user_id = current_user.id
     respond_to do |format|
@@ -47,7 +47,7 @@ class StudentsController < ApplicationController
         @student.groups<< Group.find(group)
       end
       end
-        flash[:notice] = 'Student was successfully created.'
+        flash[:notice] = 'Student record is successfully created.'
          format.html { redirect_to(students_url) }
         format.xml  { render :xml => @student, :status => :created, :location => @student }
       else

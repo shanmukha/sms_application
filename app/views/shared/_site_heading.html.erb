@@ -1,0 +1,4 @@
+ <div id = "site_heading">
+	  <div id ='logo'> <%= image_tag('logo.gif') %></div>	
+          <h1> <%unless current_user.nil?%><%= current_user.has_role?('admin') ? current_user.name : User.find(current_user.parent_id).name%> <%end%> </h1>
+       </div>

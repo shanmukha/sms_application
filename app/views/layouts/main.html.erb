@@ -29,21 +29,21 @@
 	</script>
 </head>
 <body>
+  <div id="body_outer_wrapper">
   <div id="body_wrapper">
     <div id="header">
-           <%= render :partial => 'shared/header_links' %>
-	   <div id = "site_heading">
-			<h1><%= image_tag('logo.gif') %><span> <%unless current_user.nil?%><%= current_user.has_role?('admin') ? current_user.name : User.find(current_user.parent_id).name%> <%end%></span></h1>
-	</div>
+       <%= render :partial => 'shared/header_links' %>
+       <%= render :partial => 'shared/site_heading' %>
+       <%= render :partial => 'shared/menu' %>
+    </div>  
 
-	<%= render :partial => 'shared/menu' %>
+<% if flash[:notice] %>
+  <div id="notice">
+     <p><%= flash[:notice] %></p>
+  </div>
+<% end %>
 
-</div> <!-- end of header -->
-
-<div id="notice">
-   <p style="color:green"><%= flash[:notice] %></p>
-   <p style="color:red"><%= flash[:error] %></p>
-</div>
+ <p style="color:red"><%= flash[:error] %></p>
 
 <div id="content_wrapper">
     	<div id="wrapper">
@@ -51,18 +51,18 @@
         </div>
 </div>
 <div class="clear" ></div>
-<div id="footer">
-     
 </div>
+</div>
+
+<%= render :partial => 'shared/footer' %>
 
 <script type="text/javascript">
 	jQuery("#content_wrapper").corner("corner 5px")
-        jQuery("#body_wrapper").corner("corner 10px")
+        jQuery("#body_wrapper").corner("top 10px")
 	 
 	jQuery("#menu").corner("corner 5px")
-        jQuery("#listing_file").corner("corner 5px")
 </script>
-</div>
+
 </body>	
 </html>
 

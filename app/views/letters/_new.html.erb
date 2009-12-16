@@ -1,11 +1,8 @@
-<div class = 'right'> 
-   <%= link_to_function image_tag("cancel.gif", :title=> "Cancel"), "jQuery('#top').hide(); jQuery('#button').show(); return false;" %> 
-</div>
-<div class = 'clear'> </div>
 <% form_for(@letter||Letter.new,:html => {:id => 'main-form'}) do |f| %>
      <div class="create_new">
         <%= f.error_messages %>
-	<fieldset>
+        <div class="left part1">
+	  <fieldset>
   	    <p>
     	      <%= f.label :letter_content %><br />
     	      <%= f.text_area :content%>
@@ -13,10 +10,12 @@
 	    <span>
     		 <%= f.submit 'Print letter' %> 
   	    </span>
-	 </fieldset>
-     </div>
-     <div id="select_groups">
-        	<%= f.select :group_id, all_groups, options={:prompt => 'Select class/group'}%>
+	  </fieldset>
+        </div>
+
+     <div id="select_group">
+        <label> Select the class to which letter to be printed </label><br /><br />
+         <%= f.select :group_id, all_groups, options={:prompt => 'Select class/group'}%>
       	      		<%= image_tag("spinner.gif",
               		:align => "absmiddle",
                		:border => 0,
@@ -28,10 +27,11 @@
                   :success => "jQuery('#spinner1').hide();",
                   :url => {:action=>'group_students'}, :method => :get,
                   :with => "'group_id=' + value")%>
-
+                <br /><br />
                 <div id="students"></div> 
 	</div>
-  	
+    <div class = 'clear'> </div>	
+  </div>
 <% end %>
 
 

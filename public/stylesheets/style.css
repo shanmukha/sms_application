@@ -6,7 +6,7 @@ caption, th, td {text-align : left; font-weight : normal}
 blockquote:before, blockquote:after, q:before, q:after {content : ""}
 blockquote, q {quotes : "" ""}
 
-body { margin: 0px; padding: 0px; background: #dbdcde url('/images/bg.jpg') repeat-x scroll 0% 0%; color: rgb(0, 0, 0); font-family: Verdana,Arial,Tahoma; font-style: normal; font-variant: normal; font-weight: normal; font-size: 12px; line-height: normal; font-size-adjust: none; font-stretch: normal; -x-system-font: none; }
+body { margin: 0px; padding: 0px; background: #d1c8a9 url('/images/bg.jpg') repeat-x scroll 0% 0%; color: rgb(0, 0, 0); font-family: Verdana,Arial,Tahoma; font-style: normal; font-variant: normal; font-weight: normal; font-size: 12px; line-height: normal; font-size-adjust: none; font-stretch: normal; -x-system-font: none; }
 /*
 body {
 	margin: 0px;
@@ -29,47 +29,63 @@ img {
 	border: none;
 }
 
+label{
+font-family : "arial", helvetica, sans-serif;
+font-weight: bold;
+font-size: 14px;
+color: #3d444e;
+}
+
+h1.heading {font-size:18px;
+	color: #005ca1;
+	font-family : "arial", helvetica, sans-serif;
+	font-weight:bold;
+	padding:0px 0px 0px 28px;
+	width:45%;
+	letter-spacing:1px;
+}
 /*..................................................header............................*/
-#body_wrapper{
+#body_outer_wrapper{
   margin: 17px;
-  background: #fff;
+  background: #796646;
+
+}
+
+#body_wrapper{
+  background: #fff url(/images/content_bg.gif) repeat-x top;
   padding-bottom: 20px;
-
+  
 }
 
-#notice{
-	    width:970px;
-	    margin:0 auto;
-	    font-size:12px;	
-}
 
 #header {
         width: 96%;
         height: auto;
 	margin: 0px auto 20px auto;
         padding: 5px;
+       
 }
 
 #header #site_heading {
 	float: left;	width: 75%;
 	height: 75px;
-	margin: 0px 0px 0px 2px;
+	margin: 0px 0px 0px 5px;
+ 
+} 
+
+#header #site_heading #logo{
+	float: left;
 }
 
 #header #site_heading h1 {
 	float: left;
-	color: #f7d243;	margin: 0px 0px 0px 2px;
-	padding: 0px 0px 0px 0px;
+	color: #ca3a85;
 	font-family: "arial", helvetica, sans-serif;
-	font-size: 38px;	      	
+        font-size: 22px;	 
+        margin: 45px 20px;     	
 }
 
-#header #site_heading h1 span {
-	color: #ca3a85;
-	font-size: 18px;
-	font-style: normal;
-	letter-spacing: 1px;
-}
+ 
 
 .header_links{ 
 	width:40%;
@@ -110,6 +126,8 @@ img {
   padding: 10px 0px 0px 600px;
   color:red;
  }
+
+#notice {background: #64a049; color: #fff; font-weight: bold; border: 1px solid #4e9131; padding: 5px;  width: 94%; margin: 0 auto 10px auto;}
 /* menu *******************************************************************************/
 
 #menu { 
@@ -145,7 +163,7 @@ img {
 	font-family : "arial", helvetica, sans-serif;
 }
 
-#menu ul li.active a{ color:#b4d7ec; }
+#menu ul li.active a{ color: #81d581; }
 
 #menu li a:hover{
 	color: #0e8ab8;
@@ -160,7 +178,7 @@ img {
 .dropdown li.report
   {
   text-align:left;
-	font-size: 13px;
+	font-size: 13px;background:#e0e0e0
 	text-decoration: none;
 	color: #fff;	
 	font-weight: bold;
@@ -206,10 +224,10 @@ img {
 
 #message_wrapper{
         clear: both;
-	width: 92%;
+	width: 94%;
   	margin: 10px auto 10px auto;
-  	background: #eee url(/images/container-bg.png) repeat-x;
-        padding: 20px;
+  	background: #e6e6e6 url(/images/container-bg.png) repeat-x;
+        padding: 20px 15px  15px  15px;
 }
 
 #message{
@@ -228,6 +246,9 @@ img {
 	margin: 0px;
 }
 
+.part1 {width: 55%;}
+.part2 {width: 40%;}
+
 .message_left{
         padding: 0px 0px 10px 0px;
 	float:left;
@@ -239,20 +260,21 @@ img {
 
 .message_div_top{
         font-family : "arial", helvetica, sans-serif;
- 	background: url(/images/message-top.jpg) repeat-x;
+ 	background:  url(/images/message-top.jpg) repeat-x;
  	padding: 4px 8px 4px 0px;
-       border-bottom: 1px solid #ccc;
+ 
 }
 .message_div_top .heading{
 	font-size: 16px;
-	padding: 0px 0px 0px 25px;
+	padding: 0px 0px 0px 15px;
 	margin: 2px 0px 2px 5px;
 	width: 40%;
 	color:#fff;
 	font-weight:bold;
 	float:left;
 	letter-spacing:1px;
-	background: url(/images/bricks.png) no-repeat;
+       
+	 
 
 }
 
@@ -260,7 +282,7 @@ img {
 	font-size:13px;
 	padding:0px;
 	color:#215209;
-	margin: 5px 0px 5px 30px;
+	margin: 5px 0px 5px 15px;
 	font-weight:normal;	
 }
 
@@ -271,7 +293,7 @@ select{
 .message_left p{
 	font-size: 13px;
 	color:#270027;
-	margin: 17px 0px 0px 15px;
+	margin: 20px 0px 0px 20px;
   font-weight:normal;
 }
 
@@ -281,26 +303,27 @@ select{
 	margin-left:12px;
 }
 
-.center_message { width: 500px; margin: 40px auto 0px auto;}
 
 .message_left  textarea{
-	border:2px solid #eee;
+        font-family : "arial", helvetica, sans-serif;
+        font-size: 14px;
+	border:1px solid #ccc;
 	padding:0px;
         margin-top: 15px;
-	background-color:#f6f6f6;
+	background-color:#fbfbfb;
 	width: 385px;
 	height: 125px;
 }
 
 .message_left  textarea:focus{
-	border:2px solid #ddd;
+	border:1px solid #aaa;
 }
 
 .message_right{
 	float:right;
 	margin: 0;
 	background: #fff url(/images/right_form_bg.gif) no-repeat center;
-	width:50%;
+	width:50.5%;
 	height: auto;
 	min-height: 350px;
   padding: 0px 0px 10px 0px;
@@ -400,18 +423,18 @@ select{
 /* General ********************************************************************/
 
 #content_wrapper{
-	background:#eee url(/images/container-bg.png) repeat-x;
+	background:#e0e0e0 url(/images/1container-bg.png) repeat-x;
 	margin: 0px auto 10px auto;
 	clear: both;
-	width: 95%;
-	padding: 5px;
+	width: 93%;
+	padding: 15px;
 	border-top: none;
 }
 
 #wrapper{ 
-
+        background:#fff url(/images/content_bg.gif) repeat-x top;
 	margin: 0px;
-        padding: 0px 0px 0px 10px;
+        padding: 10px 0px 10px 0px;
         
 }
 
@@ -430,6 +453,7 @@ select{
 }
  
 .listing td { 
+        padding: 0.5em .5em .5em .5em;
 	color: #000; 
 	font-size:13px;
 	
@@ -459,6 +483,7 @@ select{
 	background: #F2F3F7;
 }
 
+
 .listing tr.odd {
       background-color:#fff;
       
@@ -466,14 +491,12 @@ select{
 
 .listing tr.even td {
       height: 30px;
-      padding: .5em .5em .4em .8em;
       border-top: #dadeec 1px solid;
       border-bottom: #dadeec 1px solid;
 }
 
 .listing tr.odd td {
       height: 30px;
-      padding: .5em .5em .4em .8em;
       border-top: #dadeec 1px solid;
       border-bottom: #dadeec 1px solid;
 }
@@ -503,14 +526,14 @@ select{
 	width:70%;
   	float:left;
 	clear:both;
-	margin: 0px 0px 15px 0px;
-    padding-left: 65px;
-    padding-top: 5px;
-    min-height: 500px;
-
+	margin: 0px 0px 15px 10px;
+        padding-left: 65px;
+        padding-top: 5px;
+        min-height: 500px;
+        border: 1px solid #ccc;
 }
 
-#listing-top{ clear: both; margin: 2px 2px 6px 4px; padding-top: 2px; width:75%; }
+#listing-top{ margin: 2px 10px 6px 10px; padding-top: 2px; width:75%;}
 
 #listing-top h1 {
 	font-size:18px;
@@ -522,7 +545,9 @@ select{
 	float:left;
 	letter-spacing:1px;
 	background:url(/images/users.png) no-repeat;
-}/
+}
+
+ 
 
 #top h1 {
 	font-size:18px;
@@ -535,32 +560,14 @@ select{
 	background:url(/images/users.png) no-repeat;
 }
 
+
+
+ 
 #button  {
 	font-family: Verdana, Helvetica, Arial;
 	float:right
-
-
-#button span a{
-	padding:4px 5px 4px 5px;
-	color:#000;
-	font-size:14px;
-	font-family: Verdana, Helvetica, Arial;
-	background: url(/images/button.gif) repeat-x bottom;
-	border:1px solid #bbb;
-	
-	letter-spacing:1px;
-  text-decoration: none;
 }
-	
 
-#button span a:hover{
-	color:#6b881c;
-	text-decoration:none;
-}
- 
-
-
- 
 #hide{ 
 	width:20%;
 	float:right;
@@ -700,8 +707,8 @@ table.student_group tr.even:hover{
 
 #select_group{
 	float:left;
-	margin:31px 0px 0px 40px;
-	padding:0px 10px 0px 0px;
+	margin: 0px 0px 0px 40px;
+	padding:23px 10px 0px 0px;
 }
 
 #select_group h4{
@@ -720,7 +727,7 @@ table.student_group tr.even:hover{
 
 
 .sidebar{
-
+        background: #fff;
     	margin: 0px 10px 0px 0px;
     	height:0 auto;
     	/*border-left:1px solid #cecece;*/
@@ -779,18 +786,18 @@ table.student_group tr.even:hover{
 
 /*...............................................create new record.......................*/
 
-#top{background: #fff; margin: 10px 10px 5px 4px; border-bottom: 5px solid #ccc; }
+#top{background: #fafafa; margin: 2px 0px 20px 0px; border-bottom: 5px solid #eee; padding: 10px;}
 
 .create_new{
-        float: left;
+        margin-top: 10px;
         clear: both;
-        width: 90%;
+        width: 100%;
 }
 
 
 
 .create_new span input{
-	background-color:#771919;
+	background-color:#454e5c;
 	margin:5px 5px 5px 10px;
 	padding:5px 10px 5px 10px;
 	color:#fff;
@@ -801,7 +808,7 @@ table.student_group tr.even:hover{
 }
 
 .create_new span input:hover{
-	background-color:#371c6d;
+	background-color:#556377;
 }
 
 .create_new span a{
@@ -820,20 +827,34 @@ table.student_group tr.even:hover{
 }
 
 
-.create_new #letter_content {width:600px; height:400px; border: 1px solid #ccc;}
+.create_new #letter_content {width:95%; height:500px; border: 1px solid #ccc;}
 
 .create_new p textarea {
 	border:1px solid #8a8b8c;
 	padding:2px;
 	background:#fff url(/images/input.png) repeat-x bottom;
-	width:350px;
+	width:250px;
+}
+
+.create_new p input.email {
+	border:1px solid #8a8b8c;
+	padding:5px;
+	background:#fff url(/images/input.png) repeat-x bottom;
+	width: 95%;
+}
+
+.create_new p textarea.email {
+	border:1px solid #8a8b8c;
+	padding:5px;
+	background:#fff url(/images/input.png) repeat-x bottom;
+	width: 95%;
+        font-family: Verdana, Helvetica, Arial;
+	font-size:14px;
+        height: 300px;
 }
 
 .create_new p textarea:focus{
 	border:1px solid #d8b186;
-	padding:2px;
-	background:#fff url(/images/input.png) repeat-x bottom;
-	width:350px;
 }
 
 .create_new p{
@@ -855,16 +876,14 @@ table.student_group tr.even:hover{
 	margin:7px 0px 6px 5px;
 }
 
-/* end create page**********/
 /*......................................................Show-page..............................*/
 
 .showpage_content{
-	margin:30px 40px 0px 30px;
+	margin:10px 25px 0px 25px;
 	color:#ae216a;
 	padding-bottom:15px;
 	background-color:#fff;
-	width:500px;
-	border:5px solid #8e8c8c;	
+	border:5px solid #b7b7b7;	
 }
 
 .showpage_content h3{
@@ -880,9 +899,9 @@ table.show_page{
 
 table.show_page tr th{
 	font-size:14px;
-	color:#000;
+	color:#3b3c3d;
 	font-family: Verdana, Helvetica, Arial;
-	font-weight:normal;
+	font-weight:bold;
 	text-align:left;
 	padding:10px 20px 10px 5px;
 }
@@ -974,7 +993,6 @@ table.student_letter tr.even:hover{
 
 
 
-/* end show page*/
 /**************************Edit page***************************/
 
 .Edit_show {
@@ -1102,9 +1120,9 @@ table.student_letter tr.even:hover{
 }
 
 #footer {background-color:#fff;
-	width: 94%;
-	padding: 30px;
-	margin: 0 auto;
+	width: 95.5%;
+	padding: 15px;
+	margin: 20px auto;
 	color: #828c96;
 }
 
@@ -1133,27 +1151,34 @@ table.student_letter tr.even:hover{
 	font-size:14px;
 	margin-right:5px;	
 }
+#login_wrapper {
+    width: 420px;
+    margin: 10px auto 10px auto;
+
+
+}
 
 #login {
-	float:left;
-  padding:20px 90px 10px 30px;
-	margin:80px 10px 0px 140px;
+  padding:20px 10px 10px 10px;
+	margin:30px;
 	border:3px solid #eeeeee;
-	background-color:#8d8d8d;
+	background-color:#9cbee1;
 }
  #login fieldset label{
-		font-size:13px;
-		color:#0d0d6e;
+		font-size:14px;
+		color:#44586d;
 		margin:5px 5px 5px 5px;
 	}
+
 #login fieldset input{
 	border:1px solid #eeeeee;
+        margin:5px 5px 5px 5px;
 }
 
 #login fieldset a{
 	font-size:12px;
-	color:#0d0d6e;
-	margin:5px 5px 5px 5px;
+	color:#44586d;
+	margin:10px 5px 5px 5px;
 }
 #login fieldset a:hover{
 	font-size:12px;
@@ -1167,15 +1192,7 @@ table.student_letter tr.even:hover{
 	border:#c8905e 1px solid;
 }
 
-#login input {
-	font-size: 11px;padding:2px;
-	border-left:2px solid #cee4ef;
-	border-top:1px solid #cee4ef;
-	border-right:1px solid #cee4ef;
-	border-bottom:1px solid #cee4ef;
-	margin:5px 5px 5px 5px;
-	
-}
+
 #user-show {
   float:left;
   padding:20px 90px 10px 30px;
@@ -1356,6 +1373,40 @@ table.student_letter tr.even:hover{
  	font-size: 11pt;
  	list-style: square;
 	margin-left:20px;
+}
+
+/* ---------------------------Add button------------------------- */
+a.buttonAdd {
+	display: block;
+	float: left;
+	height: 36px;
+	line-height: 32px;
+	padding-right: 15px;
+	background: url(/images/sprite.png) right 0px no-repeat;
+	text-decoration: none;
+	color: #4b4b4b;
+	font-weight: bold;
+	font-size: 14px;
+	font-family: Arial, Helvetica, sans-serif;
+        right: 10px;
+        top: 0px;
+}
+
+a.buttonAdd span {
+	display: block;
+	height: 36px;
+	background: url(/images/sprite.png) -583px 0px no-repeat;
+	padding-left: 35px;
+	cursor: pointer;
+}
+
+a.buttonAdd:hover {
+	color: #6bb11f;
+	background: url(/images/sprite.png) right -36px no-repeat;
+}
+
+a.buttonAdd:hover span {
+	background: url(/images/sprite.png) -583px -36px no-repeat;
 }
 
 

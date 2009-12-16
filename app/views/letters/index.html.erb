@@ -1,4 +1,8 @@
 <div id = 'top' style ="display:none ; clear:both">
+     <div class = 'right'> 
+        <%= link_to_function image_tag("cancel.gif", :title=> "Cancel"), "jQuery('#top').hide(); jQuery('#button').show(); return false;" %> 
+     </div>
+     <h1>New letter</h1>
      <%= render :partial =>"new" %>
      <div class = 'clear'> </div>
 </div>
@@ -8,7 +12,7 @@
     <% if current_user.has_role?('admin')%>
        <div id = 'button'>
 	   <span>
-               <%= link_to_function 'New letter', "jQuery('#top').show(); jQuery('#button').hide(); return false;" %>
+                 <%= link_to_function "<span>New letter</span>", "jQuery('#top').show(); jQuery('#button').hide(); return false;", :class => 'buttonAdd' %>
            </span>
        </div>
     <%end%> 	

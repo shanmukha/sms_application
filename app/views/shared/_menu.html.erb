@@ -10,16 +10,16 @@
 	           <%else%>
 		      <li><%= link_to "New Message", new_message_path %></li>
 		   <%end%>
-                   <li class='<%= request.request_uri =~ /emails/? 'active': 'link' %>'><%= link_to "Emails", emails_path%></li>
-         	   <li class='<%= request.request_uri =~ /letters/? 'active last': 'link last' %>'><%= link_to "Letters", letters_path%></li>
+                   <li class='<%= request.request_uri =~ /emails/? 'active': 'link' %>'><%= link_to "Emails", emails_path %></li>
+         	   <li class='<%= request.request_uri =~ /letters/? 'active': 'link' %>'><%= link_to "Letters", letters_path %></li>
                  </ul>
                  <ul class = 'right'>
-		     <li class='<%= request.request_uri =~ /students/? 'active': 'link' %>'> <%= link_to "Students", students_path%> </li> 
-                     <li class='<%= request.request_uri =~ /groups/? 'active': 'link' %>'><%= link_to "Classes",  groups_path%></li>
-                     <li class='<%= request.request_uri == "/messages/"? 'active': 'link' %>'><%= link_to "Sent messages", messages_path %></li>
+		     <li class='<%= request.request_uri =~ /students/? 'active': 'link' %>'> <%= link_to "Students", students_path %> </li> 
+                     <li class='<%= request.request_uri =~ /groups/? 'active': 'link' %>'><%= link_to "Classes",  groups_path %></li>
+                     <li class='<%= request.request_uri =~ /messages$/? 'active': 'link' %>'><%= link_to "Sent messages", messages_path %></li>
                      <li class='<%= request.request_uri =~ /message_templates/? 'active': 'link' %>'> <%= link_to "Saved Messages", message_templates_path%>  </li> 	
 
-                     <li class='<%= request.request_uri =~ /schedules/? 'active': 'link' %>'><%= link_to "Scheduled messages",  schedules_path%></li>
+                     <li class='<%= request.request_uri =~ /schedules/? 'active': 'link last' %>'><%= link_to "Scheduled messages",  schedules_path%></li>
                      
                  </ul>
              </div>

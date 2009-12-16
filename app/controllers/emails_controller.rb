@@ -2,7 +2,7 @@ class EmailsController < ApplicationController
   layout "main"
   
   def index
-  	@search =  Email.search(params[:search]) 
+    @search =  Email.search(params[:search]) 
     @search.user_id = current_user.id if current_user.has_role?('teacher') || current_user.has_role?('super_admin')
     @search.user_id = user_ids if current_user.has_role?('admin') && !current_user.has_role?('super_admin')
     @search.order ||= "descend_by_created_at"
@@ -14,7 +14,7 @@ class EmailsController < ApplicationController
   end
   
   def show
-  	@email = Email.find(params[:id])
+    @email = Email.find(params[:id])
     @students = @email.students.find(:all)
     respond_to do |format|
       format.html # show.html.erb
@@ -54,9 +54,9 @@ class EmailsController < ApplicationController
         format.xml  { render :xml => @email.errors, :status => :unprocessable_entity }
        end
      end
-      rescue #ActiveResource::ResourceInvalid => e  
-       flash[:error] = 'Some thing went wrong. Please try again latter.'    
-       redirect_to(emails_url)
+     rescue #ActiveResource::ResourceInvalid => e  
+      flash[:error] = 'Some thing went wrong. Please try again latter.'    
+      render :action => 'index'
   end
  
   def destroy
@@ -68,10 +68,10 @@ class EmailsController < ApplicationController
     end
   end
     
-	def group_students
+   def group_students
       @students = Group.find(params[:group_id]).students rescue ''
       render :update do |page|
-     		page.replace_html 'students', :partial => 'group_student'
+      page.replace_html 'students', :partial => 'group_student'
    end
   end 
  

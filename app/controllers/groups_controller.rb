@@ -48,7 +48,7 @@ class GroupsController < ApplicationController
          end
       end
        Group.copy_students_from_group(params[:group_id],@group) unless params[:group_id].blank?
-       flash[:notice] = '#{@group.name} was successfully created.'
+       flash[:notice] = "#{@group.name} record is successfully created."
        format.html { redirect_to(groups_url) }
        format.xml  { render :xml => @group, :status => :created, :location => @group }
       else

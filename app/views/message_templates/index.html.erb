@@ -10,7 +10,7 @@
     <% if current_user.has_role?('admin')%>
        <div id = 'button'>
 	   <span>
-               <%= link_to_function 'New saved message', "jQuery('#top').show(); jQuery('#button').hide(); return false;" %>
+               <%= link_to_function "<span>New saved message</span>", "jQuery('#top').show(); jQuery('#button').hide(); return false;", :class => 'buttonAdd' %>
            </span>
        </div>
     <%end%> 	

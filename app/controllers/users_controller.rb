@@ -78,7 +78,7 @@ class UsersController < ApplicationController
          else
          # Render forgot_password.html.erb
        end
-        render :layout =>"main" 
+        render :layout =>"login" 
     end
    
   def destroy

@@ -1,20 +1,22 @@
-<div id ="login">
-<% form_for @user_session do |f| %>
- <fieldset>
+<div id = 'login_wrapper'>
+  <%= image_tag ('cover_image.jpg') %>
+  <div id ="login">
+    <% form_for @user_session do |f| %>
+       <fieldset>
  	
-  <%= f.error_messages %>
-  <p>
-    <%= f.label :username %><br />
-    <%= f.text_field :username %>
-  </p>
-  <p>
-    <%= f.label :password %><br />
-    <%= f.password_field :password %>
-  </p>
-  <p><%= f.submit "Login" %></p>
-   <%= link_to "Forgot password?",forgot_password_users_path%>
-   </fieldset>
-<% end %>
+       <%= f.error_messages %>
+       <p>
+        <%= f.label :username %><br />
+        <%= f.text_field :username %>
+       </p>
+       <p>
+         <%= f.label :password %><br />
+         <%= f.password_field :password %>
+       </p>
+       <p><%= f.submit "Login" %></p>
+        <%= link_to "Forgot password?",forgot_password_users_path%>
+      </fieldset>
+   <% end %>
+  </div>
 </div>
-
 

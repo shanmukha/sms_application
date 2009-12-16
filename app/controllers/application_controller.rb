@@ -12,7 +12,6 @@ class ApplicationController < ActionController::Base
     if current_user!=nil 
       return 
     else  
-    flash[:notice]= "Please login."
     redirect_to '/login'
      end  
    end

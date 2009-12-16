@@ -11,7 +11,7 @@
     <% if current_user.has_role?('admin')%>
        <div id = 'button'>
 	   <span>
-               <%= link_to_function 'new class record', "jQuery('#top').show(); jQuery('#button').hide(); return false;" %>
+               <%= link_to_function "<span>New class record </span>", "jQuery('#top').show(); jQuery('#button').hide(); return false;", :class => 'buttonAdd' %>
            </span>
        </div>
     <%end%> 	

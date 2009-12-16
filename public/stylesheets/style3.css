@@ -30,6 +30,10 @@ img {
 }
 
 /*..................................................header............................*/
+#body_outer_wrapper{
+  background: #fd6b13;
+
+}
 #body_wrapper{
   margin: 17px;
   background: #fff;

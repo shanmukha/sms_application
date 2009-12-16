@@ -2,7 +2,7 @@
      <div class = 'right'> 
         <%= link_to_function image_tag("cancel.gif", :title=> "Cancel"), "jQuery('#top').hide(); jQuery('#button').show(); return false;" %> 
      </div>
-     <h1>Writting new email</h1>
+     <h1>New email</h1>
      <%= render :partial =>"new" %>
      <div class = 'clear'> </div>
 </div>
@@ -11,9 +11,7 @@
 <div id = 'listing-top'>
     <% if current_user.has_role?('admin')%>
        <div id = 'button'>
-	   <span>
-               <%= link_to_function 'Write new email', "jQuery('#top').show(); jQuery('#button').hide(); return false;" %>
-           </span>
+	   <%= link_to_function "<span>Write new email</span>", "jQuery('#top').show(); jQuery('#button').hide(); return false;", :class => 'buttonAdd' %>
        </div>
     <%end%> 	
          
