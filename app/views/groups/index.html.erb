@@ -2,6 +2,7 @@
      <div class = 'right'> 
         <%= link_to_function image_tag("cancel.gif", :title=> "Cancel"), "jQuery('#top').hide(); jQuery('#button').show(); return false;" %> 
      </div>
+     <h1>New class record</h1>
      <%= render :partial =>"new"%>
      <div class = 'clear'> </div>
 </div>
@@ -26,14 +27,14 @@
     					<th><%= order @search, :by => :name ,:as => "Name"%></th>
     		   			<th><%= order @search, :by => :status ,:as => "Status"%></th>
     					<th>View</th>
+                                        <th>Edit</th>
   				</tr>
 					<% @groups.each do |group| %>
   				<tr class="<%=cycle("odd", "even")%>">
     					<td><%=h group.name %></td>
     					<td><%= h group.status%>
-    					<td class="view"><%= link_to '<img src="/images/view.gif" title="View"/>', group%> 
-       				  
-    					</td>
+    					<td><%= link_to '<img src="/images/view.gif" title="View"/>', group%> </td>
+                                        <td><%= link_to image_tag('edit.gif', :title=> "Edit"), edit_group_path(group) %>  </td>
   				</tr>
 			<% end %>
 			</table>

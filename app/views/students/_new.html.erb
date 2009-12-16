@@ -1,7 +1,9 @@
 <div class="create_new">
-	<% form_for(@student||Student.new) do |f| %>
+
+    <% form_for(@student||Student.new) do |f| %>
+     <div class = 'left'>
 	<fieldset>
-	<%= f.error_messages %>
+	   <%= f.error_messages %>
 		<p>
     			<%= f.label :Student_name %><br />
     			<%= f.text_field :name %>
@@ -30,28 +32,30 @@
     			<%= f.text_field :email %>
   		</p>
   		<span> <%= f.submit 'Create record' %> or <%= link_to_function "Cancel",
-	"jQuery('#student').hide(); jQuery('#show').show();jQuery('#hide').hide() "%>
+	"jQuery('#top').hide(); jQuery('#button').show(); return false;"%>
 		</span>
 	</fieldset>
-</div>
-<div id="select_group">
+     </div>
+     <div id="select_group" class = 'right'>
 	 <%unless @groups.blank?%>
-	<table class="student_group" width="100%" border="1" cellpadding="5px">
+	   <table class="student_group" width="100%" border="1" cellpadding="5px">
 		<tr>
 			<th>
 			     <h3>Select class/groups this student belongs to:</h3>
 			</th>
 		</tr>
 		<%for group in @groups%>
-  		<tr>
+  		   <tr>
 			<td valign="top">
  			<%= check_box_tag("groups[]", group.id, false,:id=> group.id)%> <b><%=group.name %></b>
 			</td>
-		</tr>
+		   </tr>
 		<%end%>
-		<% end %>
-	</table>  
-	<%end%>
-</div>
+		
+	   </table>
+        <% end %>  
+     </div>
+  <%end%>
 
+</div>
 

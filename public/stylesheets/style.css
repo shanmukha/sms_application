@@ -40,7 +40,7 @@ h1.heading {font-size:18px;
 	color: #005ca1;
 	font-family : "arial", helvetica, sans-serif;
 	font-weight:bold;
-	padding:0px 0px 0px 28px;
+	padding:0px 0px 10px 0px;
 	width:45%;
 	letter-spacing:1px;
 }
@@ -79,9 +79,9 @@ h1.heading {font-size:18px;
 
 #header #site_heading h1 {
 	float: left;
-	color: #ca3a85;
+	color: #c8287b;
 	font-family: "arial", helvetica, sans-serif;
-        font-size: 22px;	 
+        font-size: 28px;	 
         margin: 45px 20px;     	
 }
 
@@ -96,7 +96,7 @@ h1.heading {font-size:18px;
 }
 
 .header_links ul {
-	margin:0px 10px 0px 0px;
+	margin:10px 10px 0px 0px;
 	padding:0px;
 	float:right;
 }
@@ -105,19 +105,19 @@ h1.heading {font-size:18px;
 	
 	padding:0px;
 	display:inline;
-	color:#142c4e;
+	color:#043461;
 }
 
 .header_links ul li a{
-        margin:0px 5px 0px 5px;
-	color: #142c4e;
+        margin:10px 5px 0px 5px;
+	color: #ea9500;
 	font-size:11px;
 	display:inline;
 	font-weight:bold;
 	text-decoration:none;
 }
 
-.header_links ul li a:hover{b4d7ec
+.header_links ul li a:hover{
 	color:#86b050;
 	text-decoration:underline;
 }
@@ -158,12 +158,12 @@ h1.heading {font-size:18px;
 	font-weight: bold;
 	text-transform:uppercase;
 	outline: none;
-	padding:12px 5px 15px 3px;
-	margin:5px 10px 0px 10px;
+	padding:6px 15px 6px 15px;
+	margin:5px 0px 0px 0px;
 	font-family : "arial", helvetica, sans-serif;
 }
 
-#menu ul li.active a{ color: #81d581; }
+#menu ul li.active a{ color: #30c828;  }
 
 #menu li a:hover{
 	color: #0e8ab8;
@@ -246,8 +246,8 @@ h1.heading {font-size:18px;
 	margin: 0px;
 }
 
-.part1 {width: 55%;}
-.part2 {width: 40%;}
+.part1 {width: 63%;}
+.part2 {width: 36%;}
 
 .message_left{
         padding: 0px 0px 10px 0px;
@@ -423,7 +423,7 @@ select{
 /* General ********************************************************************/
 
 #content_wrapper{
-	background:#e0e0e0 url(/images/1container-bg.png) repeat-x;
+	background:#c9c7c3 url(/images/1container-bg.png) repeat-x;
 	margin: 0px auto 10px auto;
 	clear: both;
 	width: 93%;
@@ -434,7 +434,7 @@ select{
 #wrapper{ 
         background:#fff url(/images/content_bg.gif) repeat-x top;
 	margin: 0px;
-        padding: 10px 0px 10px 0px;
+        padding: 15px 10px 10px 10px;
         
 }
 
@@ -607,11 +607,17 @@ select{
 	border:1px solid #bbb;
 }
 
-table.student_list{
+#students .student_list{
 	border-collapse: collapse; 
-  width: 97%; 
+        width: 97%; 
 	border: #bdcedc 1px solid;
 	
+}
+table.student_list{
+	border-collapse: collapse; 
+        width: 60%; 
+	border: #bdcedc 1px solid;
+	margin-top: 10px;
 }
 
 table.student_list tr th{
@@ -632,6 +638,7 @@ table.student_list tr td{
 	color:#000;
 	padding:5px 5px 6px 5px;
 	text-align:left;
+        border-right: #bdcedc 1px solid;
 	
 }
 
@@ -883,7 +890,7 @@ table.student_group tr.even:hover{
 	color:#ae216a;
 	padding-bottom:15px;
 	background-color:#fff;
-	border:5px solid #b7b7b7;	
+	 
 }
 
 .showpage_content h3{
@@ -894,16 +901,16 @@ table.student_group tr.even:hover{
 }
 
 table.show_page{
-	margin:0px 40px 10px 30px;
+	margin: 10px 40px 10px 30px;
 }
 
 table.show_page tr th{
 	font-size:14px;
-	color:#3b3c3d;
+	color:#304a66;
 	font-family: Verdana, Helvetica, Arial;
 	font-weight:bold;
 	text-align:left;
-	padding:10px 20px 10px 5px;
+	padding:10px 10px 10px 5px;
 }
 
 table.show_page tr td{
@@ -912,27 +919,11 @@ table.show_page tr td{
 	font-family: Verdana, Helvetica, Arial;
 	font-weight:normal;
 	text-align:left;
+        padding:10px 10px 10px 5px;
 }
 
-table.show_page tr td.facebox_btn a{
-	font-size:14px;
-	color:#000;
-	font-family: Verdana, Helvetica, Arial;
-	margin:0px 0px 0px 5px;
-	font-weight:normal;
-	background: url(/images/button.gif) repeat-x;
-	border:1px solid #ccc;
-	width:30px;
-	text-decoration:none;
-	padding:2px 15px 2px 15px;
-}
 
-table.show_page tr td a:hover{
-	background: url(/images/button_hover.gif) repeat-x;
-	border:1px solid #e09b24;
-	color:#000;
-}
-
+ 
 table.student_letter{
 	border-collapse: collapse; 
 	width: 250px; 
@@ -1119,11 +1110,11 @@ table.student_letter tr.even:hover{
 	background-color:#fff;
 }
 
-#footer {background-color:#fff;
+#footer {background-color:#d2caad;
 	width: 95.5%;
 	padding: 15px;
 	margin: 20px auto;
-	color: #828c96;
+	color: #0c2742;
 }
 
 .footer_menu_list {

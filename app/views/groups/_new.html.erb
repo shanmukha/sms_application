@@ -7,9 +7,10 @@
     			<%= f.text_field :name %>
   		</p>
 		<br />
+               <label> Select the students belongs to this class/group. or copy from another group</label> 
    		<table class="student_list" border="1">
     			
-			<tr>
+		 <tr>
 		   <th><input type='checkbox' title ="Check All/Uncheck" name='checkall' onclick='checkedAll();'/></th>
      				<th>Student name</th>
 				<th>Roll Number</th>
@@ -22,25 +23,16 @@
 			</tr>	
     				<%end%>
 		</table>
-    		<span>
+    		
+        <p>  <label>Copy students from  another class record.</label>  <br />
+            <%= select_tag :group_id,  %{<option value="">Please select class</option>} + 		options_for_select(all_groups) %>    
+        </p>
+      <span>
     		<%= f.submit 'Create' %> or <%= link_to_function "Cancel",
-		"jQuery('#group').hide(); jQuery('#show').show();jQuery('#hide').hide()"%>
+		"jQuery('#top').hide(); jQuery('#button').show(); return false;"%>
   		</span>
-  	</fieldset>
+  	</fieldset>  
 </div>
-<div id="select_group">
-	<table class="student_group" width="100%" border="1" cellpadding="5px">
-		<tr>
-			<th>
-    				Copy students from  another class.
-			
-		
-     			<%= select_tag :group_id,
-                       		%{<option value="">Please select class</option>} +
-                       		options_for_select(all_groups) %> 
-			</th>
-		</tr>
-     </table>
-</div> 
+
 <% end %>
 

@@ -1,10 +1,6 @@
-<div class="showpage_content">
-	<table class="show_page">
-		<tr>
-			<th>Class Name: </th><td><%=h @group.name %></td>
-		</tr>
-	</table>
-	<table  class="student_letter" border="1" >
+<h1 class = 'heading'>List of the students, belongs to the class <%=h @group.name %></h1>	
+
+	 <table  class="student_list" >
 		<tr>
 			<th>Student name</th>
 			<th>Roll No</th>
@@ -16,12 +12,4 @@
 		</tr>
 		<%end%>
  	</table>
-    <%if current_user.has_role?('admin')%>
-	      <%= link_to 'Edit', edit_group_path(@group) %> 
-        <%if @group.status=='Active'%>
-        <%= link_to 'Make Inactive', make_inactive_group_path(@group) %> 
-         <%else%>
-       	<%= link_to 'Make Active', make_active_group_path(@group) %> 
-        	<%end%>
-       <%end%>
-</div>
+    

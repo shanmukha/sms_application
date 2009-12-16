@@ -1,13 +1,13 @@
-<div class="clear"></div>
-<div class="Edit_show">
-	<fieldset>
+<h1 class = 'heading'>Editing class record</h1>	
+<fieldset>
 	<% form_for(@group,:html => {:id => 'main-form'}) do |f| %>
   	<%= f.error_messages %>
   	<p>
-    		<%= f.label :name %><br />
+    		<%= f.label :class_name %><br />
     		<%= f.text_field :name %>
-  	</p>
-	<table class="student_list" border="1">
+  	</p><br /><br />
+       <label>Selected students, belongs to this class</label>
+	<table class="student_list">
 		<tr>
 		<th><input type='checkbox' title ="Check All/Uncheck" name='checkall' onclick='checkedAll();'/></th>
      			<th>Student name</th>
@@ -30,11 +30,20 @@
     		<%end%>
 	</table>
 	<p>
-		<span><%= f.submit 'Update' %></span>
-  	</p>
+		<span><%= f.submit 'Update' %></span> &nbsp;|
+  	
+            <%if current_user.has_role?('admin')%>
+	      
+               <%if @group.status=='Active'%>
+                   <%= link_to 'Make this class inactive', make_inactive_group_path(@group) %> 
+               <%else%>
+                  <%= link_to 'Make this class active', make_active_group_path(@group) %> 
+               <%end%>
+             <%end%>
+        </p>
 <% end %>
 </fieldset>
-</div>
+
 
    
 

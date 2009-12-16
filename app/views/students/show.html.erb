@@ -1,4 +1,5 @@
-	<table class="show_page" width="70%">
+<h1 class = 'heading'>Student details </h1>	
+<table class="show_page" >
 		<tr>
   			<th>Student Name:</th>
   			<td><%=h @student.name %></td>
@@ -24,8 +25,10 @@
   			<td><%=h @student.email %></td>
   		</tr>
   		<tr>
-  			<th> Classes/groups:</th>
-  			<td><%= find_groups(@student)%></td>
+  			<th colspan ='2'> Classes/groups this student belongs to:</th>
+        	</tr>
+                <tr>
+  			<td colspan ='2'><%= find_groups(@student)%></td>
         	</tr>
   		
   	</table>

@@ -1,13 +1,13 @@
 <h1 class = 'heading'>Showing email sent to class <%= @email.group.name %> </h1>
 
-<div class="showpage_content">
+ <div class = 'left part1'>
 	<table class="show_page">
                 <tr>
   			<th>Subject:</th>
   			<td><%=h @email.subject %></td>
 		</tr>
 		<tr>
-			<th>Body:</th>
+			<th>Mail content:</th>
   			<td><%=h @email.body %></td>
 		</tr>
 		
@@ -16,8 +16,10 @@
   			<td><%=h @email.group.name %></td>
 		</tr>
 	</table>
-	<table  class="student_letter">
-           <h1 class = 'heading'>List of the students, to whom email was sent </h1>
+ </div>
+ <div class = 'right part2'>
+ 	<table  class="student_list">
+           <h1 class = 'heading'>Students list, to whom email was sent </h1>
 		<tr>
 			<th>Student name</th>
 			<th>Roll No</th>
@@ -30,6 +32,6 @@
   			<%end%>
 	</table>
 	<!-- <td><%= link_to 'Destroy', @email, :confirm => 'Are you sure?', :method => :delete %></td> -->
-</div>
+  </div>
 
-
+      <div class="clear" ></div>
