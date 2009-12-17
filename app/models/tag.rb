@@ -6,37 +6,23 @@ class Tag < ActiveRecord::Base
   
   def self.find_tags_name_message_size(current_user,tags)
      @tags_name = current_user.tags.map{|object|object.name}
-	   @tags_message_size = []
-	   for tag in tags
-	   		@tags_message_size << tag.messages.size
+	   @tags_message_size = Array.new(tags.size){Array.new(1)}
+     i = 0
+    for tag in tags
+	   @tags_message_size[i][0] = tag.messages.size 
+     i = i+1
 	  end
   return @tags_name,@tags_message_size
 	end
 	 
 	 def self.find_tags_name_schedule_size(current_user,tags)
      @tags_name = current_user.tags.map{|object|object.name}
-	   @tags_schedule_size = []
-	   for tag in tags
-	   		@tags_schedule_size << tag.schedules.size
+	   @tags_schedule_size = Array.new(tags.size){Array.new(1)}
+     i = 0
+     for tag in tags
+	   	 @tags_schedule_size[i][0] = tag.schedules.size 
+       i = i+1
 	  end
   return @tags_name,@tags_schedule_size
 	end
-	 
-	 def self.find_tags_name_email_size(current_user,tags)
-     @tags_name = current_user.tags.map{|object|object.name}
-	   @tags_email_size = []
-	   for tag in tags
-	   		@tags_email_size << tag.emails.size
-	  end
-  return @tags_name,@tags_email_size
-	end
-	
-	 def self.find_tags_name_letter_size(current_user,tags)
-     @tags_name = current_user.tags.map{|object|object.name}
-	   @tags_letter_size = []
-	   for tag in tags
-	   		@tags_letter_size << tag.letters.size
-	  end
-  return @tags_name,@tags_letter_size
-	end
- end
+end

@@ -26,36 +26,44 @@ class User < ActiveRecord::Base
   
   def self.find_teachers_name_message_size(current_user,teachers)
      @teachers_name = find(:all,:conditions =>['parent_id = ?',current_user.id]).map{|object|object.name}
-	   @teachers_message_size = []
-	  for teacher in teachers
-	      @teachers_message_size << teacher.messages.size
+	    @teachers_message_size  = Array.new(teachers.size){Array.new(1)}
+     i = 0
+    for teacher in teachers
+	    @teachers_message_size[i][0] = teacher.messages.size
+      i = i+1
 	  end
   return @teachers_name,@teachers_message_size
 	end  
 
 def self.find_teachers_name_schedule_size(current_user,teachers)
      @teachers_name = find(:all,:conditions =>['parent_id = ?',current_user.id]).map{|object|object.name}
-	   @teachers_schedule_size = []
-	   for teacher in teachers
-	      @teachers_schedule_size << teacher.schedules.size
+	  @teachers_schedule_size  = Array.new(teachers.size){Array.new(1)}
+     i = 0
+    for teacher in teachers
+	    @teachers_schedule_size[i][0] = teacher.schedules.size
+      i = i+1
 	  end
   return @teachers_name,@teachers_schedule_size
 	end  
  
  def self.find_teachers_name_email_size(current_user,teachers)
      @teachers_name = find(:all,:conditions =>['parent_id = ?',current_user.id]).map{|object|object.name}
-	   @teachers_email_size = []
-	   for teacher in teachers
-	      @teachers_email_size << teacher.emails.size
+	   @teachers_email_size  = Array.new(teachers.size){Array.new(1)}
+     i = 0
+    for teacher in teachers
+	    @teachers_email_size[i][0] = teacher.emails.size
+      i = i+1
 	  end
   return @teachers_name,@teachers_email_size
 	end 
  
  def self.find_teachers_name_letter_size(current_user,teachers)
      @teachers_name = find(:all,:conditions =>['parent_id = ?',current_user.id]).map{|object|object.name}
-	   @teachers_letter_size = []
-	   for teacher in teachers
-	      @teachers_letter_size << teacher.letters.size
+	  @teachers_letter_size  = Array.new(teachers.size){Array.new(1)}
+     i = 0
+    for teacher in teachers
+	    @teachers_letter_size[i][0] = teacher.letters.size
+      i = i+1
 	  end
   return @teachers_name,@teachers_letter_size
 	end 

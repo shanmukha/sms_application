@@ -31,36 +31,44 @@ class Group < ActiveRecord::Base
  
   def self.find_classes_name_message_size(current_user,groups)
      @groups_name = current_user.groups.map{|object|object.name}
-	   @groups_message_size = []
-	   for group in groups
-	   		@groups_message_size << group.messages.size
+	   @groups_message_size  = Array.new(groups.size){Array.new(1)}
+     i = 0
+    for group in groups
+	    @groups_message_size[i][0] = group.messages.size
+     i = i+1
 	  end
     return @groups_name,@groups_message_size
 	end  
 	
 	def self.find_classes_name_schedule_size(current_user,groups)
      @groups_name = current_user.groups.map{|object|object.name}
-	   @groups_schedule_size = []
-	   for group in groups
-	   		@groups_schedule_size << group.schedules.size
+	   @groups_schedule_size  = Array.new(groups.size){Array.new(1)}
+     i = 0
+    for group in groups
+	    @groups_schedule_size[i][0] = group.schedules.size
+     i = i+1
 	  end
     return @groups_name,@groups_schedule_size
 	end  
 	
 	def self.find_classes_name_email_size(current_user,groups)
     @groups_name = current_user.groups.map{|object|object.name}
-	   @groups_email_size = []
-	   for group in groups
-	   		@groups_email_size << group.emails.size
+	   @groups_email_size  = Array.new(groups.size){Array.new(1)}
+     i = 0
+    for group in groups
+	    @groups_email_size[i][0] = group.emails.size
+     i = i+1
 	  end
     return @groups_name,@groups_email_size
 	end  
 	
 	def self.find_classes_name_letter_size(current_user,groups)
      @groups_name = current_user.groups.map{|object|object.name}
-	   @groups_letter_size = []
-	   for group in groups
-	   		@groups_letter_size << group.letters.size
+	   @groups_letter_size  = Array.new(groups.size){Array.new(1)}
+     i = 0
+    for group in groups
+	    @groups_letter_size[i][0] = group.letters.size
+      i = i+1
 	  end
     return @groups_name,@groups_letter_size
 	end  
