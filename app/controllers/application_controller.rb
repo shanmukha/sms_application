@@ -23,6 +23,20 @@ class ApplicationController < ActionController::Base
      end  
   end
 
+  def find_months_name_communication_size(months,reports)
+        month_name= ["nil","January"," February"," March"," April"," May"," June"," July"," August"," September"," October"," November"," December"]
+        @months_name = []
+        @communication_size  = Array.new(months.size){Array.new(1)}
+        i = 0
+        months.each do|month|
+          key = month.strftime("%m").to_i
+          @months_name << month_name[key]
+          @communication_size[i][0] = reports[month]
+          i = i+ 1 
+       end  
+      return @months_name,@communication_size  
+  end
+ 
   def check_admin_role
      unless current_user.has_role?('admin')
         flash[:notice]= "Permission denied."

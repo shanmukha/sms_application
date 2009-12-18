@@ -74,7 +74,7 @@ class SchedulesController < ApplicationController
    def render_message_template
     @message_template = MessageTemplate.find(params[:schedule_id]).message_body rescue ''
      render :update do |page|
-      page << "jQuery('#schedule_message_body').val('#{@message_template}')"
+       page << "jQuery('#schedule_message_body').val('#{@message_template}')"
       end
     end
     

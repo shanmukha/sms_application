@@ -44,8 +44,8 @@ class StudentsController < ApplicationController
       if @student.save
       unless params[:groups].nil?
         params[:groups].each do|group|
-        @student.groups<< Group.find(group)
-      end
+        	@student.groups<< Group.find(group)
+       end
       end
         flash[:notice] = 'Student record is successfully created.'
          format.html { redirect_to(students_url) }
@@ -70,7 +70,7 @@ class StudentsController < ApplicationController
         		@student.groups << Group.find(group_id)
         	end
         end
-        flash[:notice] = 'Student was successfully updated.'
+        flash[:notice] = 'Student record is successfully updated.'
         format.html { redirect_to(students_url) }
         format.xml  { head :ok }
       else
@@ -96,14 +96,14 @@ class StudentsController < ApplicationController
   end
   
   def import_students_create
-     @parsed_file =  CSV::Reader.parse(params[:students][:file])
-     #FasterCSV.foreach(params[:students][:file].path, :headers => :false) do |row|
-     @parsed_file.each do |row|
-     Student.create(:roll_number => row[0],:name => row[1],:parent => row[2],:address => row[3],:number => row[4],:email => row[5],:user_id => current_user.id) 
+  	@parsed_file =  CSV::Reader.parse(params[:students][:file])
+    @parsed_file.each do |row|
+     	Student.create(:roll_number => row[0],:name => row[1],:parent => row[2],:address => row[3],:number => row[4],:email => row[5],:user_id => current_user.id) 
     end
      respond_to do |format|
-      format.html { redirect_to(students_url) }
-      format.xml  { head :ok }
+     		flash[:notice] = 'Student record is successfully imported.'
+     		format.html { redirect_to(students_url) }
+      	format.xml  { head :ok }
     end
     end
 end  

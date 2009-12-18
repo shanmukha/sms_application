@@ -1,7 +1,7 @@
 class LettersController < ApplicationController
  layout "main"
-	
-	def index
+ 
+ 	def index
   	@search =  Letter.search(params[:search]) 
     @search.user_id = current_user.id if current_user.has_role?('teacher') || current_user.has_role?('super_admin')
     @search.user_id = user_ids if current_user.has_role?('admin') && !current_user.has_role?('super_admin')
@@ -48,7 +48,7 @@ class LettersController < ApplicationController
            params[:students].each do|student_id|
            LetterStudent.create(:letter_id => @letter.id,:student_id => student_id)
            end
-          flash[:notice] = 'Letter was successfully created.'
+          flash[:notice] = 'Letter is successfully created.'
           format.html { redirect_to(print_letter_path(@letter)) }
            format.xml  { render :xml => @letter, :status => :created, :location => @letter }
       else

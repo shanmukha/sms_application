@@ -27,6 +27,7 @@ class ScheduleReportsController < ApplicationController
   	  @to_date =  params[:report][:to_date].to_date unless params[:report].nil?
   	  @schedule_months,@reports = Schedule.find_month_wise_report(@from_date,@to_date,current_user) unless params[:report].nil?
   	  @months = @schedule_months.each_key {|key| key} unless @schedule_months.nil?
+  	  @months_name,@months_schedule_size = find_months_name_communication_size(@months,@reports)  unless params[:report].nil?
   	  rescue 
     	  flash[:error] = 'Please check from date and to date selected or not.' 
   end  

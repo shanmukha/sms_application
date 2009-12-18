@@ -25,8 +25,8 @@ B4EEB4,698B69,483D8B,2F4F4F,97FFFF,79CDCD,2F4F4F,9400D3,FF1493,8B0A50,CD1076,00B
 
 
 <% for student in @students%>
-<br />
-<%= student.name%> (<%= find_student_messages(student).size %> )<br />
+<br /><br />
+<h2><%= student.name%> (<%= find_student_messages(student).size %> )</h2><br />
 <table class="listing">
   		<tr>
     			<th>Sent Date</th>

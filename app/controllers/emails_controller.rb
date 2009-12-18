@@ -46,7 +46,7 @@ class EmailsController < ApplicationController
         	body.gsub!(/#{student.parent}/,'@parent') 
         	body.gsub!(/#{student.address}/,'@address') 
         end 
-        flash[:notice] = 'Email was successfully sent.'
+        flash[:notice] = 'Email is successfully sent.'
         format.html { redirect_to(emails_url)  }
         format.xml  { render :xml => @email, :status => :created, :location => @email }
       else

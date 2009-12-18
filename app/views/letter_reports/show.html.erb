@@ -1,21 +1,19 @@
-<table>
-<tr>
-<td>
-<div class ="letter_show">
-	<table class="show_page">
+<h1 class = 'heading'>Showing letter prepared for class <%= @letter.group.name %> </h1>
+ <div class = 'left part1'>
+   <table class="show_page">
 	
 		<tr>
 			  <td><%=h @letter.content %></td>
 		</tr>
-	
+	        <tr><td><%= link_to "<span>Print this letter</span>", print_letter_path(@letter), :class => 'buttonAdd' %></td></tr>
 	</table>
 
-	<%= link_to 'Print letter', print_letter_path(@letter) %>
+	
   	<!-- <%= link_to 'Delete', @letter, :confirm => 'Are you sure?', :method => :delete %> -->
-</div>
-</td>
-<td>
-		<table class="student_letter" border="1">
+ </div>
+ <div class = 'right part2'>
+     <h1 class = 'heading'>Students list, to whom letter was sent </h1>
+		<table class="student_list">
 		<tr>
 			<th>Student name</th>
 			<th>Roll number</th>
@@ -27,10 +25,9 @@
   		</tr>
   		<%end%>
 	</table>
-</td>
-</tr>
-</table>
-
+</div>
+<%= link_to "Back",:back%>
+      <div class="clear" ></div>
 	
 
  
