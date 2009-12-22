@@ -1,0 +1,2 @@
+module MonthReportsHelper
+end

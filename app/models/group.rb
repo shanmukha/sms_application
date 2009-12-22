@@ -72,5 +72,4 @@ class Group < ActiveRecord::Base
 	  end
     return @groups_name,@groups_letter_size
 	end  
-	
 end

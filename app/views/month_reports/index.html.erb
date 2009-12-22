@@ -1,0 +1,18 @@
+  <%= link_to_function "List", "jQuery('#graph').hide(); jQuery('#list').show(); return false;" %> |
+     <%= link_to_function "Pie Chart", "jQuery('#graph').show(); jQuery('#list').hide(); return false;" %> 
+  <div id = 'graph' style ="display:none ; clear:both">
+   <%= render :partial =>"pie_graph"%>
+   </div> 
+   <div id = "list">
+      <br /> <br />
+ <h2>Total messages sent in  <%= month_print(Time.now.month)%> month :
+ <%= @messages_size%></h2>
+ <br />
+ <h2>Total letters sent in  <%= month_print(Time.now.month)%> month:
+ <%= @letters_size%></h2>
+ <br />
+ 
+ <h2>Total emails sent in  <%= month_print(Time.now.month)%> month:
+ <%= @emails_size%></h2>
+ <br />
+ </div>
