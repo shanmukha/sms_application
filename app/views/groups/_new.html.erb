@@ -27,7 +27,7 @@
               </div>
     		
         <p id = 'copy_students' style ="display:none">  
-            <label> Selected the class/group or <%= link_to_function "Select students from the list.", "$('#copy_students').hide(); $('#students_list').show(); return false;" %> </label> <br />
+            <label> Select the class/group or <%= link_to_function "Select students from the list.", "$('#copy_students').hide(); $('#students_list').show(); return false;" %> </label> <br />
             <%= select_tag :group_id,  options_for_select(all_groups) %>    
         </p>
       <br />

@@ -36,6 +36,7 @@ label{
 font-weight: bold;
 color: #49566f;
 font-size: 14px;
+margin: 5px 0px 5px 0px;
 }
 
 label a{
@@ -70,7 +71,7 @@ h1.heading span{color: #c8287b;}
 #header {
         width: 96%;
         height: auto;
-	margin: 0px auto 15px auto;
+	margin: 0px auto 10px auto;
         padding: 5px;
        
 }
@@ -120,7 +121,7 @@ h1.heading span{color: #c8287b;}
 .header_links ul li a{
         margin:10px 5px 0px 5px;
 	color: #15416d;
-	font-size:11px;
+	font-size:12px;
 	display:inline;
 	font-weight:bold;
 	text-decoration:none;
@@ -269,7 +270,6 @@ h1.heading span{color: #c8287b;}
 }
 
 .message_div_top{
-        font-family : "arial", helvetica, sans-serif;
  	background:  url(/images/message-top.jpg) repeat-x;
  	padding: 4px 8px 4px 0px;
  
@@ -441,7 +441,7 @@ color:#0e8ab8;
         padding: 15px 0px 10px 0px;
         
 }
-.show_wrapper{
+.form_wrapper{
   padding: 10px 15px 0px 15px;
 
 }
@@ -459,13 +459,13 @@ color:#0e8ab8;
 
 .listing th {
 	  background: #ddd url(/images/table_header.jpg) repeat-x;
-          color: #bf2876;
+          color: #6d053b;
           text-align: left;
           padding: 0.6em .5em .5em .5em;
           font-weight: bold; 
  	  font-size:13px;
 	  letter-spacing:1px;
-    
+          border: 1px solid #b1b1b1;
 }
  
 .listing td { 
@@ -872,7 +872,7 @@ table.student_group tr.even:hover{
 	font-size:13px;
 	color:#270027;
 	font-family: Verdana, Helvetica, Arial;fffbbd
-	margin:15px 0px 5px 10px;
+	margin: 10px 0px 10px 10px;
 	font-weight:normal;
 }
 

@@ -1,10 +1,15 @@
-<div id ="user-new"><%= link_to 'New user', new_user_path %></div>
-<h1 class ="users-list">Listing users</h1>
-<br /><br /><br />
+<div class='form_wrapper'>
+  <div>
+    <span class ='right'><%= link_to "<span>New user</span>", new_user_path , :class => 'buttonAdd'%></span>
+    <h1 class ="heading left">Listing users</h1>
+    <div class="clear"></div>
+  </div>
+
 <% form_for @search do |f| %>
- 	<div class="user-search">Name:<%= f.text_field :name_like %>
-		<span><%= f.submit "Search" %><input type="reset" value="Reset"></span></div>
+ 	User name:&nbsp;<%= f.text_field :name_like %>
+		<span><%= f.submit "Search" %></span>
 <%end%>
+
 <table class="listing">
   <tr>
     <th>Name</th>
@@ -37,4 +42,4 @@
 <%= will_paginate @users%>
 <br />
 <div class="clear"></div>
-
+</div>

@@ -10,12 +10,12 @@
     <% if current_user.has_role?('admin')%>
        <div id = 'button'>
 	   <span>
-               <%= link_to_function "<span>New saved message</span>", "jQuery('#top').show(); jQuery('#button').hide(); return false;", :class => 'buttonAdd' %>
+               <%= link_to_function "<span>New message</span>", "jQuery('#top').show(); jQuery('#button').hide(); return false;", :class => 'buttonAdd' %>
            </span>
        </div>
     <%end%> 	
          
-    <h1>Listing all saved message templates</h1>
+    <h1>Listing all message templates</h1>
     <div class="clear"></div>
 </div>
 

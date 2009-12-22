@@ -14,8 +14,8 @@
         </div>
 
      <div id="select_group">
-        <label> Select the class to which letter to be printed </label><br /><br />
-         <%= f.select :group_id, all_groups, options={:prompt => 'Select class/group'}%>
+        <label> Select class</label><br /><br />
+         <%= f.select :group_id, all_groups%>
       	      		<%= image_tag("spinner.gif",
               		:align => "absmiddle",
                		:border => 0,

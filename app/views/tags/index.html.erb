@@ -1,22 +1,28 @@
-<div id ="user-new"><%= link_to 'New tag', new_tag_path %></div>
-<h1 class ="users-list">Listing tags</h1>
-<br /><br /><br />
+<div class='form_wrapper'>
+  <div>
+    <span class ='right'><%= link_to "<span>New message tag</span>", new_tag_path , :class => 'buttonAdd'%></span>
+    <h1 class ="heading left">Listing all message tags</h1>
+    <div class="clear"></div>
+  </div>
+
+ 
 <% form_for @search do |f| %>
- 	<div class="user-search">Name:<%= f.text_field :name_like %>
-		<span><%= f.submit "Search" %><input type="reset" value="Reset"></span></div>
+ 	 Tag name:&nbsp; <%= f.text_field :name_like %>
+		<span><%= f.submit "Search" %> </span></div>
 <%end%>
+
 <table class ="listing">
   <tr>
     <th>Name</th>
     <th>Description</th>
-    <th>View</th>
+    <th>Edit</th>
   </tr>
 
 <% @tags.each do |tag| %>
   <tr class="<%=cycle("odd", "even")%>">
     <td><%=h tag.name %></td>
     <td><%=h tag.description %></td>
-    <td><%= link_to '<img src="/images/view.gif" title="View"/>', tag%></td>
+    <td><%= link_to '<img src="/images/edit.gif" title="View"/>', edit_tag_path(tag) %></td>
   </tr>
 <% end %>
 </table>
@@ -24,4 +30,4 @@
 <br />
   <div class="clear"></div>
 
-
+</div>

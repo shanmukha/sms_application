@@ -6,7 +6,7 @@ class GroupsController < ApplicationController
     admin = current_user.has_role?('admin') ? current_user : User.find(current_user.parent_id) 
     @search =  Group.search(params[:search]) 
     @search.user_id = admin.id
-    @search.order ||= "ascend_by_status"
+    @search.order ||= "ascend_by_name_status"
     @groups = @search.all.paginate :page => params[:page],:per_page => 25
     respond_to do |format|
       format.html # index.html.erb
@@ -69,7 +69,7 @@ class GroupsController < ApplicationController
         		@group.students << Student.find(student)
         	end
         end
-        flash[:notice] = '#{@group.name} is successfully updated.'
+        flash[:notice] = "#{@group.name} is successfully updated."
          format.html { redirect_to(groups_url) }
         format.xml  { head :ok }
       else

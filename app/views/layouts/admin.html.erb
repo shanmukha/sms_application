@@ -43,7 +43,7 @@
 	<div class="header_links">
 	<%if current_user%>
 	       <ul>        
-		            <li><%= link_to "Got to application", root_path %></li>
+		            <li><%= link_to "Got to application", root_path %>|</li>
 		           <li class='<%= request.request_uri == "/users/#{current_user.id}/edit"? 'active': 'link' %>'> <%= link_to "Settings",edit_user_path(current_user) %>| </li>
 		           <li><%= link_to "Logout", logout_path %></li>
 		         
