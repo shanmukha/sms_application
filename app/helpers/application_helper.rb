@@ -5,7 +5,8 @@ module ApplicationHelper
   end
   
   def all_templates 
-     [['Select saved message', '']] + current_user.message_templates.find(:all).map{|m|[m.message_title,m.id]}
+      admin = current_user.has_role?('admin') ? current_user : User.find(current_user.parent_id) rescue ''
+     [['Select saved message', '']] + admin.message_templates.find(:all).map{|m|[m.message_title,m.id]}
   end
 	
 	def all_tags

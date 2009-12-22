@@ -1,0 +1,43 @@
+ <h1>Class report</h1>
+ 
+ <% form_for(:report, :url => class_reports_path, :html => {:id => 'main-form',:method => :get}) do |f| %>
+ <%= f.select :group_id, all_groups, options={:prompt => 'All'}%>
+  <%= f.select :month ,[["This month","tm"],["Last month", "lm"], ["Last 2 months", "l2"], ["Last 3 months", "l3"], ["Last 4 months", "l4"]]%>
+  <%= f.select :type ,[["Message","messages"],["Email", "emails"], ["Letter", "letters"]]%>
+    <%= f.submit "Report" %>
+    <%= link_to_function "List", "jQuery('#graph').hide(); jQuery('#list').show(); return false;" %> |
+     <%= link_to_function "Pie Chart", "jQuery('#graph').show(); jQuery('#list').hide(); return false;" %> 
+  <%end%>
+   
+<div id = 'graph' style ="display:none ; clear:both;">
+   <%= render :partial =>"pie_graph"%>
+   </div> 
+  <div id ="list">
+  <br /> <br />
+   <%unless @classes.nil?%>
+  <table class="student_group" width="100%" border="1" cellpadding="5px">
+   <th>Class name</th>
+   <th>Size</th>
+  <%@classes.each do |group|%>
+  <tr>
+    <td><%= group.name%></td>
+    <td><%= @class[group.id]%></td>
+  </tr>
+  <%end%>
+   </table>
+ <%end%>
+ <%unless @communication.nil?%>
+    <%= @group.name%>  <%= @communication.size.nil? ? 0 : @communication.size %>
+    <table class="student_group" width="100%" border="1" cellpadding="5px">
+   <th>Student name</th>
+   <th>Size</th>
+  <% @students.each do |student|%>
+<tr>
+  <td><%= student.name%></td> 
+  <td><%= @students_communication_size[student.id].nil? ? 0 : @students_communication_size[student.id]%></td>
+  </tr>   
+  <%end%>
+  </table>
+  <%end%>
+  </div>
+  

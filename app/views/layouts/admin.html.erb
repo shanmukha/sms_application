@@ -72,13 +72,13 @@
             <dl class="dropdown">
   <dt id="one-ddheader" onmouseover="ddMenu('one',1)" onmouseout="ddMenu('one',-1)"><li class ="report">Reports</li></dt>
   <dd id="one-ddcontent" onmouseover="cancelHide('one')" onmouseout="ddMenu('one',-1)">
-    <ul>
-      <li class="Nav"><%= link_to "Message",teacher_messages_message_reports_path%></a></li>
-      <li class="Nav"><%= link_to "Schedule",teacher_schedules_schedule_reports_path%></a></li>
-      <li class="Nav"><%= link_to "Email ",teacher_emails_email_reports_path%></a></li>
-      <li class="Nav"><%= link_to "Letter",teacher_letters_letter_reports_path%></a></li>
+   <ul>
+      <li class="Nav"><%= link_to "Class",class_reports_path%></a></li>
+      <li class="Nav"><%= link_to "Teacher",teacher_reports_path%></a></li>
+      <li class="Nav"><%= link_to "Tag",tag_reports_path%></a></li>
+      <li class="Nav"><%= link_to "Month",month_reports_path%></a></li>
       </ul>
-  </dd>
+   </dd>
 </dl>
             
          </ul>

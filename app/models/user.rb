@@ -24,49 +24,6 @@ class User < ActiveRecord::Base
       User.find(:all,:conditions =>['parent_id = ?',current_user.id])
   end
   
-  def self.find_teachers_name_message_size(current_user,teachers)
-     @teachers_name = find(:all,:conditions =>['parent_id = ?',current_user.id]).map{|object|object.name}
-	    @teachers_message_size  = Array.new(teachers.size){Array.new(1)}
-     i = 0
-    for teacher in teachers
-	    @teachers_message_size[i][0] = teacher.messages.size
-      i = i+1
-	  end
-  return @teachers_name,@teachers_message_size
-	end  
-
-def self.find_teachers_name_schedule_size(current_user,teachers)
-     @teachers_name = find(:all,:conditions =>['parent_id = ?',current_user.id]).map{|object|object.name}
-	  @teachers_schedule_size  = Array.new(teachers.size){Array.new(1)}
-     i = 0
-    for teacher in teachers
-	    @teachers_schedule_size[i][0] = teacher.schedules.size
-      i = i+1
-	  end
-  return @teachers_name,@teachers_schedule_size
-	end  
- 
- def self.find_teachers_name_email_size(current_user,teachers)
-     @teachers_name = find(:all,:conditions =>['parent_id = ?',current_user.id]).map{|object|object.name}
-	   @teachers_email_size  = Array.new(teachers.size){Array.new(1)}
-     i = 0
-    for teacher in teachers
-	    @teachers_email_size[i][0] = teacher.emails.size
-      i = i+1
-	  end
-  return @teachers_name,@teachers_email_size
-	end 
- 
- def self.find_teachers_name_letter_size(current_user,teachers)
-     @teachers_name = find(:all,:conditions =>['parent_id = ?',current_user.id]).map{|object|object.name}
-	  @teachers_letter_size  = Array.new(teachers.size){Array.new(1)}
-     i = 0
-    for teacher in teachers
-	    @teachers_letter_size[i][0] = teacher.letters.size
-      i = i+1
-	  end
-  return @teachers_name,@teachers_letter_size
-	end 
 
  def forgot_password
     password = "%08d"%rand(99999999) 
@@ -81,5 +38,9 @@ def self.find_teachers_name_schedule_size(current_user,teachers)
       user_ids << current_user.id
       User.find(:all,:conditions =>['parent_id = ?',current_user.id]).map{|object|user_ids << object.id}
      return user_ids
+  end
+  
+  def find_classes
+   self.groups.find(:all ,:conditions => ['status = ?','Active'])
   end
 end
