@@ -1,5 +1,5 @@
 class MessageTemplatesController < ApplicationController
-  layout "main",:except => "show"
+  layout "admin", :except => "show"
  	
  	def index
   	@search = MessageTemplate.search(params[:search])

@@ -1,6 +1,8 @@
-<h1 class = 'heading'>Showing email sent to class <%= @email.group.name %> </h1>
-
- <div class = 'left part1'>
+<div class = 'show_wrapper'>
+  <h1 class = 'heading left'>Email sent to <span> <%= @email.group.name %></span> </h1>
+  <div class = 'right'<%= link_to image_tag("closelabel.gif", :title=> "close"), emails_url %> </div>
+  <br /><br />
+  <div class = 'left part1'>
 	<table class="show_page">
                 <tr>
   			<th>Subject:</th>
@@ -11,15 +13,12 @@
   			<td><%=h @email.body %></td>
 		</tr>
 		
-		<tr>
-  			<th>Class:</th>
-  			<td><%=h @email.group.name %></td>
-		</tr>
+		
 	</table>
  </div>
  <div class = 'right part2'>
  	<table  class="student_list">
-           <h1 class = 'heading'>Students list, to whom email was sent </h1>
+           <h1 class = 'heading'>Students list </h1>
 		<tr>
 			<th>Student name</th>
 			<th>Roll No</th>
@@ -34,4 +33,5 @@
 	<!-- <td><%= link_to 'Destroy', @email, :confirm => 'Are you sure?', :method => :delete %></td> -->
   </div>
 
-      <div class="clear" ></div>
+  <div class="clear" ></div>
+</div>

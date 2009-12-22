@@ -24,7 +24,7 @@
   		<tr>
   		    <th>Sent by</th>
     			<th>Subject</th>
-    			<th>Body</th>
+    			<th>Content</th>
     			<th>Class</th>
     			<th>View</th>
   		</tr>
@@ -44,6 +44,13 @@
 	<h1>Search </h1>
 	<% form_for @search do |f| %>
  		<table>
+                        <tr>
+       				<th>Student name </th>
+			</tr>
+			
+			<tr>
+				<td><%= f.text_field :students_name_like%></td>
+			</tr>
      			<tr>
       				<th>Subject </th>
 			</tr>
@@ -51,13 +58,13 @@
 				<td><%= f.text_field :subject_like %></td>
 			</tr>
 			<tr>
-      				<th>Email Body </th>
+      				<th>Email content </th>
 			</tr>
 			<tr>
 				<td><%= f.text_field :body_like %></td>
 			</tr>
 			<tr>
-       				<th>Class Name </th>
+       				<th>Class name </th>
 			</tr>
 			<tr>
 				<td><%= f.text_field :group_name_like%></td>
@@ -69,13 +76,7 @@
 				<td><%= f.text_field :user_name_like%></td>
 			</tr>
 			
-			<tr>
-       				<th>Student Name </th>
-			</tr>
 			
-			<tr>
-				<td><%= f.text_field :students_name_like%></td>
-			</tr>
 			<tr>
        				<td class="btn"><%= f.submit "Search" %> <input type="reset" value="Reset"></td>
   			</tr>

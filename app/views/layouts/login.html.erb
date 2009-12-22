@@ -17,13 +17,7 @@
 	</div>
     </div> <!-- end of header -->
 
-<% if flash[:notice] %>
-  <div id="notice">
-     <p><%= flash[:notice] %></p>
-  </div>
-<% end %>
-
- <p style="color:red"><%= flash[:error] %></p>
+<%= render :partial => 'shared/notice' %>
  <%= yield  %>
         
  

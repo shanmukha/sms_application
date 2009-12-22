@@ -1,10 +1,11 @@
 class MessagesController < ApplicationController
- layout proc{ |c| ['new'].include?(c.action_name)? 'message' : 'main'}
-	def new
-   @message = Message.new
+ layout proc{ |c| ['new', 'create'].include?(c.action_name)? 'message' : 'main'}
+
+  def new
+    @message = Message.new
   end
 
-	def index
+  def index
      @search =  Message.search(params[:search]) 
      @search.user_id = current_user.id if current_user.has_role?('teacher') || current_user.has_role?('super_admin')
      @search.user_id = user_ids if current_user.has_role?('admin') && !current_user.has_role?('super_admin')
@@ -16,16 +17,17 @@ class MessagesController < ApplicationController
     end
   end
 	
-	def show
+  def show
     @message =  Message.find(params[:id])
     @students = @message.students.find(:all)
+
     respond_to do |format|
       format.html # show.html.erb
         format.js  { render :layout => false}
     end
   end
 	
-	def destroy
+  def destroy
     @message = Message.find(params[:id])
     @message.destroy
     respond_to do |format|
@@ -34,67 +36,86 @@ class MessagesController < ApplicationController
     end
   end
  
- def create
-	 begin
-	   admin = current_user.has_role?('admin') ? current_user : User.find(current_user.parent_id)
-	   no_of_sms = params[:students].nil? ? 1 : params[:students].size
-	   balance = admin.balance.to_i - no_of_sms
-	   MessageService.user = admin.server_user_name
-     MessageService.password = admin.server_password
-     MessageSchedule.user = admin.server_user_name
-     MessageSchedule.password = admin.server_password
-	   if balance >= 0
-	      if params[:sms][:scheduled_date].blank?  
-	        @message = current_user.messages.new(params[:sms]) 
-	     else  
-	        #sending on schedule 
-	        params[:sms][:scheduled_time] =  Time.parse(params[:schedule][:"scheduled_time(5i)"])
-          @message = current_user.schedules.new(params[:sms])
-       end
-	     if @message.save
-	       if !params[:students].nil?
-	         message = @message.message_body
-           params[:students].each do  |student_id|
-             student_record = Student.find(student_id)
-             student, parent = student_record.name, student_record.parent
-             message.gsub!(/@student/, student) 
-       	     message.gsub!(/@parent/, parent)
-       	     if  params[:sms][:scheduled_date].blank?
-       	       sms = MessageService.create(:sms => params[:sms].merge!({:number => student_record.number})) 
-               message_student = MessageStudent.create(:message_id => @message.id,:student_id => student_id,:sms_id => sms.id)
-             elsif  !params[:sms][:scheduled_date].blank?
-               sms = MessageSchedule.create(:sms => params[:sms].merge!({:number => student_record.number}))  
-               schedule_student = ScheduleStudent.create(:schedule_id => @message.id,:student_id => student_id,:sms_id => sms.id)
-             end
-             admin.update_attribute('balance', admin.balance.to_i - 1)
-             message.gsub!(/#{student}/,'@student') 
-        	   message.gsub!(/#{parent}/,'@parent') 
-        	 end  
-	       else
-	        if  params[:sms][:scheduled_date].blank? 
-       	  	  sms = MessageService.create(:sms => params[:sms]) 
+  def create
+    admin = current_user.has_role?('admin') ? current_user : User.find(current_user.parent_id)
+
+    no_of_sms = params[:students].nil? ? 1 : params[:students].size
+    
+    #set active resource API authentication credentials dynamically
+    MessageService.user = admin.server_user_name
+    MessageService.password = admin.server_password
+    MessageSchedule.user = admin.server_user_name
+    MessageSchedule.password = admin.server_password
+    
+    #check wheather message is sending on schedule 
+    if params[:message][:scheduled_date].blank?  
+      @message = current_user.messages.new(params[:message]) 
+    else  
+      params[:message][:scheduled_time] = Time.parse(params[:schedule][:"scheduled_time(5i)"])
+      @message = current_user.schedules.new(params[:message])
+    end
+
+    #balance = admin.balance.to_i - no_of_sms
+    #if balance < 0
+      #flash[:notice] = "Please ensure you have suffecient balance in your account."   
+      #redirect_to(new_message_url) 
+      #return nil
+    #end 
+ 
+    if params[:students].blank? and params[:message][:number].blank?
+      flash.now[:error] = "Please select at least one student or enter number."
+      render :action => "new"
+      return nil
+    end
+      
+    if params[:message][:message_body].blank?
+      flash.now[:error] = "Please enter message content."
+      render :action => "new"
+      return nil
+    end
+          
+    begin
+      if @message.save
+         if !params[:students].nil?
+	    message = @message.message_body
+            params[:students].each do  |student_id|
+               student_record = Student.find(student_id)
+               student, parent = student_record.name, student_record.parent
+               message.gsub!(/@student/, student) 
+       	       message.gsub!(/@parent/, parent)
+       	       if  params[:message][:scheduled_date].blank?
+       	         sms = MessageService.create(:sms => params[:message].merge!({:number => student_record.number})) 
+                 message_student = MessageStudent.create(:message_id => @message.id, :student_id => student_id, :sms_id => sms.id)
+               elsif  !params[:message][:scheduled_date].blank?
+                 sms = MessageSchedule.create(:sms => params[:message].merge!({:number => student_record.number}))  
+                 schedule_student = ScheduleStudent.create(:schedule_id => @message.id, :student_id => student_id, :sms_id => sms.id)
+               end
+               admin.update_attribute('balance', admin.balance.to_i - 1)
+               message.gsub!(/#{student}/,'@student') 
+               message.gsub!(/#{parent}/,'@parent') 
+             end  
+	  else
+	    if params[:message][:scheduled_date].blank? 
+       	      sms = MessageService.create(:sms => params[:message]) 
        	      @message.update_attributes({:status => "Sent", :sms_id => sms.id}) 
-       	    elsif  !params[:sms][:scheduled_date].blank?
-       	   	   sms = MessageSchedule.create(:sms => params[:sms])
-       	       @message.update_attributes({:status => "Scheduled", :sms_id => sms.id}) 
+       	    elsif !params[:message][:scheduled_date].blank?
+       	      sms = MessageSchedule.create(:sms => params[:message])
+       	      @message.update_attributes({:status => "Scheduled", :sms_id => sms.id}) 
             end	   
-             admin.update_attribute('balance', admin.balance.to_i - 1)   
-	       end
+            admin.update_attribute('balance', admin.balance.to_i - 1)   
+	  end
 	       
-	       flash[:notice] = 'The Message is pushed to the network. We will update the delivery status.'   
-         redirect_to(new_message_url)
-	     else  #@message.save check
-         render :action => "new"
-       end 
-	   else #no sufficient balance
-	     flash[:notice] = "Please ensure you have suffecient balance in your account."   
-       redirect_to(new_message_url) 
-	   end
-	  rescue #ActiveResource::ResourceInvalid => e  
-    	  flash[:error] = 'Some thing went wrong. Please try again latter.'    
-    	  redirect_to(new_message_url) 
+	   flash[:notice] = 'Message is sent for delivery. Please check the status after some time.'   
+           redirect_to(new_message_url)
+         else  #@message.save check
+           render :action => "new"
+         end 
+	   
+       rescue #ActiveResource::ResourceInvalid => e  
+    	 flash.now[:error] = 'There seems to be a problem in sending message. Please try again.'    
+    	 render :action => "new"
+       end
      end
-  end
   
 	def status_update
   	@message = Message.find(params[:id])
@@ -124,13 +145,13 @@ class MessagesController < ApplicationController
     end
   
 	
-	def render_message_template
-    @message_template = MessageTemplate.find(params[:sms_id]).message_body rescue ''
-    @tag_id = MessageTemplate.find(params[:sms_id]).tag_id rescue ''
+  def render_message_template
+    @message_template = MessageTemplate.find(params[:message_message_id]).message_body rescue ''
+    @tag_id = MessageTemplate.find(params[:message_message_id]).tag_id rescue ''
     render :update do |page|
-       page << "jQuery('#sms_message_body').val('#{@message_template}')"
-       page << "jQuery('#sms_tag_id').val('#{@tag_id}')"
-      end
+       page << "jQuery('#message_message_body').val('#{@message_template}')"
+       page << "jQuery('#message_tag_id').val('#{@tag_id}')"
+    end
   end
   
   def student_groups

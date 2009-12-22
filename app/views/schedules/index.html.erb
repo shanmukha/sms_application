@@ -1,5 +1,5 @@
 <div id = 'listing-top'>
-  <h1>Listing all message sending schedules </h1>
+  <h1>Listing all message schedules </h1>
   <div class ='right'> <%= link_to "View sent messages",  messages_path, :class => 'top_link'%> </div>
 </div>
 
@@ -8,11 +8,11 @@
 	 
 	<table class="listing">
   		<tr>
-  		<th>Created by</td>
-    			<th><%= order @search, :by => :scheduled_date, :as => "Date"%></th>
+  		<th>Created by</th>
+    			<th><%= order @search, :by => :scheduled_date, :as => "Schedule date"%></th>
     			<th>Time</th>
     			<th>Message</th>
-    			<th>Class/Mobile no.</th>
+    			<th>sent to</th>
     			<th>View</th> 
   		</tr>
 		<% @schedules.each do |schedule| %>
@@ -36,14 +36,26 @@
 	<h1>Search </h1>
 	<% form_for @search do |f| %>
  		<table>
+                        <tr>
+       				<th>Student name</th>
+			</tr>
+			<tr>
+				<td><%= f.text_field :students_name_like%></td>
+			</tr>
+                        <tr>
+       				<th>Class name</th>
+			</tr>
+			<tr>	
+				<td><%= f.text_field :group_name_like%></td>
+			</tr>
      			<tr>
-      				<th>Scheduled Date</th>
+      				<th>Scheduled date</th>
 			</tr>
 			<tr>	
 				<td><%= f.text_field :scheduled_date_like %></td>
 			</tr>
      			<tr>
-       				<th>Scheduled Time</th>
+       				<th>Scheduled time</th>
 			</tr>
 			<tr>
 				<td><%= f.text_field :scheduled_time_equals%></td>
@@ -62,14 +74,9 @@
 				<td><%= f.text_field :number_like%></td>
 			</tr>
 			
+			
 			<tr>
-       				<th>Class Name</th>
-			</tr>
-			<tr>	
-				<td><%= f.text_field :group_name_like%></td>
-			</tr>
-			<tr>
-       				<th>Tag Name</th>
+       				<th>Tag name</th>
 			</tr>
 				<tr>
 				<td><%= f.text_field :tag_name_like%></td>
@@ -77,18 +84,13 @@
 			
 			
 			<tr>
-       				<th>Creater name </th>
+       				<th>Scheduled by </th>
 			</tr>
 			<tr>
 				<td><%= f.text_field :user_name_like%></td>
 			</tr>
 			
-			<tr>
-       				<th>Student Name</th>
-			</tr>
-			<tr>
-				<td><%= f.text_field :students_name_like%></td>
-			</tr>
+			
 			<tr>
        				<td class="btn"><%= f.submit "Search" %> <input type="reset" value="Reset"></td>
   			</tr>

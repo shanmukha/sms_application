@@ -2,35 +2,39 @@
 <%= f.error_messages %>
 <div class="create_new">
 	<fieldset>
-  		<p>
-   			<%= f.label :Name %><br />
-    			<%= f.text_field :name %>
-  		</p>
-		<br />
-               <label> Select the students belongs to this class/group. or copy from another group</label> 
-   		<table class="student_list" border="1">
-    			
-		 <tr>
-		   <th><input type='checkbox' title ="Check All/Uncheck" name='checkall' onclick='checkedAll();'/></th>
-     				<th>Student name</th>
-				<th>Roll Number</th>
-			</tr>
-   			<%current_user.students.find(:all).each do |student| %>
-  			<tr class="<%=cycle("odd", "even")%>">
-       				<td><%= check_box_tag("students[]", student.id, false,:id=> student.id)%></td>
-    				<td><%=h student.name %></td>
-				<td><%=h student.roll_number%></td>
-			</tr>	
-    				<%end%>
+  	   <p>
+   	      <%= f.label :class_name %><br />
+    	      <%= f.text_field :name %>
+  	   </p>
+	   <br />
+
+           <div id = 'students_list'>
+              <label> Select students from below list or <%= link_to_function "Copy students from another class/group", "$('#copy_students').show(); $('#students_list').hide(); return false;" %> </label> 
+   		 <table class="student_list" border="1">
+    		  <tr>
+		    <th><input type='checkbox' title ="Check All/Uncheck" name='checkall' onclick='checkedAll();'/></th>
+     		    <th>Student name</th>
+		    <th>Roll Number</th>
+		  </tr>
+   		  <%current_user.students.find(:all).each do |student| %>
+  		     <tr class="<%=cycle("odd", "even")%>">
+       			 <td><%= check_box_tag("students[]", student.id, false,:id=> student.id)%></td>
+    			 <td><%=h student.name %></td>
+			 <td><%=h student.roll_number%></td>
+		     </tr>	
+    		  <%end%>
 		</table>
+              </div>
     		
-        <p>  <label>Copy students from  another class record.</label>  <br />
-            <%= select_tag :group_id,  %{<option value="">Please select class</option>} + 		options_for_select(all_groups) %>    
+        <p id = 'copy_students' style ="display:none">  
+            <label> Selected the class/group or <%= link_to_function "Select students from the list.", "$('#copy_students').hide(); $('#students_list').show(); return false;" %> </label> <br />
+            <%= select_tag :group_id,  options_for_select(all_groups) %>    
         </p>
+      <br />
       <span>
-    		<%= f.submit 'Create' %> or <%= link_to_function "Cancel",
+    	 <%= f.submit 'Create record' %> or <%= link_to_function "Cancel",
 		"jQuery('#top').hide(); jQuery('#button').show(); return false;"%>
-  		</span>
+  	 </span>
   	</fieldset>  
 </div>
 

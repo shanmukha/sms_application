@@ -48,7 +48,7 @@
 		           <li><%= link_to "Logout", logout_path %></li>
 		         
          	</ul>
-              welcome <%= current_user.name%>
+              
         		<%else%>
 
         	<ul>
@@ -88,14 +88,7 @@
 </div> <!-- end of header -->
 
 
-<% if flash[:notice] %>
-  <div id="notice">
-     <p><%= flash[:notice] %></p>
-  </div>
-<% end %>
-
- <p style="color:red"><%= flash[:error] %></p>
-
+<%= render :partial => 'shared/notice' %>
 
 <div id="content_wrapper">
     	<div id="wrapper">		  

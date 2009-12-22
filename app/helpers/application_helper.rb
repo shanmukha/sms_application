@@ -1,24 +1,22 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
  def message_body_filter(body)
- 		unless body.nil?
- 		body.slice!(0,40)
-        end
+    body.slice!(0,40) + "..." unless body.nil?
   end
   
-  def all_templates
-	  current_user.message_templates.find(:all).map{|m|[m.message_title,m.id]}
-	end
+  def all_templates 
+     [['Select saved message', '']] + current_user.message_templates.find(:all).map{|m|[m.message_title,m.id]}
+  end
 	
 	def all_tags
 	  admin = current_user.has_role?('admin') ? current_user : User.find(current_user.parent_id) rescue ''
-	  admin.tags.find(:all).map{|m|[m.name,m.id]} rescue ''
+	  [['Select tag', '']] + admin.tags.find(:all).map{|m|[m.name,m.id]} rescue ''
 	end
 	
 	
-	def all_groups
-	    admin = current_user.has_role?('admin') ? current_user : User.find(current_user.parent_id) rescue ''
-      admin.groups.find(:all,:conditions =>['status = ?','Active']).map{|m|[m.name,m.id]} rescue ''
+  def all_groups
+    admin = current_user.has_role?('admin') ? current_user : User.find(current_user.parent_id) rescue ''
+     [['Select class/group', '']] + admin.groups.find(:all,:conditions =>['status = ?','Active']).map{|m|[m.name,m.id]} rescue ''
    end
    
    def find_message_status(message,student)

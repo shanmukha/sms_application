@@ -1,37 +1,44 @@
-<% form_for(@email) do |f| %>
-  <%= f.error_messages %>
- <div class="Errors_left">
- <p>
-    <%= f.label :Subject %><br />
-    <%= f.text_field :subject %>
-  </p>
-  
-  <p>
-    <%= f.label :body %><br />
-    <%= f.text_area :body %>
-  </p>
- <span>
-    <%= f.submit 'Send' %>or <%= link_to 'Cancel & return to sent mails list', emails_path %>
-  </span>
-</div>
-  <div class="Errors_right">
-    	        <%= f.select :group_id, all_groups, options={:prompt => 'Select class/group'}%>
-      	      <%= image_tag("spinner.gif",
-              	:align => "absmiddle",
-               	:border => 0,
-              	:id => "spinner1",
-             	  :style =>"display: none;" ) %>  
-         </div>
+<div class = 'show_wrapper'> 
+<% form_for(@email||Email.new,:html => {:id => 'main-form'}) do |f| %>
+     <div class="create_new">
+      <div class="left part1">
+	<fieldset>
+                 <br />
+  		<%= f.error_messages %>
+ 		<p>
+    		  <%= f.label :Email_subject %><br />
+    		  <%= f.text_field :subject, :class => 'email' %>
+  		</p>
+                <br />
+  		<p>
+    		  <%= f.label :Email_body %><br />
+    		  <%= f.text_area :body, :class => 'email' %>
+  		</p>
 
-        
-          <%= observe_field("email_group_id", :frequency => 1,
+   		<span>
+    		   <%= f.submit 'Send email' %> or <%= link_to_function "Cancel", "jQuery('#top').hide(); jQuery('#button').show(); return false;"%> 
+  		</span>
+	</fieldset>
+      </div>
+
+     <div id="select_group">
+        <label> Select class </label><br />
+        <%= f.select :group_id, all_groups%>
+      	      		<%= image_tag("spinner.gif",
+              		:align => "absmiddle",
+               		:border => 0,
+              		:id => "spinner1",
+             	 	 :style =>"display: none;" ) %>  
+          
+         <%= observe_field("email_group_id", :frequency => 1,
                   :before => "jQuery('#spinner1').show();",
                   :success => "jQuery('#spinner1').hide();",
                   :url => {:action=>'group_students'}, :method => :get,
                   :with => "'group_id=' + value")%>
-    	    <div id="students"> </div>
-        </div>
-  
+          <br /><br />
+          <div id="students"></div>
+       </div>
+       <div class = 'clear'> </div>
+  </div>
 <% end %>
-<div class="clear"></div>
-
+  </div>

@@ -2,11 +2,13 @@
      <div class="create_new">
       <div class="left part1">
 	<fieldset>
+                 <br />
   		<%= f.error_messages %>
  		<p>
     		  <%= f.label :Email_subject %><br />
     		  <%= f.text_field :subject, :class => 'email' %>
   		</p>
+                <br />
   		<p>
     		  <%= f.label :Email_body %><br />
     		  <%= f.text_area :body, :class => 'email' %>
@@ -19,8 +21,8 @@
       </div>
 
      <div id="select_group">
-        <label> Select the class to which email to be sent </label><br /><br />
-        <%= f.select :group_id, all_groups, options={:prompt => 'Select class/group'}%>
+        <label> Select class </label><br />
+        <%= f.select :group_id, all_groups%>
       	      		<%= image_tag("spinner.gif",
               		:align => "absmiddle",
                		:border => 0,

@@ -5,7 +5,9 @@ class Message < ActiveRecord::Base
  belongs_to :group
  belongs_to :tag
  
- attr_accessible :message_body,:number,:status,:sms_id,:tag_id,:group_id
+ attr_accessible :message_body, :number, :status, :sms_id, :tag_id, :group_id, :message_id, :scheduled_date
+ attr_accessor :message_id, :scheduled_date
+
  validates_presence_of :message_body
  
 	def self.find_month_wise_report(from_date,to_date,current_user)

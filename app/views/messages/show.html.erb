@@ -1,34 +1,30 @@
 <div class="showpage_content">
-	<table class="show_page">
+   <table class="show_page">
 		<tr>		
-			<th>Sent date: </th><td><%=h Time.parse(@message.created_at.to_s).strftime('%Y-%m-%d') %></td>
+		    <th>Sent date: </th><td><%=h Time.parse(@message.created_at.to_s).strftime('%Y-%m-%d') %></td>
+                    <th>Sent by: </th><td><%=h @message.user.name %></td>
 		</tr>
-   <tr>		
-			<th>Sent by: </th><td><%=h @message.user.name %></td>
-		</tr>
-		<tr>
-			<th>Message:</th><td><%=h @message.message_body %></td>
-		</tr>
-     
-      <%unless @message.tag_id.nil?%>
-				<tr>
-				<th>Tag name:</th><td><%=h @message.tag.name%></td>
-			</tr>
-		  <%end%>
-		
-    <%unless @message.group_id.nil?%>
-		<tr>
-			<th>Class/group:</th><td><%=h @message.group.name%></td>
-		</tr>
-     <%else%>
-		<tr>
-			<th>Mobile number:</th><td><%=h @message.number%></td>
-		</tr>
-     <%end%>
+                <%unless @message.tag_id.nil?%>
+                   <tr>
+		     <th>Message tag:</th><td><%=h @message.tag.name%></td>
+		   </tr>
+                <%end%>
+                 
+                <%unless @message.group_id.nil?%>
+		   <tr>
+			<th>Message sent to:</th><td><%=h @message.group.name%></td>
+		   </tr>
+                <%else%>
+		   <tr>
+		      <th>Message sent to:</th><td><%=h @message.number%></td>
+		   </tr>
+                <%end%>
+                 <tr><th colspan = '4'>Message content: <br /></th> </tr>
+                 <tr> <td colspan = '4'><%=h @message.message_body %></td> </tr>
 	</table>
        <table class="student_letter" border="1" >
 		<tr>
- 			<%if !@students.blank? and @message.sms_id==nil%>
+ 		   <%if !@students.blank? %>
 			<th>Student name</th>
 			<th>Roll Number</th>
 	   	<th>Status</th>

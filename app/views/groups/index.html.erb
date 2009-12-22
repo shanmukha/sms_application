@@ -19,22 +19,23 @@
          
     <h1>Listing all classes/groups</h1>
     <div class="clear"></div>
+    
 </div>
 
 <div id="listing_file">
    <table class="listing">
                        		<tr>
-    					<th><%= order @search, :by => :name ,:as => "Name"%></th>
-    		   			<th><%= order @search, :by => :status ,:as => "Status"%></th>
+    					<th><%= order @search, :by => :name, :as => "Name"%></th>
+    		   			<th><%= order @search, :by => :status, :as => "Status"%></th>
     					<th>View</th>
                                         <th>Edit</th>
   				</tr>
-					<% @groups.each do |group| %>
+			<% @groups.each do |g| %>
   				<tr class="<%=cycle("odd", "even")%>">
-    					<td><%=h group.name %></td>
-    					<td><%= h group.status%>
-    					<td><%= link_to '<img src="/images/view.gif" title="View"/>', group%> </td>
-                                        <td><%= link_to image_tag('edit.gif', :title=> "Edit"), edit_group_path(group) %>  </td>
+    					<td><%=h g.name %></td>
+    					<td><%= h g.status%></td>
+    					<td><%= link_to '<img src="/images/view.gif" title="View"/>', g%> </td>
+                                        <td><%= link_to image_tag('edit.gif', :title=> "Edit"), edit_group_path(g) %>  </td>
   				</tr>
 			<% end %>
 			</table>

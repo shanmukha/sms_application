@@ -7,10 +7,11 @@
 <div id="listing_file">
 	<table class="listing">
   		<tr>
-    			<th><%= order @search, :by => :created_at, :as => "Sent Date"%></th>
+    			<th><%= order @search, :by => :created_at, :as => "Sent date"%></th>
     			<th>Sent by</th>
     			<th>Message</th>
-    			<th>Class/Mobile no.</th>
+    			<th>Sent to.</th>
+                        
      			<th>View</th>
   		</tr>
 		<% @messages.each do |message| %>
@@ -33,19 +34,27 @@
 	<h1>Search </h1>
 	<% form_for @search do |f| %>
  		<table>
-     			<tr>
-      				<th>Message</th>
+                        <tr>
+       				<th>Student Name</th>
 			</tr>
 			<tr>
-				<td><%= f.text_field :message_body_like %></td>
+				<td><%= f.text_field :students_name_like%></td>
 			</tr>
-			<tr>
+                       
+                        <tr>
        				<th>Class Name</th>
 			</tr>
 			
 			<tr>
 				<td><%= f.text_field :group_name_like%></td>
 			</tr>
+     			<tr>
+      				<th>Message</th>
+			</tr>
+			<tr>
+				<td><%= f.text_field :message_body_like %></td>
+			</tr>
+			
 				<tr>
        				<th>Tag Name</th>
 			</tr>
@@ -66,12 +75,7 @@
 				<td><%= f.text_field :user_name_like%></td>
 			</tr>
 			
-			<tr>
-       				<th>Student Name</th>
-			</tr>
-			<tr>
-				<td><%= f.text_field :students_name_like%></td>
-			</tr>
+			
 			<tr>
        				<td class="btn"><%= f.submit "Search" %> <input type="reset" value="Reset"></td>
   			</tr>
