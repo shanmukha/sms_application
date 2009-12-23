@@ -36,6 +36,13 @@ class EmailsController < ApplicationController
           redirect_to(emails_url)
        return nil
     end
+     
+     if params[:email][:body].blank? and params[:email][:subject].blank?
+        flash[:notice] = "Please enter email subject and body."
+        redirect_to(emails_url)
+        return nil
+     end
+  
       if params[:email][:body].blank?
         flash[:notice] = "Please enter email body."
         redirect_to(emails_url)
