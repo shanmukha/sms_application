@@ -246,7 +246,7 @@ h1.heading span{color: #c8287b;}
 	width: 94%;
   	margin: 10px auto 10px auto;
   	background: #d0d1d2 url(/images/container-bg.png) repeat-x; 
-        padding: 15px;
+        padding: 10px;
 }
 
 #message{
@@ -271,8 +271,8 @@ h1.heading span{color: #c8287b;}
 .message_left{
         padding: 0px 0px 10px 0px;
 	float:left;
-	min-height:370px;
-	width:48%;
+	min-height:360px;
+	width:48.5%;
 	margin: 0;
 	background: #fff;
 }
@@ -339,7 +339,7 @@ select{
 	background: #fff url(/images/right_form_bg.gif) no-repeat center;
 	width:50.5%;
 	height: auto;
-	min-height: 370px;
+	min-height: 360px;
   padding: 0px 0px 10px 0px;
 }
 
