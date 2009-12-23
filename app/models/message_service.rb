@@ -1,3 +1,3 @@
 class MessageService < ActiveResource::Base
- 	self.site = "http://localhost:3001"
- end
+   self.site = "http://97.107.140.86:3001/"
+end

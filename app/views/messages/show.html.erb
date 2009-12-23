@@ -1,57 +1,48 @@
-<div class="showpage_content">
+<div class="form_wrapper">
+  <h1 class = 'heading left'>Message sent to <span><%= @message.group_id.nil? ? @message.number : @message.group.name  %></span> </h1>
+  <div class = 'right'<%= link_to image_tag("closelabel.gif", :title=> "close"), messages_url %> </div>
+  <div class="clear" ></div>
+  <hr />
+
    <table class="show_page">
 		<tr>		
-		    <th>Sent date: </th><td><%=h Time.parse(@message.created_at.to_s).strftime('%Y-%m-%d') %></td>
-                    <th>Sent by: </th><td><%=h @message.user.name %></td>
+		    <td><%=h @message.created_at.strftime('%d-%M-%Y') %></td>
+                    <td><%=h @message.user.name %></td>
 		</tr>
+                <tr> <td colspan = '2' style ='border: 1px solid #ccc; background: #eef2f6;'><%=h @message.message_body %></td> </tr>
                 <%unless @message.tag_id.nil?%>
                    <tr>
 		     <th>Message tag:</th><td><%=h @message.tag.name%></td>
 		   </tr>
                 <%end%>
-                 
-                <%unless @message.group_id.nil?%>
-		   <tr>
-			<th>Message sent to:</th><td><%=h @message.group.name%></td>
-		   </tr>
-                <%else%>
-		   <tr>
-		      <th>Message sent to:</th><td><%=h @message.number%></td>
-		   </tr>
-                <%end%>
-                 <tr><th colspan = '4'>Message content: <br /></th> </tr>
-                 <tr> <td colspan = '4'><%=h @message.message_body %></td> </tr>
+  
 	</table>
-       <table class="student_letter" border="1" >
+       <table class="student_letter">
 		<tr>
  		   <%if !@students.blank? %>
+                        <th>Roll number</th>
 			<th>Student name</th>
-			<th>Roll Number</th>
-	   	<th>Status</th>
+                        <th>Parent name</th>
+                        <th>Mobile number</th>
+	   	        <th>Status</th>
+                        <th>Re-send</th>
 		</tr>
 		<%@students.each do  |student|%>
+                <% status = find_message_status(@message, student) %>
 		<tr class="<%=cycle("odd", "even")%>">
+                        <td><%= student.roll_number%></td>
 			<td><%= student.name%></td>
-	  		<td><%= student.roll_number%></td>
-   			<td><%= find_message_status(@message,student)%></td>
+	  		<td><%= student.parent%></td>
+                        <td><%= student.number%></td>
+   			<td class = <%= column_class(status) %>><%= status%></td>
+                        <td><%= button_to 'Re-send', '#', :disabled => disabled(status)%></td>
 		</tr>
 		<%end%>
 		<%end%>
-		<%if @message.sms_id==nil and @students.blank?%>
-		<tr>
-			<td>
-				<h3>Status:Sent failed</h3>
-			</td>
-		</tr>
-		<%end%>
-		<%if @message.sms_id!=nil%>	
-		<tr>
-			<td>
-	   			<h3>Status:<%= @message.status%><h3>
-			</td>
-		</tr>
-		<%end%>
+
+		 
 	</table>
-	<%= link_to "Update status", status_update_message_path(@message)%> 
+        <br />
+	<%= button_to "Refresh delivery status", status_update_message_path(@message)%> 
 </div>
 

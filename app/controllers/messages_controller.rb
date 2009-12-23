@@ -63,7 +63,7 @@ class MessagesController < ApplicationController
     #end 
  
     if params[:students].blank? and params[:message][:number].blank?
-      flash.now[:error] = "Please select at least one student or enter number."
+      flash.now[:error] = "Please select at least one student or enter mobile number."
       render :action => "new"
       return nil
     end
@@ -117,30 +117,30 @@ class MessagesController < ApplicationController
        end
      end
   
-	def status_update
-  	@message = Message.find(params[:id])
-  	messages = @message.message_students
-  	admin = current_user.has_role?('admin') ? current_user : User.find(current_user.parent_id)
-    MessageService.user = admin.server_user_name
-    MessageService.password = admin.server_password
-    unless messages.blank?
-      messages.each do |msg|
-      	sms = MessageService.find(msg.sms_id)
+    def status_update
+      @message = Message.find(params[:id])
+      messages = @message.message_students
+      admin = current_user.has_role?('admin') ? current_user : User.find(current_user.parent_id)
+      MessageService.user = admin.server_user_name
+      MessageService.password = admin.server_password
+      unless messages.blank?
+        messages.each do |msg|
+          sms = MessageService.find(msg.sms_id)
      	  sms.save   #calling update method of the API
-        msg.update_attribute('status', sms.status) 
+          msg.update_attribute('status', sms.status) 
      	end
-    else
-      sms = MessageService.find(@message.sms_id)
-      sms.save   #calling update method of the API
-      @message.update_attribute('status', sms.status) 
+      else
+        sms = MessageService.find(@message.sms_id)
+        sms.save   #calling update method of the API
+        @message.update_attribute('status', sms.status) 
       end  
       respond_to do |format|
         flash[:notice] = 'Status successfully updated.'
         format.html { redirect_to(message_url(@message))} 
         format.xml  { render :xml => @message }
       end
-       rescue #ActiveResource::ResourceInvalid => e  
-         flash[:error] = 'Some thing went wrong. Please try again latter.'    
+      rescue #ActiveResource::ResourceInvalid => e  
+         flash[:error] = 'There seems to be some problem upadting the delevery status. Please try again latter.'    
          redirect_to(messages_url) 
     end
   

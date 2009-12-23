@@ -1,7 +1,7 @@
 <% if flash[:notice] %>
   <div id="notice">
      <p><%= flash[:notice] %>
-        &nbsp;&nbsp;&nbsp; <%= link_to_function 'OK', "$('#notice').fade({duration: 0.5});", :title => "close", :class => 'close-button' %>
+        &nbsp;&nbsp;&nbsp; <%= link_to_function 'Fine. Close this.', "$('#notice').fade({duration: 0.5});", :title => "close", :class => 'close-button' %>
      </p>
   </div>
 <% end %>
@@ -9,7 +9,7 @@
 <% if flash[:error] %>
  <div id="error">
    <p ><%= flash[:error] %>
-       &nbsp;&nbsp;&nbsp;<%= link_to_function 'OK', "$('#error').fade({duration: 0.5});", :title => "close", :class => 'close-button' %>
+       &nbsp;&nbsp;&nbsp;<%= link_to_function 'Fine. Close this.', "$('#error').fade({duration: 0.5});", :title => "close", :class => 'close-button' %>
    </p>
 </div>
 <% end %>

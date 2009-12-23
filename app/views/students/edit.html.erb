@@ -1,5 +1,8 @@
-<div class="clear"></div>
 <div class="Edit_show" id = 'student'>
+ <h1 class = 'heading left'>Editting <span> <%= @student.name %></span>'s record</h1>
+  <div class = 'right'<%= link_to image_tag("closelabel.gif", :title=> "close"), students_url %> </div>
+ <div class="clear" ></div>
+  <hr />
 	<fieldset>
 		<% form_for(@student,:html => {:id => 'main-form'}) do |f| %>
   		<%= f.error_messages %>
@@ -27,7 +30,8 @@
     			<%= f.label :email %><br />
     			<%= f.text_field :email %>
   		</p>
-  	
+
+  	        <br /> 
   		<p><label>Classes/Groups</label>
   		<!-- <input type='checkbox' title ="Check All/Uncheck" name='checkall' onclick='checkedAll();'>(Check all/Uncheck all)-->
 		</p>
@@ -36,22 +40,21 @@
    		<%= h group.name%>
 		</p>
    		<%end%>
+
  		<p>
   		<%@non_groups.each do |non_group| %>
   		<p>
-      		<%= check_box_tag("groups[]", non_group.id, false,:id=> non_group.id)%>
-    		 <%=h non_group.name %>
+      		  <%= check_box_tag("groups[]", non_group.id, false, :id=> non_group.id)%>
+    		   <%=h non_group.name %>
 		</p>
     		<%end%>
 		</p>
-  		<p>
-    			<span><%= f.submit 'Update' %></span>
-  		</p>
+  		
+    		   <table><tr><td> <span><%= f.submit 'Update record' %></span> or</td><td> <% if current_user.has_role?('admin')%>
+  			 <span><%= button_to 'Delete record', @student, :confirm => 'Are you sure? You want to delete the student record.', :method => :delete %></span>
+  		    <%end%></td></tr></table>
+  		
 		<% end %>
-
-                    <% if current_user.has_role?('admin')%>
-  			 <%= link_to 'Delete', @student, :confirm => 'Are you sure? You want to delete the student record.', :method => :delete %>
-  		    <%end%>
   		 
 	</fieldset>
 </div>

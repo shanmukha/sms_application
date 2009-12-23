@@ -1,5 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
   map.resources :tags
+  map.resources :helps
   map.resources :class_reports
   map.resources :tag_reports
   map.resources :teacher_reports

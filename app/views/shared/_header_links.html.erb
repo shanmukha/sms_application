@@ -8,6 +8,7 @@
                   <%end%>
                   <li class='<%= request.request_uri == "/users/#{current_user.id}/edit"? 'active': 'link' %>'> 
                     <%= link_to "My account",edit_user_path(current_user) %>|</li> 
+                  <li><%= link_to "Help", helps_path %> | </li>
           	  <li><%= link_to "Logout", logout_path %></li> 
               </ul>
        <%else%>

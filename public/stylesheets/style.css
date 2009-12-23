@@ -32,6 +32,13 @@ textarea{
   height: 100px;
 }
 
+hr {
+color: #bbb;
+background-color: #bbb;
+border-top: 1px solid #838ea6;
+
+}
+
 label{
 font-weight: bold;
 color: #49566f;
@@ -139,6 +146,7 @@ h1.heading span{color: #c8287b;}
 
 #notice {background: #64a049; color: #fff; font-weight: bold; border: 1px solid #4e9131; padding: 5px;  width: 94%; margin: 0 auto 10px auto;}
 #error {background: #c95343; color: #fff; font-weight: bold; border: 1px solid #a9462b; padding: 5px;  width: 94%; margin: 0 auto 10px auto;}
+#notice a{color: #eac600; margin: 0px 20px 0px 30px;}
 /* menu *******************************************************************************/
 
 #menu { 
@@ -313,7 +321,6 @@ select{
 
 
 .message_left  textarea{
-        font-family : "arial", helvetica, sans-serif;
         font-size: 14px;
 	border:1px solid #ccc;
 	padding:5px;
@@ -430,8 +437,8 @@ color:#0e8ab8;
 	background:#c3c6c8;
 	margin: 0px auto 10px auto;
 	clear: both;
-	width: 93%;
-	padding: 15px;
+	width: 94.2%;
+	padding: 8px;
 	border-top: none;
 }
 
@@ -459,7 +466,7 @@ color:#0e8ab8;
 
 .listing th {
 	  background: #ddd url(/images/table_header.jpg) repeat-x;
-          color: #6d053b;
+          color: #a6085a;
           text-align: left;
           padding: 0.6em .5em .5em .5em;
           font-weight: bold; 
@@ -905,7 +912,7 @@ table.student_group tr.even:hover{
 }
 
 table.show_page{
-	margin: 10px 40px 10px 30px;
+	margin: 5px 40px 10px 0px;
 }
 
 table.show_page tr th{
@@ -925,14 +932,17 @@ table.show_page tr td{
 	text-align:left;
         padding:10px 10px 10px 5px;
 }
+ table.show_page tr td.blue{
+    color: #004e9d;
 
+}
 
  
 table.student_letter{
 	border-collapse: collapse; 
-	width: 250px; 
-	border: #bdcedc 1px solid;
-	margin:10px 0px 40px 30px;
+	width: 80%; 
+	border: #ccc 1px solid;
+	margin:10px 0px 10px 0px;
 }
 
 table.student_letter tr th{
@@ -995,11 +1005,6 @@ table.student_letter tr.even:hover{
 	height: 0 auto;
 }
 
-.Edit_show fieldset{
-	 background: #eeedee;
-	border:1px solid #cecece;
-	width:450px;margin:10px 0px 0px 0px;
-}
 
 .Edit_show p input{
 	background:#fff url(/images/input.png) repeat-x bottom;
@@ -1014,40 +1019,28 @@ table.student_letter tr.even:hover{
 	padding:5px 5px 5px 12px;
 }
 
-.Edit_show p label{
-	color:#000;
-	font-weight:normal;
-	margin:5px 0px 0px 0px;
-}
+ 
 
 .Edit_show p textarea{
 	border:1px solid #808080;
 	padding:2px;
 	background:#fff url(/images/input.png) repeat-x bottom;
-	width:90%;
-	height:150px;
+	width:250px;
+	height:100px;
 }
 
 .Edit_show p textarea:focus{
 	border:1px solid #e8c382;
 }
 
-.Edit_show p span input{
-	background:#771919;
+.Edit_show  span input{
 	margin:5px 5px 5px 5px;
 	padding:5px 10px 5px 10px;
-	color:#fff;
-	font-size:13px;
-	text-transform:uppercase;font-weight:bold;
-	font-family: Verdana, Helvetica, Arial;
+	color:#31608f;
+        font-weight: bold;
 }
 
-.Edit_show p input:focus{
-	border:1px solid #e8c382;
-}
-.Edit_show p span input:hover{
-	background-color:#371c6d;
-}
+ 
 
 /*...............................pagination..........................................*/
 
@@ -1106,7 +1099,7 @@ table.student_letter tr.even:hover{
 
 
 /* footer **************************************************************/
-#footer {background-color:#d2caad;
+#footer { 
 	width: 95.5%;
 	padding: 5px;
 	margin: 10px auto;
@@ -1387,4 +1380,10 @@ a.buttonAdd:hover span {
 	background: url(/images/sprite.png) -583px -36px no-repeat;
 }
 
+.inner_content{ margin: 8px; border: 1px solid #ccc; padding: 10px;}
 
+.blue {color: #477eb1;}
+.yellow {background: #f1ec64;}
+.green {background: #65cb60;}
+.orange {background: #edad00;}
+.red {background: #e1490d;}
