@@ -1,30 +1,33 @@
  <h1>Tag report</h1>
- 
- <% form_for(:report, :url => class_reports_path, :html => {:id => 'main-form',:method => :get}) do |f| %>
- <%= f.select :tag_id, all_tags, options={:prompt => 'All'}%>
- <%= f.select :group_id, all_groups, options={:prompt => 'All'}%>
- <%= f.select :month ,[["This month","tm"],["Last month", "lm"], ["Last 2 months", "l2"], ["Last 3 months", "l3"], ["Last 4 months", "l4"]]%>
+  <% form_for(:report, :url => tag_reports_path, :html => {:id => 'main-form',:method => :get}) do |f| %>
+ Class:<%= f.select :group_id, find_all_groups, options={:prompt => 'All'}%>
+ Month: <%= f.select :month ,[["This month","tm"],["Last month", "lm"], ["Last 2 months", "l2"], ["Last 3 months", "l3"], ["Last 4 months", "l4"]]%>
  <%= f.submit "Report" %>
     <%= link_to_function "List", "jQuery('#graph').hide(); jQuery('#list').show(); return false;" %> |
      <%= link_to_function "Pie Chart", "jQuery('#graph').show(); jQuery('#list').hide(); return false;" %> 
   <%end%>
-   
-<div id = 'graph' style ="display:none ; clear:both;">
-   <%= render :partial =>"pie_graph"%>
+    <%unless @month.nil?%>
+   	 <h2><%= @group =='All'? "Tags" :"#{@group.name} class"%> sent messages in <%= @month%></h2>
+   <%else%>
+     <h2>Tags sent messages in <%= month_print(Time.now.month)%> month </h2>
+   <%end%>  
+		 <div id = 'graph' style ="display:none ; clear:both;">
+   			<%= render :partial =>"shared/pie_graph"%>
    </div> 
   <div id ="list">
   <br /> <br />
-   <%unless @tags.nil?%>
-  <table class="student_group" width="100%" border="1" cellpadding="5px">
+ <%unless @tags.blank?%>
+ <table class="student_group" width="100%" border="1" cellpadding="5px">
    <th>Tag name</th>
-   <th>Size</th>
+   <th>Total</th>
   <%@tags.each do |tag|%>
   <tr>
     <td><%= tag.name%></td>
-    <td><%= @tag[tag.id]%></td>
+    <td><%= @tag[tag.id].nil? ? 0 : @tag[tag.id] %></td>
   </tr>
   <%end%>
    </table>
  <%end%>
  
+ <%= @messages_size %>
   

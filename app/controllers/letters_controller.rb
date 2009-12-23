@@ -42,7 +42,18 @@ class LettersController < ApplicationController
   end
 	
 	def create
-    @letter = current_user.letters.new(params[:letter]) if params[:students]
+     if params[:students].blank?
+      flash[:notice] = "Please select at least one student"
+      redirect_to(letters_url)
+      return nil
+    end
+      if params[:letter][:content].blank?
+      flash[:notice] = "Please enter letter content."
+       redirect_to(letters_url)
+      return nil
+    end
+    
+    @letter = current_user.letters.new(params[:letter]) 
     respond_to do |format|
       if @letter.save
            params[:students].each do|student_id|
@@ -56,9 +67,6 @@ class LettersController < ApplicationController
            format.xml  { render :xml => @letter.errors, :status => :unprocessable_entity }
       end
     end
-     rescue
-       flash[:notice] = 'Please select students under the class.'    
-       redirect_to(letters_url)
   end
 	
 	

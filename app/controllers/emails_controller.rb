@@ -31,7 +31,24 @@ class EmailsController < ApplicationController
   end
 
   def create
-  	@email = current_user.emails.new(params[:email])  if params[:students]
+       if params[:students].blank?
+          flash[:notice] = "Please select at least one student"
+          redirect_to(emails_url)
+       return nil
+    end
+      if params[:email][:body].blank?
+        flash[:notice] = "Please enter email body."
+        redirect_to(emails_url)
+        return nil
+     end
+  
+      if params[:email][:subject].blank?
+        flash[:notice] = "Please enter email subject."
+        redirect_to(emails_url)
+        return nil
+     end
+  
+  	@email = current_user.emails.new(params[:email])  
     respond_to do |format|
      if  @email.save
       	  body = params[:email][:body]
@@ -55,7 +72,7 @@ class EmailsController < ApplicationController
        end
      end
      rescue 
-      flash[:notice] = 'Please select students under the class.'    
+      flash[:notice] = 'Some thing went wrong.Please try later'    
       redirect_to(emails_url)  
   end
  

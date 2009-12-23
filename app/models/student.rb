@@ -28,16 +28,14 @@ class Student < ActiveRecord::Base
  def self.find_students_communication_size(group_id,conditions,type) 
 	    students_communication_size = {}
       students = Group.find(group_id).students
-      
       names = []
       sizes = []
       students.each do |student|
-      names << student.name
-      students_communication_size[student.id]  = student.messages.size  if type=="messages"
-      students_communication_size[student.id] = student.letters.find(:all,:conditions => [ conditions.transpose.first.join( " and " ), *conditions.transpose.last ] ).size  if type=="letters" 
-      students_communication_size[student.id] = student.emails.find(:all,:conditions => [ conditions.transpose.first.join( " and " ), *conditions.transpose.last ] ).size  if type=="emails" 
-      sizes << students_communication_size[student.id]
-        puts "llllllllllllllllllllllllll #{students_communication_size[1]}"
+      	names << student.name
+      	students_communication_size[student.id]  = student.messages.count(:all,:conditions => [ conditions.transpose.first.join( " and " ), *conditions.transpose.last ] ) if type=="messages"
+      	students_communication_size[student.id] = student.letters.count(:all,:conditions => [ conditions.transpose.first.join( " and " ), *conditions.transpose.last ] ) if type=="letters" 
+      	students_communication_size[student.id] = student.emails.find(:all,:conditions => [ conditions.transpose.first.join( " and " ), *conditions.transpose.last ] ).size  if type=="emails" 
+      	sizes << students_communication_size[student.id]
         return students,students_communication_size,names,sizes
       end  
 end 

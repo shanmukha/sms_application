@@ -27,10 +27,25 @@ module ApplicationHelper
     def find_schedule_status(schedule,student)
       ScheduleStudent.find(:first,:conditions =>['schedule_id = ? and student_id = ?',schedule,student]).status rescue ''
    end
-   def month_print(month)
+  
+    def month_print(month)
       month_name= ["nil","January"," February"," March"," April"," May"," June"," July"," August"," September"," October"," November"," December"]
       return month_name[month]
      end
+    
+    def find_all_tags
+	  admin = current_user.has_role?('admin') ? current_user : User.find(current_user.parent_id) rescue ''
+	    [['All', '']] + admin.tags.find(:all).map{|m|[m.name,m.id]} rescue ''
+	  end
+	
+	
+  def find_all_groups
+     admin = current_user.has_role?('admin') ? current_user : User.find(current_user.parent_id) rescue ''
+    [['All', '']] +  admin.groups.find(:all,:conditions =>['status = ?','Active']).map{|m|[m.name,m.id]} rescue ''
+  end
+    
+    
+    
      
    def find_teacher_messages(teacher)
   	teacher.messages

@@ -5,6 +5,22 @@ class TeacherReportsController < ApplicationController
 	
    def index
         @teacher = {} 
+     unless params[:report].nil?
+   	  case params[:report][:month]
+         when 'tm'
+          @month = 'this month'
+          when 'lm'
+           @month  = 'last month'
+         when 'l2'
+            @month  = 'last 2 months'
+         when  'l3'
+             @month  = 'last 3 months'
+         when 'l4'
+             @month  = 'last 4 months'
+         end
+            @type = params[:report][:type]  
+      end  
+        
        if params[:report].nil?
           @teachers = User.find_teachers(current_user) #not checking super_admin
           @names = []
