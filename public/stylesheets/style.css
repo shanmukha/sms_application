@@ -265,8 +265,8 @@ h1.heading span{color: #c8287b;}
 	margin: 0px;
 }
 
-.part1 {width: 63%;}
-.part2 {width: 36%;}
+.part1 {width: 57%;}
+.part2 {width: 38%;}
 
 .message_left{
         padding: 0px 0px 10px 0px;
@@ -545,7 +545,7 @@ color:#0e8ab8;
         background: #fff url(/images/main_line_lt.gif) repeat-y;
 	padding:0px;
 	height:0 auto;
-	width:73%;
+	width:72%;
   	float:left;
 	clear:both;
 	margin: 0px 0px 15px 10px;
@@ -686,7 +686,7 @@ table.student_list tr.even:hover{
 
 table.student_group{
 	border-collapse: collapse; 
-	width: 400px; 
+	width: 100%; 
 	border: #b4b8bd 1px solid;
 }
 
@@ -732,7 +732,7 @@ table.student_group tr.even:hover{
 }
 
 #select_group{
-	float:left;
+	float:right;
 	margin: 0px 0px 0px 40px;
 	padding:23px 10px 0px 0px;
 }

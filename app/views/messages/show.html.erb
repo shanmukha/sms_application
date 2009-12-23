@@ -6,7 +6,7 @@
 
    <table class="show_page">
 		<tr>		
-		    <td><%=h @message.created_at.strftime('%d-%M-%Y') %></td>
+		    <td><%=h @message.created_at.strftime('%d-%m-%Y') %></td>
                     <td><%=h @message.user.name %></td>
 		</tr>
                 <tr> <td colspan = '2' style ='border: 1px solid #ccc; background: #eef2f6;'><%=h @message.message_body %></td> </tr>
