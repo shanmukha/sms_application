@@ -1,4 +1,5 @@
 <h1 class = 'heading'>Student details </h1>	
+
 <table class="show_page" >
 		<tr>
   			<th>Student Name:</th>
@@ -30,8 +31,101 @@
                 <tr>
   			<td colspan ='2'><%= find_groups(@student)%></td>
         	</tr>
-  		
-  	</table>
+  		</table>
+  		<%unless @messages.nil?%>
+  		<h3>Sent messages</h3>
+  		<table class="listing">
+  		<tr>
+    			<th>Sent date</th>
+    			<th>Sent by</th>
+    			<th>Message</th>
+    			<th>Sent to.</th>
+           <th>View</th>
+  		</tr>
+   <% @messages.each do |message| %>
+  		<tr class="<%=cycle("odd", "even")%>">
+    			<td><%=h Time.parse(message.created_at.to_s).strftime('%Y-%m-%d') %></td>
+    			<td><%= message.user.name%></td>
+    			<td><%=h message_body_filter(message.message_body)%></td>
+    			<%unless message.group_id.nil?%>
+    			<td><%=h message.group.name%></td>
+    			<%else%>
+    			 <td><%=h message.number%></td>
+    			<%end%>
+    			<td class="view"><%= link_to '<img src="/images/view.gif" title="View"/>', message_path(message)%></td>
+  		</tr>
+  		<%end%>
+</table>
+<%end%>
+<%unless @schedules.nil?%>
+<h3>Scheduled messages</h3>
+ 
+ <table class="listing">
+  		<tr>
+  		<th>Created by</th>
+    			<th>Schedule date</th>
+    			<th>Time</th>
+    			<th>Message</th>
+    			<th>sent to</th>
+    			<th>View</th> 
+  		</tr>
+		<% @schedules.each do |schedule| %>
+  		   <tr class="<%=cycle("odd", "even")%>">
+  		    <td><%= schedule.user.name%></td>
+    			<td><%=h schedule.scheduled_date%></td>
+    			<td><%= Time.parse(schedule.scheduled_time.to_s).strftime('%H:%M') %></td>
+    			<td><%=h message_body_filter(schedule.message_body)%></td>
+    		   <%unless schedule.group_id.nil?%>
+    			    <td><%=h schedule.group.name%></td>
+    			  <%else%>
+    			    <td><%=h schedule.number%></td>
+    			 <%end%>
+    		   	  <td class="view"><%= link_to '<img src="/images/view.gif" title="View"/>', schedule %></td>
+  		</tr>
+		<% end %>
+	</table>
+<%end%>
 
 
-
+<%unless @emails.nil?%>
+<h3>Sent emails</h3>
+<table class ="listing">
+  		<tr>
+  		    <th>Sent by</th>
+    			<th>Subject</th>
+    			<th>Content</th>
+    			<th>Class</th>
+    			<th>View</th>
+  		</tr>
+		<% @emails.each do |email| %>
+  		<tr class="<%=cycle("odd", "even")%>">
+  		     <td><%= email.user.name%>
+     			<td><%=h email.subject %></td>
+     			<td><%=h message_body_filter(email.body) %></td>
+     			<td><%=h email.group.name%></td>
+     			<td class="view"><%= link_to '<img src="/images/view.gif" title="View"/>', email%></td>
+      		</tr>
+		<% end %>
+	</table>
+	<%end%>
+	<%unless @letters.nil?%>
+	<h3>Sent letters</h3>
+		<table class ="listing">
+  		<tr>
+  		    <th>Created by</th>
+    			<th>Content</th>
+    			<th>Class</th>
+    			<th>View</th>
+  		</tr>
+		<% @letters.each do |letter| %>
+  		<tr class="<%=cycle("odd", "even")%>">
+  		    <td><%= letter.user.name%></td>
+    			<td><%= message_body_filter(letter.content)%></td>
+     			<td><%= letter.group.name %></td>
+    			<td class="view"><%= link_to '<img src="/images/view.gif" title="View"/>', letter%></td>
+  		</tr>
+		<% end %>
+	</table>
+	<%end%>
+<div class ="clear">
+  		</div>

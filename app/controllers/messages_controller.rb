@@ -77,7 +77,7 @@ class MessagesController < ApplicationController
     begin
       if @message.save
          if !params[:students].nil?
-	    message = @message.message_body
+	        message = @message.message_body
             params[:students].each do  |student_id|
                student_record = Student.find(student_id)
                student, parent = student_record.name, student_record.parent
@@ -160,6 +160,21 @@ class MessagesController < ApplicationController
      	page.replace_html 'students', :partial => 'group_student'
    end
   end 
+  
+  def student_message_resend
+      @message = Message.find(params[:message_id])
+      student_record = Student.find(params[:student_id])
+      message = @message.message_body
+      params[:message][:message_body] = message
+      student_record = Student.find(student_id)
+      student, parent = student_record.name, student_record.parent
+      message.gsub!(/@student/, student) 
+      message.gsub!(/@parent/, parent)
+      sms = MessageService.create(:sms => params[:message].merge!({:number => student_record.number})) 
+      student_record.update_attributes(:message_id => @message.id, :student_id => student_id, :sms_id => sms.id,:status => "Sent")
+       redirect_to(messages_url) 
+  end
+      
   
   private
   def user_ids

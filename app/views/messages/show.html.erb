@@ -1,6 +1,6 @@
 <div class="form_wrapper">
   <h1 class = 'heading left'>Message sent to <span><%= @message.group_id.nil? ? @message.number : @message.group.name  %></span> </h1>
-  <div class = 'right'<%= link_to image_tag("closelabel.gif", :title=> "close"), messages_url %> </div>
+  <div class = 'right'<%= link_to image_tag("closelabel.gif", :title=> "close"),:back %> </div>
   <div class="clear" ></div>
   <hr />
 
@@ -15,7 +15,15 @@
 		     <th>Message tag:</th><td><%=h @message.tag.name%></td>
 		   </tr>
                 <%end%>
-  
+
+		<%if @message.sms_id!=nil%>	
+		<tr>
+	    <td class = <%= column_class(@message.status) %>><h3>Status:<%= @message.status%></td>
+      <td><%= button_to 'Re-send', '#', :disabled => disabled(@message.status)%></td>
+	   			
+			</td>
+		</tr>
+		<%end%>
 	</table>
        <table class="student_letter">
 		<tr>
@@ -35,7 +43,7 @@
 	  		<td><%= student.parent%></td>
                         <td><%= student.number%></td>
    			<td class = <%= column_class(status) %>><%= status%></td>
-                        <td><%= button_to 'Re-send', '#', :disabled => disabled(status)%></td>
+                        <td><%= button_to 'Re-send', student_message_resend_message_path(:message_id => @message,:student_id => student), :disabled => disabled(status),:method => :get%></td>
 		</tr>
 		<%end%>
 		<%end%>

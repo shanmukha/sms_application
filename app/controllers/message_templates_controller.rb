@@ -1,10 +1,9 @@
 class MessageTemplatesController < ApplicationController
   layout "admin", :except => "show"
- 	
+ 	 before_filter :check_admin_role
  	def index
   	@search = MessageTemplate.search(params[:search])
-    @search.user_id = current_user.id if current_user.has_role?('teacher') || current_user.has_role?('super_admin')
-    @search.user_id = user_ids if current_user.has_role?('admin') && !current_user.has_role?('super_admin')
+    @search.user_id = current_user.id 
     @search.order ||= "descend_by_created_at"
     @message_templates = @search.all.paginate :page => params[:page],:per_page => 25
     respond_to do |format|
@@ -68,12 +67,5 @@ class MessageTemplatesController < ApplicationController
       format.html { redirect_to(message_templates_url) }
       format.xml  { head :ok }
     end
-  end
-   private
-  	 def user_ids
-      user_ids  = []
-      user_ids << current_user.id
-      User.find(:all,:conditions =>['parent_id = ?',current_user.id]).map{|object|user_ids << object.id}
-     return user_ids
   end
 end

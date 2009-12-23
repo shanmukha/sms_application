@@ -40,7 +40,7 @@
                                 <td> <%= student.parent %> </td>
     	    	                <td><%=h student.number %></td>
     				<td>
-				   <%= link_to image_tag('view.gif', :title=> "View"), student_path(student), :rel =>"facebox"%>
+				   <%= link_to image_tag('view.gif', :title=> "View"),student_path(student)%>
                                 </td>
                                 <% if current_user.has_role?('admin')%>
                                 <td>

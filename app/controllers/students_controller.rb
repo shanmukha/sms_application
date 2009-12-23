@@ -1,5 +1,5 @@
 class StudentsController < ApplicationController
-  layout "main",:except => [:show,:import_students_new]
+  layout "main",:except => [:import_students_new]
   before_filter :check_admin_role, :except =>[:index,:show]
 	require "csv"
 	def index
@@ -18,6 +18,10 @@ class StudentsController < ApplicationController
   def show
 	  admin = current_user.has_role?('admin') ? current_user : User.find(current_user.parent_id)
     @student = admin.students.find(params[:id])
+    @emails = @student.emails.find(:all)
+    @messages = @student.messages.find(:all)
+    @letters = @student.letters.find(:all)
+    @schedules = @student.schedules.find(:all)
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @student }
@@ -83,6 +87,7 @@ class StudentsController < ApplicationController
   # DELETE /students/1
   # DELETE /students/1.xml
   def destroy
+  puts "dddddddddddddddd"
     @student = current_user.students.find(params[:id])
     @student.destroy
     respond_to do |format|
@@ -94,6 +99,9 @@ class StudentsController < ApplicationController
   def import_students_new 
   
   end
+  
+  
+  
   
   def import_students_create
   	@parsed_file =  CSV::Reader.parse(params[:students][:file])

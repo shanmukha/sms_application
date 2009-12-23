@@ -4,7 +4,7 @@
  <div class="clear" ></div>
   <hr />
 	<fieldset>
-		<% form_for(@student,:html => {:id => 'main-form'}) do |f| %>
+		<% form_for(@student,:url => student_path ,:html => {:id => 'main-form',:method => :put}) do |f| %>
   		<%= f.error_messages %>
 		<p>
     			<%= f.label :name %><br />
@@ -33,8 +33,7 @@
 
   	        <br /> 
   		<p><label>Classes/Groups</label>
-  		<!-- <input type='checkbox' title ="Check All/Uncheck" name='checkall' onclick='checkedAll();'>(Check all/Uncheck all)-->
-		</p>
+  	</p>
  		<%@groups.each do |group|%>
     		<p><%= check_box_tag("groups[]", group.id, true,:id=> group.id)%>
    		<%= h group.name%>
@@ -50,11 +49,11 @@
     		<%end%>
 		</p>
   		
-    		   <table><tr><td> <span><%= f.submit 'Update record' %></span> or</td><td> <% if current_user.has_role?('admin')%>
+    		   <table><tr><td> <span><%= f.submit 'Update record' %></span> 
+    		   	<% end %>
+    		   or</td><td> 
+    		    <% if current_user.has_role?('admin')%>
   			 <span><%= button_to 'Delete record', @student, :confirm => 'Are you sure? You want to delete the student record.', :method => :delete %></span>
   		    <%end%></td></tr></table>
-  		
-		<% end %>
-  		 
-	</fieldset>
+  		</fieldset>
 </div>
