@@ -1,4 +1,8 @@
-<h1 class = 'heading'>Student details </h1>	
+<div class = 'form_wrapper'> 
+<h1 class = 'heading left'>Student details </h1>
+ <div class = 'right'<%= link_to image_tag("closelabel.gif", :title=> "close"),:back%> </div>
+ <div class="clear" ></div>	
+<hr />
 
 <table class="show_page" >
 		<tr>
@@ -32,8 +36,10 @@
   			<td colspan ='2'><%= find_groups(@student)%></td>
         	</tr>
   		</table>
+                <br /><br />
   		<%unless @messages.nil?%>
-  		<h3>Sent messages</h3>
+
+  		<h1 class='heading'>Sent messages</h1>
   		<table class="listing">
   		<tr>
     			<th>Sent date</th>
@@ -58,7 +64,7 @@
 </table>
 <%end%>
 <%unless @schedules.nil?%>
-<h3>Scheduled messages</h3>
+<h1 class='heading'>Scheduled messages</h1>
  
  <table class="listing">
   		<tr>
@@ -88,7 +94,7 @@
 
 
 <%unless @emails.nil?%>
-<h3>Sent emails</h3>
+<h1 class='heading'>Sent emails</h1>
 <table class ="listing">
   		<tr>
   		    <th>Sent by</th>
@@ -109,7 +115,7 @@
 	</table>
 	<%end%>
 	<%unless @letters.nil?%>
-	<h3>Sent letters</h3>
+	<h1 class='heading'>Sent letters</h1>
 		<table class ="listing">
   		<tr>
   		    <th>Created by</th>
@@ -129,3 +135,4 @@
 	<%end%>
 <div class ="clear">
   		</div>
+</div>

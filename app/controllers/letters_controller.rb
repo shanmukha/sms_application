@@ -27,8 +27,8 @@ class LettersController < ApplicationController
     @students = @letter.students.find(:all)
     respond_to do |format|
     format.pdf  {
-       options = { :left_margin => 30, :right_margin => 30, :top_margin => 10, :bottom_margin => 5}
-       prawnto :inline => true, :prawn => options, :filename => 'school.pdf'
+       options = { :left_margin => 30, :right_margin => 30, :top_margin => 20, :bottom_margin => 20, :page_size => 'A4'}
+       prawnto :inline => false, :prawn => options, :filename => "#{@letter.reference}.pdf"
        render :layout => false}
       end
   end     
@@ -86,7 +86,18 @@ class LettersController < ApplicationController
      	page.replace_html 'students', :partial => 'group_student'
    end
   end 
- 
+  
+  def print_labels
+    @profiles = current_user.qd_profiles.to_be_dealer_printed
+    unless @profiles.blank?
+      options = { :left_margin => 0, :right_margin => 0, :top_margin => 0, :bottom_margin => 0, :page_size => [595, 770] }
+      prawnto :inline => true, :prawn => options, :page_orientation => :portrait, :filename => 'labels.pdf'
+      render :layout => false  
+    else
+      flash[:notice] = 'No Data Marked for printing. Please make sure you have marked data for print.'
+      redirect_to(qd_profiles_path)
+    end
+ end
   private
    def user_ids
       user_ids  = []

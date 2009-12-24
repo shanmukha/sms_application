@@ -4,7 +4,7 @@ class Letter < ActiveRecord::Base
   belongs_to :user
   belongs_to :letter
   belongs_to :group
-  validates_presence_of  :content,:group_id
+  validates_presence_of  :reference, :content,:group_id
   
   def self.find_month_wise_report(from_date,to_date,current_user)
        reports = {}

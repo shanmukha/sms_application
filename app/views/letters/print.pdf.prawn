@@ -1,4 +1,3 @@
-
 counter = 0
  for student in @students
  box = pdf.bounds
@@ -9,7 +8,7 @@ pdf.font "Courier"
     content.gsub!(/@student/, student.name) 
     content.gsub!(/@parent/, student.parent)
     content.gsub!(/@address/, student.address)
-    pdf.text "#{content}", :size => 15
+    pdf.text "#{content}", :size => 14
     pdf.start_new_page if counter < @students.size
     content.gsub!(/#{student.name}/,'@student') 
     content.gsub!(/#{student.parent}/,'@parent') 
