@@ -63,7 +63,7 @@ h1.heading {font-size:16px;
 h1.heading span{color: #c8287b;}
 /*..................................................header............................*/
 #body_outer_wrapper{
-  margin: 17px;
+  margin: 20px;
   background: #796646;
 
 }
@@ -152,7 +152,7 @@ h1.heading span{color: #c8287b;}
 #menu { 
 	background: #e2f2ff url(/images/menu.gif) repeat-x;
         height:37px;
-	margin: 15px 3px 10px 3px;
+	margin: 18px 3px 10px 3px;
 }
 
 #menu ul {
@@ -466,7 +466,7 @@ color:#0e8ab8;
 
 .listing th {
 	  background: #ddd url(/images/table_header.jpg) repeat-x;
-          color: #a6085a;
+          color: #0c3866;
           text-align: left;
           padding: 0.6em .5em .5em .5em;
           font-weight: bold; 
@@ -585,7 +585,6 @@ color:#0e8ab8;
 
  
 #button  {
-	font-family: Verdana, Helvetica, Arial;
 	float:right
 }
 

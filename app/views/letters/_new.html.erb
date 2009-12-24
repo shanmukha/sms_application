@@ -3,9 +3,14 @@
         <%= f.error_messages %>
         <div class="left part1">
 	  <fieldset>
+             <p>
+    	      <%= f.label :reference %><br />
+    	      <%= f.text_field :reference, :class => 'email' %>
+  	    </p> 
+            <br />
   	    <p>
     	      <%= f.label :letter_content %><br />
-    	      <%= f.text_area :content%>
+    	      <%= f.text_area :content %>
   	    </p> 
 	    <span>
     		 <%= f.submit 'Print letter' %> 

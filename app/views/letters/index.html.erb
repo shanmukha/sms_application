@@ -24,15 +24,15 @@
 <div id="listing_file">
    	<table class ="listing">
   		<tr>
-  		    <th>Created by</th>
-    			<th>Content</th>
+  		        <th>Created by</th>
+    			<th>Reference</th>
     			<th>Class</th>
     			<th>View</th>
   		</tr>
 		<% @letters.each do |letter| %>
   		<tr class="<%=cycle("odd", "even")%>">
-  		    <td><%= letter.user.name%></td>
-    			<td><%= message_body_filter(letter.content)%></td>
+  		        <td><%= letter.user.name %></td>
+    			<td><%= letter.reference %></td>
      			<td><%= letter.group.name %></td>
     			<td class="view"><%= link_to '<img src="/images/view.gif" title="View"/>', letter%></td>
   		</tr>
@@ -45,18 +45,17 @@
 	<h1>Search </h1>
 	<% form_for @search do |f| %>
  		<table>
-     		
-			<tr>
-      				<th>Letter content</th>
-			</tr>
-			<tr>
-				<td><%= f.text_field :content_like %></td>
-			</tr>
 			<tr>
        				<th>Student Name </th>
 			</tr>
 			<tr>
 				<td><%= f.text_field :students_name_like%></td>
+			</tr>
+                        <tr>
+      				<th>Letter content</th>
+			</tr>
+			<tr>
+				<td><%= f.text_field :content_like %></td>
 			</tr>
 			<tr>
        				<th>Class Name </th>
