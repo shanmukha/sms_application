@@ -17,8 +17,7 @@
                   	   :style =>"display: none;") %><br />  
             <%= f.text_area :message_body %>
          </p> 
-
-         <p><span id="counter"></span>&nbsp; characters left to complete one message.</p>
+        <p><span id="counter"></span>&nbsp; characters left to complete one message.</p>
          <p> <%= f.select :tag_id, all_tags  %></p>         
   	 <div id = 'send'>
 	   <%= f.submit "Send message now" %> or 

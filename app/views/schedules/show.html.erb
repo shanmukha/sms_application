@@ -23,10 +23,12 @@
 		  <%end%>
 	
 		<tr>
+	 	
 	 	<%unless @schedule.group_id.nil?%>
       			<th>Class/group:</th>
     			<td><%=h @schedule.group.name%></td>
 		</tr>
+		
 		<tr>
     		<%else%>
     	 		<th>Mobile number:</th>

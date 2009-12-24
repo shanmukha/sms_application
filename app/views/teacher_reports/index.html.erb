@@ -1,18 +1,21 @@
- <h1>Teacher report</h1>
- 
+ <div class ='form_wrapper'>
+ <h1 class ='heading'>Teacher reports</h1>
+ <hr /><br />
  <% form_for(:report, :url => teacher_reports_path, :html => {:id => 'main-form',:method => :get}) do |f| %>
   Month: <%= f.select :month ,[["This month","tm"],["Last month", "lm"], ["Last 2 months", "l2"], ["Last 3 months", "l3"], ["Last 4 months", "l4"]]%>
     Communication type:<%= f.select :type ,[["Message","messages"],["Email", "emails"], ["Letter", "letters"]]%>
-     <%= f.submit "Report" %>  <%= link_to_function "List", "jQuery('#graph').hide(); jQuery('#list').show(); return false;" %> |
-     <%= link_to_function "Pie Chart", "jQuery('#graph').show(); jQuery('#list').hide(); return false;" %> 
+     <%= f.submit "Get report" %> &nbsp;&nbsp;&nbsp;&nbsp;
+     <%= link_to_function "#{image_tag('table.png')} List", "jQuery('#graph').hide(); jQuery('#list').show(); return false;" %> &nbsp; | &nbsp;
+     <%= link_to_function "#{image_tag('chart_pie.png')} Pie Chart", "jQuery('#graph').show(); jQuery('#list').hide(); return false;" %> 
   <%end%>
+  <br /><br />
     <%unless @type.nil?%>
-   	 <h2>Teachers sent <%= @type%> in <%= @month%></h2>
+   		<label><%= "Teacher wise total sent  #{@type} #{display(@month)}"%> </label>
    <%else%>
-     <h2>Teachers  sent messages in <%= month_print(Time.now.month)%> </h2>
+    	 <label>Teacher wise total  sent messages in the month of <%= month_print(Time.now.month)%> -<%= Time.now.strftime('%y')%> </label>
    <%end%> 
 <%unless @teachers.nil?%>
-<div id = 'graph' style ="display:none ; clear:both">
+<div id = 'graph' style ="display:none ; clear:both; border: 1px solid #ccc; width: auto;">
    <%= render :partial =>"shared/pie_graph"%>
  </div> 
   <div id ="list">

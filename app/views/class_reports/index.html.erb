@@ -1,5 +1,5 @@
 <div class ='form_wrapper'>
- <h1 class ='heading'>Communication reports</h1>
+ <h1 class ='heading'>Class reports</h1>
  <hr /><br />
  <% form_for(:report, :url => class_reports_path, :html => {:id => 'main-form',:method => :get}) do |f| %>
  Class:<%= f.select :group_id, find_all_groups%>
@@ -12,9 +12,9 @@
   <br /><br />
 
    <%unless @type.nil?%>
-   	 <label><%= "Total #{@type} sent to #{@group.name rescue 'all classes'} in #{@month}" %></label>
+   	 <label><%= "Total #{@type} sent to #{@group.name rescue 'all classes'} #{display(@month)}"%> </label>
    <%else%>
-     <label>Total messages sent in <%= month_print(Time.now.month)%> </label>
+     <label>Total messages sent to all classes  in the month of<%= month_print(Time.now.month)%>-<%= Time.now.strftime('%y')%> </label>
    <%end%>  
 <div id = 'graph' style ="display:none ; clear:both; border: 1px solid #ccc; width: auto;">
    <%= render :partial =>"shared/pie_graph"%>
@@ -33,8 +33,8 @@
   <%end%>
    </table>
  <%end%>
- <%unless @communication.nil?%>
-    <h3>Total: <%= @communication.size.nil? ? 0 : @communication.size %> </h3>
+ <%unless @students.nil?%>
+    <h3>Total:<%= @sizes.nil? ? 0 : @sizes.sum %> </h3>
     <table class="student_group" width="100%" border="1" cellpadding="5px">
    <th>Student name</th>
    <th>Total</th>

@@ -1,17 +1,28 @@
- <%= link_to_function "List", "jQuery('#graph').hide(); jQuery('#list').show(); return false;" %> |
-     <%= link_to_function "Pie Chart", "jQuery('#graph').show(); jQuery('#list').hide(); return false;" %> 
+<div class ='form_wrapper'>
+ <h1 class ='heading'>Monthly reports</h1>
+ <hr /><br />
+ <% form_for(:report, :url => month_reports_path, :html => {:id => 'main-form',:method => :get}) do |f| %>
+   Month: <%= f.select :month ,[["This month","tm"],["Last month", "lm"], ["Last 2 months", "l2"], ["Last 3 months", "l3"], ["Last 4 months", "l4"]]%>
+   <%= f.submit "Get report" %> &nbsp;&nbsp;&nbsp;&nbsp;
+     <%= link_to_function "#{image_tag('table.png')} List", "jQuery('#graph').hide(); jQuery('#list').show(); return false;" %> &nbsp; | &nbsp;
+     <%= link_to_function "#{image_tag('chart_pie.png')} Pie Chart", "jQuery('#graph').show(); jQuery('#list').hide(); return false;" %> 
+  <%end%>
+  <br /><br />
   <div id = 'graph' style ="display:none ; clear:both">
    <%= render :partial =>"shared/pie_graph"%>
    </div> 
    <div id = "list">
       <br /> 
- <h2>Total messages sent in  <%= month_print(Time.now.month)%> month :
- <%= @messages_size.nil? ? 0 : @messages_size%></h2>
+      <label>Communication <%= @month.blank? ? display('tm') : display(@month)%> </lablel
+      <br /> <br />
+      Messages:
+ <%= @messages_size.nil? ? 0 : @messages_size%>
  <br />
- <h2>Total letters sent in  <%= month_print(Time.now.month)%> month:
- <%= @letters_size.nil? ? 0 : @letters_size%></h2>
+Letters:
+ <%= @letters_size.nil? ? 0 : @letters_size%>
  <br />
- <h2>Total emails sent in  <%= month_print(Time.now.month)%> month:
- <%= @emails_size.nil? ? 0 : @emails_size%></h2>
+Emails:
+ <%= @emails_size.nil? ? 0 : @emails_size%>
  <br />
  </div>
+ 

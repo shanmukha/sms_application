@@ -1,17 +1,20 @@
- <h1>Tag report</h1>
+  <div class ='form_wrapper'>
+ <h1 class ='heading'>Message tag reports</h1>
+ <hr /><br />
   <% form_for(:report, :url => tag_reports_path, :html => {:id => 'main-form',:method => :get}) do |f| %>
  Class:<%= f.select :group_id, find_all_groups, options={:prompt => 'All'}%>
  Month: <%= f.select :month ,[["This month","tm"],["Last month", "lm"], ["Last 2 months", "l2"], ["Last 3 months", "l3"], ["Last 4 months", "l4"]]%>
- <%= f.submit "Report" %>
-    <%= link_to_function "List", "jQuery('#graph').hide(); jQuery('#list').show(); return false;" %> |
-     <%= link_to_function "Pie Chart", "jQuery('#graph').show(); jQuery('#list').hide(); return false;" %> 
+ <%= f.submit "Get report" %> &nbsp;&nbsp;&nbsp;&nbsp;
+    <%= link_to_function "#{image_tag('table.png')} List", "jQuery('#graph').hide(); jQuery('#list').show(); return false;" %> &nbsp; | &nbsp;
+     <%= link_to_function "#{image_tag('chart_pie.png')} Pie Chart", "jQuery('#graph').show(); jQuery('#list').hide(); return false;" %> 
   <%end%>
+  <br /> <br />
     <%unless @month.nil?%>
-   	 <h2><%= @group =='All'? "Tags" :"#{@group.name} class"%> sent messages in <%= @month%></h2>
+   		 <label><%= "Tag wise total messages sent to #{@group.name rescue 'all classes'} #{display(@month)}"%> </label>
    <%else%>
-     <h2>Tags sent messages in <%= month_print(Time.now.month)%> month </h2>
+     <label>Tag wise total messages sent to all classes  in the month of<%= month_print(Time.now.month)%>-<%= Time.now.strftime('%y')%> </label>
    <%end%>  
-		 <div id = 'graph' style ="display:none ; clear:both;">
+		<div id = 'graph' style ="display:none ; clear:both; border: 1px solid #ccc; width: auto;">
    			<%= render :partial =>"shared/pie_graph"%>
    </div> 
   <div id ="list">

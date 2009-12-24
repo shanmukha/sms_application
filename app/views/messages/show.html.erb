@@ -19,9 +19,13 @@
 		<%if @message.sms_id!=nil%>	
 		<tr>
 	    <td class = <%= column_class(@message.status) %>><h3>Status:<%= @message.status%></td>
-      <td><%= button_to 'Re-send', '#', :disabled => disabled(@message.status)%></td>
-	   			
-			</td>
+      </td>
+		</tr>
+		<%end%>
+		<%if @message.sms_id==nil and @students.blank?%>
+	  	<tr>
+			 <td class = <%= column_class('Failed') %>><h3>Status:Failed</td>
+     </td>
 		</tr>
 		<%end%>
 	</table>

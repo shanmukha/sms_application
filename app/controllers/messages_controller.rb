@@ -56,7 +56,7 @@ class MessagesController < ApplicationController
     end
 
     #balance = admin.balance.to_i - no_of_sms
-    #if balance < 0
+    #if balance <= 0
       #flash[:notice] = "Please ensure you have suffecient balance in your account."   
       #redirect_to(new_message_url) 
       #return nil
@@ -125,8 +125,8 @@ class MessagesController < ApplicationController
       MessageService.password = admin.server_password
       unless messages.blank?
         messages.each do |msg|
-          sms = MessageService.find(msg.sms_id)
-     	  sms.save   #calling update method of the API
+        	sms = MessageService.find(msg.sms_id)
+     	  	sms.save   #calling update method of the API
           msg.update_attribute('status', sms.status) 
      	end
       else
@@ -162,17 +162,33 @@ class MessagesController < ApplicationController
   end 
   
   def student_message_resend
+      admin = current_user.has_role?('admin') ? current_user : User.find(current_user.parent_id)
+      MessageService.user = admin.server_user_name
+      MessageService.password = admin.server_password
       @message = Message.find(params[:message_id])
       student_record = Student.find(params[:student_id])
+      balance = admin.balance.to_i - 1
+      if balance <= 0
+        flash[:notice] = "Please ensure you have suffecient balance in your account."   
+        redirect_to message_path(@message) 
+        return nil
+    end 
       message = @message.message_body
+      params[:message] = {}
       params[:message][:message_body] = message
-      student_record = Student.find(student_id)
+      params[:message][:number] =  student_record.number
       student, parent = student_record.name, student_record.parent
       message.gsub!(/@student/, student) 
       message.gsub!(/@parent/, parent)
-      sms = MessageService.create(:sms => params[:message].merge!({:number => student_record.number})) 
-      student_record.update_attributes(:message_id => @message.id, :student_id => student_id, :sms_id => sms.id,:status => "Sent")
-       redirect_to(messages_url) 
+      sms = MessageService.create(:sms => params[:message]) 
+      message_student = MessageStudent.find_by_student_id_and_message_id(student_record.id,@message.id)
+      message_student.update_attributes(:message_id => @message.id, :student_id => student_record.id, :sms_id => sms.id,:status => "Sent")
+       admin.update_attribute('balance', admin.balance.to_i - 1)
+       flash[:notice] = 'Message is sent for delivery. Please check the status after some time.'   
+       redirect_to message_path(@message) 
+       rescue #ActiveResource::ResourceInvalid => e  
+    	 		flash.now[:error] = 'There seems to be a problem in sending message. Please try again.'  
+    	  	redirect_to message_path(@message)  
   end
       
   

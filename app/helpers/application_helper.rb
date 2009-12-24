@@ -33,6 +33,22 @@ module ApplicationHelper
       return month_name[month]
      end
     
+    def display(month)
+      case month
+        when 'tm'
+         month_name = "in the month of #{month_print(Time.now.month)}-#{Time.now.strftime('%y')}"
+        when 'lm'
+          month_name = "in the month of #{month_print(1.months.ago.month)}-#{Time.now.strftime('%y')}"
+        when 'l2' 
+           month_name =  "during #{month_print(1.months.ago.month)} and  #{month_print(Time.now.month)}"
+        when 'l3'
+            month_name = "from #{month_print(2.months.ago.month)} till  #{month_print(Time.now.month)}"       
+        when 'l4'
+            month_name =  "from #{month_print(3.months.ago.month)} till #{month_print(Time.now.month)}"
+         end       
+       return month_name  
+   end     
+    
     def find_all_tags
 	  admin = current_user.has_role?('admin') ? current_user : User.find(current_user.parent_id) rescue ''
 	    [['All', '']] + admin.tags.find(:all).map{|m|[m.name,m.id]} rescue ''

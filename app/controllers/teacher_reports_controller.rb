@@ -2,32 +2,20 @@ class TeacherReportsController < ApplicationController
  require 'gchart'
  layout "admin"
  before_filter :check_admin_role
-	
-   def index
-        @teacher = {} 
-     unless params[:report].nil?
-   	  case params[:report][:month]
-         when 'tm'
-          @month = 'this month'
-          when 'lm'
-           @month  = 'last month'
-         when 'l2'
-            @month  = 'last 2 months'
-         when  'l3'
-             @month  = 'last 3 months'
-         when 'l4'
-             @month  = 'last 4 months'
-         end
-            @type = params[:report][:type]  
-      end  
-        
+
+ def index
+    @teacher = {} 
+    unless params[:report].nil?
+   	   @month = params[:report][:month]
+       @type = params[:report][:type]  
+     end  
        if params[:report].nil?
           @teachers = User.find_teachers(current_user) #not checking super_admin
           @names = []
           @sizes = []
           @teachers.each do |teacher|
           	@names << teacher.name #for graph 
-          	@teacher[teacher.id] = teacher.messages.find(:all,:conditions => ['created_at>= ? and created_at <= ?',Time.now.beginning_of_month,Time.now]).size
+          	@teacher[teacher.id] = teacher.messages.count(:all,:conditions => ['created_at>= ?',Time.now.beginning_of_month])
            	@sizes << @teacher[teacher.id]
          	end
     else
@@ -45,6 +33,7 @@ class TeacherReportsController < ApplicationController
                  condition << ["#{type}.created_at>= ?",Time.now.beginning_of_month]
            when 'lm'
              condition << ["#{type}.created_at>= ?",1.months.ago]
+             condition << ["#{type}.created_at<= ?",1.months.ago.end_of_month]
           when 'l2' 
              condition << ["#{type}.created_at>= ?",2.months.ago]
            when 'l3' 
