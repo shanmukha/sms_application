@@ -1,7 +1,7 @@
 <% form_for(@letter||Letter.new,:html => {:id => 'main-form'}) do |f| %>
-     <div class="create_new">
         <%= f.error_messages %>
-        <div class="left part1">
+     <div class="create_new">
+   <div class="left part1">
 	  <fieldset>
              <p>
     	      <%= f.label :reference %><br />

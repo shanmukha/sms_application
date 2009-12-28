@@ -19,8 +19,8 @@ class ClassReportsController < ApplicationController
         	@names << group.name #for graph 
           @class[group.id] = group.messages.count(:all,:conditions => ['created_at>= ?',Time.now.beginning_of_month])
           @sizes << @class[group.id]
-        end
-    elsif params[:report][:group_id].blank? 
+       end
+      elsif params[:report][:group_id].blank? 
         @classes = classes
         @class,@names,@sizes = find_all_class_communication(params[:report][:month],params[:report][:type],@classes)
     elsif !params[:report][:group_id].blank? 
@@ -46,16 +46,16 @@ class ClassReportsController < ApplicationController
         condition = []
         case month
            when 'tm'
-                 condition << ["#{type}.created_at>= ?",Time.now.beginning_of_month]
+              condition << ["#{type}.created_at>= ?",Time.now.beginning_of_month]
            when 'lm'
-             condition << ["#{type}.created_at>= ?",1.months.ago]
+             condition << ["#{type}.created_at>= ?",1.months.ago.beginning_of_month]
              condition << ["#{type}.created_at<= ?",1.months.ago.end_of_month]
            when 'l2' 
-             condition << ["#{type}.created_at>= ?",2.months.ago]
+             condition << ["#{type}.created_at>= ?",2.months.ago.beginning_of_month]
            when 'l3' 
-             condition << ["#{type}.created_at>= ?",3.months.ago]
+             condition << ["#{type}.created_at>= ?",3.months.ago.beginning_of_month]
           when 'l4' 
-             condition << ["#{type}.created_at>= ?",4.months.ago]
+             condition << ["#{type}.created_at>= ?",4.months.ago.beginning_of_month]
       end   
        return condition
      end   

@@ -23,14 +23,14 @@ class MonthReportsController < ApplicationController
            when 'tm'
              conditions << ["created_at>= ?",Time.now.beginning_of_month]
            when 'lm'
-             conditions << ["created_at>= ?",1.months.ago]
+             conditions << ["created_at>= ?",1.months.ago.beginning_of_month]
              conditions << ["created_at<= ?",1.months.ago.end_of_month]
            when 'l2' 
-             conditions << ["created_at>= ?",2.months.ago]
+             conditions << ["created_at>= ?",2.months.ago.beginning_of_month]
            when 'l3' 
-             conditions << ["created_at>= ?",3.months.ago]
+             conditions << ["created_at>= ?",3.months.ago.beginning_of_month]
           when 'l4' 
-             conditions << ["created_at>= ?",4.months.ago]
+             conditions << ["created_at>= ?",4.months.ago.beginning_of_month]
       end   
       @messages_size = Message.count(:all,:conditions => [ conditions.transpose.first.join( " and " ), *conditions.transpose.last ] )
       @letters_size = Letter.count(:all,:conditions => [ conditions.transpose.first.join( " and " ), *conditions.transpose.last ] )

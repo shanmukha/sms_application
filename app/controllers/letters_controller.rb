@@ -44,16 +44,10 @@ class LettersController < ApplicationController
 	def create
      if params[:students].blank?
       flash[:notice] = "Please select at least one student"
-      redirect_to(letters_url)
+      render :action => "new" 
       return nil
     end
-      if params[:letter][:content].blank?
-      flash[:notice] = "Please enter letter content."
-       redirect_to(letters_url)
-      return nil
-    end
-    
-    @letter = current_user.letters.new(params[:letter]) 
+     @letter = current_user.letters.new(params[:letter]) 
     respond_to do |format|
       if @letter.save
            params[:students].each do|student_id|
