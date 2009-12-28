@@ -1,7 +1,8 @@
 <div class="create_new">
 	<% if current_user.has_role?('admin')%>
-		<h3>Sms balance: <%= current_user.balance%></h3>
+		<!--<h3>Sms balance: <%= current_user.balance%></h3>-->
 	<%end%>
+
 	<%= render :partial =>"form"%>
 	</div>
 	<div class="clear"></div> 

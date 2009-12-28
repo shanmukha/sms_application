@@ -1,4 +1,4 @@
-
+<div class='form_wrapper'>
 	<fieldset>
 <% form_for @user do |f| %>
   <%= f.error_messages %>
@@ -6,46 +6,52 @@
     <%= f.label :name %><br />
     <%= f.text_field :name %>
   </p>
-  
+  <br />
   <p>
     <%= f.label :username %><br />
     <%= f.text_field :username %>
   </p>
+<br />
    <p>
     <%= f.label :password %><br />
     <%= f.password_field :password %>
   </p>
+<br />
   <p>
     <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation %>
   </p>
+<br />
     <% if current_user.has_role?('super_admin')%>
     <p>
     <%= f.label :Server_username %><br />
     <%= f.text_field :server_user_name %>
   </p>
-    
+    <br />
      <p>
       <%= f.label :Server_password %><br />
       <%= f.password_field :server_password %>
   </p>
+<br />
    <p>
     <%= f.label :Balance %><br />
     <%=  f.text_field :balance %>
   </p>
   <%end%>
-   
+
    <p>
     <%= f.label :email %><br />
     <%= f.text_field :mail_id %>
   </p>
+<br />
  <p>
     <%= f.label :designation %><br />
     <%= f.text_field :designation %>
   </p>
- 
+ <br />
  <span><%= f.submit "Submit" %></span>
 <% end %>
 </fieldset>
 
 <div class="clear"></div>
+</div>

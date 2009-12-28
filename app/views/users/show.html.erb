@@ -1,4 +1,4 @@
-<div class="showpage_content">
+<div class="form_wrapper">
 	<table class="show_page">
 <tr>
   <th>Name:</th>
@@ -42,7 +42,7 @@
    <td><%=h @user.mail_id%></td>
   </tr>
  </table> 
-<%= link_to 'Edit', edit_user_path(@user) %> &nbsp;&nbsp;&nbsp;  
-<%= link_to 'Destroy', @user, :confirm => 'Are you sure?', :method => :delete %>
-
+<table><tr><td><%= button_to 'Edit record', edit_user_path(@user) %> &nbsp;</td>
+<td><%= button_to 'Delete record', @user, :confirm => 'Are you sure?', :method => :delete %></td>
+</tr></table>
 </div>

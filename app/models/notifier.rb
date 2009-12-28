@@ -1,12 +1,13 @@
 class Notifier < ActionMailer::Base
 
-def email_notification(email,current_user,student)
-    @recipients ="#{student.email}"
-    @from     =  "#{current_user.mail_id}"
-    @subject   = "#{email.subject}"
-    @sent_on   = Time.now
-    @body["text" ] = "#{email.body}"
-    
+def email_notification(email, current_user, student)
+    recipients    [student.email]
+    from          current_user.mail_id
+    subject       email.subject
+    sent_on       Time.now
+    reply_to      current_user.mail_id
+    content_type  "text/html"
+    body          :email => email
 end
 
  def forgot_password(user)
@@ -17,4 +18,6 @@ end
     @body[:user]  = user
     @body[:url] = "http://localhost:3000/login"
   end
+  
+
 end
