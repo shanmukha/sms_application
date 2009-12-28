@@ -1,0 +1,78 @@
+<div id = 'top' style ="display:none ; clear:both">
+     <div class = 'right'> 
+        <%= link_to_function image_tag("cancel.gif", :title=> "Cancel"), "jQuery('#top').hide(); jQuery('#button').show(); return false;" %> 
+     </div>
+     <%= render :partial =>"new"%>
+     <div class = 'clear'> </div>
+</div>
+
+<div id = 'listing-top'>
+    <% if current_user.has_role?('admin')%>
+       <div id = 'button'>
+	   <span>
+               <%= link_to_function "<span>New message</span>", "jQuery('#top').show(); jQuery('#button').hide(); return false;", :class => 'buttonAdd' %>
+           </span>
+       </div>
+    <%end%> 	
+         
+    <h1>Listing all message templates</h1>
+    <div class="clear"></div>
+</div>
+
+<div id="listing_file">
+    <table class="listing">
+  	<tr>
+  	  <th><%= order @search, :by => :message_title,:as => "Message Title"%></th>
+    	   <th>Message Body</th>
+    	   <th>Tag name</th>
+    	   <th>Edit</th>
+    	</tr>
+				<% @message_templates.each do |message_template| %>
+  			<tr class="<%=cycle("odd", "even")%>">
+  			   <td><%=h message_template.message_title %></td>
+   				<td><%=h message_body_filter(message_template.message_body)%></td>
+   				 <td><%= message_template.tag.name%>
+    				 <td><%= link_to '<img src="/images/edit.gif" title="View"/>', edit_admin_message_template_path(message_template) %></td>
+  			</tr>
+			<% end %>
+		</table>
+		<div id="pg"><%=will_paginate @message_templates%></div>
+</div>
+	
+<div class="sidebar">
+		<h1>Search </h1>
+ 		<% form_for @search do |f| %>
+ 			<table>
+  				<tr>
+    					<th>Message Title </th>
+				</tr>
+				<tr>
+					<td><%= f.text_field :message_title_like %></td>
+				</tr>
+				<tr>
+    					<th>Message </th>
+				</tr>
+				<tr>
+					<td><%= f.text_field :message_body_like%></td>
+				</tr>
+					<tr>
+    					<th>Tag name </th>
+				</tr>
+				<tr>
+					<td><%= f.text_field :tag_name_like%></td>
+				</tr>
+				
+				<tr>
+       				<th>Creater name </th>
+			</tr>
+			<tr>
+				<td><%= f.text_field :user_name_like%></td>
+			</tr>
+				
+				<tr>
+      					<td class="btn"><%= f.submit "Search" %>  <input type="reset" value="Reset"></td>
+  				</tr>
+  			</table>
+  		<%end%>
+	</div>
+	<div class="clear" ></div>

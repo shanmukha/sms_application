@@ -1,0 +1,23 @@
+<table class="show_page" cellpadding="5px;" width="70%">
+	<tr>
+  		<th>Message Title:</th>
+   		<td><%=h @message_template.message_title %></td>
+	</tr>
+	<tr>
+  		<th>Message Body:</th>
+  		<td><%=h @message_template.message_body %></td>
+	</tr>
+	<tr>
+  		<th>Tag name:</th>
+  		<td><%=h @message_template.tag.name%></td>
+	</tr>
+	
+	<tr>	<th></th>
+		<td></td>
+	</tr>
+	<tr>
+		<td></td>
+		<td class="facebox_btn"><%= link_to 'Edit', edit_admin_message_template_path(@message_template) %> 
+ 		<%= link_to 'Delete', admin_message_template_path(@message_template), :confirm => 'This action will delete the saved message. Are you sure??', :method => :delete %></td>
+ 	</tr>
+</table>

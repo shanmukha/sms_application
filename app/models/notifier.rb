@@ -2,7 +2,7 @@ class Notifier < ActionMailer::Base
 
 def email_notification(email,current_user,student)
     @recipients ="#{student.email}"
-    @from     =  "shanmukhakatta@gmail.com"
+    @from     =  "#{current_user.mail_id}"
     @subject   = "#{email.subject}"
     @sent_on   = Time.now
     @body["text" ] = "#{email.body}"
@@ -17,6 +17,4 @@ end
     @body[:user]  = user
     @body[:url] = "http://localhost:3000/login"
   end
-  
-
 end

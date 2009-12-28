@@ -1,0 +1,25 @@
+<div class="clear"></div>
+<div class="Edit_show">
+	<fieldset>
+	<% form_for(@message_template,:url => admin_message_template_path(@message_template),:html => {:multipart => true} ) do |f| %>
+	
+  		<%= f.error_messages %>
+		<p>
+    			<%= f.label :message_title %><br />
+    			<%= f.text_field :message_title %>
+  		</p>
+  		<p>
+    			<%= f.label :message_body %><br />
+    			<%= f.text_area :message_body %>
+  		</p>
+  		
+  		<p><%= f.label :Tag_name %><br />
+  		  <%= f.select :tag_id, all_tags, options={:prompt =>@message_template.tag_id} %>
+  		<p>
+    			<span><%= f.submit 'Update' %></span>
+  		</p>
+		<% end %>
+	</fieldset>
+</div>
+
+

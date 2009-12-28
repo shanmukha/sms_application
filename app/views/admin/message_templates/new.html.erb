@@ -1,0 +1,23 @@
+<% form_for(:message_template,:url => admin_message_templates_path ,:html => {:multipart => true,:method => :post}) do |f|%>
+<%= f.error_messages %>
+	<div class="Errors_left">
+ 	<p>
+    		<%= f.label :message_title %><br />
+    		<%= f.text_field :message_title %>
+  	</p>
+  	<p>
+    		<%= f.label :message_body %>&nbsp;&nbsp;(For paragraph use \n)<br />
+    		<%= f.text_area :message_body %>
+  	</p>
+  	<p><%= f.label :Tag_name %><br />
+ 
+  			   <%= f.select :tag_id, all_tags, options={:prompt => 'Select tag'} %></p>
+ 
+  	<span>
+    		<%= f.submit 'Create' %> or <%= link_to 'Cancel & return to Saved messages list', admin_message_templates_path %>
+  	</span>
+	</div>
+<% end %>
+<div class="clear"></div>
+
+

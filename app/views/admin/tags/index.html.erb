@@ -1,0 +1,33 @@
+<div class='form_wrapper'>
+  <div>
+    <span class ='right'><%= link_to "<span>New message tag</span>", new_admin_tag_path , :class => 'buttonAdd'%></span>
+    <h1 class ="heading left">Listing all message tags</h1>
+    <div class="clear"></div>
+  </div>
+
+ 
+<% form_for @search do |f| %>
+ 	 Tag name:&nbsp; <%= f.text_field :name_like %>
+		<span><%= f.submit "Search" %> </span></div>
+<%end%>
+
+<table class ="listing">
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Edit</th>
+  </tr>
+
+<% @tags.each do |tag| %>
+  <tr class="<%=cycle("odd", "even")%>">
+    <td><%=h tag.name %></td>
+    <td><%=h tag.description %></td>
+    <td><%= link_to '<img src="/images/edit.gif" title="View"/>', edit_admin_tag_path(tag) %></td>
+  </tr>
+<% end %>
+</table>
+<%= will_paginate @tags%>
+<br />
+  <div class="clear"></div>
+
+</div>

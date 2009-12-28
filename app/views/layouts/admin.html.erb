@@ -65,17 +65,17 @@
       	   <% if request.request_uri != "/users/#{current_user.id}/edit"%> 
             	<ul>
             <li class='<%= request.request_uri =~ /users/? 'active': 'link' %>'> <%= link_to "Users list", users_path %></li>
-            <li class='<%= request.request_uri =~ /message_templates/? 'active': 'link' %>'> <%= link_to "Saved Messages", message_templates_path%>  </li> 
-            <li class='<%= request.request_uri =~ /tags/? 'active': 'link' %>'> <%= link_to "Tags", tags_path %> </li> 
-           <li class='<%= request.request_uri =~ /class_reports/? 'active': 'link' %>'> <%= link_to "Reports", class_reports_path %> </li> 
+            <li class='<%= request.request_uri =~ /message_templates/? 'active': 'link' %>'> <%= link_to "Saved Messages", admin_message_templates_path%>  </li> 
+            <li class='<%= request.request_uri =~ /tags/? 'active': 'link' %>'> <%= link_to "Tags", admin_tags_path %> </li> 
+           <li class='<%= request.request_uri =~ /class_reports/? 'active': 'link' %>'> <%= link_to "Reports", admin_class_reports_path %> </li> 
  </ul>
    </div>
    <ul>
    <%if request.request_uri =~/class_reports/ or request.request_uri=~/class_reports/ or request.request_uri=~/teacher_reports/ or request.request_uri=~/tag_reports/ or request.request_uri=~/month_reports/  %>
-   		 <%= link_to "Class wise reports",class_reports_path%> 
-   		 <%= link_to "Teacher wise reports",teacher_reports_path%>
-   		 <%= link_to "Tag wise reports",tag_reports_path%>
-  	   <%= link_to "Monthly reports",month_reports_path%>
+   		 <%= link_to "Class wise reports",admin_class_reports_path%> 
+   		 <%= link_to "Teacher wise reports",admin_teacher_reports_path%>
+   		 <%= link_to "Tag wise reports",admin_tag_reports_path%>
+  	   <%= link_to "Monthly reports",admin_month_reports_path%>
    <%end%>
  <%end%>
 <%end%>
