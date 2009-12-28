@@ -14,7 +14,7 @@ class Admin::TagReportsController < ApplicationController
     if params[:report].nil? 
       @tags.each do |tag|
         @names << tag.name #for graph 
-        @tag[tag.id] = tag.messages.count(:all,:conditions => ['created_at>= ? and group_id !=?',Time.now.beginning_of_month,""])
+        @tag[tag.id] = tag.messages.count(:all,:joins => [:message_students],:conditions => ['messages.created_at>= ? and group_id !=?',Time.now.beginning_of_month,""])
         @sizes << @tag[tag.id]
       end
     elsif !params[:report][:group_id].blank?
@@ -23,7 +23,7 @@ class Admin::TagReportsController < ApplicationController
       conditions += month_conditions(params[:report][:month])
       @tags.each do |tag|
       	@names << tag.name
-        @tag[tag.id] = tag.messages.count(:all,:conditions => [ conditions.transpose.first.join( " and " ), *conditions.transpose.last ] )
+        @tag[tag.id] = tag.messages.count(:all,:joins => [:message_students],:conditions => [ conditions.transpose.first.join( " and " ), *conditions.transpose.last ] )
         @sizes << @tag[tag.id]
       end     
    elsif params[:report][:group_id].blank?
@@ -32,7 +32,7 @@ class Admin::TagReportsController < ApplicationController
      conditions += month_conditions(params[:report][:month])
      @tags.each do |tag|
      	 @names << tag.name
-       @tag[tag.id] = tag.messages.count(:all,:conditions => [ conditions.transpose.first.join( " and " ), *conditions.transpose.last ] )
+       @tag[tag.id] = tag.messages.count(:all,:joins => [:message_students],:conditions => [ conditions.transpose.first.join( " and " ), *conditions.transpose.last ] )
        @sizes << @tag[tag.id]
     end    
   end
@@ -46,7 +46,7 @@ private
          condition << ["messages.created_at>= ?",Time.now.beginning_of_month]
        when 'lm'
           condition << ["messages.created_at>= ?",1.months.ago.beginning_of_month]
-          condition << ["#{type}.created_at<= ?",1.months.ago.end_of_month]
+          condition << ["messages.created_at<= ?",1.months.ago.end_of_month]
        when 'l2' 
          condition << ["messages.created_at>= ?",2.months.ago.beginning_of_month]
        when 'l3' 

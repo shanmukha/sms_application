@@ -32,10 +32,10 @@ class Admin::MonthReportsController < ApplicationController
           when 'l4' 
              conditions << ["created_at>= ?",4.months.ago.beginning_of_month]
       end   
-      @messages_size = Message.count(:all,:conditions => [ conditions.transpose.first.join( " and " ), *conditions.transpose.last ] )
-      @letters_size = Letter.count(:all,:conditions => [ conditions.transpose.first.join( " and " ), *conditions.transpose.last ] )
-      @emails_size = Email.count(:all,:conditions => [ conditions.transpose.first.join( " and " ), *conditions.transpose.last ] )
-    @sizes << @messages_size
+      @messages_size = Message.count(:all,:conditions => [conditions.transpose.first.join( " and " ), *conditions.transpose.last ] )
+      @letters_size = Letter.count(:all,:conditions => [conditions.transpose.first.join( " and " ), *conditions.transpose.last ] )
+      @emails_size = Email.count(:all,:conditions => [conditions.transpose.first.join( " and " ), *conditions.transpose.last ] )
+    	 @sizes << @messages_size
        @sizes << @letters_size
        @sizes << @emails_size
     end

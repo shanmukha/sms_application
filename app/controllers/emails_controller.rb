@@ -33,7 +33,7 @@ class EmailsController < ApplicationController
   def create
        if params[:students].blank?
           flash[:notice] = "Please select at least one student"
-          redirect_to(emails_url)
+          render :action => "new"
        return nil
     end
      @email = current_user.emails.new(params[:email])  
@@ -61,7 +61,8 @@ class EmailsController < ApplicationController
      end
      rescue 
       flash[:notice] = 'Some thing went wrong.Please try later'    
-      redirect_to(emails_url)  
+      render :action => "new"
+      return nil
   end
  
   def destroy
