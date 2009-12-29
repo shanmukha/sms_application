@@ -1,6 +1,6 @@
 <div class="form_wrapper">
   <h1 class = 'heading left'>Message sent to <span><%= @message.group_id.nil? ? @message.number : @message.group.name  %></span> </h1>
-  <div class = 'right'<%= link_to image_tag("closelabel.gif", :title=> "close"),:back %> </div>
+  <div class = 'right'<%= link_to image_tag("closelabel.gif", :title=> "close") ,messages_path%> </div>
   <div class="clear" ></div>
   <hr />
 

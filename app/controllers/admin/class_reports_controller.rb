@@ -12,20 +12,21 @@ class Admin::ClassReportsController < ApplicationController
       @type = params[:report][:type]  
    end  
     if params[:report].nil? #default
-       @classes = classes
-       @names = []
-       @sizes = []
-       @classes.each do |group|
-         @names << group.name #for graph 
-       	 @class[group.id] = group.messages.count(:all,:joins => [:message_students],:conditions => ['messages.created_at>= ?',Time.now.beginning_of_month])
+      @classes = classes
+      @names = []
+      @sizes = []
+      @classes.each do |group|
+        @names << group.name #for graph 
+       	@class[group.id] = group.messages.count(:all,:joins => [:message_students],:conditions => ['messages.created_at>= ? and message_students.status =?',Time.now.beginning_of_month,'Delivered'])
        	 @sizes << @class[group.id]
        end
       elsif params[:report][:group_id].blank? #all class communication
-        	@classes = classes
-        	@class,@names,@sizes = find_all_class_communication(params[:report][:month],params[:report][:type],@classes)
-    elsif !params[:report][:group_id].blank? 
+        @classes = classes
+        @class,@names,@sizes = find_all_class_communication(params[:report][:month],params[:report][:type],@classes)
+      elsif !params[:report][:group_id].blank? 
          	conditions = []
          	conditions << ["messages.group_id = ?", params[:report][:group_id]] if params[:report][:group_id]
+         	conditions << ['message_students.status =?','Delivered']
          	conditions += month_conditions(params[:report][:month],params[:report][:type])
       case params[:report][:type]
          
@@ -64,6 +65,7 @@ class Admin::ClassReportsController < ApplicationController
   def find_all_class_communication(month,type,classes)
   	conditions = []
     conditions += month_conditions(month,type)
+    conditions << ['message_students.status =?','Delivered'] if type == 'messages'
     @names = []
     @sizes = []
     classes.each do |group|

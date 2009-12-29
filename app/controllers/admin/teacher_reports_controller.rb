@@ -14,7 +14,7 @@ class Admin::TeacherReportsController < ApplicationController
          @sizes = []
          @teachers.each do |teacher|
           	@names << teacher.name #for graph 
-          	@teacher[teacher.id] = teacher.messages.count(:all,:conditions => ['created_at>= ?',Time.now.beginning_of_month])
+          	@teacher[teacher.id] = teacher.messages.count(:all,:joins => [:message_students],:conditions => ['messages.created_at>= ? and message_students.status =?',Time.now.beginning_of_month,'Delivered'])
            	@sizes << @teacher[teacher.id]
          	end
     else
@@ -47,11 +47,12 @@ private
      def  find_all_teacher_communication(month,type,teachers)
            conditions = []
            conditions += month_conditions(month,type)
+           conditions << ['message_studnets.status =?','Delivered'] if type == 'messages'
            @names = []
            @sizes = []
            teachers.each do |teacher|
            @names << teacher.name #for graph 
-           @teacher[teacher.id] =  teacher.messages.find(:all,:conditions => [ conditions.transpose.first.join( " and " ), *conditions.transpose.last ] ).size if type == 'messages'
+           @teacher[teacher.id] =  teacher.messages.find(:all,:joins => [:messge_students],:conditions => [ conditions.transpose.first.join( " and " ), *conditions.transpose.last ] ).size if type == 'messages'
            @teacher[teacher.id] =  teacher.emails.find(:all,:conditions => [ conditions.transpose.first.join( " and " ), *conditions.transpose.last ] ).size if type == 'emails' 
            @teacher[teacher.id] =  teacher.letters.find(:all,:conditions => [ conditions.transpose.first.join( " and " ), *conditions.transpose.last ] ).size if type == 'letters'
            @sizes << @teacher[teacher.id]

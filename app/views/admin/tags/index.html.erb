@@ -1,16 +1,29 @@
 <div class='form_wrapper'>
-  <div>
-    <span class ='right'><%= link_to "<span>New message tag</span>", new_admin_tag_path , :class => 'buttonAdd'%></span>
-    <h1 class ="heading left">Listing all message tags</h1>
-    <div class="clear"></div>
+<div id = 'top' style ="display:none ; clear:both">
+     <div class = 'right'> 
+        <%= link_to_function image_tag("cancel.gif", :title=> "Cancel"), "jQuery('#top').hide(); jQuery('#button').show(); return false;" %> 
+     </div>
+     <%= render :partial =>"new"%>
+     <div class = 'clear'> </div>
+</div>
+
+<div id = 'listing-top'>
+    
+       <div id = 'button'>
+	   <span>
+               <%= link_to_function "<span>New message tag</span>", "jQuery('#top').show(); jQuery('#button').hide(); return false;", :class => 'buttonAdd' %>
+           </span>
+       </div>
+ <h1 class ="heading left">Listing all message tags</h1>
+  <div class="clear"></div>
   </div>
 
- 
-<% form_for @search do |f| %>
+ <% form_for @search do |f| %>
  	 Tag name:&nbsp; <%= f.text_field :name_like %>
 		<span><%= f.submit "Search" %> </span></div>
 <%end%>
-
+  <br /><br />
+ <div id="listing_file">
 <table class ="listing">
   <tr>
     <th>Name</th>
@@ -28,6 +41,9 @@
 </table>
 <%= will_paginate @tags%>
 <br />
-  <div class="clear"></div>
-
 </div>
+
+  <div class="clear"></div>
+  </div>
+
+

@@ -32,11 +32,20 @@ class Student < ActiveRecord::Base
       sizes = []
       students.each do |student|
       	names << student.name
-      	students_communication_size[student.id]  = student.messages.count(:all,:conditions => [ conditions.transpose.first.join( " and " ), *conditions.transpose.last ] ) if type=="messages"
+      	conditions << ['message_students.student_id = ?',student.id]  if type=="messages"
+      	students_communication_size[student.id]  = Message.count(:all,:joins =>[:message_students],:conditions => [ conditions.transpose.first.join( " and " ), *conditions.transpose.last ] ) if type=="messages"
       	students_communication_size[student.id] = student.letters.count(:all,:conditions => [ conditions.transpose.first.join( " and " ), *conditions.transpose.last ] ) if type=="letters" 
       	students_communication_size[student.id] = student.emails.find(:all,:conditions => [ conditions.transpose.first.join( " and " ), *conditions.transpose.last ] ).size  if type=="emails" 
       	sizes << students_communication_size[student.id]
         return students,students_communication_size,names,sizes
       end  
 end 
+
+	def self.find_student_messages(student)
+   	Message.find(:all,
+                 :joins =>[:message_students],
+                 :conditions =>['message_students.status =? and  message_students.student_id =?','Delivered',student.id]) 
+
+end
+
 end

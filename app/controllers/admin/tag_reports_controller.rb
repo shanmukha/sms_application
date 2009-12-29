@@ -14,12 +14,13 @@ class Admin::TagReportsController < ApplicationController
     if params[:report].nil? 
       @tags.each do |tag|
         @names << tag.name #for graph 
-        @tag[tag.id] = tag.messages.count(:all,:joins => [:message_students],:conditions => ['messages.created_at>= ? and group_id !=?',Time.now.beginning_of_month,""])
+        @tag[tag.id] = tag.messages.count(:all,:joins => [:message_students],:conditions => ['messages.created_at>= ? and group_id !=? and message_students.status = ?',Time.now.beginning_of_month,"","Delivered"])
         @sizes << @tag[tag.id]
       end
     elsif !params[:report][:group_id].blank?
       conditions = []
       conditions << ["group_id = ?", params[:report][:group_id]] if params[:report][:group_id]
+      conditions << ["message_students.status =?","Delivered"]
       conditions += month_conditions(params[:report][:month])
       @tags.each do |tag|
       	@names << tag.name
@@ -29,6 +30,7 @@ class Admin::TagReportsController < ApplicationController
    elsif params[:report][:group_id].blank?
    	 conditions = []
      conditions << ["group_id != ?",""]
+     conditions << ["message_students.status =?","Delivered"]
      conditions += month_conditions(params[:report][:month])
      @tags.each do |tag|
      	 @names << tag.name

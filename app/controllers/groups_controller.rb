@@ -84,18 +84,20 @@ class GroupsController < ApplicationController
    	group.status = "Active"
    	group.save
     respond_to do |format|
-    	format.html { redirect_to(groups_url) }
-    	format.xml  { render :xml => @group, :status => :created, :location => @group }
-   end
+      flash[:notice] = "#{group.name} is successfully activated."
+      format.html { redirect_to(groups_url) }
+      format.xml  { head :ok }
  end
+end
   
   def make_inactive
    group = current_user.groups.find(params[:id])
    group.status = "Inactive"
    group.save
    respond_to do |format|
+       flash[:notice] = "#{group.name} is successfully inactivated."
        format.html { redirect_to(groups_url) }
-        format.xml  { render :xml => @group, :status => :created, :location => @group }
+       format.xml  { render :xml => @group, :status => :created, :location => @group }
     end
   end
  

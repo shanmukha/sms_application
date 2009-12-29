@@ -1,6 +1,6 @@
 <div class = 'form_wrapper'> 
 <h1 class = 'heading left'>Student details </h1>
- <div class = 'right'<%= link_to image_tag("closelabel.gif", :title=> "close"),:back%> </div>
+ <div class = 'right'<%= link_to image_tag("closelabel.gif", :title=> "close"),students_path%> </div>
  <div class="clear" ></div>	
 <hr />
 
@@ -37,9 +37,9 @@
         	</tr>
   		</table>
                 <br /><br />
-  		<%unless @messages.nil?%>
+  		<%unless @messages.blank?%>
 
-  		<h1 class='heading'>Sent messages</h1>
+  		<h1 class='heading'>Total sent messages -<%= @messages.blank? ? 0 : @messages.size%></h1>
   		<table class="listing">
   		<tr>
     			<th>Sent date</th>
@@ -58,13 +58,13 @@
     			<%else%>
     			 <td><%=h message.number%></td>
     			<%end%>
-    			<td class="view"><%= link_to '<img src="/images/view.gif" title="View"/>', message_path(message)%></td>
+    			<td class="view"><%= link_to '<img src="/images/view.gif" title="View"/>', student_message_show_student_path(:message_id => message,:student_id => @student)%></td>
   		</tr>
   		<%end%>
 </table>
 <%end%>
-<%unless @schedules.nil?%>
-<h1 class='heading'>Scheduled messages</h1>
+<%unless @schedules.blank?%>
+<h1 class='heading'>Total scheduled messages -<%= @schedules.blank? ? 0 : @schedules.size%></h1>
  
  <table class="listing">
   		<tr>
@@ -86,15 +86,15 @@
     			  <%else%>
     			    <td><%=h schedule.number%></td>
     			 <%end%>
-    		   	  <td class="view"><%= link_to '<img src="/images/view.gif" title="View"/>', schedule %></td>
+    		   	  <td class="view"><%= link_to '<img src="/images/view.gif" title="View"/>',student_schedule_show_student_path(:schedule_id => schedule,:student_id => @student)%></td>
   		</tr>
 		<% end %>
 	</table>
 <%end%>
 
 
-<%unless @emails.nil?%>
-<h1 class='heading'>Sent emails</h1>
+<%unless @emails.blank?%>
+<h1 class='heading'>Total sent emails -<%= @emails.blank? ? 0 : @emails.size%></h1>
 <table class ="listing">
   		<tr>
   		    <th>Sent by</th>
@@ -109,13 +109,13 @@
      			<td><%=h email.subject %></td>
      			<td><%=h message_body_filter(email.body) %></td>
      			<td><%=h email.group.name%></td>
-     			<td class="view"><%= link_to '<img src="/images/view.gif" title="View"/>', email%></td>
+     			<td class="view"><%= link_to '<img src="/images/view.gif" title="View"/>', student_email_show_student_path(:email_id => email,:student_id => @student)%></td>
       		</tr>
 		<% end %>
 	</table>
 	<%end%>
-	<%unless @letters.nil?%>
-	<h1 class='heading'>Sent letters</h1>
+	<%unless @letters.blank?%>
+	<h1 class='heading'>Total sent letters-<%= @letters.blank? ? 0 : @letters.size%></h1>
 		<table class ="listing">
   		<tr>
   		    <th>Created by</th>
@@ -128,7 +128,7 @@
   		    <td><%= letter.user.name%></td>
     			<td><%= message_body_filter(letter.content)%></td>
      			<td><%= letter.group.name %></td>
-    			<td class="view"><%= link_to '<img src="/images/view.gif" title="View"/>', letter%></td>
+    			<td class="view"><%= link_to '<img src="/images/view.gif" title="View"/>', student_letter_show_student_path(:letter_id => letter,:student_id => @student)%></td>
   		</tr>
 		<% end %>
 	</table>

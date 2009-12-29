@@ -1,0 +1,21 @@
+<div class="form_wrapper">
+  <h1 class = 'heading left'> <%= @student.name%> <span>-<%= @message.group.name%></span> </h1>
+  <div class = 'right'<%= link_to image_tag("closelabel.gif", :title=> "close") ,:back%> </div>
+  <div class="clear" ></div>
+  <hr />
+
+   <table class="show_page">
+		<tr>		
+		    <td><%=h @message.created_at.strftime('%d-%m-%Y') %></td>
+                    <td><%=h @message.user.name %></td>
+		</tr>
+                <tr> <td colspan = '2' style ='border: 1px solid #ccc; background: #eef2f6;'><%=h @message.message_body %></td> </tr>
+                <%unless @message.tag_id.nil?%>
+                   <tr>
+		     <th>Message tag:</th><td><%=h @message.tag.name%></td>
+		   </tr>
+                <%end%>
+
+	</table>
+</div>
+

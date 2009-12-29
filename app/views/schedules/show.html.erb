@@ -1,67 +1,63 @@
-<div class="showpage_content">
-	<table class="show_page">
-			<tr>
-  			<th>Created by:</th>
-  			<td><%=h @schedule.user.name %></td>
+<div class="form_wrapper">
+  <h1 class = 'heading left'>Message sent to <span><%= @schedule.group_id.nil? ? @schedule.number : @schedule.group.name  %></span> </h1>
+  <div class = 'right'<%= link_to image_tag("closelabel.gif", :title=> "close"),:schedules_path %> </div>
+  <div class="clear" ></div>
+  <hr />
+
+   <table class="show_page">
+		<tr>		
+		    <td><%=h @schedule.created_at.strftime('%d-%m-%Y') %></td>
+                    <td><%=h @schedule.user.name %></td>
 		</tr>
+                <tr> <td colspan = '2' style ='border: 1px solid #ccc; background: #eef2f6;'><%=h @schedule.message_body %></td> </tr>
+                <%unless @schedule.tag_id.nil?%>
+                   <tr>
+		     <th>Schedule tag:</th><td><%=h @schedule.tag.name%></td>
+		   </tr>
+                <%end%>
+
+		<%if @schedule.sms_id!=nil%>	
 		<tr>
-  			<th>Scheduled Date:</th>
-  			<td><%=h @schedule.scheduled_date %></td>
+	    <td class = <%= column_class(@schedule.status) %>><h3>Status:<%= @schedule.status%></td>
+      </td>
 		</tr>
-		<tr>
-  			<th>Scheduled Time:</th>
-  			<td><%=h Time.parse(@schedule.scheduled_time.to_s).strftime('%H:%M')%></td>
-		</tr>
-		<tr>
-			<th>Message Body:</th>
-  			<td><%=h @schedule.message_body %></td>
-		</tr>
-		<%unless @schedule.tag_id.nil?%>
-				<tr>
-				<th>Tag name:</th><td><%=h @schedule.tag.name%></td>
-			</tr>
-		  <%end%>
-	
-		<tr>
-	 	
-	 	<%unless @schedule.group_id.nil?%>
-      			<th>Class/group:</th>
-    			<td><%=h @schedule.group.name%></td>
-		</tr>
-		
-		<tr>
-    		<%else%>
-    	 		<th>Mobile number:</th>
-    		 	<td><%=h @schedule.number%></td>
-    		<%end%>
-		</tr>
-	</table>
-	<table class="student_letter" border="1" >
-  		<%if !@students.blank? and @schedule.sms_id==nil%>
-	  	<tr>
-		 	<th>Student name</th>
-		 	<th>Roll Number</th>
-		 	<th>Status</th>
-		</tr>
-		<%@students.each do  |student|%>
-		<tr>
-			<td><%= student.name%></td>
-			<td><%= student.roll_number%></td>
-   			<td><%= find_schedule_status(@schedule,student)%></td>
-		</tr>
-		<%end%>
 		<%end%>
 		<%if @schedule.sms_id==nil and @students.blank?%>
 	  	<tr>
-			<td><h3>Status: Sent failed<h3></td>
+			 <td class = <%= column_class('Failed') %>><h3>Status:Failed</td>
+     </td>
 		</tr>
 		<%end%>
-	 	<%if @schedule.sms_id!=nil%>
-	   	<tr>
-		 	<td><h3>Status: <%= @schedule.status%></h3></td>
+	</table>
+       <table class="student_letter">
+		<tr>
+ 		   <%if !@students.blank? %>
+                        <th>Roll number</th>
+			<th>Student name</th>
+                        <th>Parent name</th>
+                        <th>Mobile number</th>
+	   	        <th>Status</th>
+                        <th>Re-send</th>
 		</tr>
-	<%end%>
- </table>
-<%= link_to "Update status", status_update_schedule_path(@schedule)%> | <%= link_to 'Cancel', @schedule, :confirm => 'This action will delete the schedule record. Are you sure?', :method => :delete %>
+		<%@students.each do  |student|%>
+                <% status = find_schedule_status(@schedule, student) %>
+		<tr class="<%=cycle("odd", "even")%>">
+                        <td><%= student.roll_number%></td>
+			<td><%= student.name%></td>
+	  		<td><%= student.parent%></td>
+                        <td><%= student.number%></td>
+   			<td class = <%= column_class(status) %>><%= status%></td>
+                        <td><%= button_to 'Re-send', student_message_resend_message_path(:message_id => @message,:student_id => student), :disabled => disabled(status),:method => :get%></td>
+		</tr>
+		<%end%>
+		<%end%>
+
+		 
+	
+  <tr>
+	<td width ="2px"><%= button_to "Delivery status", status_update_schedule_path(@schedule)%><td>
+	 <td><%= button_to 'Schedule Cancel', @schedule, :confirm => 'This action will cancel the schedule. Are you sure?', :method => :delete %></td>
+</table>	
 </div>
+
 

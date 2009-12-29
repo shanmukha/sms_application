@@ -16,12 +16,11 @@
 
    		<span>
                    <br />
-    		   <%= f.submit 'Send email' %> or <%= link_to_function "Cancel", "jQuery('#top').hide(); jQuery('#button').show(); return false;"%>
+    		   <%= f.submit 'Send email' %> 
   		</span>
 	</fieldset>
       </div>
-
-     <div id="select_group" class ='part2'>
+   <div id="select_group" class ='part2'>
         <label> Select class </label><br />
         <%= f.select :group_id, all_groups%>
       	      		<%= image_tag("spinner.gif",

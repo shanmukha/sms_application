@@ -43,7 +43,7 @@ class LettersController < ApplicationController
 	
 	def create
      if params[:students].blank?
-      flash[:notice] = "Please select at least one student"
+      flash[:error] = "Please select at least one student"
       render :action => "new" 
       return nil
     end
@@ -92,7 +92,8 @@ class LettersController < ApplicationController
       redirect_to(qd_profiles_path)
     end
  end
-  private
+  
+ private
    def user_ids
       user_ids  = []
       user_ids << current_user.id

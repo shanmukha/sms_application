@@ -19,7 +19,7 @@ class StudentsController < ApplicationController
 	  admin = current_user.has_role?('admin') ? current_user : User.find(current_user.parent_id)
     @student = admin.students.find(params[:id])
     @emails = @student.emails.find(:all)
-    @messages = @student.messages.find(:all)
+    @messages = Student.find_student_messages(@student)
     @letters = @student.letters.find(:all)
     @schedules = @student.schedules.find(:all)
     respond_to do |format|
@@ -87,7 +87,6 @@ class StudentsController < ApplicationController
   # DELETE /students/1
   # DELETE /students/1.xml
   def destroy
-  puts "dddddddddddddddd"
     @student = current_user.students.find(params[:id])
     @student.destroy
     respond_to do |format|
@@ -100,8 +99,25 @@ class StudentsController < ApplicationController
   
   end
   
+   def student_message_show
+      @message =  Message.find(params[:message_id])
+      @student =  Student.find(params[:student_id])
+   end  
   
+  def student_letter_show
+    @letter = Letter.find(params[:letter_id])
+    @student = Student.find(params[:student_id])
+  end
   
+  def student_schedule_show
+   	@schedule = Schedule.find(params[:schedule_id])
+   	@student = Student.find(params[:student_id])
+  end
+  
+  def student_email_show
+   	@email = Email.find(params[:email_id])
+   	@student = Student.find(params[:student_id])
+  end
   
   def import_students_create
   	@parsed_file =  CSV::Reader.parse(params[:students][:file])

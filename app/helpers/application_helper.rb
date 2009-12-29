@@ -33,21 +33,45 @@ module ApplicationHelper
       return month_name[month]
      end
     
-    def display(month)
-      case month
-        when 'tm'
+	def display(month)
+     case month
+       when 'tm'
          month_name = "in the month of #{month_print(Time.now.month)}-#{Time.now.strftime('%y')}"
-        when 'lm'
+       when 'lm'
           month_name = "in the month of #{month_print(1.months.ago.month)}-#{Time.now.strftime('%y')}"
         when 'l2' 
-           month_name =  "during #{month_print(1.months.ago.month)} and  #{month_print(Time.now.month)}"
+          month_name =  "during #{month_print(1.months.ago.month)} and  #{month_print(Time.now.month)}"
         when 'l3'
-            month_name = "from #{month_print(2.months.ago.month)} till  #{month_print(Time.now.month)}"       
+           month_name = "from #{month_print(2.months.ago.month)} till  #{month_print(Time.now.month)}"       
         when 'l4'
-            month_name =  "from #{month_print(3.months.ago.month)} till #{month_print(Time.now.month)}"
-         end       
+           month_name =  "from #{month_print(3.months.ago.month)} till #{month_print(Time.now.month)}"
+        end       
        return month_name  
-   end     
+   end 
+       
+    def column_class(status)
+      class_name = case status
+                     when "Sent" then "yellow"
+                     when  "Scheduled" then "yellow"
+                     when "Delivered" then "green"
+                     when "Failed" then "red"
+                     when "Invalid mobile number" then 'orange'
+                     else 'red'
+         end
+        return class_name
+  end
+
+ def disabled(status)
+   disable = case status
+              when "Sent" then true
+              when "Scheduled" then true
+              when "Delivered" then true
+              when "Failed" then false
+              when "Invalid mobile number" then false
+              else true
+         end
+    return disable
+ end
     
     def find_all_tags
 	  admin = current_user.has_role?('admin') ? current_user : User.find(current_user.parent_id) rescue ''

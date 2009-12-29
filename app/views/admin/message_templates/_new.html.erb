@@ -13,8 +13,7 @@
   			<p><%= f.label :Tag_name%><br />
   			   <%= f.select :tag_id, all_tags %></p>
  		<span>
-    			<%= f.submit 'Create' %>or <%= link_to_function "Cancel",
-			"jQuery('#saved_message').hide();jQuery('#show').show();jQuery('#hide').hide()"%>
+    			<%= f.submit 'Create' %>
   		</span>
 	<% end %>
 	</fieldset>

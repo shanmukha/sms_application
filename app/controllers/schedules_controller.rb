@@ -68,8 +68,12 @@ class SchedulesController < ApplicationController
         format.html { redirect_to(schedule_url(@schedule))} 
         format.xml  { render :xml => @schedule }
       end
+        rescue #ActiveResource::ResourceInvalid => e  
+      	flash[:error] = 'Some thing went wrong. Please try again latter.'    
+      	redirect_to(schedules_url) 
     end
 
+  
    
    def render_message_template
     @message_template = MessageTemplate.find(params[:schedule_id]).message_body rescue ''

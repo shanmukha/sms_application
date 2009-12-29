@@ -172,7 +172,7 @@ class MessagesController < ApplicationController
         flash[:notice] = "Please ensure you have suffecient balance in your account."   
         redirect_to message_path(@message) 
         return nil
-    end 
+     end 
       message = @message.message_body
       params[:message] = {}
       params[:message][:message_body] = message
@@ -190,7 +190,8 @@ class MessagesController < ApplicationController
     	 		flash.now[:error] = 'There seems to be a problem in sending message. Please try again.'  
     	  	redirect_to message_path(@message)  
   end
-      
+    
+   
   
   private
   def user_ids
