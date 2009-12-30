@@ -1,39 +1,22 @@
-html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
-margin : 0;
-padding : 0;
-border : 0;
-outline : 0;
-vertical-align : baseline;
-}
- 
-:focus {
-outline : 0;
-}
- 
-ol, ul {
-list-style : none;
-}
- 
-table {
-border-collapse : separate;
-border-spacing : 0;
-}
- 
-caption, th, td {
-text-align : left;
-font-weight : normal;
-}
- 
-blockquote:before, blockquote:after, q:before, q:after {
-content : "";
-}
- 
-blockquote, q {
-quotes : "" "";
-}
-/*******************************************************/
-body { margin: 0px; padding: 0px; background: #d1c8a9 url('/images/bg.jpg') repeat-x scroll 0% 0%; color: rgb(0, 0, 0); font-family: "arial", helvetica, sans-serif; font-style: normal; font-variant: normal; font-weight: normal; font-size: 13px; line-height: normal; }
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, dl, dt, dd, ol, ul, li,textarea, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {margin : 0; padding : 0; border : 0; outline : 0; vertical-align : baseline}
+:focus {outline : 0}
+ol, ul {list-style : none}
+table {border-collapse : separate; border-spacing : 0}
+caption, th, td {text-align : left; font-weight : normal}
+blockquote:before, blockquote:after, q:before, q:after {content : ""}
+blockquote, q {quotes : "" ""}
 
+body { margin: 0px; padding: 0px; background: #d1c8a9 url('/images/bg.jpg') repeat-x scroll 0% 0%; color: rgb(0, 0, 0); font-family: "arial", helvetica, sans-serif; font-style: normal; font-variant: normal; font-weight: normal; font-size: 13px; line-height: normal; font-size-adjust: none; font-stretch: normal; -x-system-font: none; }
+/*
+body {
+	margin: 0px;
+	padding: 0px;
+	font-family : "arial", helvetica, sans-serif;
+	font-size:12px;
+	color: #666;
+	background: #fff url(/images/bg.jpg) repeat-x;	
+}
+*/
 
 p {
 	margin: 0px;
@@ -79,12 +62,6 @@ h1.heading {font-size:16px;
 }
 h1.heading span{color: #c8287b;}
 /*..................................................header............................*/
-.clear{
-	clear:both;
-	padding: 0;
-	margin: 0;
-}
-
 #body_outer_wrapper{
   margin: 20px;
   background: #796646;
@@ -104,39 +81,15 @@ h1.heading span{color: #c8287b;}
 
 #login_wrapper{
    background: #fff;
-   width: 465px;
+   width: 600px;
    
    margin: 0 auto;
 }
-
  
-#content_wrapper{
-	background: #c3c6c8;
-	margin: 0 auto;
-	width: 94.2%;
-  padding: 10px;
-}
-
-#wrapper{ 
-        background: #ffffff url('/images/content_bg.gif') repeat-x top;
-        padding: 15px 0px 10px 0px;
-        
-}
-
-.form_wrapper{
-  padding: 10px 15px 0px 15px;
-
-}
-
 
 #header {
         width: 96%;
-        height: auto;#login fieldset input.field{
-	border:1px solid #bbb;
-        margin:5px 10px 5px 10px;
-        padding: 5px;
-}
-
+        height: auto;
 	margin: 0px auto 10px auto;
         padding: 5px;
        
@@ -249,6 +202,28 @@ h1.heading span{color: #c8287b;}
 }
 
 /*Drop down menu*/
+.dropdown dt:hover {background:url(images/header_over.gif)}
+.dropdown dd {position:absolute; overflow:hidden; width:208px; display:none; background:#fff; z-index:200; opacity:0; margin:40px 0px 0px 150px; }
+.dropdown ul {width:204px; border:0px solid #9ac1c9; list-style:none; border-top:none;}
+
+.dropdown li.report
+  {
+  text-align:left;
+	font-size: 13px;background:#e0e0e0
+	text-decoration: none;
+	color: #fff;	
+	font-weight: bold;
+	text-transform:uppercase;
+	outline: none;
+	margin:5px 10px 0px 10px;
+	padding:0px 15px 0px 0px;
+	font-family : "arial", helvetica, sans-serif;
+       }
+.dropdown li.report:hover
+  {
+  	color: #0e8ab8;
+  }
+
 #menu ul li.Nav{
 	background: url(/images/space.gif) no-repeat right;
 	width:204px;
@@ -282,10 +257,13 @@ h1.heading span{color: #c8287b;}
         clear: both;
 	width: 94%;
   	margin: 10px auto 10px auto;
-  	background: #d0d1d2 url(/images/container-bg.png) repeat-x; 
+  	background: #dadbdc url(/images/container-bg.png) repeat-x; 
         padding: 10px;
 }
 
+#message{ 
+
+}
 
 .left{	
 	float:left; 
@@ -306,16 +284,13 @@ h1.heading span{color: #c8287b;}
         padding: 0px 0px 10px 0px;
 	float:left;
 	min-height:360px;
-	height:auto !important;
-  height:360px;
 	width:48.5%;
 	margin: 0;
 	background: #fff;
- 
 }
 
 .message_div_top{
- 	background:  url(/images/message-top.jpg) repeat-x;
+ 	background: #d5d5d5; 
  	padding: 4px 8px 4px 0px;
  
 }
@@ -375,9 +350,8 @@ select{
 	margin: 0;
 	background: #fff url(/images/right_form_bg.gif) no-repeat center;
 	width:50.5%;
-	min-height:360px;
-	height:auto !important;
-  height:360px;
+	height: auto;
+	min-height: 360px;login_outer_wrapper
   padding: 0px 0px 10px 0px;
 }
 
@@ -399,11 +373,16 @@ select{
 }
 
 #send input{
-	border:1px solid gray;
+ 
 	padding: 3px 2px 3px 2px;
 	color:#15446f;
 	font-size:13px;
+
+
 	font-weight:bold;
+	font-family: Verdana, Helvetica, Arial;
+	/*background: url(/images/button_bg.gif) ;*/
+	/*border:1px solid #ccc;*/
 }
 
 #send input:hover{
@@ -441,6 +420,7 @@ select{
 
  
 	font-weight:bold;
+	font-family: Verdana, Helvetica, Arial;
 }
 
 #schedule span input:hover{
@@ -454,7 +434,7 @@ color:#0e8ab8;
 	text-decoration:underline;
 	font-size:13px;
 	font-weight: bold;
-
+	font-family: Verdana, Helvetica, Arial;
 }
 
 #schedule a:hover{
@@ -463,16 +443,37 @@ color:#0e8ab8;
 }
 
 
+/* General ********************************************************************/
+
+#content_wrapper{
+	background:#c3c6c8;
+	margin: 0px auto 10px auto;
+	clear: both;
+	width: 94.2%;
+	padding: 8px;
+	border-top: none;
+}
+
+#wrapper{ 
+        background:#fff url(/images/content_bg.gif) repeat-x top;
+	margin: 0px;
+        padding: 15px 0px 10px 0px;
+        
+}
+.form_wrapper{
+  padding: 10px 15px 0px 15px;
+
+}
 /*---------------------------------Table styles ---------------------*/
 
 .listing { 
 	border-collapse: collapse;
-        width: 99.5%;
+        width: 99.6%;
         color: #000;
 	margin: 27px 5px 0px 4px;
       	float:left;
-        border: 1px solid #ddd;
-      
+        border-top: 1px solid #b1b1b1;
+        border-left: 1px solid #b1b1b1;
 }
 
 .listing th {
@@ -487,7 +488,7 @@ color:#0e8ab8;
 }
  
 .listing td { 
-        padding: 0.5em .5em .6em .5em;
+        padding: 0.5em .5em .5em .5em;
 	color: #000; 
 	font-size:13px;
         vertical-align: center;
@@ -554,16 +555,16 @@ color:#0e8ab8;
 
 #listing_file {
         background: #fff url(/images/main_line_lt.gif) repeat-y;
-	      width:70%;
-      	float:left;
-	      margin: 0px 0px 15px 0px;
+	padding:0px;
+	height:0 auto;
+	width:72%;
+  	float:left;
+	clear:both;
+	margin: 0px 0px 15px 10px;
         padding-left: 58px;
         padding-top: 5px;
-        min-height:500px;
-	      height:auto !important;
-        height:500px;
+        min-height: 500px;
         border: 1px solid #ccc;
-        border-left: none;
 }
 
 #listing-top{ margin: 2px 10px 10px 10px; padding-top: 2px; width:75%;}
@@ -696,6 +697,7 @@ table.student_list tr.even:hover{
 
 table.student_group{
 	border-collapse: collapse; 
+	width: 100%; 
 	border: #b4b8bd 1px solid;
 }
 
@@ -762,19 +764,22 @@ table.student_group tr.even:hover{
 
 
 .sidebar{
-    	margin: 0px;
+        background: #fff;
+    	margin: 0px 10px 0px 15px;
+    	height:0 auto;
     	/*border-left:1px solid #cecece;*/
-    	width:20%;
+    	width:19%;
     	float:right;
 }
 
 .sidebar h1{
 	font-size:18px;
 	color: #005ca1;
+	font-family: Verdana, Helvetica, Arial;
 	margin: 0px 0px 0px 7px;
 	font-weight:bold;
 	padding: 2px 5px 10px 40px;
-	background: url(/images/search.gif) no-repeat ;
+	background:url(/images/search.gif) no-repeat left;
 }
 
 .sidebar th {
@@ -795,6 +800,8 @@ table.student_group tr.even:hover{
 	width: 96%;
  
 }
+
+
 
 .sidebar table {
 	margin:0px 0px 0px 0px;
@@ -818,6 +825,7 @@ table.student_group tr.even:hover{
 
 .create_new{
         margin-top: 10px;
+        clear: both;
         width: 100%;
 }
 
@@ -886,13 +894,16 @@ table.student_group tr.even:hover{
 	font-weight:normal;
 }
 
+.clear{
+	clear:both;
+}
+
 .create_new h3{
 	font-size:14px;
 	color:#270027;
 	font-family: Verdana, Helvetica, Arial;
 	margin:7px 0px 6px 5px;
 }
-
 
 /*......................................................Show-page..............................*/
 
@@ -1096,6 +1107,8 @@ table.student_letter tr.even:hover{
 	padding: 3px;
 	-moz-border-radius: 3px; // Rounds the corners; Works for Mozilla only
 }
+
+
 /* footer **************************************************************/
 #footer { 
 	width: 95.5%;
@@ -1120,36 +1133,28 @@ table.student_letter tr.even:hover{
 	font-size:14px;
 	margin-right:5px;	
 }
- 
+
 
 #login {
-  width: 380px;
   padding:20px 10px 10px 10px;
-	margin:20px;
+	margin:30px;
 	border:3px solid #eeeeee;
 	background-color:#9cbee1;
 }
  #login fieldset label{
 		font-size:14px;
-		color:#1c374b;
+		color:#44586d;
 		margin:5px 5px 5px 5px;
 	}
 
-#login fieldset input {
-	padding: 4px; 
-        margin:5px 10px 5px 10px;
-  
-}
-
-#login fieldset input.field{
-	border:1px solid #bbb;
-        margin:5px 10px 5px 10px;
-        padding: 5px;
+#login fieldset input{
+	border:1px solid #eeeeee;
+        margin:5px 5px 5px 5px;
 }
 
 #login fieldset a{
 	font-size:12px;
-	color:#1c374b;
+	color:#44586d;
 	margin:10px 5px 5px 5px;
 }
 #login fieldset a:hover{
@@ -1365,8 +1370,7 @@ a.buttonAdd {
 }
 
 a.buttonAdd span {
-  display: block;
-	float: left;
+	display: block;
 	height: 36px;
 	background: url(/images/sprite.png) -583px 0px no-repeat;
 	padding-left: 35px;
@@ -1377,7 +1381,7 @@ a.buttonAdd:hover {
 	color: #6bb11f;
 	background: url(/images/sprite.png) right -36px no-repeat;
 }
-border:
+
 a.buttonAdd:hover span {
 	background: url(/images/sprite.png) -583px -36px no-repeat;
 }
@@ -1387,8 +1391,5 @@ a.buttonAdd:hover span {
 .blue {color: #477eb1;}
 .yellow {background: #f1ec64;}
 .green {background: #65cb60;}
-.orange {background: #edad00; }
-
-#report-links a {margin: 0px 5px 0px 5px; color: #1d4896; font-weight: bold;}
-
-
+.orange {background: #edad00;}
+.red {background: #e1490d;}

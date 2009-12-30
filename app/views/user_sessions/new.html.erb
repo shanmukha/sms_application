@@ -1,22 +1,27 @@
-<div id = 'login_wrapper'>
+
   <%= image_tag ('cover_image.jpg') %>
   <div id ="login">
     <% form_for @user_session do |f| %>
        <fieldset>
  	
        <%= render :partial => 'shared/notice' %>
-       <p>
-        <%= f.label :username %><br />
-        <%= f.text_field :username %>
-       </p>
-       <p>
-         <%= f.label :password %><br />
-         <%= f.password_field :password %>
-       </p>
-       <p><%= f.submit "Login" %></p>
+       <table>
+         <tr><td>
+          <%= f.label :username%>:</td>
+          <td><%= f.text_field :username, :class => 'field'  %></td>
+
+       </tr> 
+        <tr><td>
+         <%= f.label :password %>:</td>
+          <td> <%= f.password_field :password, :class => 'field'  %></td>
+
+       </tr> 
+       <tr> <td>&nbsp;</td><td><%= f.submit "Login to SchoolIt" %></td></tr>
+       </table>
+       <br />
         <%= link_to "Forgot password?",forgot_password_users_path%>
       </fieldset>
    <% end %>
   </div>
-</div>
+
 

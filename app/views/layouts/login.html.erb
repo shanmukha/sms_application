@@ -9,16 +9,9 @@
 </head>
 
 <body>
- <div id="body_outer_wrapper">
-  <div id="body_wrapper">
-    <div id="header">
-           <%= render :partial => 'shared/header_links' %>
-	   <div id = "site_heading">
-		<h1><%= image_tag('logo.gif') %></h1>
-	</div>
-    </div> <!-- end of header -->
-
-
+ <div id="login_outer_wrapper">
+  <div id="login_wrapper">
+      
  <%= yield  %>
         
  
@@ -27,12 +20,7 @@
 
 <%= render :partial => 'shared/footer' %>
 
-<script type="text/javascript">
-	jQuery("#content_wrapper").corner("corner 5px")
-        jQuery("#body_wrapper").corner("top 10px")
-	 
-	jQuery("#menu").corner("corner 5px")
-</script>
+
 
 </body>	
 </html>
