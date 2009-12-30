@@ -25,6 +25,7 @@ ActionController::Routing::Routes.draw do |map|
      admin.resources :tag_reports
      admin.resources :teacher_reports
      admin.resources :month_reports 
+     admin.resources :users
  end
 end 
 
