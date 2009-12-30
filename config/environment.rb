@@ -5,7 +5,7 @@
 # ENV['RAILS_ENV'] ||= 'production'
 
 # Specifies gem version of Rails to use when vendor/rails is not present
-RAILS_GEM_VERSION = '2.3.2' unless defined? RAILS_GEM_VERSION
+#RAILS_GEM_VERSION = '2.3.2' unless defined? RAILS_GEM_VERSION
 
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
@@ -13,11 +13,11 @@ require File.join(File.dirname(__FILE__), 'boot')
   #configatron.configure_from_yaml('config.yml')
 
  Rails::Initializer.run do |config|
-		 config.gem 'mislav-will_paginate', 
+   config.gem 'mislav-will_paginate', 
 		  :version => '~> 2.3.6', 
-			:lib => 'will_paginate', 
-  	  :source => 'http://gems.github.com'
-  	  config.gem 'prawn'
+		  :lib => 'will_paginate', 
+  	          :source => 'http://gems.github.com'
+   config.gem 'prawn'
   # Settings in config/environments/* take precedence over those specified here.
   # Application configuration should go into files in config/initializers
   # -- all .rb files in that directory are automatically loaded.
@@ -50,20 +50,30 @@ require File.join(File.dirname(__FILE__), 'boot')
   # Make Time.zone default to the specified zone, and make Active Record store time values
   # in the database in UTC, and return them converted to the specified local zone.
   # Run "rake -D time" for a list of tasks for finding time zone names. Uncomment to use default local time.
-   config.time_zone = 'Mumbai'
+  config.time_zone = 'Mumbai'
   config.action_mailer.delivery_method = :smtp
+  #config.action_mailer.perform_deliveries = true 
+  #config.action_mailer.raise_delivery_errors = true 
 
-
+=begin
  config.action_mailer.smtp_settings = {
-   :tls => true,
+   :enable_starttls_auto => true,
    :address => "smtp.gmail.com",
    :port => "587",
-   :domain => "qdrllc.com",
+   #:domain => "qdrllc.com",
    :authentication => :plain,
    :user_name => "support@qdrllc.com",
    :password => "password01"
  }
+=end
 
+
+config.action_mailer.smtp_settings = {
+  :address => "mail.isiritech.com",
+  :user_name => "sanath@isiritech.com",
+  :password => "",
+  :authentication => :login
+ }
 
 
  # Your secret key for verifying cookie session data integrity.
