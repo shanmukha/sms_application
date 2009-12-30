@@ -1,12 +1,15 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
 	<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
   	<title><%= configatron.site_name%></title>
-   	<%= stylesheet_link_tag 'style','datepicker','jquery-ui-1.7.2.custom','facebox'%>
+   	<%= stylesheet_link_tag 'style','facebox'%>
+    <!--[if lte IE 6]>
+      <link href="stylesheets/ie6.css" rel="stylesheet" type="text/css" />
+    <![endif]-->
    	<%= javascript_include_tag :fckeditor %>
-  	<%=javascript_include_tag 'jquery-1.3.2.min','jquery-ui-1.7.2.custom.min','jrails','datepicker','jquery.cookie','jquery.simplyCountable.js','facebox' ,'jquery.corner'%>
+  	<%=javascript_include_tag 'jquery-1.3.2.min','jquery-ui-1.7.2.custom.min','jrails','datepicker','facebox' ,'jquery.corner'%>
   <script type="text/javascript">
      		checked = false;
      		function checkedAll () {
@@ -43,8 +46,9 @@
     	<div id="wrapper">
          	<%= yield  %>
         </div>
+      
 </div>
-<div class="clear" ></div>
+
 </div>
 </div>
 

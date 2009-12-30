@@ -1,5 +1,5 @@
 class MessageSchedule < ActiveResource::Base
-  	self.site = "http://localhost:3001"
+  	self.site = "http://97.107.140.86:3001"
  end
  
 

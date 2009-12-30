@@ -2,13 +2,13 @@
     <%if current_user%>
 	      <ul>
                    <%if current_user.has_role?('super_admin') || current_user.has_role?('admin')%>
-                     <li class='<%= request.request_uri == "/users"? 'active': 'link' %>'>
-                         <%= link_to "Administration", users_path %>|
+                     <li class='<%= request.request_uri == "/admin/users"? 'active': 'link' %>'>
+                         <%= link_to "Administration", admin_users_path %>|
                      </li>  
                   <%end%>
-                  <li class='<%= request.request_uri == "/users/#{current_user.id}/edit"? 'active': 'link' %>'> 
-                    <%= link_to "My account",edit_user_path(current_user) %>|</li> 
-                  <li><%= link_to "Help", helps_path %> | </li>
+                  <li class='<%= request.request_uri == "/admin/users/#{current_user.id}/edit"? 'active': 'link' %>'> 
+                    <%= link_to "My account",edit_admin_user_path(current_user) %>|</li> 
+             <li class='<%= request.request_uri == "/helps"? 'active': 'link' %>'> <%= link_to "Help", helps_path %> | </li>
           	  <li><%= link_to "Logout", logout_path %></li> 
               </ul>
        <%else%>

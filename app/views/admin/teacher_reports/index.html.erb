@@ -1,5 +1,5 @@
  <div class ='form_wrapper'>
- <h1 class ='heading'>Teacher reports</h1>
+ <h1 class ='heading'>Teacher wise report</h1>
  <hr /><br />
  <% form_for(:report, :url => admin_teacher_reports_path, :html => {:id => 'main-form',:method => :get}) do |f| %>
   Month: <%= f.select :month ,[["This month","tm"],["Last month", "lm"], ["Last 2 months", "l2"], ["Last 3 months", "l3"], ["Last 4 months", "l4"]]%>

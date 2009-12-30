@@ -1,5 +1,5 @@
 <div class ='form_wrapper'>
- <h1 class ='heading'>Monthly reports</h1>
+ <h1 class ='heading'>Monthly report</h1>
  <hr /><br />
  <% form_for(:report, :url => admin_month_reports_path, :html => {:id => 'main-form',:method => :get}) do |f| %>
    Month: <%= f.select :month ,[["This month","tm"],["Last month", "lm"], ["Last 2 months", "l2"], ["Last 3 months", "l3"], ["Last 4 months", "l4"]]%>
@@ -15,14 +15,21 @@
       <br /> 
       <label>Communication <%= @month.blank? ? display('tm') : display(@month)%> </lablel
       <br /> <br />
-      Messages:
- <%= @messages_size.nil? ? 0 : @messages_size%>
- <br />
-Letters:
- <%= @letters_size.nil? ? 0 : @letters_size%>
- <br />
-Emails:
- <%= @emails_size.nil? ? 0 : @emails_size%>
- <br />
+    <table class="student_group" width="100%" border="1" cellpadding="5px">
+     <tr>
+     <th>Communication</th>
+     <th>Total</th>
+     </tr>
+     <tr>
+     <td> Message</td>
+<td> <%= @messages_size.nil? ? 0 : @messages_size%> </td>
+</tr>
+ <tr><td>Letter</td>
+ <td><%= @letters_size.nil? ? 0 : @letters_size%></td></tr>
+ 
+<tr><td>Email</td>
+ <td><%= @emails_size.nil? ? 0 : @emails_size%>
+</td></tr>
+</table>
  </div>
  

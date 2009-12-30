@@ -9,6 +9,7 @@ class Schedule < ActiveRecord::Base
  belongs_to :tag
  
  attr_accessible :scheduled_date,:message_body,:scheduled_time,:group_id,:status,:sms_id,:number,:tag_id
+ attr_accessor :message_id
  validates_presence_of :scheduled_date,:message_body,:scheduled_time
   
   def self.find_month_wise_report(from_date,to_date,current_user)

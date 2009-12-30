@@ -1,5 +1,5 @@
 <div class ='form_wrapper'>
- <h1 class ='heading'>Class reports</h1>
+ <h1 class ='heading'>Class wise report</h1>
  <hr /><br />
  <% form_for(:report, :url => admin_class_reports_path, :html => {:id => 'main-form',:method => :get}) do |f| %>
  Class:<%= f.select :group_id, find_all_groups%>

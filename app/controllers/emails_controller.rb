@@ -32,7 +32,7 @@ class EmailsController < ApplicationController
 
   def create
        if params[:students].blank?
-          flash[:error] = "Please select at least one student"
+          flash.now[:error] = "Please select at least one student"
           render :action => "new"
        return nil
     end

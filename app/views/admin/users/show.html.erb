@@ -1,0 +1,48 @@
+<div class="form_wrapper">
+<table class="show_page">
+<tr>
+  <th>Name:</th>
+  <td><%=h @user.name %></td>
+</tr>
+
+<tr>
+  <th>User name:</th>
+  <td><%=h @user.username %></td>
+</tr>
+
+<tr>
+<th>Password:</th>
+   <td>**************</td>
+</tr>
+<% if current_user.has_role?('super_admin')%>
+<tr>
+  <th>Server user name:</th>
+  <td><%=h @user.server_user_name%></td>
+</tr>
+
+<tr>
+  <th>Server password:</th>
+  <td><%=h @user.server_password %></td>
+  </tr>
+  
+  <tr>
+  <th>Balance:</th>
+  
+ <td> <%=h @user.balance %></td>
+</tr>
+<%end%>
+
+<tr>
+  <th>Designation:</th>
+  <td><%=h @user.designation %></td>
+</tr>
+
+<tr>
+  <th>Email:</th>
+   <td><%=h @user.mail_id%></td>
+  </tr>
+ </table> 
+<table><tr><td><%= button_to 'Edit record', edit_admin_user_path(@user),:method => :get %> &nbsp;</td>
+<td><%= button_to 'Delete record', admin_user_path(@user), :confirm => 'Are you sure?', :method => :delete %></td>
+</tr></table>
+</div>

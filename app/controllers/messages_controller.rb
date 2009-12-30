@@ -51,7 +51,8 @@ class MessagesController < ApplicationController
     if params[:message][:scheduled_date].blank?  
       @message = current_user.messages.new(params[:message]) 
     else  
-      params[:message][:scheduled_time] = Time.parse(params[:schedule][:"scheduled_time(5i)"])
+      time_p = params[:schedule]
+      params[:message][:scheduled_time] = Time.parse("#{time_p['time(4i)']}:#{time_p['time(5i)']}")
       @message = current_user.schedules.new(params[:message])
     end
 
@@ -77,7 +78,7 @@ class MessagesController < ApplicationController
     begin
       if @message.save
          if !params[:students].nil?
-	        message = @message.message_body
+	          message = @message.message_body
             params[:students].each do  |student_id|
                student_record = Student.find(student_id)
                student, parent = student_record.name, student_record.parent
@@ -95,17 +96,18 @@ class MessagesController < ApplicationController
                message.gsub!(/#{parent}/,'@parent') 
              end  
 	  else
-	    if params[:message][:scheduled_date].blank? 
+	         if params[:message][:scheduled_date].blank? 
        	      sms = MessageService.create(:sms => params[:message]) 
        	      @message.update_attributes({:status => "Sent", :sms_id => sms.id}) 
+       	       
        	    elsif !params[:message][:scheduled_date].blank?
        	      sms = MessageSchedule.create(:sms => params[:message])
        	      @message.update_attributes({:status => "Scheduled", :sms_id => sms.id}) 
+       	     
             end	   
             admin.update_attribute('balance', admin.balance.to_i - 1)   
 	  end
-	       
-	   flash[:notice] = 'Message is sent for delivery. Please check the status after some time.'   
+	         flash[:notice] = 'Message is sent for delivery. Please check the status after some time.'
            redirect_to(new_message_url)
          else  #@message.save check
            render :action => "new"
@@ -146,18 +148,19 @@ class MessagesController < ApplicationController
   
 	
   def render_message_template
-    @message_template = MessageTemplate.find(params[:message_message_id]).message_body rescue ''
+    @message_content = MessageTemplate.find(params[:message_message_id]).message_body rescue ''
     @tag_id = MessageTemplate.find(params[:message_message_id]).tag_id rescue ''
     render :update do |page|
-       page << "jQuery('#message_message_body').val('#{@message_template}')"
+       page << "jQuery('#message_message_body').val('#{escape_javascript(@message_content)}')"
        page << "jQuery('#message_tag_id').val('#{@tag_id}')"
     end
   end
   
   def student_groups
-      @students = Group.find(params[:group_id]).students rescue ''
+      @students = Group.find(params[:group_id]).students.find(:all,:order => 'students.roll_number ASC') rescue ''
       render :update do |page|
-     	page.replace_html 'students', :partial => 'group_student'
+     	page.replace_html 'students', :partial => 'group_student'if !@students.blank?
+      page.replace_html 'students', :partial => 'mobile_number' if @students.blank?
    end
   end 
   
@@ -167,12 +170,12 @@ class MessagesController < ApplicationController
       MessageService.password = admin.server_password
       @message = Message.find(params[:message_id])
       student_record = Student.find(params[:student_id])
-      balance = admin.balance.to_i - 1
-      if balance <= 0
-        flash[:notice] = "Please ensure you have suffecient balance in your account."   
-        redirect_to message_path(@message) 
-        return nil
-     end 
+     # balance = admin.balance.to_i - 1
+      #if balance <= 0
+        #flash[:notice] = "Please ensure you have suffecient balance in your account."   
+        #redirect_to message_path(@message) 
+        #return nil
+     #end 
       message = @message.message_body
       params[:message] = {}
       params[:message][:message_body] = message
