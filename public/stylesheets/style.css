@@ -131,12 +131,7 @@ h1.heading span{color: #c8287b;}
 
 #header {
         width: 96%;
-        height: auto;#login fieldset input.field{
-	border:1px solid #bbb;
-        margin:5px 10px 5px 10px;
-        padding: 5px;
-}
-
+        height: auto;
 	margin: 0px auto 10px auto;
         padding: 5px;
        
@@ -1131,14 +1126,14 @@ table.student_letter tr.even:hover{
 }
  #login fieldset label{
 		font-size:14px;
-		color:#1c374b;
+		color:#44586d;
 		margin:5px 5px 5px 5px;
 	}
 
-#login fieldset input {
-	padding: 4px; 
+#login fieldset input{
+	
         margin:5px 10px 5px 10px;
-  
+        padding: 4px;
 }
 
 #login fieldset input.field{
@@ -1149,7 +1144,7 @@ table.student_letter tr.even:hover{
 
 #login fieldset a{
 	font-size:12px;
-	color:#1c374b;
+	color:#44586d;
 	margin:10px 5px 5px 5px;
 }
 #login fieldset a:hover{
