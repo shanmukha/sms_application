@@ -7,7 +7,7 @@ class Admin::TagReportsController < ApplicationController
  		@tag = {}
     @names = []
     @sizes = []
-    @tags = Tag.find_all_tags(current_user)
+    @tags = current_user.tags
     unless params[:report].nil?
    		@month = params[:report][:month]
     end   
