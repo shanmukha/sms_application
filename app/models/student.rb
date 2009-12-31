@@ -32,6 +32,8 @@ class Student < ActiveRecord::Base
       sizes = []
       students.each do |student|
       	names << student.name
+      	conditions << ["group_id = ?",group_id] 
+        conditions << ['message_students.status =?','Delivered'] if type=="messages"
       	conditions << ['message_students.student_id = ?',student.id]  if type=="messages"
       	students_communication_size[student.id]  = Message.count(:all,:joins =>[:message_students],:conditions => [ conditions.transpose.first.join( " and " ), *conditions.transpose.last ] ) if type=="messages"
       	students_communication_size[student.id] = student.letters.count(:all,:conditions => [ conditions.transpose.first.join( " and " ), *conditions.transpose.last ] ) if type=="letters" 

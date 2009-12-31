@@ -18,15 +18,14 @@ class Admin::ClassReportsController < ApplicationController
       @classes.each do |group|
         @names << group.name #for graph 
        	@class[group.id] = group.messages.count(:all,:joins => [:message_students],:conditions => ['messages.created_at>= ? and message_students.status =?',Time.now.beginning_of_month,'Delivered'])
-       	 @sizes << @class[group.id]
-       end
-      elsif params[:report][:group_id].blank? #all class communication
+       	@sizes << @class[group.id]
+      end
+    elsif params[:report][:group_id].blank? #all class communication
         @classes = classes
         @class,@names,@sizes = find_all_class_communication(params[:report][:month],params[:report][:type],@classes)
-      elsif !params[:report][:group_id].blank? 
+    elsif !params[:report][:group_id].blank? 
+          @group = Group.find(params[:report][:group_id])
          	conditions = []
-         	conditions << ["messages.group_id = ?", params[:report][:group_id]] if params[:report][:group_id]
-         	conditions << ['message_students.status =?','Delivered']
          	conditions += month_conditions(params[:report][:month],params[:report][:type])
       case params[:report][:type]
          

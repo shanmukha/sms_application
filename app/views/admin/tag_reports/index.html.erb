@@ -2,8 +2,8 @@
  <h1 class ='heading'>Tag wise report</h1>
  <hr /><br />
   <% form_for(:report, :url => admin_tag_reports_path, :html => {:id => 'main-form',:method => :get}) do |f| %>
- Class:<%= f.select :group_id, find_all_groups%>
- Month: <%= f.select :month ,[["This month","tm"],["Last month", "lm"], ["Last 2 months", "l2"], ["Last 3 months", "l3"], ["Last 4 months", "l4"]]%>
+ Class:<%= f.select :group_id, find_all_groups,:selected => (@group.id unless @group.nil?)%>
+ Month: <%= f.select :month ,[["This month","tm"],["Last month", "lm"], ["Last 2 months", "l2"], ["Last 3 months", "l3"], ["Last 4 months", "l4"]],:selected => (params[:report][:month] unless params[:report].nil?)%>
  <%= f.submit "Get report" %> &nbsp;&nbsp;&nbsp;&nbsp;
     <%= link_to_function "#{image_tag('table.png')} List", "jQuery('#graph').hide(); jQuery('#list').show(); return false;" %> &nbsp; | &nbsp;
      <%= link_to_function "#{image_tag('chart_pie.png')} Pie Chart", "jQuery('#graph').show(); jQuery('#list').hide(); return false;" %> 

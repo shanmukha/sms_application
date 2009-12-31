@@ -6,12 +6,18 @@ module ApplicationHelper
   
   def all_templates 
       admin = current_user.has_role?('admin') ? current_user : User.find(current_user.parent_id) rescue ''
-     [['Select saved message', '']] + admin.message_templates.find(:all).map{|m|[m.message_title,m.id]}
+      user_ids = []
+      user_ids << 1
+      user_ids << admin.id unless admin.blank?
+     [['Select saved message', '']] + MessageTemplate.find(:all,:conditions =>['user_id in (?)',user_ids]).map{|m|[m.message_title,m.id]}
   end
 	
 	def all_tags
-	  admin = current_user.has_role?('admin') ? current_user : User.find(current_user.parent_id) rescue ''
-	  [['Select tag', '']] + admin.tags.find(:all).map{|m|[m.name,m.id]} rescue ''
+	   admin = current_user.has_role?('admin') ? current_user : User.find(current_user.parent_id) rescue ''
+	   user_ids = []
+     user_ids << 1
+     user_ids << admin.id unless admin.blank?
+	  [['Select tag', '']] + Tag.find(:all,:conditions =>['user_id in (?)',user_ids]).map{|m|[m.name,m.id]} rescue ''
 	end
 	
 	
@@ -39,13 +45,13 @@ module ApplicationHelper
          month_name = "in the month of #{month_print(Time.now.month)}-#{Time.now.strftime('%y')}"
        when 'lm'
           month_name = "in the month of #{month_print(1.months.ago.month)}-#{Time.now.strftime('%y')}"
-        when 'l2' 
+       when 'l2' 
           month_name =  "during #{month_print(1.months.ago.month)} and  #{month_print(Time.now.month)}"
-        when 'l3'
+       when 'l3'
            month_name = "from #{month_print(2.months.ago.month)} till  #{month_print(Time.now.month)}"       
-        when 'l4'
+       when 'l4'
            month_name =  "from #{month_print(3.months.ago.month)} till #{month_print(Time.now.month)}"
-        end       
+     end       
        return month_name  
    end 
        
@@ -74,9 +80,12 @@ module ApplicationHelper
  end
     
     def find_all_tags
-	  admin = current_user.has_role?('admin') ? current_user : User.find(current_user.parent_id) rescue ''
-	    [['All', '']] + admin.tags.find(:all).map{|m|[m.name,m.id]} rescue ''
-	  end
+	  	admin = current_user.has_role?('admin') ? current_user : User.find(current_user.parent_id) rescue ''
+	    user_ids = []
+      user_ids << 1
+      user_ids << admin.id unless admin.blank?
+	    [['All', '']]  + Tag.find(:all,:conditions =>['user_id in (?)',user_ids]).map{|m|[m.name,m.id]} rescue ''
+	 end
 	
 	
   def find_all_groups

@@ -51,14 +51,13 @@ private
            @names = []
            @sizes = []
            teachers.each do |teacher|
-           @names << teacher.name #for graph 
-           @teacher[teacher.id] =  teacher.messages.find(:all,:joins => [:messge_students],:conditions => [ conditions.transpose.first.join( " and " ), *conditions.transpose.last ] ).size if type == 'messages'
-           @teacher[teacher.id] =  teacher.emails.find(:all,:conditions => [ conditions.transpose.first.join( " and " ), *conditions.transpose.last ] ).size if type == 'emails' 
-           @teacher[teacher.id] =  teacher.letters.find(:all,:conditions => [ conditions.transpose.first.join( " and " ), *conditions.transpose.last ] ).size if type == 'letters'
-           @sizes << @teacher[teacher.id]
+           	 @names << teacher.name #for graph 
+             @teacher[teacher.id] =  teacher.messages.find(:all,:joins => [:messge_students],:conditions => [ conditions.transpose.first.join( " and " ), *conditions.transpose.last ] ).size if type == 'messages'
+             @teacher[teacher.id] =  teacher.emails.find(:all,:conditions => [ conditions.transpose.first.join( " and " ), *conditions.transpose.last ] ).size if type == 'emails' 
+             @teacher[teacher.id] =  teacher.letters.find(:all,:conditions => [ conditions.transpose.first.join( " and " ), *conditions.transpose.last ] ).size if type == 'letters'
+             @sizes << @teacher[teacher.id]
+       end
+    return @teacher,@names,@sizes
   end
-  return @teacher,@names,@sizes
-  
-end
 
 end
