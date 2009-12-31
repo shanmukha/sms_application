@@ -1,3 +1,9 @@
+<script type="text/javascript">
+setTimeout(function() {
+    $('#notice').fadeOut('fast');
+}, 4000); 
+</script>
+
 <% if flash[:notice] %>
   <div id="notice">
      <p><%= flash[:notice] %>

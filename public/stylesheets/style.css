@@ -78,6 +78,20 @@ h1.heading {font-size:16px;
 	letter-spacing:1px;
 }
 h1.heading span{color: #c8287b;}
+
+.button_small {
+  -moz-border-radius-bottomleft:5px;
+  -moz-border-radius-bottomright:5px;
+  -moz-border-radius-topleft:5px;
+  -moz-border-radius-topright:5px;
+  background:transparent url(/images/button-large.png) repeat-x scroll center top;
+  border:1px solid #999999;
+  color:inherit;
+  font-family:Arial,Helvetica,Calibri,sans-serif;
+  margin:0;
+  overflow:visible;
+  padding: 2px;
+  font-size: 12px;}
 /*..................................................header............................*/
 .clear{
 	clear:both;
@@ -104,9 +118,7 @@ h1.heading span{color: #c8287b;}
 
 #login_wrapper{
    background: #fff;
-   width: 465px;
    
-   margin: 0 auto;
 }
 
  
@@ -236,7 +248,7 @@ h1.heading span{color: #c8287b;}
 	font-family : "arial", helvetica, sans-serif;
 }
 
-#menu ul li.active a{ color: #9acbf9;  }
+#menu ul li.active a{ color: #88b1db;  }
 
 #menu li a:hover{
 	color: #8bde87;
@@ -277,8 +289,8 @@ h1.heading span{color: #c8287b;}
         clear: both;
 	width: 94%;
   	margin: 10px auto 10px auto;
-  	background: #d0d1d2 url(/images/container-bg.png) repeat-x; 
-        padding: 10px;
+  	background: #bec6cd url(/images/container-bg.png1) repeat-x; 
+        padding: 12px;
 }
 
 
@@ -302,10 +314,10 @@ h1.heading span{color: #c8287b;}
 	float:left;
 	min-height:360px;
 	height:auto !important;
-  height:360px;
+        height:360px;
 	width:48.5%;
 	margin: 0;
-	background: #fff;
+	background: #fcfcfc;
  
 }
 
@@ -335,6 +347,10 @@ h1.heading span{color: #c8287b;}
 	font-weight:normal;	
 }
 
+.message_left hr{
+margin-top: 20px;
+  width: 96%;
+}
 select{
 	font-family: Verdana, Helvetica, Arial;
 }
@@ -353,10 +369,14 @@ select{
 
 
 .message_left  textarea{
-        font-size: 14px;
-	border:1px solid #ccc;
-	padding:5px;
-	background-color:#fbfbfb;
+        -moz-border-radius-bottomleft:3px;
+-moz-border-radius-bottomright:3px;
+-moz-border-radius-topleft:3px;
+-moz-border-radius-topright:3px;
+background:#fbfbfb url(/images/inputshadow.gif) no-repeat scroll left top;
+border:1px solid #999999;
+margin:3px 0;
+padding:3px 5px;
 	width: 385px;
 	height: 125px;
 }
@@ -368,7 +388,7 @@ select{
 .message_right{
 	float:right;
 	margin: 0;
-	background: #fff url(/images/right_form_bg.gif) no-repeat center;
+	background: #fcfcfc url(/images/right_form_bg.gif) no-repeat center;
 	width:50.5%;
 	min-height:360px;
 	height:auto !important;
@@ -376,29 +396,43 @@ select{
   padding: 0px 0px 10px 0px;
 }
 
+.message_right input{
+ -moz-border-radius-bottomleft:3px;
+-moz-border-radius-bottomright:3px;
+-moz-border-radius-topleft:3px;
+-moz-border-radius-topright:3px;
+background:#fbfbfb url(/images/inputshadow.gif) no-repeat scroll left top;
+border:1px solid #bbb;
+margin:3px 0;
+padding:3px 5px;
+	width: 280px;
+}
 
 .message_right p{
 	font-size:14px;
 	color:#000;
-	font-family: Verdana, Helvetica, Arial;
 	margin:18px 0px 5px 0px;
 	padding:2px 5px 5px 25px;
 }
 
-#message_left .button{
-
-}
+ 
 
 #send{
-	margin: 30px 0px 0px 20px;
+	margin: 10px 0px 0px 20px;
 }
 
 #send input{
-	border:1px solid gray;
-	padding: 3px 2px 3px 2px;
-	color:#15446f;
-	font-size:13px;
-	font-weight:bold;
+	-moz-border-radius-bottomleft:5px;
+-moz-border-radius-bottomright:5px;
+-moz-border-radius-topleft:5px;
+-moz-border-radius-topright:5px;
+background:transparent url(/images/button-large.png) repeat-x scroll center top;
+border:1px solid #999999;
+color:inherit;
+font-family:Arial,Helvetica,Calibri,sans-serif;
+margin:0;
+overflow:visible;
+padding: 5px;
 }
 
 #send input:hover{
@@ -430,12 +464,16 @@ select{
 }
 
 #schedule span input{
-	padding: 3px 2px 3px 2px;
-	color:#15446f;
-	font-size:13px;
-
- 
-	font-weight:bold;
+-moz-border-radius-bottomleft:5px;
+-moz-border-radius-bottomright:5px;
+-moz-border-radius-topleft:5px;
+-moz-border-radius-topright:5px;
+background:transparent url(/images/button-large.png) repeat-x scroll center top;
+border:1px solid #999999;
+color:inherit;
+font-family:Arial,Helvetica,Calibri,sans-serif;
+overflow:visible;
+padding: 5px;
 }
 
 #schedule span input:hover{
@@ -454,7 +492,12 @@ color:#0e8ab8;
 
 #schedule a:hover{
 	color:#000;
-	text-decoration:none;
+	text-decoration:none; -moz-border-radius-bottomleft:3px;
+-moz-border-radius-bottomright:3px;
+-moz-border-radius-topleft:3px;
+-moz-border-radius-topright:3px;
+background:#fbfbfb url(/images/inputshadow.gif) no-repeat scroll left top;
+border:1px solid #bbb;
 }
 
 
@@ -1118,28 +1161,25 @@ table.student_letter tr.even:hover{
  
 
 #login {
-  width: 380px;
-  padding:20px 10px 10px 10px;
-	margin:20px;
-	border:3px solid #eeeeee;
-	background-color:#9cbee1;
+  width: 360px;
+  padding:10px 10px 10px 10px;
+	margin:20px 20px 0px 20px;
+	border:2px solid #ddd;
+  background: #fbfbfb;
 }
- #login fieldset label{
-		font-size:14px;
-		color:#44586d;
-		margin:5px 5px 5px 5px;
-	}
 
-#login fieldset input{
-	
-        margin:5px 10px 5px 10px;
-        padding: 4px;
-}
+ 
 
 #login fieldset input.field{
-	border:1px solid #bbb;
         margin:5px 10px 5px 10px;
-        padding: 5px;
+        padding: 3px;
+        width: 120px;
+         -moz-border-radius-bottomleft:3px;
+-moz-border-radius-bottomright:3px;
+-moz-border-radius-topleft:3px;
+-moz-border-radius-topright:3px;
+background:#fbfbfb url(/images/inputshadow.gif) no-repeat scroll left top;
+border:1px solid #bbb;
 }
 
 #login fieldset a{
@@ -1159,6 +1199,10 @@ table.student_letter tr.even:hover{
 	border:#c8905e 1px solid;
 }
 
+#login_wrapper #cover_image{
+  width: 410px;
+  margin: 0 auto;
+}
 
 #user-show {
   float:left;

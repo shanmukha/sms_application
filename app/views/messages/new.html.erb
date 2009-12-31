@@ -18,7 +18,8 @@
             <%= f.text_area :message_body %>
          </p> 
         <p><span id="counter"></span>&nbsp; characters left to complete one message.</p>
-         <p> <%= f.select :tag_id, all_tags  %></p>         
+         <p> <%= f.select :tag_id, all_tags  %></p>    
+         <hr class = 'message_line'/>     
   	 <div id = 'send'>
 	   <%= f.submit "Send message now" %> or 
 	   <%= link_to_function 'Schedule message sending.', "jQuery('#schedule').show(); jQuery('#send').hide(); return false;" %>

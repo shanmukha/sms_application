@@ -1,27 +1,25 @@
+<script type="text/javascript">
+  jQuery(function($){
+   $("#user_session_username").Watermark("Enter user name");
+});
+</script>
 
-  <%= image_tag ('cover_image.jpg') %>
-  <div id ="login">
+<div id ="login" class = 'right'>
     <% form_for @user_session do |f| %>
        <fieldset>
  	
        <%= render :partial => 'shared/notice' %>
        <table>
          <tr><td>
-          <%= f.label :username%>:</td>
           <td><%= f.text_field :username, :class => 'field'  %></td>
-
-       </tr> 
-        <tr><td>
-         <%= f.label :password %>:</td>
           <td> <%= f.password_field :password, :class => 'field'  %></td>
-
-       </tr> 
-       <tr> <td>&nbsp;</td><td><%= f.submit "Login to SchoolIt" %></td></tr>
+          <td>&nbsp;</td><td><%= f.submit "Login", :class => 'button_small' %></td></tr>
        </table>
-       <br />
-        <%= link_to "Forgot password?",forgot_password_users_path%>
+       <!-- <%= link_to "Forgot password?",forgot_password_users_path%> -->
       </fieldset>
    <% end %>
   </div>
-
-
+<div class = 'clear'></div>
+<div id ='cover_image'>
+  <%= image_tag ('cover_image.jpg') %>
+</div>
