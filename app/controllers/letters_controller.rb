@@ -27,7 +27,7 @@ class LettersController < ApplicationController
     @students = @letter.students.find(:all)
     respond_to do |format|
     format.pdf  {
-       options = { :left_margin => 30, :right_margin => 30, :top_margin => 20, :bottom_margin => 20, :page_size => 'A4'}
+       options = { :left_margin => 30, :right_margin => 30, :top_margin => 30, :bottom_margin => 30, :page_size => 'A4'}
        prawnto :inline => false, :prawn => options, :filename => "#{@letter.reference}.pdf"
        render :layout => false}
       end

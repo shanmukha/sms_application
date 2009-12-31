@@ -1,7 +1,7 @@
 counter = 0
  for student in @students
  box = pdf.bounds
-pdf.bounding_box([0, pdf.bounds.top], :width => 600) do
+pdf.bounding_box([0, pdf.bounds.top], :width => pdf.bounds.right - pdf.bounds.left ) do
 pdf.font "Courier"
     counter = counter +1
     content = @letter.content
