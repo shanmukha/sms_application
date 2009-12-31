@@ -7,7 +7,7 @@ class Admin::TagReportsController < ApplicationController
  		@tag = {}
     @names = []
     @sizes = []
-    @tags = current_user.tags
+    @tags = Tag.find_all_tags(current_user)
     unless params[:report].nil?
    		@month = params[:report][:month]
     end   
@@ -18,6 +18,7 @@ class Admin::TagReportsController < ApplicationController
         @sizes << @tag[tag.id]
       end
     elsif !params[:report][:group_id].blank?
+      @group = Group.find(params[:report][:group_id])
       conditions = []
       conditions << ["group_id = ?", params[:report][:group_id]] if params[:report][:group_id]
       conditions << ["message_students.status =?","Delivered"]
