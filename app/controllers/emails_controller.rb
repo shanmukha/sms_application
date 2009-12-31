@@ -60,7 +60,7 @@ class EmailsController < ApplicationController
        end
      end
      rescue 
-      flash[:notice] = 'Some thing went wrong.Please try later'    
+      flash.now[:error] = 'There seems to be some problem in sending email. Please try later.'    
       render :action => "new"
       return nil
   end
