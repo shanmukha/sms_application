@@ -92,7 +92,7 @@ h1.heading span{color: #c8287b;}
 }
 
 #body_wrapper{
-  background: #f8f8f8 url(/images/content_bg.gif) repeat-x top;
+  background: #fff url(/images/content_bg.gif) repeat-x top;
   padding-bottom: 20px;
   
 }
@@ -757,7 +757,7 @@ table.student_group tr.even:hover{
 
 
 .sidebar{
-    	margin: 0px;
+    	margin: 0px 5px 0px 0px;
     	/*border-left:1px solid #cecece;*/
     	width:20%;
     	float:right;
@@ -1040,7 +1040,7 @@ table.student_letter tr.even:hover{
 /*...............................pagination..........................................*/
 
 #pg{
-	padding:40px 0px 0px 0px;
+	padding: 30px 0px 10px 0px;
 	clear:both;
 	margin:0px 0px 0px 20px;
 	
@@ -1052,7 +1052,7 @@ table.student_letter tr.even:hover{
 	font-size: 11px;
 	text-decoration: none;
 	color: #000000;
-	border: 1px solid #d1f1bd;
+	border: 1px solid #376da4;
 	padding: 3px;
 	-moz-border-radius: 3px;
 }
