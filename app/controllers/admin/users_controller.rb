@@ -25,7 +25,7 @@ class Admin::UsersController < ApplicationController
          @user.update_attribute('parent_id',1)
          admin_role = Role.find(:first,:conditions =>['name = ?','admin'])
          @user.roles<< admin_role
-        User.set_default_template_tag(current_user,@user) #copying message template and tag from super admin to admin.
+        User.set_default_template_tag(current_user,@user) #copying message template and tag from super admin to admin.#
        elsif current_user.has_role?('admin') && !current_user.has_role?('super_admin')
           @user.update_attribute('parent_id',current_user.id)
           teacher_role = Role.find(:first,:conditions =>['name = ?','teacher'])
@@ -72,7 +72,7 @@ class Admin::UsersController < ApplicationController
         flash.now[:error] = 'No account was found by that login or email address.'
       else
         @user.forgot_password 
-         flash[:notice] = "New password sent to your mail id."
+         #flash[:notice] = "New password sent to your mail id."
           @user_session = UserSession.find
           @user_session.destroy
          end

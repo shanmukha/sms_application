@@ -5,23 +5,16 @@
 	<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
   	<title><%= configatron.site_name%></title>
    	<%= stylesheet_link_tag 'style', 'jquery-ui-1.7.2.cust'%>  
-        <%=javascript_include_tag 'jquery-1.3.2.min','jquery-ui-1.7.2.custom.min', 'jquery.corner' %>
+       <%=javascript_include_tag 'jquery-1.3.2.min','jquery-ui-1.7.2.custom.min','jrails','jquery.corner'%>
 </head>
 
 <body>
  <div id="login_outer_wrapper">
   <div id="login_wrapper">
-      
  <%= yield  %>
-        
- 
  </div>
 </div>
-
 <%= render :partial => 'shared/footer' %>
-
-
-
 </body>	
 </html>
 
