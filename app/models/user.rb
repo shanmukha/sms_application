@@ -43,4 +43,24 @@ class User < ActiveRecord::Base
   def find_classes
    self.groups.find(:all ,:conditions => ['status = ?','Active'])
   end
-end
+  
+ def self.set_default_template_tag(current_user,user)
+     @message_templates = current_user.message_templates
+     @tags = current_user.tags
+      unless @tags.nil? 
+       @tags.each do |tag|
+     		 Tag.create(:name => tag.name,:description => tag.description,:user_id => user.id)
+       end
+     end 
+     unless @message_templates.nil?
+     	 @message_templates.each do |template|
+     	    tag_name = template.tag.name
+     	    tag_id = Tag.find(:first,:conditions => ['name =? and user_id =?',tag_name,user.id]).id
+       		MessageTemplate.create(:message_body => template.message_body,:message_title => template.message_title,:tag_id => tag_id,:user_id => user.id) 
+      end
+     end
+     
+     
+ end     	
+      	
+ end

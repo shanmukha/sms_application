@@ -150,6 +150,7 @@ class MessagesController < ApplicationController
   def render_message_template
     @message_content = MessageTemplate.find(params[:message_message_id]).message_body rescue ''
     @tag_id = MessageTemplate.find(params[:message_message_id]).tag_id rescue ''
+   
     render :update do |page|
        page << "jQuery('#message_message_body').val('#{escape_javascript(@message_content)}')"
        page << "jQuery('#message_tag_id').val('#{@tag_id}')"

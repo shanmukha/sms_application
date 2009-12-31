@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091204063737) do
+ActiveRecord::Schema.define(:version => 20091224090946) do
 
   create_table "email_students", :force => true do |t|
     t.integer  "email_id"
@@ -55,6 +55,7 @@ ActiveRecord::Schema.define(:version => 20091204063737) do
     t.integer  "group_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "reference"
   end
 
   create_table "message_students", :force => true do |t|
@@ -70,6 +71,7 @@ ActiveRecord::Schema.define(:version => 20091204063737) do
     t.text     "message_body"
     t.string   "message_title"
     t.integer  "user_id"
+    t.integer  "tag_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -81,6 +83,7 @@ ActiveRecord::Schema.define(:version => 20091204063737) do
     t.string   "number"
     t.string   "status"
     t.integer  "sms_id"
+    t.integer  "tag_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -112,6 +115,7 @@ ActiveRecord::Schema.define(:version => 20091204063737) do
     t.string   "number"
     t.string   "status"
     t.integer  "sms_id"
+    t.integer  "tag_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -131,6 +135,7 @@ ActiveRecord::Schema.define(:version => 20091204063737) do
   create_table "tags", :force => true do |t|
     t.string   "name"
     t.text     "description"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

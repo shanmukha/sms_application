@@ -32,11 +32,10 @@ class CreateUsers < ActiveRecord::Migration
     teacher_role = Role.create(:name =>'teacher')
     super_admin = User.create do |u|
       u.name ='super_admin'
-      u.username = 'super_admin'
+      u.username = 'superadmin'
       u.password = u.password_confirmation = 'password'
       u.mail_id ='super_admin@gmail.com'
-      u.parent_id = 1
-      u.designation = 'Software engineer'
+      u.designation = 'Web development'
      end
       super_admin.roles<< super_admin_role
       super_admin.roles<< admin_role
