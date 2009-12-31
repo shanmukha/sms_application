@@ -153,7 +153,7 @@ h1.heading span{color: #c8287b;}
 	color: #c8287b;
 	font-family: "arial", helvetica, sans-serif;
         font-size: 20px;	 
-        margin: 50px 20px;     	
+        margin: 55px 20px;     	
 }
 
  
@@ -1094,16 +1094,16 @@ table.student_letter tr.even:hover{
 /* footer **************************************************************/
 #footer { 
 	width: 95.5%;
-	padding: 5px;
-	margin: 10px auto;
+	padding: 0px;
+	margin: 0px auto;
 	color: #0c2742;
         text-align: center;
         font-weight: bold;
 }
 
-#footer a { color: #c8287b;}
+#footer a { color: #3972ac;}
 
-#footer a:hover { color: #3972ac;}
+#footer a:hover { color: #c8287b;}
  
 /* end of footer */
 
