@@ -1,4 +1,4 @@
-<div class = 'right'<%= link_to image_tag("closelabel.gif", :title=> "close") ,:back%> </div>
+<div class = 'right'><%= link_to image_tag("closelabel.gif", :title=> "close") ,:back%> </div>
 <div class="create_new form_wrapper">
 <% form_for(@tag,:url => admin_tag_path(@tag) ,:html => {:multipart => true}) do |f|%>
   <%= f.error_messages %>
