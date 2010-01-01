@@ -1,7 +1,7 @@
 <div class="create_new">
 
     <% form_for(@student||Student.new) do |f| %>
-     <div class = 'left'>
+     <div class = 'left part1'>
 	<fieldset>
 	   <%= f.error_messages %>
 		<p>
@@ -36,7 +36,7 @@
 		</span>
 	</fieldset>
      </div>
-     <div id="select_group" class = 'right'>
+     <div id="select_group" class = 'part2'>
 	 <%unless @groups.blank?%>
 	   <table class="student_group" >
 		<tr>
