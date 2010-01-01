@@ -1,6 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
   map.resources :helps
-  map.resources :letters,:collection =>{:group_students => :get},:member => {:print => :any}
+  map.resources :letters,:collection =>{:group_students => :get},:member => {:print => :any, :print_labels => :any}
   map.resources :emails,:collection =>{:group_students => :get}
   map.resources :schedules,:collection =>{:render_message_template => :get,:student_groups => :get,:edit_student_groups => :get},:member => {:status_update => :any}
   map.resources :groups,:member =>{:add_students => :any,:create_students => :post,:make_active => :get,:make_inactive => :get},:collection =>{:subgroup_new => :any}

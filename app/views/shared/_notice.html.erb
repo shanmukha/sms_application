@@ -1,13 +1,12 @@
 <script type="text/javascript">
 setTimeout(function() {
     $('#notice').fadeOut('fast');
-}, 4000); 
+}, 3000); 
 </script>
 
 <% if flash[:notice] %>
   <div id="notice">
      <p><%= flash[:notice] %>
-        &nbsp;&nbsp; <%= link_to_function 'OK', "$('#notice').fade({duration: 0.5});", :title => "close", :class => 'close-button' %>
      </p>
   </div>
 <% end %>

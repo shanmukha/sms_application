@@ -7,12 +7,16 @@
    <table class="show_page">
 	
 		<tr>
-			  <td style ='border: 1px solid #ccc;' colspan ='2'><%=h @letter.content %></td>
+		    <td style ='border: 1px solid #ccc;' colspan ='2'><%=h @letter.content %></td>
 		</tr>
                 <tr>
-  		   <td ><%=h @letter.created_at.strftime('%d/%M/%Y') %></td><td class ='blue'><%=h @letter.user.name %></td>
+  		    <td ><%=h @letter.created_at.strftime('%d/%M/%Y') %></td><td class ='blue'><%=h @letter.user.name %></td>
 		</tr> 
-	        <tr><td colspan ='2'><%= link_to "<span>Print this letter</span>", print_letter_path(@letter), :class => 'buttonAdd' %></td></tr>
+                <tr><td colspan ='2'><hr /> </td></tr>
+	        <tr>
+                    <td><%= link_to "<span>Print this letter</span>", print_letter_path(@letter), :class => 'buttonAdd' %></td>
+                    <td><%= link_to "<span>Print labels</span>", print_labels_letter_path(@letter), :class => 'buttonAdd' %></td>
+                </tr>
 	</table>
 
 	

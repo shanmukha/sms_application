@@ -27,7 +27,7 @@ class LettersController < ApplicationController
     @students = @letter.students.find(:all)
     respond_to do |format|
     format.pdf  {
-       options = { :left_margin => 30, :right_margin => 30, :top_margin => 30, :bottom_margin => 30, :page_size => 'A4'}
+       options = { :left_margin => 50, :right_margin => 30, :top_margin => 60, :bottom_margin => 40, :page_size => 'A4'}
        prawnto :inline => false, :prawn => options, :filename => "#{@letter.reference}.pdf"
        render :layout => false}
       end
@@ -41,7 +41,7 @@ class LettersController < ApplicationController
     end
   end
 	
-	def create
+  def create
      if params[:students].blank?
       flash.now[:error] = "Please select at least one student"
       render :action => "new" 
@@ -63,7 +63,6 @@ class LettersController < ApplicationController
     end
   end
 	
-	
 
  def destroy
     @letter = Letter.find(params[:id])
@@ -78,18 +77,16 @@ class LettersController < ApplicationController
       @students = Group.find(params[:group_id]).students rescue ''
       render :update do |page|
      	page.replace_html 'students', :partial => 'group_student'
-   end
+      end
   end 
   
   def print_labels
-    @profiles = current_user.qd_profiles.to_be_dealer_printed
-    unless @profiles.blank?
+    letter = Letter.find(params[:id])
+    @students = letter.students.find(:all)
+    unless @students.blank?
       options = { :left_margin => 0, :right_margin => 0, :top_margin => 0, :bottom_margin => 0, :page_size => [595, 770] }
-      prawnto :inline => true, :prawn => options, :page_orientation => :portrait, :filename => 'labels.pdf'
+      prawnto :inline => false, :prawn => options, :page_orientation => :portrait, :filename => 'labels.pdf'
       render :layout => false  
-    else
-      flash[:notice] = 'No Data Marked for printing. Please make sure you have marked data for print.'
-      redirect_to(qd_profiles_path)
     end
  end
   

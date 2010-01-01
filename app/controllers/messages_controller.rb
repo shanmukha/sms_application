@@ -158,7 +158,7 @@ class MessagesController < ApplicationController
   end
   
   def student_groups
-      @students = Group.find(params[:group_id]).students.find(:all,:order => 'students.roll_number ASC') rescue ''
+      @students = Group.find(params[:group_id]).students.find(:all, :order => 'students.name ASC') rescue ''
       render :update do |page|
      	page.replace_html 'students', :partial => 'group_student'if !@students.blank?
       page.replace_html 'students', :partial => 'mobile_number' if @students.blank?
