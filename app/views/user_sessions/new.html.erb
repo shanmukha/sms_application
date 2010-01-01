@@ -1,7 +1,7 @@
 <script type="text/javascript">
   jQuery(function($){
    $("#user_session_username").Watermark("Enter user name");
-});
+  });
 </script>
 
 <div id ="login" class = 'right'>
@@ -14,6 +14,8 @@
           <td><%= f.text_field :username, :class => 'field'  %></td>
           <td> <%= f.password_field :password, :class => 'field'  %></td>
           <td>&nbsp;</td><td><%= f.submit "Login", :class => 'button_small' %></td></tr>
+            <tr><td> </td> <td> <%= link_to "Forgot password?",forgot_password_admin_users_path%> </td>
+              </tr>
        </table>
       </fieldset>
    <% end %>

@@ -4,8 +4,7 @@ class CreateLetters < ActiveRecord::Migration
       t.text :content
       t.integer :user_id
       t.integer :group_id
-      t.string  :reference
-      t.timestamps
+       t.timestamps
     end
   end
 
