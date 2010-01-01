@@ -9,10 +9,10 @@
 		    <td><%=h @message.created_at.strftime('%d-%m-%Y') %></td>
                     <td><%=h @message.user.name %></td>
 		</tr>
-                <tr> <td colspan = '2' style ='border: 1px solid #ccc; background: #eef2f6;'><%=h @message.message_body %></td> </tr>
-                <%unless @message.tag_id.nil?%>
+		<tr> <td colspan = '2' style ='border: 1px solid #ccc; background: #eef2f6; width: 300px;'><%=h @message.message_body %></td> </tr>
+             <%unless @message.tag_id.nil?%>
                    <tr>
-		     <th>Message tag:</th><td><%=h @message.tag.name%></td>
+		     <th>Message tag:<td><%=h @message.tag.name%></td>
 		   </tr>
                 <%end%>
 
