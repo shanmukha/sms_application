@@ -20,10 +20,9 @@
 		<tr>
 	    <td class = <%= column_class(@message.status) %>>Status:<%= @message.status%></td>
       </td>
-		</tr>
+		
 		<%end%>
 		<%if @message.sms_id==nil and @students.blank?%>
-	  	<tr>
 			 <td class = <%= column_class('Failed') %>Status:Failed</td>
      </td>
 		</tr>
