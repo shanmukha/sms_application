@@ -162,7 +162,7 @@ h1.heading span{color: #c8287b;}
 	margin: 0px;
 }
 
-.part1 {width: 57%;}
+.part1 {width: 55%;}
 .part2 {width: 38%;}
 
 
@@ -249,7 +249,7 @@ h1.heading span{color: #c8287b;}
 #menu { 
 	background: #e2f2ff url(/images/menu.gif) repeat-x;
         height:37px;
-	margin: 20px 3px 0px 3px;
+	margin: 25px 3px 0px 3px;
 }
 
 #menu ul {
@@ -739,6 +739,7 @@ table.student_list tr.even:hover{
 table.student_group{
 	border-collapse: collapse; 
 	border: #b4b8bd 1px solid;
+        width: 95%;
 }
 
 table.student_group tr th{
@@ -785,7 +786,7 @@ table.student_group tr.even:hover{
 #select_group{
 	float: left;
 	margin: 0px 0px 0px 40px;
-	padding:23px 10px 0px 0px;
+	padding: 23px 0px 0px 0px;
 }
 
 #select_group h4{
