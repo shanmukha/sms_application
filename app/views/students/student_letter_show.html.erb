@@ -7,7 +7,7 @@
  <table class="show_page">
 	
 		<tr>
-			  <td style ='border: 1px solid #ccc;' colspan ='2'><%=h @letter.content %></td>
+			 <tr> <td colspan = '2' style ='border: 1px solid #ccc; background: #eef2f6; width: 300px;'><%=h @letter.content %></td>
 		</tr>
                 <tr>
   		   <td ><%=h @letter.created_at.strftime('%d/%M/%Y') %></td><td class ='blue'><%=h @letter.user.name %></td>

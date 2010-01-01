@@ -8,7 +8,7 @@
   		   <td colspan ='2'><%=h @email.subject %></td>
 		</tr>
 		<tr>
-  		   <td  style ='border: 1px solid #ccc;background: #eef2f6' colspan ='2'><%=h @email.body %></td>
+  		  <tr> <td colspan = '2' style ='border: 1px solid #ccc; background: #eef2f6; width: 300px;'><%=h @email.body %></td>
 		</tr>
 		<tr>
   		   <td ><%=h @email.created_at.strftime('%d/%m/%Y') %></td><td class ='blue'><%=h @email.user.name %></td>
