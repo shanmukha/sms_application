@@ -150,9 +150,9 @@ h1.heading span{color: #c8287b;}
 }
 
 #header #site_heading {
-	float: left;	width: 75%;
+	float: left;	width: 58%;
 	height: 75px;
-	margin: 0px 0px 0px 10px;
+	margin: 15px 0px 0px 10px;
  
 } 
 
@@ -399,7 +399,7 @@ padding:3px 5px;
   padding: 0px 0px 10px 0px;
 }
 
-.message_right input{
+.message_right input.text-box{
  -moz-border-radius-bottomleft:3px;
 -moz-border-radius-bottomright:3px;
 -moz-border-radius-topleft:3px;
