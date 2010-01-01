@@ -4,6 +4,10 @@ padding : 0;
 border : 0;
 outline : 0;
 vertical-align : baseline;
+font-size:100%;
+font-style:normal;
+font-weight:normal;
+vertical-align:baseline;
 }
  
 :focus {
@@ -31,8 +35,10 @@ content : "";
 blockquote, q {
 quotes : "" "";
 }
+
+
 /*******************************************************/
-body { margin: 0px; padding: 0px; background: #d1c8a9 url('/images/bg.jpg') repeat-x scroll 0% 0%; color: rgb(0, 0, 0); font-family: "arial", helvetica, sans-serif; font-style: normal; font-variant: normal; font-weight: normal; font-size: 13px; line-height: normal; }
+body { margin: 0px; padding: 0px; background: #d1c8a9 url('/images/bg.jpg') repeat-x scroll 0% 0%; color: rgb(0, 0, 0); font-family: Helvetica,Arial,Sans-Serif; font-style: normal; font-variant: normal; font-weight: normal; font-size: 13px; line-height: normal; }
 
 
 p {
@@ -52,8 +58,20 @@ textarea{
 hr {
 color: #bbb;
 background-color: #bbb;
-border-top: 1px solid #838ea6;
+border-top: 1px solid #bbb;
+border-bottom: 1px solid #f1f1f1;
+width: 99.5%;
+margin: 15px 0px 20px 1px;
 
+}
+
+a:link, a:visited {
+color:#365D95;
+text-decoration:underline;
+}
+a:hover, a:active {
+color:#1F2126;
+text-decoration:underline;
 }
 
 label{
@@ -86,7 +104,7 @@ h1.heading span{color: #c8287b;}
   -moz-border-radius-topright:5px;
   background:transparent url(/images/button-large.png) repeat-x scroll center top;
   border:1px solid #999999;
-  color:inherit;
+  color:inherit;eaebee
   font-family:Arial,Helvetica,Calibri,sans-serif;
   margin:0;
   overflow:visible;
@@ -224,7 +242,7 @@ h1.heading span{color: #c8287b;}
 }
 
 .header_links ul li a:hover{
-	color:#86b050;
+	color:#86b050;border-top: 1px solid #ccc;
 	text-decoration:underline;
 }
 
@@ -321,7 +339,7 @@ h1.heading span{color: #c8287b;}
         height:360px;
 	width:48.5%;
 	margin: 0;
-	background: #f0f0f0;
+	background: #eaebee;
       }
 
 .message_div_top{
@@ -351,24 +369,21 @@ h1.heading span{color: #c8287b;}
 }
 
 .message_left hr{
-margin-top: 20px;
-  width: 96%;
+  margin-top: 20px;
+  border-top: 1px solid #bbb;
+  border-bottom: 1px solid #fff;
+  background: #fff;
+  width: 97%;
 }
-select{
-	font-family: Verdana, Helvetica, Arial;
-}
+
 
 .message_left p{
-	font-size: 13px;
 	color:#270027;
 	margin: 15px 0px 0px 20px;
-  font-weight:normal;
+        font-weight:normal;
 }
 
-.message_left p span{
-	color:#ea3d3d;
-	font-weight:bold;
-}
+
 
 
 .message_left  textarea{
@@ -391,7 +406,7 @@ padding:3px 5px;
 .message_right{
 	float:right;
 	margin: 0;
-	background: #f0f0f0 url(/images/right_form_bg.gif) no-repeat center;
+	background: #eaebee url(/images/right_form_bg.gif) no-repeat center;
 	width:50.5%;
 	min-height:360px;
 	height:auto !important;
@@ -426,16 +441,16 @@ padding:3px 5px;
 
 #send input{
 	-moz-border-radius-bottomleft:5px;
--moz-border-radius-bottomright:5px;
--moz-border-radius-topleft:5px;
--moz-border-radius-topright:5px;
-background:transparent url(/images/button-large.png) repeat-x scroll center top;
-border:1px solid #999999;
-color:inherit;
-font-family:Arial,Helvetica,Calibri,sans-serif;
-margin:0;
-overflow:visible;
-padding: 5px;
+        -moz-border-radius-bottomright:5px;
+        -moz-border-radius-topleft:5px;
+        -moz-border-radius-topright:5px;
+         background: #f6f6f6 url(/images/button-large.png) repeat-x scroll center top;
+         border:1px solid #999999;
+         color:inherit;
+         font-family:Arial,Helvetica,Calibri,sans-serif;
+         margin:0;
+          overflow:visible;
+          padding: 5px;
 }
 
 #send input:hover{
@@ -445,7 +460,7 @@ padding: 5px;
 
 #send a{
 	color:#32628f;
-	text-decoration:underline;
+	text-decoration:none;
 	font-size:13px;
 	font-weight: bold;
 	font-family: Verdana, Helvetica, Arial;
@@ -453,7 +468,7 @@ padding: 5px;
 
 #send a:hover{
 	color:#000;
-	text-decoration:none;
+	text-decoration:underline;
 }
 
 
@@ -487,7 +502,7 @@ color:#0e8ab8;
 
 #schedule a{
 	color:#32628f;
-	text-decoration:underline;
+	text-decoration:none;
 	font-size:13px;
 	font-weight: bold;
 
@@ -495,12 +510,7 @@ color:#0e8ab8;
 
 #schedule a:hover{
 	color:#000;
-	text-decoration:none; -moz-border-radius-bottomleft:3px;
--moz-border-radius-bottomright:3px;
--moz-border-radius-topleft:3px;
--moz-border-radius-topright:3px;
-background:#fbfbfb url(/images/inputshadow.gif) no-repeat scroll left top;
-border:1px solid #bbb;
+	text-decoration:underline;  
 }
 
 
@@ -510,7 +520,7 @@ border:1px solid #bbb;
 	border-collapse: collapse;
         width: 99.5%;
         color: #000;
-	margin: 27px 5px 0px 4px;
+	margin: 0px 5px 0px 4px;
       	float:left;
         border: 1px solid #ddd;
       
@@ -599,28 +609,27 @@ border:1px solid #bbb;
       	float:left;
 	      margin: 0px 0px 15px 0px;
         padding-left: 58px;
-        padding-top: 5px;
         min-height:500px;
 	      height:auto !important;
         height:500px;
-        border: 1px solid #ccc;
-        border-left: none;
+        border-top: 1px solid #ccc;
+        border-bottom: 1px solid #ccc;
 }
 
-#listing-top{ margin: 5px 10px 8px 10px; padding-top: 2px; width:73%;}
+#listing-top{ margin: 5px 10px 0px 10px; padding-top: 2px; width:73%;}
 
 #listing-top h1 {
 	font-size:18px;
 	color: #005ca1;
 	font-family : "arial", helvetica, sans-serif;
 	font-weight:bold;
-	padding: 2px 0px 0px 28px;
+	padding: 2px 0px 0px 15px;
 	width:50%;
 	float:left;
 	letter-spacing:1px;
 }
 
-#listing-top a{ font-weight: bold; color: #235d94; font-size: 14px; font-family : "arial", helvetica, sans-serif;}
+#listing-top a{ font-weight: bold; color: #235d94; font-size: 14px; font-family : "arial", helvetica, sans-serif; }
  
 
 #top h1 {
@@ -804,10 +813,12 @@ table.student_group tr.even:hover{
 
 
 .sidebar{
-    	margin: 0px 5px 0px 0px;
+    	margin: 0px 10px 0px 0px;
     	/*border-left:1px solid #cecece;*/
-    	width:20%;
+    	width:18.5%;
     	float:right;
+        background: #eaebee;
+        padding: 8px;
 }
 
 .sidebar h1{
@@ -1423,7 +1434,7 @@ a.buttonAdd:hover {
 	color: #6bb11f;
 	background: url(/images/sprite.png) right -36px no-repeat;
 }
-border:
+
 a.buttonAdd:hover span {
 	background: url(/images/sprite.png) -583px -36px no-repeat;
 }
