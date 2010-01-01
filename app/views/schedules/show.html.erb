@@ -18,13 +18,13 @@
 
 		<%if @schedule.sms_id!=nil%>	
 		<tr>
-	    <td class = <%= column_class(@schedule.status) %>><h3>Status:<%= @schedule.status%></td>
+	    <td class = <%= column_class(@schedule.status) %>>Status:<%= @schedule.status%></td>
       </td>
 		</tr>
 		<%end%>
 		<%if @schedule.sms_id==nil and @students.blank?%>
 	  	<tr>
-			 <td class = <%= column_class('Failed') %>><h3>Status:Failed</td>
+			 <td class = <%= column_class('Failed') %>>Status:Failed</td>
      </td>
 		</tr>
 		<%end%>

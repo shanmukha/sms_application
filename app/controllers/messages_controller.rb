@@ -129,13 +129,13 @@ class MessagesController < ApplicationController
         messages.each do |msg|
         	sms = MessageService.find(msg.sms_id)
      	  	sms.save   #calling update method of the API
-          msg.update_attribute('status', sms.status) 
-     	end
+     	    msg.update_attribute('status', sms.status) 
+      end
       else
         sms = MessageService.find(@message.sms_id)
         sms.save   #calling update method of the API
-        @message.update_attribute('status', sms.status) 
-      end  
+        msg.update_attribute('status', sms.status) 
+     end  
       respond_to do |format|
         flash[:notice] = 'Status successfully updated.'
         format.html { redirect_to(message_url(@message))} 
@@ -193,7 +193,7 @@ class MessagesController < ApplicationController
        rescue #ActiveResource::ResourceInvalid => e  
     	 		flash.now[:error] = 'There seems to be a problem in sending message. Please try again.'  
     	  	redirect_to message_path(@message)  
-  end
+     end
     
    
   
