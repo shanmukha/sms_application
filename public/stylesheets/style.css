@@ -123,10 +123,10 @@ h1.heading span{color: #c8287b;}
 
  
 #content_wrapper{
-	background: #c3c6c8;
+	background: #bbb;
 	margin: 0 auto;
-	width: 94.2%;
-  padding: 10px;
+	width: 95.3%;
+  padding: 1px;
 }
 
 #wrapper{ 
@@ -139,6 +139,31 @@ h1.heading span{color: #c8287b;}
   padding: 10px 15px 0px 15px;
 
 }
+
+#message_wrapper{
+        clear: both;
+	width: 93.5%;
+  	margin: 10px auto 10px auto;
+  	background: #fff;
+        padding: 10px;
+        border: 1px solid #ccc;
+}
+
+
+.left{	
+	float:left; 
+	padding: 0px; 
+	margin: 0px;
+}
+
+.right{	
+	float:right; 
+	padding: 0px; 
+	margin: 0px;
+}
+
+.part1 {width: 57%;}
+.part2 {width: 38%;}
 
 
 #header {
@@ -288,29 +313,7 @@ h1.heading span{color: #c8287b;}
  color: #ca3a85;
 }
 
-#message_wrapper{
-        clear: both;
-	width: 94%;
-  	margin: 10px auto 10px auto;
-  	background: #d5d5d5;
-        padding: 15px 12px 12px 12px;
-}
 
-
-.left{	
-	float:left; 
-	padding: 0px; 
-	margin: 0px;
-}
-
-.right{	
-	float:right; 
-	padding: 0px; 
-	margin: 0px;
-}
-
-.part1 {width: 57%;}
-.part2 {width: 38%;}
 
 .message_left{
         padding: 0px 0px 10px 0px;
@@ -320,13 +323,12 @@ h1.heading span{color: #c8287b;}
         height:360px;
 	width:48.5%;
 	margin: 0;
-	background: #fafafa;
+	background: #f0f0f0;
       }
 
 .message_div_top{
  	background: #4d89c1; /*url(/images/message-top.jpg) repeat-x;*/
  	padding: 3px 8px 2px 0px;
-        border: 2px solid #e8e8e8;
         border-bottom: 1px solid #3779b7;
  
 }
@@ -391,7 +393,7 @@ padding:3px 5px;
 .message_right{
 	float:right;
 	margin: 0;
-	background: #fcfcfc url(/images/right_form_bg.gif) no-repeat center;
+	background: #f0f0f0 url(/images/right_form_bg.gif) no-repeat center;
 	width:50.5%;
 	min-height:360px;
 	height:auto !important;
@@ -528,10 +530,11 @@ border:1px solid #bbb;
 }
  
 .listing td { 
-        padding: 0.5em .5em .6em .5em;
+        padding: 0.5em .5em .5em .5em;
 	color: #000; 
 	font-size:13px;
         vertical-align: center;
+        height: 30px;
 	
 }
 
@@ -559,13 +562,11 @@ border:1px solid #bbb;
 }
 
 .listing tr.even td {
-      height: 30px;
       border-top: #b1b1b1 1px solid;
       border-bottom: #b1b1b1 1px solid;
 }
 
 .listing tr.odd td {
-      height: 30px;
       border-top: #b1b1b1 1px solid;
       border-bottom: #b1b1b1 1px solid;
 }
@@ -607,7 +608,7 @@ border:1px solid #bbb;
         border-left: none;
 }
 
-#listing-top{ margin: 2px 10px 10px 10px; padding-top: 2px; width:75%;}
+#listing-top{ margin: 5px 10px 8px 10px; padding-top: 2px; width:73%;}
 
 #listing-top h1 {
 	font-size:18px;
