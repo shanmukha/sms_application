@@ -145,7 +145,7 @@ h1.heading span{color: #c8287b;}
         width: 96%;
         height: auto;
 	margin: 0px auto 10px auto;
-        padding: 5px;
+        padding: 0px 5px 5px 5px;
        
 }
 
@@ -162,7 +162,7 @@ h1.heading span{color: #c8287b;}
 
 #header #site_heading h1 {
 	float: left;
-	color: #c8287b;
+	color: #e83e96;
 	font-family: "arial", helvetica, sans-serif;
         font-size: 20px;	 
         margin: 55px 20px;     	
@@ -218,7 +218,7 @@ h1.heading span{color: #c8287b;}
 #menu { 
 	background: #e2f2ff url(/images/menu.gif) repeat-x;
         height:37px;
-	margin: 20px 3px 10px 3px;
+	margin: 30px 3px 0px 3px;
 }
 
 #menu ul {
@@ -248,7 +248,7 @@ h1.heading span{color: #c8287b;}
 	font-family : "arial", helvetica, sans-serif;
 }
 
-#menu ul li.active a{ color: #88b1db;  }
+#menu ul li.active a{ color: #8bde87;  }
 
 #menu li a:hover{
 	color: #8bde87;
@@ -289,8 +289,8 @@ h1.heading span{color: #c8287b;}
         clear: both;
 	width: 94%;
   	margin: 10px auto 10px auto;
-  	background: #bec6cd url(/images/container-bg.png1) repeat-x; 
-        padding: 12px;
+  	background: #d5d5d5;
+        padding: 15px 12px 12px 12px;
 }
 
 
@@ -317,13 +317,14 @@ h1.heading span{color: #c8287b;}
         height:360px;
 	width:48.5%;
 	margin: 0;
-	background: #fcfcfc;
- 
-}
+	background: #fafafa;
+      }
 
 .message_div_top{
- 	background:  url(/images/message-top.jpg) repeat-x;
+ 	background: #6799c8; /*url(/images/message-top.jpg) repeat-x;*/
  	padding: 4px 8px 4px 0px;
+        border: 2px solid #e8e8e8;
+        border-bottom: 1px solid #3779b7;
  
 }
 .message_div_top .heading{
@@ -335,7 +336,6 @@ h1.heading span{color: #c8287b;}
 	font-weight:bold;
 	float:left;
 	letter-spacing:1px;
-
 }
 
 
