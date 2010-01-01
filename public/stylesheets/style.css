@@ -137,7 +137,6 @@ h1.heading span{color: #c8287b;}
 
 .form_wrapper{
   padding: 10px 15px 0px 15px;
-
 }
 
 #message_wrapper{
@@ -148,7 +147,6 @@ h1.heading span{color: #c8287b;}
         padding: 10px;
         border: 1px solid #ccc;
 }
-
 
 .left{	
 	float:left; 
@@ -163,6 +161,7 @@ h1.heading span{color: #c8287b;}
 }
 
 .part1 {width: 55%;}
+
 .part2 {width: 38%;}
 
 
@@ -177,7 +176,7 @@ h1.heading span{color: #c8287b;}
 #header #site_heading {
 	float: left;	width: 58%;
 	height: 75px;
-	margin: 15px 0px 0px 10px;
+	margin: 15px 0px 5px 10px;
  
 } 
 
@@ -193,7 +192,6 @@ h1.heading span{color: #c8287b;}
         margin: 55px 20px;     	
 }
 
- 
 
 .header_links{ 
 	width:40%;
@@ -249,7 +247,7 @@ h1.heading span{color: #c8287b;}
 #menu { 
 	background: #e2f2ff url(/images/menu.gif) repeat-x;
         height:37px;
-	margin: 25px 3px 0px 3px;
+	margin: 20px 3px 0px 3px;
 }
 
 #menu ul {
@@ -522,7 +520,7 @@ border:1px solid #bbb;
 	  background: #ddd url(/images/table_header.jpg) repeat-x;
           color: #0c3866;
           text-align: left;
-          padding: 0.6em .5em .5em .5em;
+          padding: 0.5em .5em .6em .5em;
           font-weight: bold; 
  	  font-size:13px;
 	  letter-spacing:1px;
@@ -890,6 +888,9 @@ table.student_group tr.even:hover{
 	width:250px;
 	background:#fff url(/images/input.png) repeat-x bottom;
 	
+}
+.create_new p{
+ margin-bottom: 15px;
 }
 
 .create_new #letter_content {width:95%; height:500px; border: 1px solid #ccc;}
