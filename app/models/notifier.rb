@@ -16,8 +16,6 @@ end
     @sent_on   = Time.now
     @subject  =  "New pasword of school it"
     @body[:user]  = user
-    @body[:url] = "http://localhost:3000/login"
+    @body[:url] = "http://www.schoolit.in/login"
   end
-  
-
 end
