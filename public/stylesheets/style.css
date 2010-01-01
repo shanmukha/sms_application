@@ -179,7 +179,7 @@ h1.heading span{color: #c8287b;}
 }
 
 .header_links ul {
-	margin:15px 10px 0px 0px;
+	margin:25px 15px 0px 0px;
 	padding:0px;
 	float:right;
 }
@@ -204,6 +204,12 @@ h1.heading span{color: #c8287b;}
 	color:#86b050;
 	text-decoration:underline;
 }
+
+.header_links ul li.active a{ color:#964515; }
+
+
+.header_links li a:hover{color: #0e8ab8; }
+
 .welcome {
   float:right;
   padding: 10px 0px 0px 600px;
@@ -218,7 +224,7 @@ h1.heading span{color: #c8287b;}
 #menu { 
 	background: #e2f2ff url(/images/menu.gif) repeat-x;
         height:37px;
-	margin: 30px 3px 0px 3px;
+	margin: 20px 3px 0px 3px;
 }
 
 #menu ul {
@@ -248,7 +254,7 @@ h1.heading span{color: #c8287b;}
 	font-family : "arial", helvetica, sans-serif;
 }
 
-#menu ul li.active a{ color: #8bde87;  }
+#menu ul li.active a{ color: #ffd7ea;  }
 
 #menu li a:hover{
 	color: #8bde87;
@@ -268,10 +274,7 @@ h1.heading span{color: #c8287b;}
 #menu ul li.Nav a:hover{
 	color:red;
 }
-.header_links ul li.active a{ color:#964515; }
 
-
-.header_links li a:hover{color: #0e8ab8; }
 
 /*..............................message-services(new message)................................*/
 
@@ -321,16 +324,16 @@ h1.heading span{color: #c8287b;}
       }
 
 .message_div_top{
- 	background: #6799c8; /*url(/images/message-top.jpg) repeat-x;*/
- 	padding: 4px 8px 4px 0px;
+ 	background: #4d89c1; /*url(/images/message-top.jpg) repeat-x;*/
+ 	padding: 3px 8px 2px 0px;
         border: 2px solid #e8e8e8;
         border-bottom: 1px solid #3779b7;
  
 }
 .message_div_top .heading{
-	font-size: 17px;
-	padding: 0px 0px 0px 15px;
-	margin: 2px 0px 2px 5px;
+	font-size: 16px;
+	padding: 2px 0px 0px 10px;
+	margin: 0px 0px 0px 5px;
 	width: 40%;
 	color:#fff;
 	font-weight:bold;
