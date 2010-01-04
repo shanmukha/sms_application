@@ -15,7 +15,7 @@
                 <tr><td colspan ='2'><hr /> </td></tr>
 	        <tr>
                     <td><%= link_to "<span>Print this letter</span>", print_letter_path(@letter), :class => 'buttonAdd' %></td>
-                    <td><%= link_to "<span>Print labels</span>", print_labels_letter_path(@letter), :class => 'buttonAdd' %></td>
+                    <td><%= link_to "<span>Print labels</span>", print_labels_letter_path(@letter, :format => :pdf), :class => 'buttonAdd' %></td>
                 </tr>
 	</table>
 
