@@ -59,8 +59,5 @@ class User < ActiveRecord::Base
        		MessageTemplate.create(:message_body => template.message_body,:message_title => template.message_title,:tag_id => tag_id,:user_id => user.id) 
       end
      end
-     
-     
  end     	
-      	
  end

@@ -39,13 +39,13 @@ module ApplicationHelper
          month_name = "in the month of #{month_print(Time.now.month)}-#{Time.now.strftime('%y')}"
        when 'lm'
           month_name = "in the month of #{month_print(1.months.ago.month)}-#{Time.now.strftime('%y')}"
-        when 'l2' 
+       when 'l2' 
           month_name =  "during #{month_print(1.months.ago.month)} and  #{month_print(Time.now.month)}"
-        when 'l3'
+       when 'l3'
            month_name = "from #{month_print(2.months.ago.month)} till  #{month_print(Time.now.month)}"       
-        when 'l4'
+       when 'l4'
            month_name =  "from #{month_print(3.months.ago.month)} till #{month_print(Time.now.month)}"
-        end       
+    end       
        return month_name  
    end 
        
@@ -84,14 +84,11 @@ module ApplicationHelper
     [['All', '']] +  admin.groups.find(:all,:conditions =>['status = ?','Active']).map{|m|[m.name,m.id]} rescue ''
   end
     
-    
-    
-     
-   def find_teacher_messages(teacher)
+  def find_teacher_messages(teacher)
   	teacher.messages
    end 
   
- def find_tag_messages(tag)
+  def find_tag_messages(tag)
     tag.messages
   end
  

@@ -1,6 +1,6 @@
 class Admin::MessageTemplatesController < ApplicationController
   layout "admin"
- 	 before_filter :check_admin_role
+ 	before_filter :check_admin_role
  	def index
   	@search = MessageTemplate.search(params[:search])
     @search.user_id = current_user.id 

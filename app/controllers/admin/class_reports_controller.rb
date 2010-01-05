@@ -3,22 +3,22 @@ class Admin::ClassReportsController < ApplicationController
  layout "admin"
  before_filter :check_admin_role
  
-  def index
-  	@class = {}
-   	classes = current_user.find_classes
-   	unless params[:report].nil?
-   		@group =  Group.find(params[:report][:group_id]) rescue ""
-     	@month =  params[:report][:month]
-      @type = params[:report][:type]  
-   end  
+	def index
+  	 @class = {}
+   	 classes = current_user.find_classes
+   	 unless params[:report].nil?
+   			@group =  Group.find(params[:report][:group_id]) rescue ""
+     		@month =  params[:report][:month]
+      	@type = params[:report][:type]  
+   	end  
     if params[:report].nil? #default
-      @classes = classes
-      @names = []
-      @sizes = []
-      @classes.each do |group|
-        @names << group.name #for graph 
-       	@class[group.id] = group.messages.count(:all,:joins => [:message_students],:conditions => ['messages.created_at>= ? and message_students.status =?',Time.now.beginning_of_month,'Delivered'])
-       	@sizes << @class[group.id]
+       @classes = classes
+       @names = []
+       @sizes = []
+       @classes.each do |group|
+       	 @names << group.name #for graph 
+       	 @class[group.id] = group.messages.count(:all,:joins => [:message_students],:conditions => ['messages.created_at>= ? and message_students.status =?',Time.now.beginning_of_month,'Delivered'])
+       	 @sizes << @class[group.id]
       end
     elsif params[:report][:group_id].blank? #all class communication
         @classes = classes
@@ -75,5 +75,5 @@ class Admin::ClassReportsController < ApplicationController
       @sizes << @class[group.id]
     end
      return @class,@names,@sizes
+  end
  end
-end

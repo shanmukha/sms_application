@@ -20,7 +20,6 @@ class MessagesController < ApplicationController
   def show
     @message =  Message.find(params[:id])
     @students = @message.students.find(:all)
-
     respond_to do |format|
       format.html # show.html.erb
         format.js  { render :layout => false}
@@ -191,13 +190,10 @@ class MessagesController < ApplicationController
        flash[:notice] = 'Message is sent for delivery. Please check the status after some time.'   
        redirect_to message_path(@message) 
        rescue #ActiveResource::ResourceInvalid => e  
-    	 		flash.now[:error] = 'There seems to be a problem in sending message. Please try again.'  
+    	 		flash.now[:error] = 'There seems to be a problem in sending message. Please try again latter.'  
     	  	redirect_to message_path(@message)  
      end
-    
-   
-  
-  private
+private
   def user_ids
       user_ids  = []
       user_ids << current_user.id

@@ -27,7 +27,7 @@ class Admin::TagReportsController < ApplicationController
       	@names << tag.name
         @tag[tag.id] = tag.messages.count(:all,:joins => [:message_students],:conditions => [ conditions.transpose.first.join( " and " ), *conditions.transpose.last ] )
         @sizes << @tag[tag.id]
-      end     
+     end     
    elsif params[:report][:group_id].blank?
    	 conditions = []
      conditions << ["group_id != ?",""]
