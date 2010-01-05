@@ -57,11 +57,11 @@ textarea{
 
 hr {
 color: #bbb;
-background-color: #bbb;
-border-top: 1px solid #bbb;
-border-bottom: 1px solid #f1f1f1;
-width: 99.5%;
-margin: 15px 0px 20px 1px;
+background-color: #fff;
+border-top: 1px solid #ccc;
+border-bottom: 1px solid #ecffe7;
+width: 99.4%;
+margin: 12px 0px 20px 3px;
 
 }
 
@@ -87,7 +87,7 @@ color: #3775b5;
 
 }
 
-h1.heading {font-size:16px;
+h1.heading {font-size:18px;
 	color: #005ca1;
 	font-family : "arial", helvetica, sans-serif;
 	font-weight:bold;
@@ -105,7 +105,6 @@ h1.heading span{color: #c8287b;}
   background:transparent url(/images/button-large.png) repeat-x scroll center top;
   border:1px solid #999999;
   color:inherit;eaebee
-  font-family:Arial,Helvetica,Calibri,sans-serif;
   margin:0;
   overflow:visible;
   padding: 2px;
@@ -295,7 +294,7 @@ h1.heading span{color: #c8287b;}
 	font-family : "arial", helvetica, sans-serif;
 }
 
-#menu ul li.active a{ color: #ffd7ea;  }
+#menu ul li.active a{ color: #8bde87;  }
 
 #menu li a:hover{
 	color: #8bde87;
@@ -522,7 +521,7 @@ color:#0e8ab8;
         color: #000;
 	margin: 0px 5px 0px 4px;
       	float:left;
-        border: 1px solid #ddd;
+        border: 1px solid #b1b1b1;
       
 }
 
@@ -543,7 +542,7 @@ color:#0e8ab8;
 	color: #000; 
 	font-size:13px;
         vertical-align: center;
-        height: 30px;
+        height: 32px;
 	
 }
 
@@ -551,8 +550,9 @@ color:#0e8ab8;
 .form_wrapper .listing { margin: 5px 5px 30px 0px;}
 
  
-.listing  a { 
+.listing  th a { 
 	color: #a6316d;
+        font-weight: bold;
 }
 
 .listing a:hover { 
@@ -567,17 +567,20 @@ color:#0e8ab8;
 
 .listing tr.odd {
       background-color:#fff;
+
       
 }
 
 .listing tr.even td {
       border-top: #b1b1b1 1px solid;
       border-bottom: #b1b1b1 1px solid;
+      height: 32px;
 }
 
 .listing tr.odd td {
       border-top: #b1b1b1 1px solid;
       border-bottom: #b1b1b1 1px solid;
+      height: 32px;
 }
 
 .listing tr.small td { 
@@ -604,16 +607,17 @@ color:#0e8ab8;
 /*...................................content.......................*/
 
 #listing_file {
-        background: #fff url(/images/main_line_lt.gif) repeat-y;
-	      width:70%;
+        background: #fff; /*url(/images/main_line_lt.gif) repeat-y;*/
+	      width:74%;
       	float:left;
 	      margin: 0px 0px 15px 0px;
-        padding-left: 58px;
+        /*padding-left: 58px;*/
+        padding-left: 25px;
         min-height:500px;
 	      height:auto !important;
         height:500px;
-        border-top: 1px solid #ccc;
-        border-bottom: 1px solid #ccc;
+        /*border-top: 1px solid #ccc;*/
+        /*border-bottom: 1px solid #ccc;*/
 }
 
 #listing-top{ margin: 5px 10px 0px 10px; padding-top: 2px; width:73%;}
