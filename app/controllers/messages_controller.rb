@@ -64,8 +64,8 @@ class MessagesController < ApplicationController
     elsif admin.client_type == "Unlimited"
        if admin.end_date.strftime('%Y-%m-%d') <  Time.now.strftime('%Y-%m-%d')
           flash[:notice] = "Please ensure your account validity expired or not."   
-         redirect_to(new_message_url) 
-        return nil 
+          redirect_to(new_message_url) 
+         return nil 
     end
    end     
     if params[:students].blank? and params[:message][:number].blank?

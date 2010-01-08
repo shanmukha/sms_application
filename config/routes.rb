@@ -18,7 +18,7 @@ ActionController::Routing::Routes.draw do |map|
      admin.resources :tag_reports
      admin.resources :teacher_reports
      admin.resources :month_reports 
-     admin.resources :users,:collection =>{:forgot_password =>:any}
+     admin.resources :users,:collection =>{:forgot_password =>:any,:client_type => :any}
  end
 end 
 

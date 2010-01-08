@@ -41,13 +41,12 @@ class Student < ActiveRecord::Base
       	sizes << students_communication_size[student.id]
         return students,students_communication_size,names,sizes
       end  
-end 
+  end 
 
 	def self.find_student_messages(student)
    	Message.find(:all,
                  :joins =>[:message_students],
                  :conditions =>['message_students.status =? and  message_students.student_id =?','Delivered',student.id]) 
 
-end
-
+  end
 end
