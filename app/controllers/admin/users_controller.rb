@@ -82,6 +82,15 @@ class Admin::UsersController < ApplicationController
         render :layout =>"login" 
     end
    
+   def client_type
+      client_type = params[:client_type]
+      render :update do |page|
+     		page.replace_html 'type', :partial => 'balance' if client_type == "Limited"
+     		page.replace_html 'type', :partial => 'end_date' if client_type == "Unlimited"
+    	  page.replace_html 'type', :partial => 'blank' if client_type == ""
+     	end
+   end 
+   
   def destroy
     @user = User.find(params[:id])
     @user.destroy

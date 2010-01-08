@@ -9,9 +9,15 @@ class User < ActiveRecord::Base
   has_many  :students
   has_many  :letters
   has_many  :tags
+  
+  validates_presence_of :mail_id,:name
+  validates_format_of :mail_id,
+                      :with => /^[A-Z0-9._%-]+@([A-Z0-9-]+\.)+[A-Z]{2,4}$/i
+                     
+                      
   def has_role?(role)
-   list ||= self.roles.collect(&:name)
-   list.include?(role.to_s) 
+   	list ||= self.roles.collect(&:name)
+   	list.include?(role.to_s) 
   end
  
  def self.find_by_username_or_mail_id(username_or_email)
