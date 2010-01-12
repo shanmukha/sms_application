@@ -296,6 +296,22 @@ h1.heading span{color: #c8287b;}
 
 #menu ul li.active a{ color: #8bde87;  }
 
+#report-links a {margin: 0px 5px 0px 5px; color: #1d4896; font-weight: bold;}
+
+#report-links ul {
+	padding: 0px;
+	list-style: none;
+}
+
+#report-links ul li {
+	float: left;
+	background: url(/images/line.gif) no-repeat right;
+	display:inline;	
+   margin-top: 0px;
+} 
+
+#report-links ul li.active a{ color: #86b050;  }
+
 #menu li a:hover{
 	color: #8bde87;
 	
