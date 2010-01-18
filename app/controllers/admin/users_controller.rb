@@ -72,12 +72,10 @@ class Admin::UsersController < ApplicationController
         flash.now[:error] = 'No account was found by that login or email address.'
       else
         @user.forgot_password 
-         #flash[:notice] = "New password sent to your mail id."
-          @user_session = UserSession.find
-          @user_session.destroy
-         end
+        @user_session = UserSession.find
+        @user_session.destroy
+      end
          else
-         # Render forgot_password.html.erb
        end
         render :layout =>"login" 
     end

@@ -142,7 +142,7 @@ class MessagesController < ApplicationController
         msg.update_attribute('status', sms.status) 
      end  
       respond_to do |format|
-        flash[:notice] = 'Status successfully updated.'
+        flash[:notice] = 'Status is successfully updated.'
         format.html { redirect_to(message_url(@message))} 
         format.xml  { render :xml => @message }
       end
