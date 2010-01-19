@@ -37,9 +37,38 @@ class MessagesController < ApplicationController
  
   def create
     admin = current_user.has_role?('admin') ? current_user : User.find(current_user.parent_id)
-
-    no_of_sms = params[:students].nil? ? 1 : params[:students].size
     
+     if params[:students].blank? and params[:message][:number].blank?
+      flash.now[:error] = "Please select at least one student or enter mobile number."
+      render :action => "new"
+      return nil
+    end
+      
+    if params[:message][:message_body].blank?
+      flash.now[:error] = "Please enter message content."
+      render :action => "new"
+      return nil
+    end
+    
+    no_of_sms = params[:students].nil? ? find_message_size(params[:message][:message_body]) : 	find_students_message_size(params[:message][:message_body],params[:students])
+    
+    
+     if admin.client_type == "Limited"
+       balance = admin.balance.to_i - no_of_sms
+       if balance <= 0
+         flash[:notice] = "Please ensure you have suffecient balance in your account."   
+         redirect_to(new_message_url) 
+        return nil
+      end 
+   
+    elsif admin.client_type == "Unlimited"
+       if admin.end_date.strftime('%Y-%m-%d') <  Time.now.strftime('%Y-%m-%d')
+          flash[:notice] = "Please ensure your account validity expired or not."   
+          redirect_to(new_message_url) 
+         return nil 
+    end
+   end   
+   
     #set active resource API authentication credentials dynamically
     MessageService.user = admin.server_user_name
     MessageService.password = admin.server_password
@@ -54,33 +83,8 @@ class MessagesController < ApplicationController
       params[:message][:scheduled_time] = Time.parse("#{time_p['time(4i)']}:#{time_p['time(5i)']}")
       @message = current_user.schedules.new(params[:message])
     end
-     if admin.client_type == "Limited"
-       balance = admin.balance.to_i - no_of_sms
-       if balance <= 0
-         flash[:notice] = "Please ensure you have suffecient balance in your account."   
-         redirect_to(new_message_url) 
-        return nil
-      end 
-    elsif admin.client_type == "Unlimited"
-       if admin.end_date.strftime('%Y-%m-%d') <  Time.now.strftime('%Y-%m-%d')
-          flash[:notice] = "Please ensure your account validity expired or not."   
-          redirect_to(new_message_url) 
-         return nil 
-    end
-   end     
-    if params[:students].blank? and params[:message][:number].blank?
-      flash.now[:error] = "Please select at least one student or enter mobile number."
-      render :action => "new"
-      return nil
-    end
-      
-    if params[:message][:message_body].blank?
-      flash.now[:error] = "Please enter message content."
-      render :action => "new"
-      return nil
-    end
-          
-    begin
+    
+     begin
       if @message.save
          if !params[:students].nil?
 	          message = @message.message_body
@@ -91,15 +95,16 @@ class MessagesController < ApplicationController
        	       message.gsub!(/@parent/, parent)
        	       if  params[:message][:scheduled_date].blank?
        	         sms = MessageService.create(:sms => params[:message].merge!({:number => student_record.number})) 
-                 message_student = MessageStudent.create(:message_id => @message.id, :student_id => student_id, :sms_id => sms.id)
+       	         message_student = MessageStudent.create(:message_id => @message.id, :student_id => student_id, :sms_id => sms.id)
                elsif  !params[:message][:scheduled_date].blank?
                  sms = MessageSchedule.create(:sms => params[:message].merge!({:number => student_record.number}))  
                  schedule_student = ScheduleStudent.create(:schedule_id => @message.id, :student_id => student_id, :sms_id => sms.id)
                end
-               admin.update_attribute('balance', admin.balance.to_i - 1) if admin.client_type == "Limited"
+              
                message.gsub!(/#{student}/,'@student') 
                message.gsub!(/#{parent}/,'@parent') 
-             end  
+             end 
+             
 	  else
 	         if params[:message][:scheduled_date].blank? 
        	      sms = MessageService.create(:sms => params[:message]) 
@@ -110,18 +115,18 @@ class MessagesController < ApplicationController
        	      @message.update_attributes({:status => "Scheduled", :sms_id => sms.id}) 
        	     
             end	   
-            admin.update_attribute('balance', admin.balance.to_i - 1)  if admin.client_type == "Limited" 
-	  end
+           
+	     end
+	         admin.update_attribute('balance', balance) if admin.client_type == "Limited" 
 	         flash[:notice] = 'Message is sent for delivery. Please check the status after some time.'
            redirect_to(new_message_url)
          else  #@message.save check
            render :action => "new"
          end 
-	   
-       rescue #ActiveResource::ResourceInvalid => e  
-    	 flash.now[:error] = 'There seems to be a problem in sending message. Please try again.'    
-    	 render :action => "new"
        end
+         rescue #ActiveResource::ResourceInvalid => e  
+         flash[:error] = 'There seems to be some problem upadting the delevery status. Please try again latter.'    
+         redirect_to(messages_url) 
      end
   
     def status_update
@@ -176,20 +181,6 @@ class MessagesController < ApplicationController
       MessageService.password = admin.server_password
       @message = Message.find(params[:message_id])
       student_record = Student.find(params[:student_id])
-     if admin.client_type == "Limited"
-       balance = admin.balance.to_i - no_of_sms
-       if balance <= 0
-         flash[:notice] = "Please ensure you have suffecient balance in your account."   
-         redirect_to(new_message_url) 
-        return nil
-      end 
-    elsif admin.client_type == "Unlimited"
-       if admin.end_date.strftime('%Y-%m-%d') <  Time.now.strftime('%Y-%m-%d')
-          flash[:notice] = "Please ensure your account validity expired or not."   
-          redirect_to(new_message_url) 
-         return nil 
-     end
-   end  
       message = @message.message_body
       params[:message] = {}
       params[:message][:message_body] = message
@@ -200,7 +191,6 @@ class MessagesController < ApplicationController
       sms = MessageService.create(:sms => params[:message]) 
       message_student = MessageStudent.find_by_student_id_and_message_id(student_record.id,@message.id)
       message_student.update_attributes(:message_id => @message.id, :student_id => student_record.id, :sms_id => sms.id,:status => "Sent")
-       admin.update_attribute('balance', admin.balance.to_i - 1) if admin.client_type == "Limited"
        flash[:notice] = 'Message is sent for delivery. Please check the status after some time.'   
        redirect_to message_path(@message) 
        rescue #ActiveResource::ResourceInvalid => e  
@@ -209,11 +199,36 @@ class MessagesController < ApplicationController
      end
 
  private
+  
   def user_ids
       user_ids  = []
       user_ids << current_user.id
       User.find(:all,:conditions =>['parent_id = ?',current_user.id]).map{|object|user_ids << object.id}
      return user_ids
   end
- end 
   
+  def find_message_size(message_body)
+       message_size = 1
+       message_body_size = message_body.size 
+       while( message_body_size >160)
+        	message_body_size = message_body_size -160 
+             message_size += 1 
+       end 
+        return message_size
+  end     
+ 
+ 	def find_students_message_size(message_body,students)
+      total_message_size = 0
+      students.each do  |student_id|
+      	student_record = Student.find(student_id)
+        student, parent = student_record.name, student_record.parent
+        message_body.gsub!(/@student/, student) 
+       	message_body.gsub!(/@parent/, parent)
+        message_size = find_message_size(message_body)
+        total_message_size += message_size
+        message_body.gsub!(/#{student}/,'@student') 
+        message_body.gsub!(/#{parent}/,'@parent') 
+     end
+       return total_message_size
+   end 
+ end  

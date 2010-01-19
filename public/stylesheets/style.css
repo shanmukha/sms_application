@@ -1465,6 +1465,7 @@ a.buttonAdd:hover span {
 .yellow {background: #f1ec64;}
 .green {background: #65cb60;}
 .orange {background: #edad00; }
+.red {background:red; }
 
 #report-links a {margin: 0px 5px 0px 5px; color: #1d4896; font-weight: bold;}
 
