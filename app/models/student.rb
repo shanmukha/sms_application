@@ -39,8 +39,8 @@ class Student < ActiveRecord::Base
       	students_communication_size[student.id] = student.letters.count(:all,:conditions => [ conditions.transpose.first.join( " and " ), *conditions.transpose.last ] ) if type=="letters" 
       	students_communication_size[student.id] = student.emails.find(:all,:conditions => [ conditions.transpose.first.join( " and " ), *conditions.transpose.last ] ).size  if type=="emails" 
       	sizes << students_communication_size[student.id]
-        return students,students_communication_size,names,sizes
-      end  
+     end  
+     return students,students_communication_size,names,sizes
   end 
 
 	def self.find_student_messages(student)
