@@ -93,6 +93,8 @@ class MessagesController < ApplicationController
                student, parent = student_record.name, student_record.parent
                message.gsub!(/@student/, student) 
        	       message.gsub!(/@parent/, parent)
+       	       message.gsub!(/@Student/, student) 
+       	       message.gsub!(/@Parent/, parent)
        	       if  params[:message][:scheduled_date].blank?
        	         sms = MessageService.create(:sms => params[:message].merge!({:number => student_record.number})) 
        	         message_student = MessageStudent.create(:message_id => @message.id, :student_id => student_id, :sms_id => sms.id)
@@ -103,7 +105,8 @@ class MessagesController < ApplicationController
               
                message.gsub!(/#{student}/,'@student') 
                message.gsub!(/#{parent}/,'@parent') 
-             end 
+             
+       	     end 
              
 	  else
 	         if params[:message][:scheduled_date].blank? 
@@ -188,6 +191,8 @@ class MessagesController < ApplicationController
       student, parent = student_record.name, student_record.parent
       message.gsub!(/@student/, student) 
       message.gsub!(/@parent/, parent)
+      message.gsub!(/@Student/, student) 
+      message.gsub!(/@Parent/, parent)
       sms = MessageService.create(:sms => params[:message]) 
       message_student = MessageStudent.find_by_student_id_and_message_id(student_record.id,@message.id)
       message_student.update_attributes(:message_id => @message.id, :student_id => student_record.id, :sms_id => sms.id,:status => "Sent")
