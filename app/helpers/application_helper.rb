@@ -67,6 +67,7 @@ module ApplicationHelper
               when "Scheduled" then true
               when "Delivered" then true
               when "Failed" then false
+              when "  TATU 018" then false
               when "Invalid mobile number" then false
               else true
          end
