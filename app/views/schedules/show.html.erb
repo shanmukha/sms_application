@@ -9,7 +9,7 @@
 		    <td><%=h @schedule.created_at.strftime('%d-%m-%Y') %></td>
                     <td><%=h @schedule.user.name %></td>
 		</tr>
-                <tr> <td colspan = '2' style ='border: 1px solid #ccc; background: #eef2f6;'><%=h @schedule.message_body %></td> </tr>
+                <tr> <td colspan = '2' style ='border: 1px solid #ccc; background: #eef2f6; width: 300px;'><%=h @schedule.message_body %></td> </tr>
                 <%unless @schedule.tag_id.nil?%>
                    <tr>
 		     <th>Schedule tag:</th><td><%=h @schedule.tag.name%></td>
