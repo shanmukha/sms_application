@@ -10,7 +10,7 @@ class Group < ActiveRecord::Base
  attr_accessible :name
  #copy students from another group
 	def self.copy_students_from_group(group_id,group)
-     students = Group.find(group_id).students
+     students = Group.find(group_id).students.find(:all,:conditions =>['status =?','Active'])
   	for student in students
   		group.students << Student.find(student)
   	end
@@ -18,13 +18,13 @@ class Group < ActiveRecord::Base
   
   def self.find_group_all_students(group_id,current_user)
   	@group = current_user.groups.find(group_id)
-    @group_students = @group.students
-    group_student_ids = @group.students.find(:all).map{|h|h.id}
+    @group_students = @group.students.find(:all,:conditions =>['status =?','Active'])
+    group_student_ids = @group.students.find(:all,:conditions =>['status =?','Active']).map{|h|h.id}
     unless group_student_ids.blank?
    		 @non_group_students = current_user.students.find(:all,
-   		                                                   :conditions => ['id not IN (?)',group_student_ids])
+   		                                                   :conditions => ['id not IN (?) and status =?',group_student_ids,'Active'])
     else
-        @non_group_students = current_user.students.find(:all)
+        @non_group_students = current_user.students.find(:all,:conditions =>['status =?','Active'])
      end
     return @group,@group_students,@non_group_students
   end

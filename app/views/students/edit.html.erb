@@ -52,8 +52,15 @@
     		   <table><tr><td> <span><%= f.submit 'Update record' %></span> 
     		   	<% end %>
     		   or</td><td> 
-    		    <% if current_user.has_role?('admin')%>
-  			 <span><%= button_to 'Delete record', @student, :confirm => 'Are you sure? You want to delete the student record.', :method => :delete %></span>
-  		    <%end%></td></tr></table>
+    		     <%if current_user.has_role?('admin')%>
+	      
+               <%if @student.status=='Active'%>
+                  <td><span> <%= button_to 'Make this student inactive', make_inactive_student_path(@student),:method => :get %> </span></td>
+               <%else%>
+                  <td><span><%= button_to 'Make this class active', make_active_student_path(@student),:method => :get %></span></td> 
+               <%end%>
+             <%end%>
+   
+</td></tr></table>
   		</fieldset>
 </div>

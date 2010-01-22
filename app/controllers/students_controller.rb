@@ -6,6 +6,7 @@ class StudentsController < ApplicationController
 	  admin = current_user.has_role?('admin') ? current_user : User.find(current_user.parent_id)
     @search = Student.search(params[:search])
     @search.user_id = admin.id 
+    @search.status = "Active"  if !params[:search]
     @search.order ||= "descend_by_created_at"
     @students = @search.all.paginate :page => params[:page],:per_page => 25
     @groups = admin.groups.find(:all,:conditions =>['status =?','Active'])
@@ -94,6 +95,28 @@ class StudentsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
+  def make_active
+  	student = current_user.students.find(params[:id])
+   	student.status = "Active"
+   	student.save
+    respond_to do |format|
+      flash[:notice] = "#{student.name} is successfully activated."
+      format.html { redirect_to(students_url) }
+      format.xml  { head :ok }
+ end
+end
+  
+  def make_inactive
+   student = current_user.students.find(params[:id])
+   student.status = "Inactive"
+   student.save
+   respond_to do |format|
+       flash[:notice] = "#{student.name} is successfully inactivated."
+       format.html { redirect_to(students_url) }
+       end
+  end
+  
   
   def import_students_new 
   

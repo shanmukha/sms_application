@@ -27,7 +27,7 @@ class Student < ActiveRecord::Base
   
  def self.find_students_communication_size(group_id,conditions,type) 
 	    students_communication_size = {}
-      students = Group.find(group_id).students
+      students = Group.find(group_id).students.find(:all, :order => 'students.name ASC',:conditions =>['status =?','Active'])
       names = []
       sizes = []
       	conditions << ["group_id = ?",group_id] 

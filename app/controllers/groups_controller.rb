@@ -26,7 +26,7 @@ class GroupsController < ApplicationController
 	
 	def new
     @group = Group.new
-    @students = current_user.students.find(:all)
+    @students = current_user.students.find(:all,:conditions =>['status =?','Active'])
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @group }
