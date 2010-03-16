@@ -45,6 +45,9 @@ class EmailsController < ApplicationController
           body.gsub!(/@student/, student.name) 
        	  body.gsub!(/@parent/, student.parent)
        	  body.gsub!(/@address/, student.address)
+       	  body.gsub!(/@Student/, student.name) 
+       	  body.gsub!(/@Parent/, student.parent)
+       	  body.gsub!(/@Address/, student.address)
           EmailStudent.create(:email_id => @email.id,:student_id => student_id)
           Notifier.deliver_email_notification(@email,current_user,student)
           body.gsub!(/#{student.name}/,'@student') 
@@ -75,7 +78,7 @@ class EmailsController < ApplicationController
   end
     
    def group_students
-      @students = Group.find(params[:group_id]).students rescue ''
+  @students = Group.find(params[:group_id]).students.find(:all, :order => 'students.name ASC',:conditions =>['status =?','Active']) rescue ''
       render :update do |page|
       page.replace_html 'students', :partial => 'group_student'
    end

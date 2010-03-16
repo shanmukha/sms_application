@@ -1,6 +1,6 @@
 class Admin::MessageTemplatesController < ApplicationController
   layout "admin"
- 	 before_filter :check_admin_role
+ 	before_filter :check_admin_role
  	def index
   	@search = MessageTemplate.search(params[:search])
     @search.user_id = current_user.id 
@@ -36,7 +36,7 @@ class Admin::MessageTemplatesController < ApplicationController
     @message_template = current_user.message_templates.new(params[:message_template])
     respond_to do |format|
       if @message_template.save
-        flash[:notice] = 'MessageTemplate was successfully created.'
+        flash[:notice] = 'MessageTemplate is successfully created.'
         format.html { redirect_to(admin_message_templates_url) }
         format.xml  { render :xml => @message_template, :status => :created, :location => @message_template }
       else
@@ -50,7 +50,7 @@ class Admin::MessageTemplatesController < ApplicationController
     @message_template = MessageTemplate.find(params[:id])
     respond_to do |format|
       if @message_template.update_attributes(params[:message_template])
-        flash[:notice] = 'MessageTemplate was successfully updated.'
+        flash[:notice] = 'Message Template is successfully updated.'
          format.html { redirect_to(admin_message_templates_url) }
         format.xml  { head :ok }
       else

@@ -40,7 +40,7 @@ class Admin::TagsController < ApplicationController
     @tag = current_user.tags.new(params[:tag])
     respond_to do |format|
       if @tag.save
-        flash[:notice] = 'Tag was successfully created.'
+        flash[:notice] = 'Tag is successfully created.'
         format.html { redirect_to admin_tags_path }
         format.xml  { render :xml => @tag, :status => :created, :location => @tag }
       else
@@ -55,7 +55,7 @@ class Admin::TagsController < ApplicationController
     @tag = current_user.tags.find(params[:id])
     respond_to do |format|
       if @tag.update_attributes(params[:tag])
-        flash[:notice] = 'Tag was successfully updated.'
+        flash[:notice] = 'Tag is successfully updated.'
         format.html { redirect_to admin_tags_path}
         format.xml  { head :ok }
       else

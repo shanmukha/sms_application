@@ -74,7 +74,7 @@ class LettersController < ApplicationController
   end
   
    def group_students
-      @students = Group.find(params[:group_id]).students rescue ''
+      @students = Group.find(params[:group_id]).students.find(:all, :order => 'students.name ASC',:conditions =>['status =?','Active']) rescue ''
       render :update do |page|
      	page.replace_html 'students', :partial => 'group_student'
       end

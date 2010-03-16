@@ -72,15 +72,22 @@ class Admin::UsersController < ApplicationController
         flash.now[:error] = 'No account was found by that login or email address.'
       else
         @user.forgot_password 
-         #flash[:notice] = "New password sent to your mail id."
-          @user_session = UserSession.find
-          @user_session.destroy
-         end
+        @user_session = UserSession.find
+        @user_session.destroy
+      end
          else
-         # Render forgot_password.html.erb
        end
         render :layout =>"login" 
     end
+   
+   def client_type
+      client_type = params[:client_type]
+      render :update do |page|
+     		page.replace_html 'type', :partial => 'balance' if client_type == "Limited"
+     		page.replace_html 'type', :partial => 'end_date' if client_type == "Unlimited"
+    	  page.replace_html 'type', :partial => 'blank' if client_type == ""
+     	end
+   end 
    
   def destroy
     @user = User.find(params[:id])

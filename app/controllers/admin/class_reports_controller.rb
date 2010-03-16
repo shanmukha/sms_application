@@ -3,22 +3,22 @@ class Admin::ClassReportsController < ApplicationController
  layout "admin"
  before_filter :check_admin_role
  
-  def index
-  	@class = {}
-   	classes = current_user.find_classes
-   	unless params[:report].nil?
-   		@group =  Group.find(params[:report][:group_id]) rescue ""
-     	@month =  params[:report][:month]
-      @type = params[:report][:type]  
-   end  
+	def index
+  	 @class = {}
+   	 classes = current_user.find_classes
+   	 unless params[:report].nil?
+   			@group =  Group.find(params[:report][:group_id]) rescue ""
+     		@month =  params[:report][:month]
+      	@type = params[:report][:type]  
+   	end  
     if params[:report].nil? #default
-      @classes = classes
-      @names = []
-      @sizes = []
-      @classes.each do |group|
-        @names << group.name #for graph 
-       	@class[group.id] = group.messages.count(:all,:joins => [:message_students],:conditions => ['messages.created_at>= ? and message_students.status =?',Time.now.beginning_of_month,'Delivered'])
-       	@sizes << @class[group.id]
+       @classes = classes
+       @names = []
+       @sizes = []
+       @classes.each do |group|
+       	 @names << group.name #for graph 
+       	 @class[group.id] = group.messages.count(:all,:joins => [:message_students],:conditions => ['messages.created_at>= ? and message_students.status =?',Time.now.beginning_of_month,'Delivered'])
+       	 @sizes << @class[group.id]
       end
     elsif params[:report][:group_id].blank? #all class communication
         @classes = classes
@@ -46,16 +46,16 @@ class Admin::ClassReportsController < ApplicationController
   def month_conditions(month,type)
       condition = []
       case month
-      	when 'tm'
+      	 when 'tm'
            condition << ["#{type}.created_at>= ?",Time.now.beginning_of_month]
-        when 'lm'
+         when 'lm'
            condition << ["#{type}.created_at>= ?",1.months.ago.beginning_of_month]
            condition << ["#{type}.created_at<= ?",1.months.ago.end_of_month]
-        when 'l2' 
+         when 'l2' 
            condition << ["#{type}.created_at>= ?",2.months.ago.beginning_of_month]
-        when 'l3' 
+         when 'l3' 
            condition << ["#{type}.created_at>= ?",3.months.ago.beginning_of_month]
-        when 'l4' 
+         when 'l4' 
            condition << ["#{type}.created_at>= ?",4.months.ago.beginning_of_month]
         end   
        	    return condition
@@ -75,5 +75,5 @@ class Admin::ClassReportsController < ApplicationController
       @sizes << @class[group.id]
     end
      return @class,@names,@sizes
+  end
  end
-end

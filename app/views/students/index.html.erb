@@ -28,6 +28,7 @@
      				<th><%= order @search, :by => :name ,:as => "Student name"%></th>
                                 <th>Parent name </th>
                                	<th>Mobile No.</th>
+                               	<th>Status</th>
                                 <th>View</th>
                                   <% if current_user.has_role?('admin')%>
                                   <th>Edit</th>
@@ -39,7 +40,9 @@
     				<td> <%= image_tag('student.gif')%> <%=h student.name %></td>
                                 <td> <%= student.parent %> </td>
     	    	                <td><%=h student.number %></td>
+    			 <td><%=h student.status %></td>
     				<td>
+    				
 				   <%= link_to image_tag('view.gif', :title=> "View"),student_path(student)%>
                                 </td>
                                 <% if current_user.has_role?('admin')%>

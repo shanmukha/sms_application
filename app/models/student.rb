@@ -27,27 +27,25 @@ class Student < ActiveRecord::Base
   
  def self.find_students_communication_size(group_id,conditions,type) 
 	    students_communication_size = {}
-      students = Group.find(group_id).students
+      students = Group.find(group_id).students.find(:all, :order => 'students.name ASC',:conditions =>['status =?','Active'])
       names = []
       sizes = []
-      students.each do |student|
-      	names << student.name
       	conditions << ["group_id = ?",group_id] 
         conditions << ['message_students.status =?','Delivered'] if type=="messages"
-      	conditions << ['message_students.student_id = ?',student.id]  if type=="messages"
-      	students_communication_size[student.id]  = Message.count(:all,:joins =>[:message_students],:conditions => [ conditions.transpose.first.join( " and " ), *conditions.transpose.last ] ) if type=="messages"
+      students.each do |student|
+       names << student.name
+       students_communication_size[student.id]  = student.messages.count(:all,:conditions => [ conditions.transpose.first.join( " and " ), *conditions.transpose.last ] ) if type=="messages"
       	students_communication_size[student.id] = student.letters.count(:all,:conditions => [ conditions.transpose.first.join( " and " ), *conditions.transpose.last ] ) if type=="letters" 
       	students_communication_size[student.id] = student.emails.find(:all,:conditions => [ conditions.transpose.first.join( " and " ), *conditions.transpose.last ] ).size  if type=="emails" 
       	sizes << students_communication_size[student.id]
-        return students,students_communication_size,names,sizes
-      end  
-end 
+     end  
+     return students,students_communication_size,names,sizes
+  end 
 
 	def self.find_student_messages(student)
    	Message.find(:all,
                  :joins =>[:message_students],
                  :conditions =>['message_students.status =? and  message_students.student_id =?','Delivered',student.id]) 
 
-end
-
+  end
 end
