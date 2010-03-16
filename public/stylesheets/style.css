@@ -58,10 +58,10 @@ textarea{
 hr {
 color: #bbb;
 background-color: #fff;
-border-top: 1px solid #ccc;
-border-bottom: 1px solid #ecffe7;
-width: 99.4%;
-margin: 12px 0px 20px 3px;
+border-top: 1px solid #ddd;
+border-bottom: 1px solid #fafbfc;
+width: 98.4%;
+margin: 12px 0px 20px 10px;
 
 }
 
@@ -158,11 +158,11 @@ h1.heading span{color: #c8287b;}
 
 #message_wrapper{
         clear: both;
-	width: 93.5%;
-  	margin: 10px auto 10px auto;
+	width: 92.5%;
+  	margin: 25px auto 10px auto;
   	background: #fff;
-        padding: 10px;
-        border: 1px solid #ccc;
+        padding: 10px 15px;
+        border: 1px solid #ddd;
 }
 
 .left{	
@@ -203,9 +203,9 @@ h1.heading span{color: #c8287b;}
 
 #header #site_heading h1 {
 	float: left;
-	color: #e83e96;
+	color: #b0207f;
 	font-family: "arial", helvetica, sans-serif;
-        font-size: 20px;	 
+        font-size: 24px;	 
         margin: 55px 20px;     	
 }
 
@@ -294,7 +294,7 @@ h1.heading span{color: #c8287b;}
 	font-family : "arial", helvetica, sans-serif;
 }
 
-#menu ul li.active a{ color: #8bde87;  }
+#menu ul li.active a{ color: #e3db00;  }
 
 #menu li a:hover{
 	color: #8bde87;
@@ -338,7 +338,7 @@ h1.heading span{color: #c8287b;}
         height:360px;
 	width:48.5%;
 	margin: 0;
-	background: #eaebee;
+	background: #f6f5f0;
       }
 
 .message_div_top{
@@ -405,7 +405,7 @@ padding:3px 5px;
 .message_right{
 	float:right;
 	margin: 0;
-	background: #eaebee url(/images/right_form_bg.gif) no-repeat center;
+	background: #f6f5f0 url(/images/right_form_bg.gif) no-repeat center;
 	width:50.5%;
 	min-height:360px;
 	height:auto !important;
@@ -521,19 +521,19 @@ color:#0e8ab8;
         color: #000;
 	margin: 0px 5px 0px 4px;
       	float:left;
-        border: 1px solid #b1b1b1;
+        border: 1px solid #ccc;
       
 }
 
 .listing th {
-	  background: #ddd url(/images/table_header.jpg) repeat-x;
+	  background: #eaeada /*url(/images/table_header.jpg) repeat-x*/;
           color: #0c3866;
           text-align: left;
-          padding: 0.5em .5em .6em .5em;
+          padding: 0.4em .5em .4em .5em;
           font-weight: bold; 
  	  font-size:13px;
 	  letter-spacing:1px;
-          border: 1px solid #b1b1b1;
+          border: 1px solid #ccc;
           height: 30px;
 }
  
@@ -573,13 +573,13 @@ color:#0e8ab8;
 
 .listing tr.even td {
       border-top: #b1b1b1 1px solid;
-      border-bottom: #b1b1b1 1px solid;
+      border-bottom: #ccc 1px solid;
       height: 32px;
 }
 
 .listing tr.odd td {
-      border-top: #b1b1b1 1px solid;
-      border-bottom: #b1b1b1 1px solid;
+      border-top: #ccc 1px solid;
+      border-bottom: #ccc 1px solid;
       height: 32px;
 }
 
@@ -818,11 +818,11 @@ table.student_group tr.even:hover{
 
 .sidebar{
     	margin: 0px 10px 0px 0px;
-    	/*border-left:1px solid #cecece;*/
+    	border:1px solid #ddd;
     	width:18.5%;
     	float:right;
-        background: #eaebee;
-        padding: 8px;
+        background: #f6f5f0;
+        padding: 10px;
 }
 
 .sidebar h1{
