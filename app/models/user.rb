@@ -66,4 +66,18 @@ class User < ActiveRecord::Base
       end
      end
  end     	
+
+  def self.create_row(username,password,parent_name,parent_email,student_name,current_user)
+    user = User.new
+    user.name = parent_name
+    user.designation = "Parent Login"
+    user.username = username
+    user.password = password
+    user.password_confirmation = password
+    user.mail_id = parent_email
+    user.roles << Role.find(:first,:conditions=>['name =?','parent'])
+    user.save
+    
+    Notifier.deliver_email_notification_for_parent(parent_email,username,password,student_name,current_user)
+  end
  end

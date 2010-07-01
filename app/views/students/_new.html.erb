@@ -32,6 +32,15 @@
     			<%= f.label :email %><br />
     			<%= f.text_field :email %>
   		</p>
+                <p>
+    		         <%= f.label :username %><br />
+    		         <%= text_field_tag :username %>
+                </p>
+                <p>
+    		          <%= f.label :password %><br />
+    		          <%= text_field_tag :password %>
+                </p>
+
   		<span> <%= f.submit 'Create record' %> or <%= link_to_function "Cancel",
 	"jQuery('#top').hide(); jQuery('#button').show(); return false;"%>
 		</span>

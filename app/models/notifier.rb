@@ -10,6 +10,15 @@ def email_notification(email, current_user, student)
     body          :email => email
 end
 
+
+def email_notification_for_parent(email,username,password,student_name,current_user)
+    recipients    email
+    from          current_user.mail_id
+    subject       "Login Details"
+    body          :username => username,:password => password, :student_name => student_name
+end
+
+
  def forgot_password(user)
     @recipients ="#{user.mail_id}"
     @from     =  "admin@schoolit.com"

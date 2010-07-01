@@ -30,6 +30,7 @@ class CreateUsers < ActiveRecord::Migration
     super_admin_role = Role.create(:name => 'super_admin')
     admin_role = Role.create(:name => 'admin') 
     teacher_role = Role.create(:name =>'teacher')
+    parent_role = Role.create(:name => 'parent')
     super_admin = User.create do |u|
       u.name ='super_admin'
       u.username = 'superadmin'

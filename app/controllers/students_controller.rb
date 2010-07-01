@@ -46,7 +46,12 @@ class StudentsController < ApplicationController
     @student = Student.new(params[:student])
     @student.user_id = current_user.id
     respond_to do |format|
+    @username = params[:username]
+    @password = params[:password]
+    @student_name = @student.name
+    unless @username and @password.blank?
       if @student.save
+      User.create_row(params[:username],params[:password],@student.parent,@student.email,@student.name,current_user)
       unless params[:groups].nil?
         params[:groups].each do|group|
         	@student.groups<< Group.find(group)
@@ -55,6 +60,7 @@ class StudentsController < ApplicationController
         flash[:notice] = 'Student record is successfully created.'
          format.html { redirect_to(students_url) }
         format.xml  { render :xml => @student, :status => :created, :location => @student }
+    end
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @student.errors, :status => :unprocessable_entity }
