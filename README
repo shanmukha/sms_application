@@ -23,7 +23,7 @@ Rails.  You can read more about Action Pack in
 link:files/vendor/rails/actionpack/README.html.
 
 
-== Getting Started
+
 
 1. At the command prompt, start a new Rails application using the <tt>rails</tt> command
    and your application name. Ex: rails myapp
