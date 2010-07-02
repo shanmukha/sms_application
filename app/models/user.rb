@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   has_many  :students
   has_many  :letters
   has_many  :tags
-  
+  has_many  :subjects
   validates_presence_of :mail_id,:name
   validates_format_of :mail_id,
                       :with => /^[A-Z0-9._%-]+@([A-Z0-9-]+\.)+[A-Z]{2,4}$/i

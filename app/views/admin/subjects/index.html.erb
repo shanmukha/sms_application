@@ -1,0 +1,33 @@
+<div class='form_wrapper'>
+  <div>
+    <span class ='right'><%= link_to "<span>Create subject</span>", new_admin_subject_path , :class => 'buttonAdd'%></span>
+    <h1 class ="heading left">Listing subjects</h1>
+    <div class="clear"></div>
+  </div>
+<table class="listing">
+  <tr>
+    <th>Name</th>
+    <th>Short code</th>
+    <th>Max marks</th>
+    <th>Passing marks</th>
+      <th>Class name</th>
+     <th>Actions</th> 
+  </tr>
+
+<% @subjects.each do |subject| %>
+  <tr class="<%=cycle("odd", "even")%>">
+    <td><%=h subject.name %></td>
+    <td><%=h subject.short_code %></td>
+    <td><%=h subject.max_marks %></td>
+    <td><%=h subject.passing_marks %></td>
+    <td><%=h subject.group.name %></td>
+    <td><%= link_to 'Edit', edit_admin_subject_path(subject) %>
+    <%= link_to 'Destroy', admin_subject_path(subject), :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<div class="clear"></div>
+</div

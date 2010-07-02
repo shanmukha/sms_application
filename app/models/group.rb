@@ -6,6 +6,7 @@ class Group < ActiveRecord::Base
  has_many :schedules
  has_many :emails
  has_many :letters
+ has_many :subjects
  validates_presence_of  :name
  attr_accessible :name
  #copy students from another group

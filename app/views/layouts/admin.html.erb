@@ -70,6 +70,7 @@
             <li class='<%= request.request_uri =~ /users/? 'active': 'link' %>'> <%= link_to "Users list", admin_users_path %></li>
             <li class='<%= request.request_uri =~ /message_templates/? 'active': 'link' %>'> <%= link_to "Saved Messages", admin_message_templates_path%>  </li> 
             <li class='<%= request.request_uri =~ /tags/? 'active': 'link' %>'> <%= link_to "Tags", admin_tags_path %> </li> 
+  <li class='<%= request.request_uri =~ /subjects/? 'active': 'link' %>'> <%= link_to "subjects", admin_subjects_path %></li>
            <li class='<%= request.request_uri =~ /class_reports/ || request.request_uri =~/class_reports/ || request.request_uri=~/class_reports/ || request.request_uri=~/teacher_reports/ || request.request_uri=~/tag_reports/ || request.request_uri=~/month_reports/ ? 'active': 'link' %>'> <%= link_to "Reports", admin_class_reports_path %> </li> 
  </ul>
    </div>

@@ -1,0 +1,23 @@
+<p>
+  <b>Name:</b>
+  <%=h @subject.name %>
+</p>
+
+<p>
+  <b>Short code:</b>
+  <%=h @subject.short_code %>
+</p>
+
+<p>
+  <b>Max marks:</b>
+  <%=h @subject.max_marks %>
+</p>
+
+<p>
+  <b>Passing marks:</b>
+  <%=h @subject.passing_marks %>
+</p>
+
+
+<%= link_to 'Edit', edit_subject_path(@subject) %> |
+<%= link_to 'Back', subjects_path %>
