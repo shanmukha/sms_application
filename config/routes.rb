@@ -1,6 +1,4 @@
 ActionController::Routing::Routes.draw do |map|
-  
-
   map.resources :helps
   map.resources :letters,:collection =>{:group_students => :get},:member => {:print => :any, :print_labels => :any}
   map.resources :emails,:collection =>{:group_students => :get}
@@ -21,7 +19,8 @@ ActionController::Routing::Routes.draw do |map|
      admin.resources :tag_reports
      admin.resources :teacher_reports
      admin.resources :month_reports 
-     admin.resources :users,:collection =>{:forgot_password =>:any,:client_type => :any}
+     admin.resources :schools,:collection=>{:plan_type => :any}
+     admin.resources :users,:collection =>{:forgot_password =>:any}
  end
 end 
 
