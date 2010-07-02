@@ -14,12 +14,7 @@
   <tr>
     <th>Name</th>
     <th>User name</th>
-    <% if current_user.has_role?('super_admin')%>
-     <th>Server username</th>
-     <th>Server password</th>
-     <th>Balance</th>
-    <%end%>
-     <th>Designation</th>
+    <th>Designation</th>
     <th>Email</th>
     <th>View</th>
    </tr>
@@ -28,11 +23,6 @@
   <tr class="<%=cycle("odd", "even")%>">
     <td><%=h user.name %></td>
     <td><%=h user.username %></td>
-     <% if current_user.has_role?('super_admin')%>
-     <td><%=h user.server_user_name %></td>
-     <td><%=h user.server_password %>
-     <td><%=h user.balance %></td>
-       <%end%>  
      <td><%=h user.designation %></td>
      <td><%=h user.mail_id %></td>
     <td><%= link_to '<img src="/images/view.gif" title="View"/>', admin_user_path(user)%></td>

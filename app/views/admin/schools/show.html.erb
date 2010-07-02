@@ -1,0 +1,68 @@
+<div class = 'form_wrapper'> 
+<h1 class = 'heading left'>School details </h1>
+ <div class = 'right'><%= link_to image_tag("closelabel.gif", :title=> "close"),admin_schools_path%> </div>
+ <div class="clear" ></div>	
+<hr />
+
+<table class="show_page" >
+		<tr>
+  			<th>School Name:</th>
+                	<td><%=h @school.school_name %></td>
+		</tr>
+		<tr>
+  			<th>Server Username:</th>
+  			<td><%=h @school.server_user_name %></td>
+		</tr>
+		
+		<tr>
+  			<th>Server Password:</th>
+  			<td><%=h @school.server_password %></td>
+		</tr>
+		<tr>
+  			<th>Plan Type:</th>
+  			<td><%=h @school.plan_type %></td>
+		</tr>
+		<tr>
+  			<th>Sms Limit:</th>
+  			<td><%=h @school.sms_limit %></td>
+  		</tr>
+                <tr>
+  			<th>School Email:</th>
+  			<td><%=h @school.school_email %></td>
+  		</tr>
+                <%if @school.plan_type == "Limited"%>
+                <tr>
+  			<th>Credits:</th>
+  			<td><%=h @school.credits %></td>
+		</tr>
+                <%end%>
+                <%if @school.plan_type == "Unlimited"%>
+		<tr>
+  			<th>End Date:</th>
+  			<td><%=h @school.end_date %></td>
+  		</tr>
+                <%end%>
+</table>           
+
+
+<h2 class="heading">Administrator Details</h2><br/>
+<table class="listing">
+  <tr>
+    <th>Name</th>
+    <th>User name</th>
+    <th>Designation</th>
+    <th>Email</th>
+    <th>View</th>
+   </tr>
+
+  <tr class="<%=cycle("odd", "even")%>">
+    <td><%=h @user.name %></td>
+    <td><%=h @user.username %></td>
+     <td><%=h @user.designation %></td>
+     <td><%=h @user.mail_id %></td>
+    <td><%= link_to '<img src="/images/view.gif" title="View"/>', admin_user_path(@user)%></td>
+   </tr>
+</table>
+
+ 
+</div>

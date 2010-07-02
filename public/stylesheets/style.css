@@ -92,10 +92,18 @@ h1.heading {font-size:18px;
 	font-family : "arial", helvetica, sans-serif;
 	font-weight:bold;
 	padding:0px 0px 5px 0px;
-	width:45%;
 	letter-spacing:1px;
 }
 h1.heading span{color: #c8287b;}
+
+h2.heading {font-size:15px;
+	color: #005ca1;
+	font-family : "arial", helvetica, sans-serif;
+	font-weight:bold;
+	padding:0px 0px 5px 0px;
+	letter-spacing:1px;
+        margin-left :5px;
+}
 
 .button_small {
   -moz-border-radius-bottomleft:5px;
@@ -176,6 +184,10 @@ h1.heading span{color: #c8287b;}
 	padding: 0px; 
 	margin: 0px;
 }
+
+.right_space{float :left;margin-left :120px;}
+
+#midddle{float:left;margin-left :40px;margin-top :20px;}
 
 .part1 {width: 55%;}
 
@@ -1470,4 +1482,4 @@ a.buttonAdd:hover span {
 
 #report-links a {margin: 0px 5px 0px 5px; color: #1d4896}
 
-
+.

@@ -47,10 +47,10 @@ class StudentsController < ApplicationController
     @student.user_id = current_user.id
     respond_to do |format|
     @username = params[:username]
-    @password = params[:password]
+    @password = params[:pass]
     @student_name = @student.name
     unless @username and @password.blank?
-      if @student.save
+     if @student.save
       User.create_row(params[:username],params[:password],@student.parent,@student.email,@student.name,current_user)
       unless params[:groups].nil?
         params[:groups].each do|group|

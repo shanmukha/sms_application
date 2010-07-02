@@ -20,51 +20,6 @@
     <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation %>
   </p>
-<br />
-    <% if current_user.has_role?('super_admin')%>
-    <p>
-    <%= f.label :Server_username %><br />
-    <%= f.text_field :server_user_name %>
-  </p>
-    <br />
-     <p>
-      <%= f.label :Server_password %><br />
-      <%= f.password_field :server_password %>
-  </p>
-<br />
- <p>
- <%= f.label :Type %><br />
-    <%= f.select :client_type ,[["Select type",""],["Unlimited","Unlimited"],["Limited", "Limited"]],:selected => @user.client_type %>
-  </p>
-  <br />
-    <%= image_tag("spinner.gif",
-               			:border => 0,
-              			:id => "spinner1",
-			             :style =>"display: none;" ) %> 
-	<%= observe_field("user_client_type", :frequency => 1,
-                  :before => "jQuery('#spinner1').show();",
-                  :success => "jQuery('#spinner1').hide();",
-                  :url => client_type_admin_users_path, 
-				    :method => :get,
-                  :with => "'client_type=' + value") %>		             
-			   
-  <div id = "type">
-     <%if @user.client_type == "Unlimited"%>
-         <p>
-        <%= f.label :End_date%><br />
-        <%= f.text_field :end_date,:class =>'textbox-small' ,:id => 'date'%>
-        </p>
-    <%elsif @user.client_type == "Limited" %>
-        <p>
-        <%= f.label :Balance%><br />
-        <%= f.text_field :balance%>
-        </p>
-     <%else%>
-    <%end%>  
-   </div>
-   
-    
-  <%end%>
 
    <p>
     <%= f.label :email %><br />

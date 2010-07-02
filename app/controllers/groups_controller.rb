@@ -41,6 +41,9 @@ class GroupsController < ApplicationController
     @group = current_user.groups.new(params[:group])
     students = params[:students]
     respond_to do |format|
+
+      school = School.find(:first,:conditions=>['administrator_id=?',current_user.id])
+      @group.school_id = school.id
       if @group.save
       	unless students.blank?
           students.each do  |student|

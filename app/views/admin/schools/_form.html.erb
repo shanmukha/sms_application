@@ -1,0 +1,104 @@
+<div class="left">
+<h1 class="heading">School Details</h1>
+<fieldset>
+  <p>
+    <%= f.label :school_name %><br />
+    <%= f.text_field :school_name %>
+  </p>
+  <p>
+    <%= f.label :school_email %><br />
+    <%= f.text_field :school_email %>
+  </p>
+  <br />
+   <% if current_user.has_role?('super_admin')%>
+    <p>
+    <%= f.label :Server_username %><br />
+    <%= f.text_field :server_user_name %>
+  </p>
+    <br />
+     <p>
+      <%= f.label :Server_password %><br />
+      <%= f.password_field :server_password %>
+  </p>
+ <br />
+ <p>
+    <%= f.label :sms_limit %><br />
+    <%= f.text_field :sms_limit %>
+  </p>
+ <br />
+ <p>
+ <%= f.label :Type %><br />
+    <%= f.select :plan_type ,[["Select type",""],["Unlimited","Unlimited"],["Limited", "Limited"]],:selected => @school.plan_type %>
+  </p>
+  <br />
+    <%= image_tag("spinner.gif",
+               			:border => 0,
+              			:id => "spinner1",
+			             :style =>"display: none;" ) %> 
+	<%= observe_field("school_plan_type", :frequency => 1,
+                  :before => "jQuery('#spinner1').show();",
+                  :success => "jQuery('#spinner1').hide();",
+                  :url => plan_type_admin_schools_path, 
+				    :method => :get,
+                  :with => "'plan_type=' + value") %>		             
+			   
+  <div id = "type">
+     <%if @school.plan_type == "Unlimited"%>
+         <p>
+        <%= f.label :End_date%><br />
+        <%= f.text_field :end_date,:class =>'textbox-small' ,:id => 'date'%>
+        </p>
+    <%elsif @school.plan_type == "Limited" %>
+        <p>
+        <%= f.label :credits%><br />
+        <%= f.text_field :credits%>
+        </p>
+     <%else%>
+    <%end%>  
+   </div>
+  <%end%>
+ </fieldset>
+</div>
+
+
+<div class="right_space">
+<h1 class="heading">Administrator Details</h1>
+<%f.fields_for :administrator do |admin|%>
+<fieldset>
+<%= admin.error_messages %>
+  <p>
+    <%= admin.label :name %><br />
+    <%= admin.text_field :name %>
+  </p>
+  <br />
+  <p>
+    <%= admin.label :username %><br />
+    <%= admin.text_field :username %>
+  </p>
+<br />
+   <p>
+    <%= admin.label :password %><br />
+    <%= admin.password_field :password %>
+  </p>
+<br />
+  <p>
+    <%= admin.label :password_confirmation %><br />
+    <%= admin.password_field :password_confirmation %>
+  </p>
+<br />
+  <p>
+    <%= admin.label :email %><br />
+    <%= admin.text_field :mail_id %>
+  </p>
+<br />
+ <p>
+    <%= admin.label :designation %><br />
+    <%= admin.text_field :designation %>
+  </p>
+ <br />
+</fieldset>
+<%end%>
+</div>
+<div class="clear"></div>
+
+

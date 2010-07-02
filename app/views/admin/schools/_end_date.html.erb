@@ -1,0 +1,11 @@
+<%fields_for :school do |f|%>
+   <p>
+        <%= f.label :End_date%><br />
+   <%= f.text_field :end_date,:class =>'textbox-small' ,:id => 'date'%>
+   </p>
+<%end%>
+<script type="text/javascript">
+       	jQuery(function() {
+			  jQuery("#date").datepicker({showOn: 'button', buttonImage: '/images/calendar.gif', buttonImageOnly: true, altField: '#date', altFormat: 'dd-mm-yy' }) 
+			  });
+	</script>

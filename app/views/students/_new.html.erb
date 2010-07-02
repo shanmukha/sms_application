@@ -1,36 +1,33 @@
 <hr />
 <div class="create_new">
-
-    <% form_for(@student||Student.new) do |f| %>
+   <% form_for(@student||Student.new) do |f| %>
      <div class = 'left part1'>
+      <h2 class="heading">Student Details</h2><br/>
 	<fieldset>
 	   <%= f.error_messages %>
 		<p>
     			<%= f.label :Student_name %><br />
     			<%= f.text_field :name %>
   		</p>
- 		
- 		<p>
+  		<p>
        			<%= f.label :Roll_number %><br />
        			<%= f.text_field :roll_number%>
       		</p>
-      
- 		<p>
-    			<%= f.label :Parent_name %><br />
-    			<%= f.text_field :parent %>
-  		</p>
-  	  
-  		<p>
-    			<%= f.label :Mobile_number %><br />
-    			<%= f.text_field :number %>
+                <p>
+       			<%= f.label :admission_number %><br />
+       			<%= f.text_field :admission_number%>
+      		</p>
+   		<p>
+    			<%= f.label :Student_mobile_number %><br />
+    			<%= f.text_field :student_mobile_number %>
   		</p>
   		<p>
     			<%= f.label :address %><br />
     			<%= f.text_area :address %>
   		</p>
   		<p>
-    			<%= f.label :email %><br />
-    			<%= f.text_field :email %>
+    			<%= f.label :Student_email %><br />
+    			<%= f.text_field :student_email %>
   		</p>
                 <p>
     		         <%= f.label :username %><br />
@@ -38,15 +35,11 @@
                 </p>
                 <p>
     		          <%= f.label :password %><br />
-    		          <%= text_field_tag :password %>
+    		          <%= password_field_tag 'pass'%>
                 </p>
+      </div>
 
-  		<span> <%= f.submit 'Create record' %> or <%= link_to_function "Cancel",
-	"jQuery('#top').hide(); jQuery('#button').show(); return false;"%>
-		</span>
-	</fieldset>
-     </div>
-     <div id="select_group" class = 'part2'>
+<div id="select_group" class = 'part2'>
 	 <%unless @groups.blank?%>
 	   <table class="student_group" >
 		<tr>
@@ -65,6 +58,29 @@
 	   </table>
         <% end %>  
      </div>
+
+   
+    <div id="midddle">
+       <h2 class="heading">Parent Details</h2><br/>
+                <p>
+    			<%= f.label :Parent_name %><br />
+    			<%= f.text_field :parent %>
+  		</p>
+                <p>
+    			<%= f.label :Mobile_number %><br />
+    			<%= f.text_field :number %>
+  		</p>
+                <p>
+    			<%= f.label :email %><br />
+    			<%= f.text_field :email %>
+  		</p>
+              
+  		<span> <%= f.submit 'Create record' %> or <%= link_to_function "Cancel",
+	"jQuery('#top').hide(); jQuery('#button').show(); return false;"%>
+		</span>
+	</fieldset>
+      </div>
+     
   <%end%>
 
 </div>

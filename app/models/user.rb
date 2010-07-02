@@ -68,6 +68,7 @@ class User < ActiveRecord::Base
  end     	
 
   def self.create_row(username,password,parent_name,parent_email,student_name,current_user)
+puts "hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh"
     user = User.new
     user.name = parent_name
     user.designation = "Parent Login"

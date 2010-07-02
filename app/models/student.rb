@@ -8,7 +8,6 @@ class Student < ActiveRecord::Base
  
  has_many :letter_students
  has_many :letters,:through => :letter_students
- 
  belongs_to :user
  has_and_belongs_to_many :groups
  validates_presence_of  :name,:parent ,:number,:address
