@@ -46,7 +46,10 @@
 		            <li><%= link_to "Go to application", root_path %>|</li>
 		      
 		            <li class='<%= request.request_uri == "/admin/users/#{current_user.id}/edit"? 'active': 'link' %>'> 
-                    <%= link_to "My account",edit_admin_user_path(current_user) %>|</li> 
+                          <%= link_to "My account",edit_admin_user_path(current_user) %>|</li> 
+                          <%unless current_user.has_role?('super_admin')%>
+                            <li><%= link_to "School Details",admin_school_path(find_school(current_user)) %>|</li> 
+                          <%end%>
 		           <li><%= link_to "Logout", logout_path %></li>
 		         
          	</ul>

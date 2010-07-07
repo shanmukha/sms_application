@@ -140,4 +140,8 @@ module ApplicationHelper
   def find_student_letters(student)
        student.letters.find(:all) 
   end
+
+  def find_school(current_user)
+    school = School.find(:first,:conditions=>['administrator_id=?',current_user.id])
+  end
 end

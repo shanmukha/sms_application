@@ -1,10 +1,10 @@
 class LettersController < ApplicationController
- layout "main"
+layout proc{ |c| ['show_letter'].include?(c.action_name)? 'parent' : 'main'}
  
  	def index
   	@search =  Letter.search(params[:search]) 
-    @search.user_id = current_user.id if current_user.has_role?('teacher') || current_user.has_role?('super_admin')
-    @search.user_id = user_ids if current_user.has_role?('admin') && !current_user.has_role?('super_admin')
+    @search.user_id = current_user.id if current_user.has_role?('teacher') || current_user.has_role?('admin')
+    @search.user_id = user_ids if current_user.has_role?('admin') && !current_user.has_role?('admin')
     @search.order ||= "descend_by_created_at"
     @letters = @search.all.paginate :page => params[:page],:per_page => 25
     respond_to do |format|
@@ -63,6 +63,9 @@ class LettersController < ApplicationController
     end
   end
 	
+  def show_letter
+      @letter = Letter.find(params[:id])
+  end
 
  def destroy
     @letter = Letter.find(params[:id])

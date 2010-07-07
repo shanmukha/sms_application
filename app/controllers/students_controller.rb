@@ -1,6 +1,9 @@
 class StudentsController < ApplicationController
-  layout "main",:except => [:import_students_new]
-  before_filter :check_admin_role, :except =>[:index,:show]
+layout proc{ |c| ['student_details'].include?(c.action_name)? 'parent' : 'main'}
+
+  #layout "main",:except => [:import_students_new]
+  #layout "parent",:only =>[:student_details]
+  before_filter :check_admin_role, :except =>[:index,:show,:student_details]
 	require "csv"
 	def index
 	  admin = current_user.has_role?('admin') ? current_user : User.find(current_user.parent_id)
@@ -55,7 +58,9 @@ class StudentsController < ApplicationController
     @student_name = @student.name
     unless @username and @password.blank?
      if @student.save
-      User.create_row(params[:username],params[:password],@student.parent,@student.email,@student.name,current_user)
+      school = School.find(:first,:conditions=>['administrator_id=?',current_user.id])
+      user_object = User.create_row(params[:username],params[:pass],@student,current_user,school.id)
+      
       unless params[:groups].nil?
         params[:groups].each do|group|
         	@student.groups<< Group.find(group)
@@ -163,5 +168,17 @@ end
       	format.xml  { head :ok }
     end
     end
+
+  def student_details
+    @student = Student.find(params[:student_id])
+    @emails = @student.emails.find(:all)
+    @messages = Student.find_student_messages(@student)
+    @letters = @student.letters.find(:all)
+    @schedules = @student.schedules.find(:all)
+    respond_to do |format|
+      format.html # show.html.erb
+      format.xml  { render :xml => @student }
+    end
+  end
 
 end  
