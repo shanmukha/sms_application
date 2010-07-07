@@ -2,6 +2,9 @@
   <div class ="create_new">
   <% form_for(:user,:url => admin_users_path,:html => {:method => :post} )do |f| %>
 	<%= render :partial =>"form"%>
+        <%unless params[:school_id].blank?%>
+          <%=hidden_field_tag :school_id,params[:school_id]%>
+        <%end%>
 	<span><%= f.submit "Submit" %></span>
 	<%end%>
   </div>

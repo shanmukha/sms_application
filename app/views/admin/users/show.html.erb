@@ -16,30 +16,7 @@
    <td>**************</td>
 </tr>
  
-<% if current_user.has_role?('super_admin')%>
-<tr>
-  <th>Server user name:</th>
-  <td><%=h @user.server_user_name%></td>
-</tr>
 
-<tr>
-  <th>Server password:</th>
-  <td><%=h @user.server_password %></td>
-  </tr>
-  <tr>
-<th>Type:</th>
-   <td><%= @user.client_type%></td>
-</tr>
-  <tr>
-   <%if @user.client_type == "Limited"%>
-  <th>Balance:</th>
-   <td> <%=h @user.balance %></td>
-   <%elsif @user.client_type == "Unlimited"%>
-        <th>End date:</th>
-   <td> <%=h @user.end_date%></td>
-   <%end%>
-</tr>
-<%end%>
 
 <tr>
   <th>Designation:</th>

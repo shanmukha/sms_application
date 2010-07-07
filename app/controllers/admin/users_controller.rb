@@ -7,9 +7,14 @@ class Admin::UsersController < ApplicationController
     @user = User.new
    end
   	
-  	def index
+   def index
+     @school = School.find(:first,:conditions=>['administrator_id=?',current_user.id])
       @search = User.search(params[:search])
+     if params[:role] == "teacher"
+      @search.school_id = params[:school_id]
+     else
       @search.parent_id = current_user.id
+      end
       @search.order ||= "descend_by_updated_at"
       @users = @search.all.paginate :page => params[:page],:per_page => 25
    	 respond_to do |format|
@@ -20,7 +25,14 @@ class Admin::UsersController < ApplicationController
   
   def create
     @user = User.new(params[:user])
+    unless params[:school_id].blank?
+      @user.school_id = params[:school_id]
+    end
     if @user.save
+       teacher_role = Role.find(:first,:conditions =>['name = ?','teacher'])
+       if params[:role] == "teacher"
+          @user.roles << teacher_role
+       end
        if current_user.has_role?('super_admin')
          @user.update_attribute('parent_id',1)
          admin_role = Role.find(:first,:conditions =>['name = ?','admin'])

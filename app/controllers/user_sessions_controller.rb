@@ -9,7 +9,11 @@ class UserSessionsController < ApplicationController
     @user_session = UserSession.new(params[:user_session])
     if @user_session.save
       flash[:notice] = "Successfully logged in."
-      redirect_to root_url
+      if current_user.has_role?("super_admin")
+        redirect_to admin_schools_url
+      elsif current_user.has_role?("admin")
+        redirect_to root_url
+      end
     else
       flash.now[:error] = "Invalid username and/or password. Please try again"
       render :action => 'new'

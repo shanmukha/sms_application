@@ -1,7 +1,9 @@
 <div class='form_wrapper'>
   <div>
-    <span class ='right'><%= link_to "<span>New user</span>", new_admin_user_path , :class => 'buttonAdd'%></span>
-    <h1 class ="heading left">Listing users</h1>
+    <%if current_user.has_role?('admin') && !current_user.has_role?('super_admin')%>
+      <span class ='right'><%= link_to "<span>New teacher</span>", new_admin_user_path(:role =>'teacher',:school_id=>@school.id) , :class => 'buttonAdd'%></span>
+    <%end%>
+    <h1 class ="heading left">Listing teachers</h1>
     <div class="clear"></div>
   </div>
 

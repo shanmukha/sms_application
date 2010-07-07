@@ -25,7 +25,10 @@ class Admin::SchoolsController < ApplicationController
   def show
     @school = School.find(params[:id])
     @user = @school.administrator
-  end
+    @groups = @school.groups
+    @total_no_of_students = Student.find(:all,:include => {:groups => 'school' },:conditions =>['schools.id = ?',params[:id]]).count
+    @total_no_of_teachers = User.find(:all,:conditions=>['school_id=?',@school.id]).count
+   end
 
   def plan_type
     plan_type = params[:plan_type]
