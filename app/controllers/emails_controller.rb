@@ -1,10 +1,10 @@
 class EmailsController < ApplicationController
-  layout "main"
+ layout proc{ |c| ['show_email'].include?(c.action_name)? 'parent' : 'main'}
   
   def index
     @search =  Email.search(params[:search]) 
-    @search.user_id = current_user.id if current_user.has_role?('teacher') || current_user.has_role?('super_admin')
-    @search.user_id = user_ids if current_user.has_role?('admin') && !current_user.has_role?('super_admin')
+    @search.user_id = current_user.id if current_user.has_role?('teacher') || current_user.has_role?('admin')
+    @search.user_id = user_ids if current_user.has_role?('admin') && !current_user.has_role?('admin')
     @search.order ||= "descend_by_created_at"
     @emails = @search.all.paginate :page => params[:page],:per_page => 25
     respond_to do |format|
@@ -83,7 +83,11 @@ class EmailsController < ApplicationController
       page.replace_html 'students', :partial => 'group_student'
    end
   end 
- 
+  
+  def show_email
+     @email = Email.find(params[:id])
+  end
+
   private
    def user_ids
       user_ids  = []

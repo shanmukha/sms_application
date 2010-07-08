@@ -1,0 +1,22 @@
+<div class = 'form_wrapper'>
+  <h1 class = 'heading left'>email sent to <span> <%= @email.group.name %></span> </h1>
+
+  <div class="clear" ></div>
+  <hr />
+  <div class = 'left part1'>
+	<table class="show_page">
+                <tr>
+  		   <td colspan ='2'><%=h @email.subject %></td>
+		</tr>
+		<tr>
+  		   <td  style ='border: 1px solid #ccc;' colspan ='2'><%=h @email.body %></td>
+		</tr>
+		<tr>
+  		   <td ><%=h @email.created_at.strftime('%d/%m/%Y') %></td><td class ='blue'><%=h @email.user.name %></td>
+		</tr> 
+		
+	</table>
+ </div>
+ 
+  <div class="clear" ></div>
+</div>

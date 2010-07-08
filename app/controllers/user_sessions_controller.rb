@@ -16,6 +16,8 @@ class UserSessionsController < ApplicationController
       elsif current_user.has_role?("parent")
         student = Student.find(:first,:conditions=>['parent_user_id=?',current_user.id])
         redirect_to student_details_students_url(:student_id=>student.id)
+      elsif current_user.has_role?("teacher")
+        redirect_to root_url
       end
     else
       flash.now[:error] = "Invalid username and/or password. Please try again"

@@ -1,7 +1,7 @@
 class LettersController < ApplicationController
-layout proc{ |c| ['show_letter'].include?(c.action_name)? 'parent' : 'main'}
- 
- 	def index
+ layout proc{ |c| ['show_letter'].include?(c.action_name)? 'parent' : 'main'}
+
+   def index
   	@search =  Letter.search(params[:search]) 
     @search.user_id = current_user.id if current_user.has_role?('teacher') || current_user.has_role?('admin')
     @search.user_id = user_ids if current_user.has_role?('admin') && !current_user.has_role?('admin')

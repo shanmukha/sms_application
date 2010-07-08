@@ -114,7 +114,7 @@
      			<td><%=h email.subject %></td>
      			<td><%=h message_body_filter(email.body) %></td>
      			<td><%=h email.group.name%></td>
-     			<td class="view"><%= link_to '<img src="/images/view.gif" title="View"/>', student_email_show_student_path(:email_id => email,:student_id => @student)%></td>
+     			<td class="view"><%= link_to '<img src="/images/view.gif" title="View"/>', show_email_email_path(email)%></td>
       		</tr>
 		<% end %>
 	</table>
@@ -133,7 +133,7 @@
   		    <td><%= letter.user.name%></td>
     			<td><%= message_body_filter(letter.content)%></td>
      			<td><%= letter.group.name %></td>
-    			<td class="view"><%= link_to '<img src="/images/view.gif" title="View"/>', student_letter_show_student_path(:letter_id => letter,:student_id => @student)%></td>
+    			<td class="view"><%= link_to '<img src="/images/view.gif" title="View"/>',show_letter_letter_path(letter)%></td>
   		</tr>
 		<% end %>
 	</table>

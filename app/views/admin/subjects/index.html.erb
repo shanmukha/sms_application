@@ -21,8 +21,7 @@
     <td><%=h subject.max_marks %></td>
     <td><%=h subject.passing_marks %></td>
     <td><%=h subject.group.name %></td>
-    <td><%= link_to 'Edit', edit_admin_subject_path(subject) %>
-    <%= link_to 'Destroy', admin_subject_path(subject), :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Edit', edit_admin_subject_path(subject) %></td>
   </tr>
 <% end %>
 </table>

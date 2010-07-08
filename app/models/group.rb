@@ -7,6 +7,7 @@ class Group < ActiveRecord::Base
  has_many :emails
  has_many :letters
  has_many :subjects
+ has_many :exams
  belongs_to :school
  validates_presence_of  :name
  attr_accessible :name

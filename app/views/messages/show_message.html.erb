@@ -1,0 +1,34 @@
+<div class="form_wrapper">
+  <h1 class = 'heading left'>Message sent to <span><%= @message.group_id.nil? ? @message.number : @message.group.name  %></span> </h1>
+
+  <div class="clear" ></div>
+  <hr />
+
+   <table class="show_page">
+		<tr>		
+		    <td><%=h @message.created_at.strftime('%d-%m-%Y') %></td>
+                    <td><%=h @message.user.name %></td>
+		</tr>
+                <tr> <td colspan = '2' style ='border: 1px solid #ccc; background: #eef2f6; width: 300px;'><%=h @message.message_body %></td> </tr>
+                <%unless @message.tag_id.nil?%>
+                   <tr>
+		     <th>Message tag:</th><td><%=h @message.tag.name%></td>
+		   </tr>
+                <%end%>
+
+		<%if @message.sms_id!=nil%>	
+		<tr>
+	    <td class = <%= column_class(@message.status) %>>Status:<%= @message.status%></td>
+      </td>
+		
+		<%end%>
+		<%if @message.sms_id==nil and @students.blank?%>
+			 <td class = <%= column_class('Failed') %>>Status:Failed</td>
+     </td>
+		</tr>
+		<%end%>
+	</table>
+      
+	<%= button_to "Delivery status", status_update_message_path(@message)%> 
+</div>
+

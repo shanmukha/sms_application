@@ -6,8 +6,13 @@
                          <%= link_to "Administration", admin_users_path %>|
                      </li>  
                   <%end%>
+             <%if current_user.has_role?('teacher')%>
+                  <li class='<%= request.request_uri == "/admin/users/#{current_user.id}/edit_my_account"? 'active': 'link' %>'> 
+                  <%= link_to "My account",edit_my_account_admin_user_path(current_user) %>|</li> 
+             <%else%>
                   <li class='<%= request.request_uri == "/admin/users/#{current_user.id}/edit"? 'active': 'link' %>'> 
                     <%= link_to "My account",edit_admin_user_path(current_user) %>|</li> 
+             <%end%>
              <li class='<%= request.request_uri == "/helps"? 'active': 'link' %>'> <%= link_to "Help", helps_path %> | </li>
           	  <li><%= link_to "Logout", logout_path %></li> 
               </ul>

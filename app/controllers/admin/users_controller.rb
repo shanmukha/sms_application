@@ -1,7 +1,7 @@
 class Admin::UsersController < ApplicationController
-  layout "admin"
+  layout proc{ |c| ['edit_my_account'].include?(c.action_name)? 'main' : 'admin'}
   before_filter :check_logged_in,:except =>"forgot_password"
- 	before_filter "check_role('super_admin','admin')",:except =>[:edit,:update,:forgot_password] 
+ 	before_filter "check_role('super_admin','admin')",:except =>[:edit,:update,:forgot_password,:edit_my_account] 
  
    def new
     @user = User.new
@@ -61,6 +61,14 @@ class Admin::UsersController < ApplicationController
        @user = User.find(current_user.id)
      end  
    end
+
+  def edit_my_account
+    if current_user.has_role?('super_admin') || current_user.has_role?('admin')
+      @user = User.find(params[:id]) 
+     else
+       @user = User.find(current_user.id)
+    end 
+  end
   
   def update
     if current_user.has_role?('super_admin')|| current_user.has_role?('admin')

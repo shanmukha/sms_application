@@ -99,7 +99,7 @@
 
 
 <%unless @emails.blank?%>
-<h1 class='heading'>Total sent emails -<%= @emails.blank? ? 0 : @emails.size%></h1>
+<h1 class='heading'>Total number of emails -<%= @emails.blank? ? 0 : @emails.size%></h1>
 <table class ="listing">
   		<tr>
   		    <th>Sent by</th>
@@ -114,13 +114,13 @@
      			<td><%=h email.subject %></td>
      			<td><%=h message_body_filter(email.body) %></td>
      			<td><%=h email.group.name%></td>
-     			<td class="view"><%= link_to '<img src="/images/view.gif" title="View"/>', student_email_show_student_path(:email_id => email,:student_id => @student)%></td>
+     			<td class="view"><%= link_to '<img src="/images/view.gif" title="View"/>', show_email_email_path(email)%></td>
       		</tr>
 		<% end %>
 	</table>
 	<%end%>
 	<%unless @letters.blank?%>
-	<h1 class='heading'>Total sent letters-<%= @letters.blank? ? 0 : @letters.size%></h1>
+	<h1 class='heading'>Total number of letters-<%= @letters.blank? ? 0 : @letters.size%></h1>
 		<table class ="listing">
   		<tr>
   		    <th>Created by</th>

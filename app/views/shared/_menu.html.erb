@@ -3,6 +3,9 @@
 
       	    <div id="menu">
             	<ul class = 'left'>
+                   <%if current_user.has_role?('teacher')%>
+                      <li class='<%= request.request_uri == "/messages/"? 'active': 'link' %>'> <%= link_to "Messages", messages_path%></li>
+                   <%else%>
                    <% if request.request_uri == "/messages/new"%>
 		      <li class='<%= request.request_uri == "/messages/new"? 'active': 'link' %>'> <%= link_to "New Message", new_message_path%></li>
 		   <%elsif request.request_uri == "/"%>
@@ -10,6 +13,7 @@
 	           <%else%>
 		      <li><%= link_to "New Message", new_message_path %></li>
 		   <%end%>
+                   <%end%>
                    <li class='<%= request.request_uri =~ /emails/? 'active': 'link' %>'><%= link_to "Emails", emails_path %></li>
          	   <li class='<%= request.request_uri =~ /letters/? 'active': 'link' %>'><%= link_to "Letters", letters_path %></li>
                  </ul>

@@ -1,0 +1,31 @@
+<div class = 'form_wrapper'>
+  <table class="show_page">
+    <tr>
+       <th>Class:</th>
+       <td><%=h @exam.group.name %></td>
+    </tr>
+
+    <tr>
+      <th>Exam type:</th>
+      <td><%=h @exam.exam_type %></td>
+    </tr>
+
+    <tr>
+      <th>Conducted on:</th>
+      <td><%=h @exam.conducted_on %></td>
+    </tr>
+
+    <tr>
+      <th>Maximum marks:</th>
+      <td><%=h @exam.maximum_marks %></td>
+    </tr>
+ </table>
+
+
+<table>
+   <tr>
+      <td><%= button_to 'Edit record', edit_admin_exam_path(@exam),:method => :get %> &nbsp;</td>
+   </tr>
+</table>
+
+</div>

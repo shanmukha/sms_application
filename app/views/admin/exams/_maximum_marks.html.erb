@@ -1,0 +1,7 @@
+<%fields_for :exam do |f|%>
+  <p>
+     <%= f.label :maximum_marks %><br />
+     <%= f.text_field :maximum_marks,:value => @subject.max_marks %>
+  </p>
+
+<%end%>
