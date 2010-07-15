@@ -21,10 +21,9 @@
   <tr class="<%=cycle("odd", "even")%>">
     <td><%=h exam.group.name %></td>
     <td><%=h exam.exam_type %></td>
-    <td><%=h exam.conducted_on %></td>
+    <td><%=change_format_to_long(exam.conducted_on)%></td>
     <td><%=h exam.maximum_marks %></td>
     <td><%= link_to 'Show', admin_exam_path(exam) %></td>
-    <td><%= link_to 'Edit', edit_admin_exam_path(exam) %></td>
   </tr>
 <% end %>
 <%end%>

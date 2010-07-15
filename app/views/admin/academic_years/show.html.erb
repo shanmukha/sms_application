@@ -1,0 +1,37 @@
+<div class = 'form_wrapper'>
+   <table class="show_page">
+     <tr>
+       <th>From date:</th>
+       <td><%=change_format_to_long(@academic_year.from_date) %></td>
+     </tr>
+
+     <tr>
+       <th>To date:</th>
+       <td><%=change_format_to_long(@academic_year.to_date)%></td>
+     </tr>
+
+     <tr>
+        <th>Identification name:</th>
+        <td><%=h @academic_year.identification_name %></td>
+     </tr>
+
+     <tr>
+        <th>Current:</th>
+        <td><%=h @academic_year.current %></td>
+     </tr>
+
+     <tr>
+        <th>School:</th>
+        <td><%=h @academic_year.school.school_name %></td>
+     </tr>
+    </table>
+
+<table>
+   <tr>
+      <td><%= button_to 'Edit record', edit_admin_academic_year_path(@academic_year),:method => :get %> &nbsp;</td>
+   </tr>
+</table>
+
+</div>
+
+

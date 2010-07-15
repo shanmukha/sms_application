@@ -1,0 +1,34 @@
+<div class = 'form_wrapper'>
+  <table class="show_page">
+     <tr>
+       <th>Exam:</th>
+       <td><%=h @mark.exam.exam_type %></td>
+     </tr>
+
+     <tr>
+      <th>Student:</th>
+      <td><%=h @mark.student.name %></td>
+     </tr>
+
+     <tr>
+       <th>Subject:</th>
+       <td><%=h @mark.subject.name %></td>
+     </tr>
+
+     <tr>
+       <th>Mark:</th>
+       <td><%=h @mark.mark %></td>
+     </tr>
+   </table>
+
+<%if current_user.has_role?('teacher')%>
+<table>
+     <tr>
+        <td><%= button_to 'Edit record', edit_mark_path(@mark),:method => :get %> &nbsp;</td>
+      </tr>
+</table>
+<%end%>
+
+</div>
+ 
+

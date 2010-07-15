@@ -1,0 +1,38 @@
+<div class='form_wrapper'>
+  <h1 class ='heading'>Editing mark</h1>
+    <div class="create_new">
+
+<% form_for(@mark,:url => mark_path(@mark)) do |f| %>
+
+  <%= f.error_messages %>
+
+   <table class="show_page">
+     <tr>
+       <th>Exam:</th>
+       <td><%=h @mark.exam.exam_type %></td>
+     </tr>
+
+     <tr>
+      <th>Student:</th>
+      <td><%=h @mark.student.name %></td>
+     </tr>
+
+     <tr>
+       <th>Subject:</th>
+       <td><%=h @mark.subject.name %></td>
+     </tr>
+
+     <tr>
+       <th>Mark:</th>
+       <td><%=f.text_field :mark %></td>
+     </tr>
+     <tr>
+         <th></th>
+         <td><span><%= f.submit 'Update' %></span></td>
+      </tr>
+   </table>
+<% end %>
+
+ </div>
+ <div class="clear"></div> 
+</div>

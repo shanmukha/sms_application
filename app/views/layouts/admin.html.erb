@@ -21,6 +21,9 @@
        	jQuery(function() {
 			  jQuery("#date").datepicker({showOn: 'button', buttonImage: '/images/calendar.gif', buttonImageOnly: true, altField: '#date', altFormat: 'dd-mm-yy' }) 
 			  });
+        jQuery(function() {
+			  jQuery("#date1").datepicker({showOn: 'button', buttonImage: '/images/calendar.gif', buttonImageOnly: true, altField: '#date1', altFormat: 'dd-mm-yy' }) 
+			  });
 	</script>
 	
 	<script type="text/javascript">
@@ -80,6 +83,7 @@
            <li class='<%= request.request_uri =~ /class_reports/ || request.request_uri =~/class_reports/ || request.request_uri=~/class_reports/ || request.request_uri=~/teacher_reports/ || request.request_uri=~/tag_reports/ || request.request_uri=~/month_reports/ ? 'active': 'link' %>'> <%= link_to "Reports", admin_class_reports_path %> </li> 
  <li class='<%= request.request_uri =~ /subjects/? 'active': 'link' %>'> <%= link_to "subjects", admin_subjects_path %></li>
 <li class='<%= request.request_uri =~ /exams/? 'active': 'link' %>'> <%= link_to "exams", admin_exams_path %></li>
+<li class='<%= request.request_uri =~ /academic_years/? 'active': 'link' %>'> <%= link_to "Academic Years", admin_academic_years_path %></li>
  </ul>
    </div>
    <div id = 'report-links'>

@@ -1,0 +1,46 @@
+<%unless @exams.blank?%>
+<%fields_for :mark do |f|%>
+<p>
+    <%= f.label :exam_id %><br />
+    <%= f.select :exam_id,@exams %>
+</p>
+
+<table class="student_group" >
+	       <tr>
+	    	 <th></th>
+	  	 <th>Roll No</th>
+                 <th> Student Name</th>
+	  	 <th>Mobile No</th>
+	       </tr>
+	  <%unless @students.nil?%>
+            <%@students.each do |student| %>
+              <tr class="<%=cycle("odd", "even")%>">
+                 <td><%=radio_button_tag 'student_id',student.id, false, :student_id=> student.id,:class => "color_input"%></td>
+       		 <td><%=h student.roll_number %></td>
+    		 <td><b><%=h student.name %></b></td>
+		 <td><%=h student.number%></td>
+  	       </tr>
+	    <%end%>
+	<%end%>	
+ </table><br/>
+
+   <div>
+     <table class="mark_listing">
+      <tr>
+        <th style='border:1px solid black;'>Subject</th>
+        <th style='border:1px solid black;'>Marks</th>
+      </tr>
+      
+     <%unless @subjects.blank?%>
+       <%@subjects.each do |subject|%>
+        <tr>
+          <td><%=subject.name%> </td>
+          <td><%= text_field_tag "marks[#{subject.id}]","" ,:style => 'border:0px;'%></td>
+        </tr>
+        <%end%>
+      <%end%>
+     </table>
+  </div>
+
+<%end%>
+<%end%>

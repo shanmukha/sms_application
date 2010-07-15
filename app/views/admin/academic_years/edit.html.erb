@@ -1,0 +1,37 @@
+<div class='form_wrapper'>
+ <h1 class ='heading'>Editing academic year</h1>
+  <div class="create_new">
+
+   <% form_for([:admin,@academic_year],:url => admin_academic_year_path(@academic_year)) do |f| %>
+     <%= f.error_messages %>
+
+     <p>
+      <%= f.label :from_date %><br />
+       <%= f.text_field :from_date,:class =>'textbox-small' ,:id => 'date'%>
+     </p>
+
+    <p>
+      <%= f.label :to_date %><br />
+      <%= f.text_field :to_date,:class =>'textbox-small' ,:id => 'date1'%>
+    </p>
+   
+    <p>
+      <%= f.label :identification_name %><br />
+      <%= f.text_field :identification_name %>
+    </p>
+
+    <p>
+      <%= f.label :current %><br />
+      <%= f.check_box :current %>
+    </p>
+
+    <span>
+      <%= f.submit 'Update' %>
+    </span>
+<% end %>
+
+  </div>
+ <div class="clear"></div> 
+</div>
+
+

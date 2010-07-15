@@ -1,21 +1,21 @@
 class StudentsController < ApplicationController
-layout proc{ |c| ['student_details'].include?(c.action_name)? 'parent' : 'main'}
-
+  layout proc{ |c| ['student_details'].include?(c.action_name)? 'parent' : 'main'}
   #layout "main",:except => [:import_students_new]
   #layout "parent",:only =>[:student_details]
   before_filter :check_admin_role, :except =>[:index,:show,:student_details]
-	require "csv"
-	def index
-	  admin = current_user.has_role?('admin') ? current_user : User.find(current_user.parent_id)
+  require "csv"
+
+  def index
+    admin = current_user.has_role?('admin') ? current_user : User.find(current_user.parent_id)
     @search = Student.search(params[:search])
     @search.user_id = admin.id 
     @search.status = "Active"  if !params[:search]
     @search.order ||= "descend_by_created_at"
-     if params[:role] == "teacher"
-       @students = Student.find(:all,:include => {:groups => 'school' },:conditions =>['schools.id = ?',params[:school_id]]).paginate :page => params[:page],:per_page => 25
-     else
-    @students = @search.all.paginate :page => params[:page],:per_page => 25
-    end
+    #if params[:role] == "teacher" 
+    @students = Student.find(:all,:include => {:groups => 'school' }, :conditions =>['schools.id = ?', current_user.school_id]).paginate :page => params[:page], :per_page => 25
+    #else
+       @students = @search.all.paginate :page => params[:page],:per_page => 25
+    #end
     @groups = admin.groups.find(:all,:conditions =>['status =?','Active'])
     respond_to do |format|
       format.html # index.html.erb
@@ -24,7 +24,7 @@ layout proc{ |c| ['student_details'].include?(c.action_name)? 'parent' : 'main'}
   end
 	
   def show
-	  admin = current_user.has_role?('admin') ? current_user : User.find(current_user.parent_id)
+    admin = current_user.has_role?('admin') ? current_user : User.find(current_user.parent_id)
     @student = admin.students.find(params[:id])
     @emails = @student.emails.find(:all)
     @messages = Student.find_student_messages(@student)
@@ -180,5 +180,6 @@ end
       format.xml  { render :xml => @student }
     end
   end
+
 
 end  

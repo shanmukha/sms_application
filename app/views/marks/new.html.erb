@@ -1,0 +1,31 @@
+<div class='form_wrapper'>
+  <div class ="create_new">
+
+<% form_for (:mark, :url=>marks_path, :html => {:id => 'main-form'}) do |f| %>
+  <%= f.error_messages %>
+  
+       <label> Select Class </label><br />
+        <%= select_tag :group_id, options_for_select([['Select Class','']] + all_groups)%>
+      	      		<%= image_tag("spinner.gif",
+               		:border => 0,
+              		:id => "spinner1",
+             	 	 :style =>"display: none;" ) %>  
+          
+         <%= observe_field("group_id", :frequency => 1,
+                  :before => "jQuery('#spinner1').show();",
+                  :success => "jQuery('#spinner1').hide();",
+                  :url => {:action=>'group_exams'}, :method => :get,
+                  :with => "'group_id=' + value")%>
+  
+
+  <div id="exams"></div>
+
+   
+
+  <span>
+    <%= f.submit 'Create' %>
+  </span>
+
+<% end %>
+</div>
+</div>

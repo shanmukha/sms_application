@@ -1,0 +1,33 @@
+<div class='form_wrapper'>
+  <div>
+    <span class ='right'><%= link_to "<span>Create Academic year</span>", new_admin_academic_year_path , :class => 'buttonAdd'%></span>
+    <h1 class ="heading left">Listing Academic Years</h1>
+    <div class="clear"></div>
+  </div>
+<table class="listing">
+  <tr>
+    <th>From date</th>
+    <th>To date</th>
+    <th>Identification name</th>
+    <th>Current</th>
+    <th>School</th>
+  </tr>
+
+<% @academic_years.each do |academic_year| %>
+  <tr class="<%=cycle("odd", "even")%>">
+    <td><%=change_format_to_long(academic_year.from_date)%></td>
+    <td><%=change_format_to_long(academic_year.to_date)%></td>
+    <td><%=h academic_year.identification_name %></td>
+    <td><%=h academic_year.current %></td>
+    <td><%=h academic_year.school.school_name %></td>
+    <td><%= link_to 'Show', admin_academic_year_path(academic_year)%></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<div class="clear"></div>
+</div
+
+

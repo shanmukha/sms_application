@@ -1,0 +1,32 @@
+<div class='form_wrapper'>
+  <div class ="create_new">
+  <h1 class="heading">New Academic year</h1><br/>
+  <% form_for(:academic_year,:url => admin_academic_years_path,:html => {:method => :post} )do |f| %>
+    <%= f.error_messages %>
+
+    <p>
+      <%= f.label :from_date %><br />
+      <%= f.text_field :from_date,:class =>'textbox-small' ,:id => 'date'%>
+    </p>
+    <p>
+      <%= f.label :to_date %><br />
+      <%= f.text_field :to_date,:class =>'textbox-small' ,:id => 'date1'%>
+    </p>
+    <p>
+      <%= f.label :identification_name %><br />
+      <%= f.text_field :identification_name %>
+    </p>
+    <p>
+      <%= f.label :current %><br />
+      <%= f.check_box :current %>
+    </p>
+   
+      <%= f.hidden_field :school_id,:value=>current_user.school_id %>
+ 
+    <span>
+       <%= f.submit 'Create' %>
+    </span>
+   <% end %>
+</div>
+<div class="clear"></div>
+</div>

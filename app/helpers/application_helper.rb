@@ -87,6 +87,10 @@ module ApplicationHelper
     [['All', '']] +  admin.groups.find(:all,:conditions =>['status = ?','Active']).map{|m|[m.name,m.id]} rescue ''
   end
 
+  def all_groups
+     groups = Group.find(:all,:conditions =>['school_id =?',current_user.school_id]).collect {|e| [e.name,e.id]} rescue ''
+  end
+
     
   def find_teacher_messages(teacher)
   	teacher.messages
@@ -150,5 +154,10 @@ module ApplicationHelper
    elsif current_user.has_role?('teacher')
      school = School.find(current_user.school_id)
    end
+  end
+
+  def change_format_to_long(object)
+   date = object.nil? ? object : object.to_s(:long)
+   date 
   end
 end

@@ -43,6 +43,13 @@ class ApplicationController < ActionController::Base
        redirect_to root_path
      end  
    end  
+
+  def check_teacher_role
+     unless current_user.has_role?('teacher')
+        flash[:notice]= "Permission denied."
+        redirect_to root_path
+     end 
+  end
   	
   def current_user_session
     return @current_user_session if defined?(@current_user_session)

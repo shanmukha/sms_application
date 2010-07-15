@@ -7,12 +7,13 @@ class Student < ActiveRecord::Base
  has_many :emails,:through => :email_students
  
  has_many :letter_students
+ has_many :marks
  has_many :letters,:through => :letter_students
  has_one :parent_user,:class_name => 'User'
  belongs_to :user
  has_and_belongs_to_many :groups
  validates_presence_of  :name,:parent ,:number,:address
- 
+
 	def self.find_student_all_groups(student_id,current_user)
    	student = current_user.students.find(student_id)
     groups = student.groups.find(:all,:conditions =>['user_id =? and status =?',current_user.id,'Active'])
