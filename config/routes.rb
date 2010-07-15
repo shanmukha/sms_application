@@ -1,5 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
- 
+  
+  map.resources :marks,:collection =>{:group_exams => :get}
   map.resources :helps
   map.resources :letters,:collection =>{:group_students => :get},:member => {:print => :any, :print_labels => :any,:show_letter=>:get}
   map.resources :emails,:collection =>{:group_students => :get},:member => {:show_email=>:get}
@@ -13,6 +14,7 @@ ActionController::Routing::Routes.draw do |map|
   map.root :controller => 'messages', :action => 'new'
 
   map.namespace(:admin) do |admin|
+     admin.resources :academic_years
      admin.resources :exams,:collection => {:groups => :get,:replace_maximum_marks => :get}
      admin.resources :subjects
      admin.resources :message_templates

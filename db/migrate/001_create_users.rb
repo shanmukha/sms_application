@@ -7,8 +7,6 @@ class CreateUsers < ActiveRecord::Migration
       t.string :crypted_password
       t.string :mail_id
       t.string :balance,:default =>0
-      t.string :server_user_name
-      t.string :server_password
       t.string :password_salt
       t.string :persistence_token
       t.integer:parent_id
