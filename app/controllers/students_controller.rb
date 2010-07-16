@@ -69,14 +69,14 @@ class StudentsController < ApplicationController
         flash[:notice] = 'Student record is successfully created.'
          format.html { redirect_to(students_url) }
         format.xml  { render :xml => @student, :status => :created, :location => @student }
-    end
+    
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @student.errors, :status => :unprocessable_entity }
       end
     end
   end
-
+end
   # PUT /students/1
   # PUT /students/1.xml
   def update

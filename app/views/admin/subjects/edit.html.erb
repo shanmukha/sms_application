@@ -23,7 +23,9 @@
   </p>
  <p>
     <%= f.label :select_class %><br />
-    <%= f.select :group_id, all_groups %>
+  
+               <% admin = current_user.has_role?('admin') ? current_user : User.find(current_user.parent_id) rescue ''%>
+    	       <%= f.select :group_id, [['Select class', '']] + current_user.groups.find(:all,:conditions =>['status = ?','Active']).map{|m|[m.name,m.id]} %>
   </p>
   
     <span><%= f.submit 'Update' %></span>

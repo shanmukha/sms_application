@@ -24,9 +24,9 @@
 <div id="listing_file">
    <table class="listing">
      <tr>
-   	<th><%= order @search, :by => :roll_number ,:as => "Roll No."%></th>
+   	<th><%= order @search, :by => :admission_number ,:as => "Admission no."%></th>
      				<th><%= order @search, :by => :name ,:as => "Student name"%></th>
-                                <th>Parent name </th>
+                                
                                	<th>Mobile No.</th>
                                	<th>Status</th>
                                 <th>View</th>
@@ -38,7 +38,7 @@
   			 <tr class="<%=cycle("odd", "even")%> small">
   			      <td><%=h student.roll_number %></td>
     				<td> <%= image_tag('student.gif')%> <%=h student.name %></td>
-                                <td> <%= student.parent %> </td>
+                               
     	    	                <td><%=h student.number %></td>
     			 <td><%=h student.status %></td>
     				<td>

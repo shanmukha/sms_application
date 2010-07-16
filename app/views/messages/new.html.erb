@@ -41,7 +41,8 @@
         <div class = 'message_div_top'>
           <div class ='left heading'>Student list</div> 
 	  <div class = 'right'>
-    	       <%= f.select :group_id, all_groups %>
+               <% admin = current_user.has_role?('admin') ? current_user : User.find(current_user.parent_id) rescue ''%>
+    	       <%= f.select :group_id, [['Select class', '']] + current_user.groups.find(:all,:conditions =>['status = ?','Active']).map{|m|[m.name,m.id]} %>
 	  </div>
           <div class = 'clear'> </div>
 	 </div>

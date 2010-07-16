@@ -26,6 +26,11 @@ class Admin::ExamsController < ApplicationController
     @exam = Exam.new(params[:exam])
       respond_to do |format|
       if @exam.save
+         exam_class = ExamClass.new
+         exam_class.exam_id = @exam.id
+         exam_class.group_id = params[:exam][:group_id]
+         exam_class.academic_year_id = params[:academic][:academic_year_id] 
+         exam_class.save             
         flash[:notice] = 'Exam was successfully created.'
         format.html { redirect_to admin_exams_path }
         format.xml  { render :xml => @exam, :status => :created, :location => @exam }

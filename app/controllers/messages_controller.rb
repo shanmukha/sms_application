@@ -41,8 +41,8 @@ class MessagesController < ApplicationController
   end
  
   def create
-    admin = current_user.has_role?('admin') ? current_user : User.find(current_user.parent_id)
-    
+     admin = current_user.has_role?('admin') ? current_user : User.find(current_user.parent_id)
+     school = School.find(:first,:conditions=>['administrator_id=?',admin.id])
      if params[:students].blank? and params[:message][:number].blank?
       flash.now[:error] = "Please select at least one student or enter mobile number."
       render :action => "new"
@@ -58,16 +58,16 @@ class MessagesController < ApplicationController
     no_of_sms = params[:students].nil? ? find_message_size(params[:message][:message_body]) : 	find_students_message_size(params[:message][:message_body],params[:students])
     
     
-     if admin.client_type == "Limited"
-       balance = admin.balance.to_i - no_of_sms
+     if school.plan_type == "Limited"
+       balance = school.credits.to_i - no_of_sms
        if balance <= 0
          flash[:notice] = "Please ensure you have suffecient balance in your account."   
          redirect_to(new_message_url) 
         return nil
       end 
    
-    elsif admin.client_type == "Unlimited"
-       if admin.end_date.strftime('%Y-%m-%d') <  Time.now.strftime('%Y-%m-%d')
+    elsif school.plan_type == "Unlimited"
+       if school.end_date.strftime('%Y-%m-%d') <  Time.now.strftime('%Y-%m-%d')
           flash[:notice] = "Please ensure your account validity expired or not."   
           redirect_to(new_message_url) 
          return nil 
@@ -75,10 +75,10 @@ class MessagesController < ApplicationController
    end   
    
     #set active resource API authentication credentials dynamically
-    MessageService.user = admin.server_user_name
-    MessageService.password = admin.server_password
-    MessageSchedule.user = admin.server_user_name
-    MessageSchedule.password = admin.server_password
+    MessageService.user = school.server_user_name
+    MessageService.password = school.server_password
+    MessageSchedule.user = school.server_user_name
+    MessageSchedule.password = school.server_password
     
     #check wheather message is sending on schedule 
     if params[:message][:scheduled_date].blank?  
@@ -125,7 +125,7 @@ class MessagesController < ApplicationController
             end	   
            
 	     end
-	         admin.update_attribute('balance', balance) if admin.client_type == "Limited" 
+	         school.update_attribute('credits', balance) if school.plan_type == "Limited" 
 	         flash[:notice] = 'Message is sent for delivery. Please check the status after some time.'
            redirect_to(new_message_url)
          else  #@message.save check
@@ -141,8 +141,9 @@ class MessagesController < ApplicationController
        @message = Message.find(params[:id])
        messages = @message.message_students
        admin = current_user.has_role?('admin') ? current_user : User.find(current_user.parent_id)
-       MessageService.user = admin.server_user_name
-       MessageService.password = admin.server_password
+       school = School.find(:first,:conditions=>['administrator_id=?',admin.id])
+       MessageService.user = school.server_user_name
+       MessageService.password = school.server_password
       unless messages.blank?
          messages.each do |msg|
         	sms = MessageService.find(msg.sms_id)
@@ -185,8 +186,9 @@ class MessagesController < ApplicationController
   
   def student_message_resend
       admin = current_user.has_role?('admin') ? current_user : User.find(current_user.parent_id)
-      MessageService.user = admin.server_user_name
-      MessageService.password = admin.server_password
+      school = School.find(:first,:conditions=>['administrator_id=?',admin.id])
+      MessageService.user = school.server_user_name
+      MessageService.password = school.server_password
       @message = Message.find(params[:message_id])
       student_record = Student.find(params[:student_id])
       message = @message.message_body

@@ -8,6 +8,8 @@ class Group < ActiveRecord::Base
  has_many :letters
  has_many :subjects
  has_many :exams
+ #has_many :student_classes
+ #has_many :students,:through => :student_classes
  belongs_to :school
  validates_presence_of  :name
  attr_accessible :name
@@ -32,3 +34,27 @@ class Group < ActiveRecord::Base
     return @group,@group_students,@non_group_students
   end
 end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
