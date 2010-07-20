@@ -13,4 +13,10 @@ class AcademicYear < ActiveRecord::Base
        end
     end
   end
+  
+  def self.current_academic_year_school(school_id)
+     self.find(:first, :conditions => ['school_id = ? and current = ?', school_id, 1]) 
+  end
+  
+  
 end

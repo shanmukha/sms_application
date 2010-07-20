@@ -1,0 +1,26 @@
+<div class='form_wrapper'>
+  <h1 class ='heading'>Editing exam</h1>
+    <div class="create_new">
+
+<% form_for(@exam) do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :exam_type %><br />
+    <%= f.text_field :exam_type %>
+  </p>
+  <p>
+    <%= f.label :conducted_on %><br />
+    <%= f.text_field :conducted_on,:class =>'textbox-small' ,:id => 'date'%>
+  </p>
+  <p>
+    <%= f.label :maximum_marks %><br />
+    <%= f.text_field :maximum_marks %>
+  </p>
+
+    <span><%= f.submit 'Update' %></span>
+
+<% end %>
+
+   </div>
+ <div class="clear"></div> 
+</div>

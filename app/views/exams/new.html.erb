@@ -1,0 +1,39 @@
+<div class='form_wrapper'>
+  <div class ="create_new">
+
+<% form_for(@exam)do |f| %>
+   <%= f.error_messages %>
+  <p>
+    <%= f.label :select_class %><br />
+       <% get_groups.each do  |group| %>
+    	    <%= group.name %>   <%= check_box_tag "group_ids[]", group.id %>
+    	  <%end%>  
+  </p>
+
+  <p>
+    <%= f.label :exam_type %><br />
+    <%= f.text_field :exam_type %>
+  </p>
+    <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :conducted_on %><br />
+    <%= f.text_field :conducted_on, :class =>'textbox-small' ,:id => 'date' %>
+  </p>
+
+    
+  <span>
+    <%= f.submit 'Create' %>
+  </span>
+
+  <% end %>
+  </div>
+
+
+         
+
+
+<div class="clear"></div>
+</div>

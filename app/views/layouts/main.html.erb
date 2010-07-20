@@ -4,7 +4,7 @@
 <head>
 	<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
   	<title><%= configatron.site_name%></title>
-   	<%= stylesheet_link_tag 'style','facebox'%>
+   	<%= stylesheet_link_tag 'style','facebox', 'redmond/jquery-ui-1.7.2.custom'%>
     <!--[if lte IE 6]>
       <link href="stylesheets/ie6.css" rel="stylesheet" type="text/css" />
     <![endif]-->
@@ -23,7 +23,8 @@
 	
   	<script type="text/javascript">
        jQuery(function() {
-              jQuery("#date").datepicker({showOn: 'button', buttonImage: '/images/calendar.gif', buttonImageOnly: true, altField: '#date', altFormat: 'dd MM, yy' }) });
+              jQuery("#date").datepicker({showOn: 'button', buttonImage: '/images/calendar.gif', buttonImageOnly: true, altField: '#date', altFormat: 'dd-mm-yy' }) 
+			  });
 	</script>
 	
 	<script type="text/javascript">

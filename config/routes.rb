@@ -12,10 +12,11 @@ ActionController::Routing::Routes.draw do |map|
   map.logout "logout", :controller => "user_sessions", :action => "destroy"
   map.resources :user_sessions
   map.root :controller => 'messages', :action => 'new'
+  map.resources :exams,:collection => {:groups => :get,:replace_maximum_marks => :get}
 
   map.namespace(:admin) do |admin|
      admin.resources :academic_years
-     admin.resources :exams,:collection => {:groups => :get,:replace_maximum_marks => :get}
+    
      admin.resources :subjects
      admin.resources :message_templates
      admin.resources :tags

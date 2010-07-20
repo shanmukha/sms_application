@@ -1,0 +1,32 @@
+<div class='form_wrapper'>
+  <div>
+    <%if current_user.has_role?('admin') && !current_user.has_role?('super_admin')%>
+      <span class ='right'><%= link_to "<span>New exam</span>", new_exam_path, :class => 'buttonAdd'%></span>
+    <%end%>
+    <h1 class ="heading left">Listing exams</h1>
+    <div class="clear"></div>
+  </div>
+
+
+<table class="listing">
+  <tr>
+    <th>Group</th>
+    <th>Exam type</th>
+    <th>Conducted on</th>
+
+  </tr>
+
+<%unless @exams.blank?%>
+<% @exams.each do |exam| %>
+  <tr class="<%=cycle("odd", "even")%>">
+    <td></td>
+    <td><%=h exam.exam_type %></td>
+    <td><%=change_format_to_long(exam.conducted_on)%></td>
+
+    <td><%= link_to 'Show', exam_path(exam) %></td>
+  </tr>
+<% end %>
+<%end%>
+</table><br/>
+<div class="clear"></div>
+</div
