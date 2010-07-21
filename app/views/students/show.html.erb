@@ -48,20 +48,20 @@
   		</tr>
                <tr>
   			<th>Date of birth:</th>
-  			<td><%=h @student.dob %></td>
+  			<td><%=h @student.dob.strftime('%d-%m-%Y')  %></td>
 
 
   		</tr>
                  <tr>
   			<th>Date of admission:</th>
-  			<td><%=h @student.date_of_admission %></td>
+  			<td><%=h @student.date_of_admission.strftime('%d-%m-%Y') %></td>
 
 
   		</tr>
                
              <tr>
   			<th>Date of passing:</th>
-  			<td><%=h @student.date_of_passing %></td>
+  			<td><%=h @student.date_of_passing.strftime('%d-%m-%Y') %></td>
 
 
   		</tr>

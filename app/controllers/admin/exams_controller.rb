@@ -46,7 +46,7 @@ class Admin::ExamsController < ApplicationController
     @exam = Exam.find(params[:id])
     respond_to do |format|
       if @exam.update_attributes(params[:exam])
-        flash[:notice] = 'Subject was successfully updated.'
+        flash[:notice] = 'Exam was successfully updated.'
         format.html { redirect_to(admin_exam_path(@exam))  }
         format.xml  { head :ok }
       else
