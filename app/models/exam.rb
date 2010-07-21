@@ -5,7 +5,7 @@ class Exam < ActiveRecord::Base
  has_many :exam_classes
  has_many :exam_subjects
  has_many :groups, :through => :exam_classes
- #has_many :subjects, :through => :exam_subjects, :class_name => 'Subject'
+ has_many :subjects, :through => :exam_subjects
  validates_presence_of :exam_type
  
 end

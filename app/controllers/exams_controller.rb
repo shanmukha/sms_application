@@ -9,7 +9,8 @@ class ExamsController < ApplicationController
 
 
   def show
-    @exam = Exam.find(params[:id], :include => [:groups])
+    @exam = Exam.find(params[:id], :include => [:groups, :subjects])
+    puts "ppppppppppppppppp #{@exam.groups.inspect}"
   end
 
 
@@ -40,6 +41,7 @@ class ExamsController < ApplicationController
            
          end
        end
+       flash[:notice] = 'Exam record is successfully created.'
        redirect_to exam_path(@exam)
     else   
       @exam = Exam.new(params[:exam])
@@ -88,7 +90,9 @@ class ExamsController < ApplicationController
        flash[:error] << "Please select atleast one class." if params[:group_ids].blank?
        #flash[:error] << "<br /> Please enter maximum_marks" if params[:exam][:maximum_marks].blank?
        flash[:error] << "<br /> Please enter exam type" if params[:exam][:exam_type].blank?
-       flash[:error].empty?? true : false  
+       value = flash[:error].empty?? true : false  
+       flash[:error].empty?? (flash[:error]= nil) : ''
+       value
        
    end
 end

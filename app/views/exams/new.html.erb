@@ -2,14 +2,20 @@
   <div class ="create_new">
 
 <% form_for(@exam)do |f| %>
-   <%= f.error_messages %>
-  <p>
+
+ <div class = 'right'> 
+   <p>
     <%= f.label :select_class %><br />
        <% get_groups.each do  |group| %>
     	    <%= group.name %>   <%= check_box_tag "group_ids[]", group.id %>
     	  <%end%>  
   </p>
-
+  </div>
+  <div class="left">
+   <%= f.error_messages %>
+  
+   
+   
   <p>
     <%= f.label :exam_type %><br />
     <%= f.text_field :exam_type %>
@@ -27,7 +33,7 @@
   <span>
     <%= f.submit 'Create' %>
   </span>
-
+ </div>
   <% end %>
   </div>
 

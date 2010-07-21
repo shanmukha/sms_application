@@ -1,25 +1,36 @@
 <div class = 'form_wrapper'>
   <table class="show_page">
     <tr>
-       <th>Class:</th>
-       <td></td>
-    </tr>
-
-    <tr>
       <th>Exam type:</th>
       <td><%=h @exam.exam_type %></td>
     </tr>
-
+    <tr>
+      <th> Name:</th>
+      <td><%=h @exam.name %></td>
+    </tr>
     <tr>
       <th>Conducted on:</th>
       <td><%=change_format_to_long(@exam.conducted_on)%></td>
     </tr>
-
-    <tr>
-      <th>Maximum marks:</th>
-      <td></td>
-    </tr>
  </table>
+ 
+ <% for group in  @exam.groups.find(:all)  -%>
+    <table class="show_page">
+       <tr> <th colspan="3">  <%= group.name  %></th> </tr>
+       <tr> <th> Subject </th> <th> Maximum mark </th> <th>  passing mark </th> </tr>
+       <% get_subjects_for_exam_group(group).each do |exam_subject| %>
+         <tr>
+             <td>  1</td>
+             <td> <%= exam_subject.maximum_marks %></td>
+             <td> <%= exam_subject.passing_marks %></td>
+         </tr>
+       <%end%>
+       
+    </table>
+    <br />
+    
+   
+ <% end -%>
 
 
 <table>
