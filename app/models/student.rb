@@ -5,18 +5,18 @@ class Student < ActiveRecord::Base
  has_many :schedules,:through => :schedule_students
  has_many :email_students
  has_many :emails,:through => :email_students
- #has_many :student_classes
-# has_many :groups,:through => :student_classes
+ has_many :student_classes
+ has_many :groups,:through => :student_classes
  has_many :letter_students
  has_many :marks
  has_many :letters,:through => :letter_students
  has_one :parent_user,:class_name => 'User'
  belongs_to :user
- has_and_belongs_to_many :groups
- #validates_presence_of  :name,:parent ,:number,:address
+# has_and_belongs_to_many :groups
+ validates_presence_of  :name,:number,:address,:admission_number
 
-	def self.find_student_all_groups(student_id,current_user)
-   	student = current_user.students.find(student_id)
+  def self.find_student_all_groups(student_id,current_user)
+    student = current_user.students.find(student_id)
     groups = student.groups.find(:all,:conditions =>['user_id =? and status =?',current_user.id,'Active'])
     group_ids =  student.groups.find(:all,:conditions =>['user_id =? and status =?',current_user.id,'Active']).map{|h|h.id}
     unless group_ids.blank?

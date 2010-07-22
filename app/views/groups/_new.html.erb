@@ -14,13 +14,13 @@
     		  <tr>
 		    <th><input type='checkbox' title ="Check All/Uncheck" name='checkall' onclick='checkedAll();'/></th>
      		    <th>Student name</th>
-		    <th>Roll Number</th>
+		    
 		  </tr>
    		  <%current_user.students.find(:all).each do |student| %>
   		     <tr class="<%=cycle("odd", "even")%>">
        			 <td><%= check_box_tag("students[]", student.id, false,:id=> student.id)%></td>
     			 <td><%=h student.name %></td>
-			 <td><%=h student.roll_number%></td>
+			 
 		     </tr>	
     		  <%end%>
 		</table>

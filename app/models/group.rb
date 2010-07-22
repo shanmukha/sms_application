@@ -1,6 +1,6 @@
 class Group < ActiveRecord::Base
  acts_as_tree :order => "name"
- has_and_belongs_to_many :students
+ #has_and_belongs_to_many :students
  belongs_to :user
  has_many :messages
  has_many :schedules
@@ -8,18 +8,21 @@ class Group < ActiveRecord::Base
  has_many :letters
  has_many :subjects
  has_many :exams
- #has_many :student_classes
- #has_many :students,:through => :student_classes
+ has_many :student_classes
+ has_many :students,:through => :student_classes
  belongs_to :school
  validates_presence_of  :name
  attr_accessible :name
  #copy students from another group
-	def self.copy_students_from_group(group_id,group)
+  def self.copy_students_from_group(group_id,group)
+     school = School.find(:first,:conditions=>['administrator_id=?',current_user.id])
+     academic_year = AcademicYear.current_academic_year_school(school.id)
      students = Group.find(group_id).students.find(:all,:conditions =>['status =?','Active'])
   	for student in students
-  		group.students << Student.find(student)
-  	end
-  end 
+  	 StudentClass.create(:student_id => student.id,:group_id => group.id,:academic_year_id => academic_year.id) 	
+       end
+   end
+
   
   def self.find_group_all_students(group_id,current_user)
   	@group = current_user.groups.find(group_id)

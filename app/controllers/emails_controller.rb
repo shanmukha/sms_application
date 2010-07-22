@@ -41,7 +41,7 @@ class EmailsController < ApplicationController
      if  @email.save
       	  body = params[:email][:body]
           params[:students].each do  |student_id|
-        	student = Student.find(student_id)
+          student = Student.find(student_id)
           body.gsub!(/@student/, student.name) 
        	  body.gsub!(/@parent/, student.parent)
        	  body.gsub!(/@address/, student.address)

@@ -6,16 +6,14 @@
 
 <table  class="student_list" >
    <tr>    
-       <th>Roll No.</th>
-       <th>Student name</th>
-       <th>Parent name </th>
+      <th>Student name</th>
+       <th>Contact name </th>
        <th>Mobile No.</th>
    </tr>
 			<% for student in @students%>
 		<tr class="<%=cycle("odd", "even")%>">
-                        <td><%= student.roll_number%></td>
-			<td><%= student.name%></td>
-                        <td> <%= student.parent %> </td>
+                        <td><%= student.name%></td>
+                        <td> <%= student.contact_name %> </td>
                         <td><%=h student.number %></td>
 		</tr>
 		<%end%>

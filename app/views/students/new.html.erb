@@ -57,13 +57,18 @@
     			<%= f.text_field :number %>
   		</p>
                  <p>
+    			<%= f.label :Contact_name %><br />
+    			<%= f.text_field :contact_name %>
+  		</p>
+
+                 <!-- <p>
     		         <%= f.label :username %><br />
     		         <%= text_field_tag :username %>
                 </p>
                 <p>
     		          <%= f.label :password %><br />
     		          <%= password_field_tag 'pass'%>
-                </p>
+                </p> -->
       </div>
 <div id="midddle">
        <h2 class="heading">Parent Details</h2><br/>
@@ -108,8 +113,7 @@
 	<%end%>
      </div> 
   	  </div>
-	<span> <%= f.submit 'Create record' %> or <%= link_to_function "Cancel",
-	"jQuery('#top').hide(); jQuery('#button').show(); return false;"%>
+	<span> <%= f.submit 'Create record' %> or <%= link_to "Cancel", students_path%>
 		</span>
 	</fieldset>
     

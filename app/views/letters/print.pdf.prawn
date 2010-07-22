@@ -6,15 +6,15 @@ pdf.font "Times-Roman"
     counter = counter + 1
     content = @letter.content
     content.gsub!(/@student/, student.name) 
-    content.gsub!(/@parent/, student.parent)
+    content.gsub!(/@parent/, student.contact_name)
     content.gsub!(/@address/, student.address)
     content.gsub!(/@Student/, student.name) 
-    content.gsub!(/@Parent/, student.parent)
+    content.gsub!(/@Parent/, student.contact_name)
     content.gsub!(/@Address/, student.address)
     pdf.text "#{content}", :size => 12
     pdf.start_new_page if counter < @students.size
     content.gsub!(/#{student.name}/,'@student') 
-    content.gsub!(/#{student.parent}/,'@parent') 
+    content.gsub!(/#{student.contact_name}/,'@parent') 
     content.gsub!(/#{student.address}/,'@address')
     end
 end
