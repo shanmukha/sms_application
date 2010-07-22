@@ -13,7 +13,8 @@ class Student < ActiveRecord::Base
  has_one :parent_user,:class_name => 'User'
  belongs_to :user
 # has_and_belongs_to_many :groups
- validates_presence_of  :name,:number,:address,:admission_number
+ validates_presence_of  :name,:number,:address,:admission_number,:contact_name
+ validates_presence_of  :number, :message => "(Contact mobile) can't be blank"
 
   def self.find_student_all_groups(student_id,current_user)
     student = current_user.students.find(student_id)
@@ -28,15 +29,15 @@ class Student < ActiveRecord::Base
  end
   
  def self.find_students_communication_size(group_id,conditions,type) 
-	    students_communication_size = {}
+      students_communication_size = {}
       students = Group.find(group_id).students.find(:all, :order => 'students.name ASC',:conditions =>['status =?','Active'])
       names = []
       sizes = []
-      	conditions << ["group_id = ?",group_id] 
-        conditions << ['message_students.status =?','Delivered'] if type=="messages"
+      conditions << ["group_id = ?",group_id] 
+       conditions << ['message_students.status =?','Delivered'] if type=="messages"
       students.each do |student|
-       names << student.name
-       students_communication_size[student.id]  = student.messages.count(:all,:conditions => [ conditions.transpose.first.join( " and " ), *conditions.transpose.last ] ) if type=="messages"
+        names << student.name
+        students_communication_size[student.id]  = student.messages.count(:all,:conditions => [ conditions.transpose.first.join( " and " ), *conditions.transpose.last ] ) if type=="messages"
       	students_communication_size[student.id] = student.letters.count(:all,:conditions => [ conditions.transpose.first.join( " and " ), *conditions.transpose.last ] ) if type=="letters" 
       	students_communication_size[student.id] = student.emails.find(:all,:conditions => [ conditions.transpose.first.join( " and " ), *conditions.transpose.last ] ).size  if type=="emails" 
       	sizes << students_communication_size[student.id]

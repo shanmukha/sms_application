@@ -36,7 +36,7 @@
   			</tr>
 		     <% @students.each do |student| %>
   			 <tr class="<%=cycle("odd", "even")%> small">
-  			      <td><%=h student.roll_number %></td>
+  			      <td><%=h student.admission_number %></td>
     				<td> <%= image_tag('student.gif')%> <%=h student.name %></td>
                                
     	    	                <td><%=h student.number %></td>

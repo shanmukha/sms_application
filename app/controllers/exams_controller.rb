@@ -10,7 +10,7 @@ class ExamsController < ApplicationController
 
   def show
     @exam = Exam.find(params[:id], :include => [:groups, :subjects])
-    puts "ppppppppppppppppp #{@exam.groups.inspect}"
+    
   end
 
 

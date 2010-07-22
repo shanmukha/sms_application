@@ -113,14 +113,14 @@ end
   end
   
   def make_active
-  	student = current_user.students.find(params[:id])
-   	student.status = "Active"
-   	student.save
+    student = current_user.students.find(params[:id])
+    student.status = "Active"
+    student.save
     respond_to do |format|
       flash[:notice] = "#{student.name} is successfully activated."
       format.html { redirect_to(students_url) }
       format.xml  { head :ok }
- end
+   end
 end
   
   def make_inactive

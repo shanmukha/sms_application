@@ -1,6 +1,7 @@
 module ExamsHelper
   def get_groups
-    current_user.school.groups.find_all_by_status('Active')
+   school = School.find(:first,:conditions=>['administrator_id=?',current_user.id])
+   school.groups.find_all_by_status('Active')
   end
   
   def get_subjects_for_exam_group(group)

@@ -7,124 +7,89 @@
       <h2 class="heading">Student Details</h2><br/>
 	<fieldset>
 	   <%= f.error_messages %>
-		<p>
-    			<%= f.label :Student_name %><br />
-    			<%= f.text_field :name %>
-  		</p>
-  		<p>
-    			<%= f.label :Gender %><br />
-    			<%= f.select :gender,[['Male','male'],['Female','female']] %>
-  		</p>
-                  
-                 <p>
-    			<%= f.label :Language %><br />
-    			<%= f.text_field :language %>
-  		</p>
-                  
-                   <p>
-    			<%= f.label :Blood_group %><br />
-    			<%= f.text_field :blood_group %>
-                      </p>
-                      <p>
-    			<%= f.label :Date_of_admission %><br />
-                       <%= f.text_field :date_of_admission,:class =>'textbox-small' ,:id => 'date2'%></p>
-               <p>
-    			<%= f.label :Date_of_passing %><br />
-                       <%= f.text_field :date_of_passing,:class =>'textbox-small' ,:id => 'date3'%></p>
-               
-                   <p>
-    			<%= f.label :Date_of_birth %><br />
-                           <%= f.text_field :dob,:class =>'textbox-small' ,:id => 'date4'%></p>
-                
-                <p>
-       			<%= f.label :admission_number %><br />
-       			<%= f.text_field :admission_number%>
-      		</p>
-   		<p>
-    			<%= f.label :Student_mobile_number %><br />
-    			<%= f.text_field :student_mobile_number %>
-  		</p>
-  		<p>
-    			<%= f.label :address %><br />
-    			<%= f.text_area :address %>
-  		</p>
-  		<p>
-    			<%= f.label :Student_email %><br />
-    			<%= f.text_field :student_email %>
-  		</p>
-                <p>
-    			<%= f.label :Contact_mobile %><br />
-    			<%= f.text_field :number %>
-  		</p>
-                
-                      <p>
-    			<%= f.label :Contact_name %><br />
-    			<%= f.text_field :contact_name %>
-  		</p>
-                <!-- <p>
-    		         <%= f.label :username %><br />
-    		         <%= text_field_tag :username %>
-                </p>
-                <p>
-    		          <%= f.label :password %><br />
-    		          <%= password_field_tag 'pass'%>
-                </p> -->
-      </div>
-
-<div id="select_group" class = 'part2'>
-	 <%unless @groups.blank?%>
-	   <table class="student_group" >
-		<tr>
-			<th>
-			     <h3>Select class/groups this student belongs to:</h3>
-			</th>
-		</tr>
-		<%for group in @groups%>
-  		   <tr>
-			<td valign="top">
- 			<%= check_box_tag("groups[]", group.id, false,:id=> group.id)%> <b><%=group.name %></b>
-			</td>
-		   </tr>
-		<%end%>
-		
-	   </table>
-        <% end %>  
-     </div>
-
-   
-    <div id="midddle">
-       <h2 class="heading">Parent Details</h2><br/>
-                <p>
-    			<%= f.label :Mother_name %><br />
-    			<%= f.text_field :mother %>
-  		</p>
-                <p>
-    			<%= f.label :Mother_mobile %><br />
-    			<%= f.text_field :mother_mobile %>
-  		</p>
-                   
-                     <p>
-    			<%= f.label :Father_name %><br />
-    			<%= f.text_field :father %>
-  		</p>
-                  <p>
+		<table width="100%">
+                       <tr>
+    			<td><%= f.label :Student_name %><br />
+    			<%= f.text_field :name %></td>
+  		        
+    			<td><%= f.label :Gender %><br />
+    			<%= f.select :gender,[['Male','male'],['Female','female']] %></td>
+                      </tr>
+  	               <tr>
+                       <td><%= f.label :Language %><br />
+    			<%= f.text_field :language %></td>
+  		        <td><%= f.label :Blood_group %><br />
+    			<%= f.text_field :blood_group %></td>
+                       </tr>
+                         <tr>
+    			 <td><%= f.label :Date_of_birth %><br />
+                         <%= f.text_field :dob,:class =>'textbox-small' ,:id => 'date4'%></td>
+                         <td><%= f.label :Student_mobile_number %><br />
+    			<%= f.text_field :student_mobile_number %></td>
+                         </tr>  
+  		        <tr>
+    		          <td><%= f.label :Student_email %><br />
+    			  <%= f.text_field :student_email %></td>
+  		         </tr></table>
+                       <h2 class="heading">Admission Details</h2><br/>
+                       <table width="100%">
+                        <tr>
+    			  <td><%= f.label :Date_of_admission %><br />
+                          <%= f.text_field :date_of_admission,:class =>'textbox-small' ,:id => 'date2'%></td>
+                         <td><%= f.label :admission_number %><br />
+       			 <%= f.text_field :admission_number%></td>
+      		         </tr>
+                        <tr>
+    			 <td><%= f.label :Date_of_passing %><br />
+                         <%= f.text_field :date_of_passing,:class =>'textbox-small' ,:id => 'date3'%></td>
+                         </tr>
+                         </table>
+                  <h2 class="heading">Parent Details</h2><br/>
+                <table width="100%">
+    			<tr>
+                         <td><%= f.label :Mother_name %><br />
+    			<%= f.text_field :mother %></td>
+  		 
+        	        <td><%= f.label :Mother_mobile %><br />
+    			<%= f.text_field :mother_mobile %></td>
+                        </tr>  
+  		
+                        <tr>            
+    			<td><%= f.label :Father_name %><br />
+    			<%= f.text_field :father %></td>
+  		
+                       <td>
     			<%= f.label :Father_mobile %><br />
-    			<%= f.text_field :father_mobile %>
-  		</p>
-                 
-                  <p>
-    			<%= f.label :Guardian_name %><br />
-    			<%= f.text_field :guardian %>
-  		</p>
+    			<%= f.text_field :father_mobile %></td>
+                       </tr>
+  		        <tr>
+    			<td><%= f.label :Guardian_name %><br />
+    			<%= f.text_field :guardian %></td>
+  		
 <p>
-    			<%= f.label :Guardian_mobile %><br />
-    			<%= f.text_field :guardian_number %>
-  		</p>
-                <p>
-    			<%= f.label :email %><br />
-    			<%= f.text_field :email %>
-  		</p>
-              
+    			<td><%= f.label :Guardian_mobile %><br />
+    			<%= f.text_field :guardian_number %></td>
+                     </tr>
+  		      <tr>
+                        <td><%= f.label :email %><br />
+    			<%= f.text_field :email %></td>
+  		
+                        
+    			<td><%= f.label :address %><br />
+    			<%= f.text_area :address %></td>
+                         </tr>   		      
+   		        
+    			<tr>
+                         <td><%= f.label :Contact_mobile %><br />
+    			<%= f.text_field :number %></td>
+                
+                      <td>
+    			<%= f.label :Contact_name %><br />
+    			<%= f.text_field :contact_name %></td>
+
+  	                </tr>
+                       </table>
+               
   		<span> <%= f.submit 'Create record' %> or <%= link_to_function "Cancel",
 	"jQuery('#top').hide(); jQuery('#button').show(); return false;"%>
 		</span>
@@ -151,8 +116,3 @@
 			  jQuery("#date4").datepicker({showOn: 'button', buttonImage: '/images/calendar.gif', buttonImageOnly: true, altField: '#date4', altFormat: 'dd-mm-yy' }) 
 			  });
 	</script>
-
-
-
-
-
