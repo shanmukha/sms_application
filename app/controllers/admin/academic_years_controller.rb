@@ -1,6 +1,6 @@
 class Admin::AcademicYearsController < ApplicationController
   layout "admin"
-
+  before_filter :check_admin_role
   def index
     @academic_years = AcademicYear.all
   end
@@ -22,8 +22,9 @@ class Admin::AcademicYearsController < ApplicationController
 
 
   def create
-    @academic_year = AcademicYear.new(params[:academic_year])
-
+     @academic_year = AcademicYear.new(params[:academic_year])
+     school = School.find(:first,:conditions=>['administrator_id=?',current_user.id])
+     @academic_year.school_id = school.id
      respond_to do |format|
       if @academic_year.save
         flash[:notice] = 'Academic year was successfully created.'

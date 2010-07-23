@@ -2,7 +2,7 @@ class AcademicYear < ActiveRecord::Base
   belongs_to :school
   before_save :check_current
 
-  validates_presence_of :from_date,:to_date,:identification_name,:school_id
+  validates_presence_of :from_date,:to_date,:identification_name
 
   def check_current
     school = School.find(self.school_id)

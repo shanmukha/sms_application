@@ -37,18 +37,17 @@ class GroupsController < ApplicationController
     @group,@group_students,@non_group_students = Group.find_group_all_students(params[:id],current_user)
   end
 	
-	def create
+ def create
     @group = current_user.groups.new(params[:group])
     students = params[:students]
     respond_to do |format|
-
       school = School.find(:first,:conditions=>['administrator_id=?',current_user.id])
       @group.school_id = school.id
       academic_year = AcademicYear.current_academic_year_school(school.id)
       if @group.save
       	unless students.blank?
           students.each do  |student|
-          StudentClass.create(:student_id => student,:group_id => @group.id,:academic_year_id => academic_year.id)
+          StudentClass.create(:student_id => student,:group_id => @group.id,:academic_year_id => academic_year.id,:roll_number => params[:roll_numbers]["#{student}"][:roll])
          end
       end
        Group.copy_students_from_group(params[:group_id],@group) unless params[:group_id].blank?

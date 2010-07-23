@@ -24,6 +24,8 @@ class Admin::ExamsController < ApplicationController
 
   def create
     @exam = Exam.new(params[:exam])
+      school = School.find(:first,:conditions=>['administrator_id=?',current_user.id])
+      academic_year = AcademicYear.current_academic_year_school(school.id)
       respond_to do |format|
       if @exam.save
          exam_class = ExamClass.new
