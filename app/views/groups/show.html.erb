@@ -8,13 +8,15 @@
    <tr>    
       <th>Student name</th>
        <th>Contact name </th>
-       <th>Mobile No.</th>
+       <th>Contact mobile.</th>
+        <th>Roll number</th>
    </tr>
 			<% for student in @students%>
 		<tr class="<%=cycle("odd", "even")%>">
                         <td><%= student.name%></td>
                         <td> <%= student.contact_name %> </td>
                         <td><%=h student.number %></td>
+                      <td> <%= find_roll_number(@group,student)%></td>
 		</tr>
 		<%end%>
 </table>

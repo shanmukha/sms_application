@@ -14,8 +14,9 @@
      			
      			<th>Student name</th>
      			<th>Contact name</th>
-     			<th>Mobile no.</th>
-		</tr>
+     			<th>Contact Mobile </th>
+                        <th>Roll number</th>   
+                      </tr>
  		<%@group_students.each do |group_student|%>
 		<tr class="<%=cycle("odd", "even")%>">
     			<td><%= check_box_tag("students[]", group_student.id, true,:id=> group_student.id)%></td>
@@ -23,6 +24,7 @@
    			<td><%= h group_student.name%></td>
 				<td><%= h group_student.contact_name%></td>
 	      <td><%= h group_student.number%></td>
+              <td><%= text_field_tag("roll_numbers[#{group_student.id}]roll",find_roll_number(@group,group_student)) %></td>
 		</tr>
 	
 	   		<%end%>
@@ -33,6 +35,7 @@
     		   <td><%=h non_group_student.name %></td>
     		    <td><%=h non_group_student.contact_name %></td>
     		     <td><%=h non_group_student.number %></td>
+                    <td><%= text_field_tag("roll_numbers[#{non_group_student.id}]roll",find_roll_number(@group,non_group_student) ) %></td>
     		 </tr>
     		<%end%>
 	</table>

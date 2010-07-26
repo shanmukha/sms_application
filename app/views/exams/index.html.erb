@@ -10,17 +10,18 @@
 
 <table class="listing">
   <tr>
-    <th>Group</th>
-    <th>Exam type</th>
+   <th>Exam type</th>
+    <th>Name</th>
     <th>Conducted on</th>
-      <th></th>
+      <th>Action</th>
   </tr>
 
 <%unless @exams.blank?%>
 <% @exams.each do |exam| %>
   <tr class="<%=cycle("odd", "even")%>">
-    <td></td>
+   
     <td><%=h exam.exam_type %></td>
+     <td><%=h exam.name %></td>
     <td><%=change_format_to_long(exam.conducted_on)%></td>
 
     <td><%= link_to 'Show', exam_path(exam) %></td>

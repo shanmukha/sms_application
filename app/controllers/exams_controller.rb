@@ -28,7 +28,8 @@ class ExamsController < ApplicationController
     if check_requried_field_are_present
        @exam = Exam.new(params[:exam])
        if @exam.save
-         academic_year = AcademicYear.current_academic_year_school(current_user.school_id)
+        school = School.find(:first,:conditions=>['administrator_id=?',current_user.id])
+        academic_year = AcademicYear.current_academic_year_school(school.id)
          params[:group_ids].each do |gr_id|
            group = Group.find(gr_id)
            options = { :group_id => group.id, :exam_id => @exam.id, :academic_year_id => academic_year.id }

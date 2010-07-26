@@ -9,19 +9,21 @@
 	   <br />
 
            <div id = 'students_list'>
-              <label> Select students from below list or <%= link_to_function "Copy students from another class/group", "$('#copy_students').show(); $('#students_list').hide(); return false;" %> </label> 
+              <label> Select students from below list or <%= link_to_function "Copy students from another class", "$('#copy_students').show(); $('#students_list').hide(); return false;" %> </label> 
    		 <table class="student_list" border="1">
     		  <tr>
 		    <th><input type='checkbox' title ="Check All/Uncheck" name='checkall' onclick='checkedAll();'/></th>
      		    <th>Student name</th>
-		     <th>Roll number</th>
-		  </tr>
+                     <th>Contact name</th>
+                      <th>Contact mobile</th> 
+		     </tr>
    		  <%current_user.students.find(:all).each do |student| %>
   		     <tr class="<%=cycle("odd", "even")%>">
        			 <td><%= check_box_tag("students[]", student.id, false,:id=> student.id)%></td>
     			 <td><%=h student.name %></td>
-			   <td><%= text_field_tag("roll_numbers[#{student.id}]roll",'') %>
-		     </tr>	
+                          <td><%=h student.contact_name %></td>
+                           <td><%=h student.number %></td>
+			 </tr>	
     		  <%end%>
 		</table>
               </div>

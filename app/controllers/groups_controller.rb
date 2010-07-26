@@ -47,7 +47,7 @@ class GroupsController < ApplicationController
       if @group.save
       	unless students.blank?
           students.each do  |student|
-          StudentClass.create(:student_id => student,:group_id => @group.id,:academic_year_id => academic_year.id,:roll_number => params[:roll_numbers]["#{student}"][:roll])
+          StudentClass.create(:student_id => student,:group_id => @group.id,:academic_year_id => academic_year.id)
          end
       end
        Group.copy_students_from_group(params[:group_id],@group) unless params[:group_id].blank?
@@ -71,7 +71,7 @@ class GroupsController < ApplicationController
       if @group.update_attributes(params[:group])
       	unless students.nil?
           students.each do  |student|
-            StudentClass.create(:student_id => student,:group_id => @group.id,:academic_year_id => academic_year.id)
+            StudentClass.create(:student_id => student,:group_id => @group.id,:academic_year_id => academic_year.id,:roll_number => params[:roll_numbers]["#{student}"][:roll])
           end
         end
         flash[:notice] = "#{@group.name} is successfully updated."
