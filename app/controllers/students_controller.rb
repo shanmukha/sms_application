@@ -53,44 +53,24 @@ class StudentsController < ApplicationController
     @student = Student.new(params[:student])
     @student.user_id = current_user.id
     respond_to do |format|
-    #@username = params[:username]
-   # @password = params[:pass]
     @student_name = @student.name
-   # unless @username and @password.blank?
      if @student.save
-      school = School.find(:first,:conditions=>['administrator_id=?',current_user.id])
-     # user_object = User.create_row(params[:username],params[:pass],@student,current_user,school.id)
-      academic_year = AcademicYear.current_academic_year_school(school.id)
-      unless params[:groups].nil?
-        params[:groups].each do|group|
-         StudentClass.create(:student_id => @student.id,:group_id => group,:academic_year_id => academic_year.id  ) 	
-       end
-      end
         flash[:notice] = 'Student record is successfully created.'
-         format.html { redirect_to(students_url) }
+        format.html { redirect_to(students_url) }
         format.xml  { render :xml => @student, :status => :created, :location => @student }
     
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @student.errors, :status => :unprocessable_entity }
       end
-    #end
-  end
+   end
 end
   # PUT /students/1
   # PUT /students/1.xml
   def update
     @student = current_user.students.find(params[:id])
-     StudentClass.delete_all(["student_id = ?", @student.id])
-     school = School.find(:first,:conditions=>['administrator_id=?',current_user.id])
-     academic_year = AcademicYear.current_academic_year_school(school.id)
      respond_to do |format|
        if @student.update_attributes(params[:student])
-       unless params[:groups].nil?
-         params[:groups].each do|group|
-           StudentClass.create(:student_id => @student.id,:group_id => group,:academic_year_id => academic_year.id) 	
-        end
-      end
         flash[:notice] = 'Student record is successfully updated.'
         format.html { redirect_to(students_url) }
         format.xml  { head :ok }

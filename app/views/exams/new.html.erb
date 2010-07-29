@@ -23,10 +23,13 @@
     <%= f.text_field :name %>
   </p>
   <p>
-    <%= f.label :conducted_on %><br />
-    <%= f.text_field :conducted_on, :class =>'textbox-small' ,:id => 'date' %>
+    <%= f.label :from_date %><br />
+    <%= f.text_field :from_date, :class =>'textbox-small' ,:id => 'date' %>
   </p>
-
+ <p>
+    <%= f.label :to_date %><br />
+    <%= f.text_field :to_date, :class =>'textbox-small' ,:id => 'date1' %>
+  </p>
     
   <span>
     <%= f.submit 'Create' %>
@@ -35,7 +38,17 @@
   <% end %>
   </div>
 
+<script type="text/javascript">
+       	jQuery(function() {
+			  jQuery("#date").datepicker({showOn: 'button', buttonImage: '/images/calendar.gif', buttonImageOnly: true, altField: '#date', altFormat: 'dd-mm-yy' }) 
+			  });
+	</script>
 
+<script type="text/javascript">
+       	jQuery(function() {
+			  jQuery("#date1").datepicker({showOn: 'button', buttonImage: '/images/calendar.gif', buttonImageOnly: true, altField: '#date1', altFormat: 'dd-mm-yy' }) 
+			  });
+	</script>
          
 
 

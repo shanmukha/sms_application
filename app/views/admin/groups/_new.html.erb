@@ -1,0 +1,39 @@
+<% form_for(:group,:url => admin_groups_path,:html => {:method => :post,:id =>'main-form'} )do |f| %>
+<%= f.error_messages %>
+<div class="create_new">
+	<fieldset>
+  	   <p>
+   	      <%= f.label :class_name %><br />
+    	      <%= f.text_field :name %>
+  	   </p>
+	   <br />
+
+           <div id = 'students_list'>
+              <label> Select subjects for this class </label> 
+   		 <table class="student_list" border="1">
+    		  <tr>
+		    <th><input type='checkbox' title ="Check All/Uncheck" name='checkall' onclick='checkedAll();'/></th>
+     		    <th>Name</th>
+                     <th>Subject handled by</th>
+                     </tr>
+   		  <%current_user.subjects.find(:all).each do |subject| %>
+  		     <tr class="<%=cycle("odd", "even")%>">
+       			 <td><%= check_box_tag("subjects[]", subject.id, false,:id=> subject.id)%></td>
+    			 <td><%=h subject.name %></td>
+                       <td><%= select_tag "subject_handled_by_teacher[#{subject.id}]teacher_id", options_for_select(find_all_teachers) %></td>
+
+</tr>	
+    		  <%end%>
+		</table>
+              </div>
+    		
+       
+      <span>
+    	 <%= f.submit 'Create record' %> or <%= link_to_function "Cancel",
+		"jQuery('#top').hide(); jQuery('#button').show(); return false;"%>
+  	 </span>
+  	</fieldset>  
+</div>
+
+<% end %>
+

@@ -1,0 +1,236 @@
+<div class = 'form_wrapper'> 
+<h1 class = 'heading left'>Student details </h1>
+ <div class = 'right'><%= link_to image_tag("closelabel.gif", :title=> "close"),admin_students_path%> </div>
+ <div class="clear" ></div>	
+<hr />
+
+<table class="show_page" >
+               
+		<tr>
+  			<th>Student Name:</th>
+  			<td><%=h @student.name %></td>
+		</tr>
+                  
+			<tr>
+  			<th>Status:</th>
+  			<td><%=h @student.status %></td>
+		</tr>
+		
+		<tr>
+  			<th>Gender:</th>
+  			<td><%=h @student.gender %></td>
+		</tr>
+		<tr>
+  			<th>Language:</th>
+  			<td><%=h @student.language %></td>
+		</tr>
+		
+  		<tr>
+  			<th> Student email:</th>
+  			<td><%=h @student.student_email %></td>
+  		</tr>
+               <tr>
+  			<th> Student mobile number:</th>
+  			<td><%=h @student.student_mobile_number %></td>
+
+
+  		</tr>
+                  <tr>
+  			<th> Blood group:</th>
+  			<td><%=h @student.blood_group %></td>
+
+
+  		</tr>
+               <tr>
+  			<th>Date of birth:</th>
+  			<td><%=h @student.dob.strftime('%d-%m-%Y')  %></td>
+
+
+  		</tr>
+               
+                    <tr>
+  			<th>Admission number:</th>
+  			<td><%=h @student.admission_number %></td>
+		</tr>
+                 <tr>
+  			<th>Date of admission:</th>
+  			<td><%=h @student.date_of_admission.strftime('%d-%m-%Y') %></td>
+
+
+  		</tr>
+               
+            
+                  <tr>
+  			<th>Mother name:</th>
+  			<td><%=h @student.mother %></td>
+
+
+  		</tr> 
+                  
+                 <tr>
+  			<th>Mother mobile:</th>
+  			<td><%=h @student.mother_mobile %></td>
+
+
+  		</tr> 
+
+                    <tr>
+  			<th>Father name:</th>
+  			<td><%=h @student.father%></td>
+
+
+  		</tr> 
+
+  	              <tr>
+  			<th>Father mobile:</th>
+  			<td><%=h @student.father_mobile %></td>
+
+
+  		</tr> 
+
+     <tr>
+  			<th>Guardian name:</th>
+  			<td><%=h @student.guardian %></td>
+
+
+  		</tr> 
+
+          <tr>
+  			<th>Guardian Mobile:</th>
+  			<td><%=h @student.guardian_number %></td>
+
+
+  		</tr> 
+            <tr>
+  			<th>Contact mobile:</th>
+  			<td><%=h @student.number %></td>
+  		</tr>
+                 <tr>
+  			<th>Contact name:</th>
+  			<td><%=h @student.contact_name %></td>
+  		</tr>
+  		<tr> 
+  			<th>Address:</th>
+  			<td><%=h @student.address %></td>
+  		</tr>
+               <tr>
+  			<th>Email:</th>
+  			<td><%=h @student.email %></td>
+
+
+  		</tr> 
+        	<tr>
+  			<th colspan ='2'> Classes this student belongs to:</th>
+        	</tr>
+                <tr>
+  			<td colspan ='2'><%= find_groups(@student)%></td>
+        	</tr>
+  		</table>
+
+
+
+
+
+
+
+
+                <br /><br />
+  		<%unless @messages.blank?%>
+
+  		<h1 class='heading'>Total delivered messages -<%= @messages.blank? ? 0 : @messages.size%></h1>
+  		<table class="listing">
+  		<tr>
+    			<th>Sent date</th>
+    			<th>Sent by</th>
+    			<th>Message</th>
+    			<th>Sent to.</th>
+           <th>View</th>
+  		</tr>
+   <% @messages.each do |message| %>
+  		<tr class="<%=cycle("odd", "even")%>">
+    			<td><%=h Time.parse(message.created_at.to_s).strftime('%Y-%m-%d') %></td>
+    			<td><%= message.user.name%></td>
+    			<td><%=h message_body_filter(message.message_body)%></td>
+    			<%unless message.group_id.nil?%>
+    			<td><%=h message.group.name%></td>
+    			<%else%>
+    			 <td><%=h message.number%></td>
+    			<%end%>
+    			<td class="view"><%= link_to '<img src="/images/view.gif" title="View"/>', student_message_show_student_path(:message_id => message,:student_id => @student)%></td>
+  		</tr>
+  		<%end%>
+</table>
+<%end%>
+<%unless @schedules.blank?%>
+<h1 class='heading'>Total scheduled messages -<%= @schedules.blank? ? 0 : @schedules.size%></h1>
+ 
+ <table class="listing">
+  		<tr>
+  		<th>Created by</th>
+    			<th>Schedule date</th>
+    			<th>Time</th>
+    			<th>Message</th>
+    			<th>sent to</th>
+    			<th>View</th> 
+  		</tr>
+		<% @schedules.each do |schedule| %>
+  		   <tr class="<%=cycle("odd", "even")%>">
+  		    <td><%= schedule.user.name%></td>
+    			<td><%=h schedule.scheduled_date%></td>
+    			<td><%= Time.parse(schedule.scheduled_time.to_s).strftime('%H:%M') %></td>
+    			<td><%=h message_body_filter(schedule.message_body)%></td>
+    		   <%unless schedule.group_id.nil?%>
+    			    <td><%=h schedule.group.name%></td>
+    			  <%else%>
+    			    <td><%=h schedule.number%></td>
+    			 <%end%>
+    		   	  <td class="view"><%= link_to '<img src="/images/view.gif" title="View"/>',student_schedule_show_student_path(:schedule_id => schedule,:student_id => @student)%></td>
+  		</tr>
+		<% end %>
+	</table>
+<%end%>
+
+
+<%unless @emails.blank?%>
+<h1 class='heading'>Total sent emails -<%= @emails.blank? ? 0 : @emails.size%></h1>
+<table class ="listing">
+  		<tr>
+  		    <th>Sent by</th>
+    			<th>Subject</th>
+    			<th>Content</th>
+    			<th>Class</th>
+    			<th>View</th>
+  		</tr>
+		<% @emails.each do |email| %>
+  		<tr class="<%=cycle("odd", "even")%>">
+  		     <td><%= email.user.name%>
+     			<td><%=h email.subject %></td>
+     			<td><%=h message_body_filter(email.body) %></td>
+     			<td><%=h email.group.name%></td>
+     			<td class="view"><%= link_to '<img src="/images/view.gif" title="View"/>', show_email_email_path(email)%></td>
+      		</tr>
+		<% end %>
+	</table>
+	<%end%>
+	<%unless @letters.blank?%>
+	<h1 class='heading'>Total sent letters-<%= @letters.blank? ? 0 : @letters.size%></h1>
+		<table class ="listing">
+  		<tr>
+  		    <th>Created by</th>
+    			<th>Content</th>
+    			<th>Class</th>
+    			<th>View</th>
+  		</tr>
+		<% @letters.each do |letter| %>
+  		<tr class="<%=cycle("odd", "even")%>">
+  		    <td><%= letter.user.name%></td>
+    			<td><%= message_body_filter(letter.content)%></td>
+     			<td><%= letter.group.name %></td>
+    			<td class="view"><%= link_to '<img src="/images/view.gif" title="View"/>',show_letter_letter_path(letter)%></td>
+  		</tr>
+		<% end %>
+	</table>
+	<%end%>
+<div class ="clear">
+  		</div>
+</div>

@@ -1,0 +1,23 @@
+<div class = 'form_wrapper'> 
+<h1 class = 'heading left'>Showing <span><%=h @group.name %></span> subjects list</h1>	
+<div class = 'right'><%= link_to image_tag("closelabel.gif", :title=> "close"), groups_url %> </div>
+<div class="clear" ></div>
+<hr />
+
+<table  class="student_list" >
+   <tr>    
+      <th>Subject name</th>
+      <th>Short code</th>
+       <th> subject handled by </th>
+       
+   </tr>
+			<% for subject in @subjects%>
+		<tr class="<%=cycle("odd", "even")%>">
+                        <td><%= subject.name%></td>
+                        <td> <%= subject.short_code %> </td>
+                       
+                      <td> <%= find_subject_handled_by(@group,subject)%></td>
+		</tr>
+		<%end%>
+</table>
+</div>	    

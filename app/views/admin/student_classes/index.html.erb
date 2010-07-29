@@ -1,0 +1,28 @@
+<div class = 'form_wrapper'> 
+<h1 class = 'heading left'>Students list of class <span><%=h @group.name %></span> </h1>	
+<div class = 'right'><%= link_to image_tag("closelabel.gif", :title=> "close"), admin_groups_url %> </div>
+ <% if @students.blank?%><span class ='right'><%= link_to "<span>Add new class record</span>", new_admin_student_class_path(:id => @group.id) , :class => 'buttonAdd'%></span>
+<%else%>
+  <span class ='right'><%= link_to "<span>Edit students list</span>", edit_admin_student_class_path(:id => @group.id) , :class => 'buttonAdd'%></span>
+<%end%>
+<div class="clear" ></div>
+<hr />
+
+<table  class="student_list" >
+   <tr>    
+      <th>Student name</th>
+       <th>Contact name </th>
+       <th>Contact mobile.</th>
+        <th>Roll number</th>
+   </tr>
+			<% for student in @students%>
+		<tr class="<%=cycle("odd", "even")%>">
+                        <td><%= student.name%></td>
+                        <td> <%= student.contact_name %> </td>
+                        <td><%=h student.number %></td>
+                      <td> <%= find_roll_number(@group,student)%></td>
+		</tr>
+		<%end%>
+       
+</table>
+</div>	    

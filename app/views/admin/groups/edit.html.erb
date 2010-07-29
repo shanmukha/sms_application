@@ -1,0 +1,57 @@
+<div class = 'form_wrapper'>
+<h1 class = 'heading'>Editing class record</h1>	
+<fieldset>
+	<% form_for([:admin,@group],:url => admin_group_path(@group),:html => {:id => 'main-form'}) do |f| %>
+  	<%= f.error_messages %>
+  	<p>
+    		<%= f.label :class_name %><br />
+    		<%= f.text_field :name %>
+  	</p><br /><br />
+       <label>Subjects of this class</label>
+	<table class="student_list">
+		<tr>
+		<th><input type='checkbox' title ="Check All/Uncheck" name='checkall' onclick='checkedAll();'/></th>
+     			
+     			<th>Name</th>
+     			 <th>Subject handled by<th>
+                      </tr>
+ 		<%@group_subjects.each do |group_subject|%>
+		<tr class="<%=cycle("odd", "even")%>">
+    			<td><%= check_box_tag("subjects[]", group_subject.id, true,:id=> group_subject.id)%></td>
+   			
+   			<td><%= h group_subject.name%></td>
+			<td><%= select_tag "subject_handled_by_teacher[#{group_subject.id}]teacher_id", options_for_select(find_all_teachers,:selected => find_teacher(group_subject,@group))%></td>	
+		</tr>
+	
+	   		<%end%>
+  		<%@non_group_subjects.each do |non_group_subject| %>
+  		<tr class="<%=cycle("odd", "even")%>">
+      		<td><%= check_box_tag("subjects[]", non_group_subject.id, false,:id=> non_group_subject.id)%></td>
+    		    
+    		   <td><%=h non_group_subject.name %></td>
+    		    <td><%= select_tag "subject_handled_by_teacher[#{non_group_subject.id}]teacher_id", options_for_select(find_all_teachers) %></td>	
+    		 </tr>
+    		<%end%>
+	</table>
+	<br />
+	<p>
+	<table>
+	<tr>
+		<td width ="165"><span><%= f.submit 'Update' %></span> &nbsp;</td>
+  	<% end %>
+            <%if current_user.has_role?('admin')%>
+	      
+               <%if @group.status=='Active'%>
+                  <td> <%= button_to 'Make this class inactive', make_inactive_admin_group_path(@group),:method => :get %> </td>
+               <%else%>
+                  <td><%= button_to 'Make this class active', make_active_admin_group_path(@group),:method => :get %></td> 
+               <%end%>
+             <%end%>
+        </p>
+
+</fieldset>
+</tr>
+</table>
+</div>
+   
+

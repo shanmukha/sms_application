@@ -1,6 +1,5 @@
 class ExamsController < ApplicationController
- #before_filter :check_admin_role
- #layout "admin"
+ before_filter :check_admin_role
  layout "main"
   
   def index
@@ -21,6 +20,7 @@ class ExamsController < ApplicationController
 
   def edit
     @exam = Exam.find(params[:id])
+    @classes = @exam.groups.find(:all,:conditions=>['status =?','Active'])
   end
 
 
@@ -35,7 +35,7 @@ class ExamsController < ApplicationController
            options = { :group_id => group.id, :exam_id => @exam.id, :academic_year_id => academic_year.id }
            ExamClass.create(options)
            
-           group.subjects.each do |subject|
+           group.subjects.find(:all).each do |subject|
              options1 = { :maximum_marks => subject.max_marks, :passing_marks => subject.passing_marks , :subject_id => subject.id }
              ExamSubject.create(options1.merge!(options))
            end
@@ -43,7 +43,7 @@ class ExamsController < ApplicationController
          end
        end
        flash[:notice] = 'Exam record is successfully created.'
-       redirect_to exam_path(@exam)
+       redirect_to edit_exam_path(@exam)
     else   
       @exam = Exam.new(params[:exam])
       render :action => "new"
@@ -54,7 +54,17 @@ class ExamsController < ApplicationController
   def update
     @exam = Exam.find(params[:id])
     respond_to do |format|
-      if @exam.update_attributes(params[:exam])
+     if @exam.update_attributes(params[:exam])
+        @classes = @exam.groups.find(:all,:conditions=>['status =?','Active'])
+        @exam_subjects = @exam.exam_subjects.delete_all
+        school = School.find(:first,:conditions=>['administrator_id=?',current_user.id])
+        academic_year = AcademicYear.current_academic_year_school(school.id)
+        @classes.each do |clas|
+        clas.subjects.find(:all).each do|subject|
+   ExamSubject.create(:exam_id => @exam.id,:group_id => clas.id,:subject_id => params[:class]["#{clas.id}"]["#{subject.id}"][:subjects],:academic_year_id => academic_year.id,:maximum_marks => params[:class]["#{clas.id}"]["#{subject.id}"][:max_marks],:passing_marks => params[:class]["#{clas.id}"]["#{subject.id}"][:passing_marks],:from_date => params[:class]["#{clas.id}"]["#{subject.id}"][:from_date] ,:to_date => params[:class]["#{clas.id}"]["#{subject.id}"][:to_date] )
+      
+    end
+  end
         flash[:notice] = 'Subject was successfully updated.'
         format.html { redirect_to(exam_path(@exam))  }
         format.xml  { head :ok }

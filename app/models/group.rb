@@ -10,11 +10,15 @@ class Group < ActiveRecord::Base
  has_many :exams
  has_many :student_classes
  has_many :students,:through => :student_classes
+ has_many :exam_classes
+ has_many :exams,:through => :exam_classes
+ has_many :class_subjects
+ has_many :subjects,:through => :class_subjects
  belongs_to :school
  validates_presence_of  :name
  attr_accessible :name
  #copy students from another group
-  def self.copy_students_from_group(group_id,group)
+  def self.copy_students_from_group(group_id,group,current_user)
      school = School.find(:first,:conditions=>['administrator_id=?',current_user.id])
      academic_year = AcademicYear.current_academic_year_school(school.id)
      students = Group.find(group_id).students.find(:all,:conditions =>['status =?','Active'])
@@ -36,6 +40,18 @@ class Group < ActiveRecord::Base
      end
     return @group,@group_students,@non_group_students
   end
+  
+  def self.find_group_all_subjects(group_id,current_user)
+       @group = current_user.groups.find(group_id)
+       @group_subjects = @group.subjects.find(:all)
+       group_subject_ids = @group.subjects.find(:all).map{|h|h.id}
+      unless group_subject_ids.blank?
+       @non_group_subjects = current_user.subjects.find(:all,:conditions => ['id not IN (?)',group_subject_ids])
+     else
+       @non_group_subjects = current_user.subjects.find(:all)
+     end
+    return @group,@group_subjects,@non_group_subjects
+  end   
 end
 
 

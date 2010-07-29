@@ -1,0 +1,97 @@
+<div id = 'top' style ="display:none ; clear:both">
+     <div class = 'right'> 
+        <%= link_to_function image_tag("cancel.gif", :title=> "Cancel"), "jQuery('#top').hide(); jQuery('#button').show(); return false;" %> 
+     </div> 
+      <h1>New student record</h1>
+     <%= render :partial =>"new"%>
+     <div class = 'clear'> </div>
+</div>
+
+
+<div id = 'listing-top'>
+    <% if current_user.has_role?('admin')%>
+       <div id = 'button'>
+            <%= link_to_function "<span>New student record </span>", "jQuery('#top').show(); jQuery('#button').hide(); return false;", :class => 'buttonAdd' %> 
+            <%= link_to "<span>Import students from csv </span>", import_students_new_admin_students_path, :rel =>  "facebox", :class => 'buttonAdd' %>
+       </div>  
+    <%end%> 	
+       
+    <h1>Listing students</h1>
+    <div class="clear"></div>
+</div>
+ 
+<hr />
+<div id="listing_file">
+   <table class="listing">
+     <tr>
+   	<th><%= order @search, :by => :admission_number ,:as => "Admission no."%></th>
+     				<th><%= order @search, :by => :name ,:as => "Student name"%></th>
+                                
+                               	<th>Mobile No.</th>
+                               	<th>Status</th>
+                                <th>View</th>
+                                  <% if current_user.has_role?('admin')%>
+                                  <th>Edit</th>
+                                  <%end%>
+  			</tr>
+		     <% @students.each do |student| %>
+  			 <tr class="<%=cycle("odd", "even")%> small">
+  			      <td><%=h student.admission_number %></td>
+    				<td> <%= image_tag('student.gif')%> <%=h student.name %></td>
+                               
+    	    	                <td><%=h student.number %></td>
+    			 <td><%=h student.status %></td>
+    				<td>
+    				
+				   <%= link_to image_tag('view.gif', :title=> "View"),admin_student_path(student)%>
+                                </td>
+                                <% if current_user.has_role?('admin')%>
+                                <td>
+				   <%= link_to image_tag('edit.gif', :title=> "Edit"), edit_admin_student_path(student)%>
+                                </td> 
+                              <%end%>  
+  			   </tr>
+			<% end %>
+			
+		</table>
+ 		<div id="pg"><%=will_paginate @students%></div>
+	</div>
+	<div class="sidebar">
+		<h1>Search </h1>
+		<% form_for @search do |f| %>
+ 			<table>
+  				<tr>
+      					<th>Student Name </th>
+				</tr>
+				<tr>
+					<td> <%= f.text_field :name_like %></td>
+				</tr>
+                                <tr>
+      					<th>Class Name </th>
+				</tr>
+				<tr>
+					<td><%= f.text_field :groups_name_like%></td>
+				</tr>
+		        	
+				<tr>
+      					<th>Admission number </th>
+				</tr>
+				<tr>
+					<td><%= f.text_field :admission_number_like %></td>
+				</tr>
+				
+				<tr>
+      					<th>Mobile Number</th>	
+				</tr>
+				<tr>
+					<td><%= f.text_field :number_equals%></td>
+				</tr>
+				
+				<tr>
+       					<td class="btn"> <%= f.submit "Search" %> <input type="reset" value="Reset" /></td>
+  				</tr>
+  			</table>
+  		<%end%>
+	</div>
+	<div class="clear" ></div>
+

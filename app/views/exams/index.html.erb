@@ -12,7 +12,8 @@
   <tr>
    <th>Exam type</th>
     <th>Name</th>
-    <th>Conducted on</th>
+    <th>From date</th>
+      <th>To date</th>
       <th>Action</th>
   </tr>
 
@@ -22,8 +23,8 @@
    
     <td><%=h exam.exam_type %></td>
      <td><%=h exam.name %></td>
-    <td><%=change_format_to_long(exam.conducted_on)%></td>
-
+    <td><%=change_format_to_long(exam.from_date)%></td>
+     <td><%=change_format_to_long(exam.to_date)%></td>
     <td><%= link_to 'Show', exam_path(exam) %></td>
   </tr>
 <% end %>

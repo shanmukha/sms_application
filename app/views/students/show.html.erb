@@ -5,14 +5,12 @@
 <hr />
 
 <table class="show_page" >
+               
 		<tr>
   			<th>Student Name:</th>
   			<td><%=h @student.name %></td>
 		</tr>
-                   <tr>
-  			<th>Admission number:</th>
-  			<td><%=h @student.admission_number %></td>
-		</tr>
+                  
 			<tr>
   			<th>Status:</th>
   			<td><%=h @student.status %></td>
@@ -26,18 +24,7 @@
   			<th>Language:</th>
   			<td><%=h @student.language %></td>
 		</tr>
-		<tr>
-  			<th>Contact mobile:</th>
-  			<td><%=h @student.number %></td>
-  		</tr>
-                 <tr>
-  			<th>Contact name:</th>
-  			<td><%=h @student.contact_name %></td>
-  		</tr>
-  		<tr> 
-  			<th>Address:</th>
-  			<td><%=h @student.address %></td>
-  		</tr>
+		
   		<tr>
   			<th> Student email:</th>
   			<td><%=h @student.student_email %></td>
@@ -60,6 +47,11 @@
 
 
   		</tr>
+               
+                    <tr>
+  			<th>Admission number:</th>
+  			<td><%=h @student.admission_number %></td>
+		</tr>
                  <tr>
   			<th>Date of admission:</th>
   			<td><%=h @student.date_of_admission.strftime('%d-%m-%Y') %></td>
@@ -67,13 +59,7 @@
 
   		</tr>
                
-             <tr>
-  			<th>Date of passing:</th>
-  			<td><%=h @student.date_of_passing.strftime('%d-%m-%Y') %></td>
-
-
-  		</tr>
-                  
+                                
                   <tr>
   			<th>Mother name:</th>
   			<td><%=h @student.mother %></td>
@@ -109,13 +95,24 @@
 
   		</tr> 
 
- <tr>
+          <tr>
   			<th>Guardian Mobile:</th>
   			<td><%=h @student.guardian_number %></td>
 
 
   		</tr> 
-            
+            <tr>
+  			<th>Contact mobile:</th>
+  			<td><%=h @student.number %></td>
+  		</tr>
+                 <tr>
+  			<th>Contact name:</th>
+  			<td><%=h @student.contact_name %></td>
+  		</tr>
+  		<tr> 
+  			<th>Address:</th>
+  			<td><%=h @student.address %></td>
+  		</tr>
                <tr>
   			<th>Email:</th>
   			<td><%=h @student.email %></td>
@@ -123,7 +120,7 @@
 
   		</tr> 
         	<tr>
-  			<th colspan ='2'> Classes/groups this student belongs to:</th>
+  			<th colspan ='2'> Classes this student belongs to:</th>
         	</tr>
                 <tr>
   			<td colspan ='2'><%= find_groups(@student)%></td>

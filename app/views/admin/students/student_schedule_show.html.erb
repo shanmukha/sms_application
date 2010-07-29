@@ -1,0 +1,20 @@
+<div class="form_wrapper">
+  <h1 class = 'heading left'> <%= @student.name%> <span>-<%= @schedule.group.name%></span> </h1>
+  <div class = 'right'><%= link_to image_tag("closelabel.gif", :title=> "close") ,:back%> </div>
+  <div class="clear" ></div>
+  <hr />
+
+  <table class="show_page">
+		<tr>		
+		    <td><%=h @schedule.created_at.strftime('%d-%m-%Y') %></td>
+                    <td><%=h @schedule.user.name %></td>
+		</tr>
+             <tr> <td colspan = '2' style ='border: 1px solid #ccc; background: #eef2f6; width: 300px;'><%=h @schedule.message_body %></td> </tr>
+                <%unless @schedule.tag_id.nil?%>
+                   <tr>
+		     <th>Schedule tag:</th><td><%=h @schedule.tag.name%></td>
+		   </tr>
+                <%end%>
+	</table>
+</div>
+

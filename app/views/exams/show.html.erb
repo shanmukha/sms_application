@@ -9,20 +9,27 @@
       <td><%=h @exam.name %></td>
     </tr>
     <tr>
-      <th>Conducted on:</th>
-      <td><%=change_format_to_long(@exam.conducted_on)%></td>
+      <th>From date:</th>
+      <td><%=change_format_to_long(@exam.from_date)%></td>
+      
+    </tr>
+<tr>
+      <th>To date:</th>
+      <td><%=change_format_to_long(@exam.to_date)%></td>
     </tr>
  </table>
  
  <% for group in  @exam.groups.find(:all)  -%>
-    <table class="show_page">
-       <tr> <th colspan="3">  <%= group.name  %></th> </tr>
-       <tr> <th> Subject </th> <th> Maximum mark </th> <th>  passing mark </th> </tr>
+    <table class="student_list" border="1" width ="100%">
+        <%= group.name  %>
+       <tr> <th> Subject </th> <th> Maximum mark </th> <th>  passing mark </th><th>From</th><th>To</th> </tr>
        <% get_subjects_for_exam_group(group).each do |exam_subject| %>
          <tr>
-             <td>  1</td>
+             <td><%= exam_subject.subject.name%></td>
              <td> <%= exam_subject.maximum_marks %></td>
              <td> <%= exam_subject.passing_marks %></td>
+              <td> <%= exam_subject.from_date.strftime('%d-%m-%Y %H:%M') %></td>
+               <td> <%= exam_subject.to_date.strftime('%d-%m-%Y %H:%M') %></td>
          </tr>
        <%end%>
        

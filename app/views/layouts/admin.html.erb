@@ -70,7 +70,7 @@
 		<% if current_user %> 
        <div class = 'clear'> </div>
        <% if request.request_uri != "/admin/users/#{current_user.id}/edit"%> 
-      <div id="menu">
+      <div id="menu" >
       	  
             	<ul>
           <%if current_user.has_role?('super_admin')%>
@@ -81,9 +81,10 @@
             <li class='<%= request.request_uri =~ /message_templates/? 'active': 'link' %>'> <%= link_to "Saved Messages", admin_message_templates_path%>  </li> 
             <li class='<%= request.request_uri =~ /tags/? 'active': 'link' %>'> <%= link_to "Tags", admin_tags_path %> </li> 
            <li class='<%= request.request_uri =~ /class_reports/ || request.request_uri =~/class_reports/ || request.request_uri=~/class_reports/ || request.request_uri=~/teacher_reports/ || request.request_uri=~/tag_reports/ || request.request_uri=~/month_reports/ ? 'active': 'link' %>'> <%= link_to "Reports", admin_class_reports_path %> </li> 
- <li class='<%= request.request_uri =~ /subjects/? 'active': 'link' %>'> <%= link_to "subjects", admin_subjects_path %></li>
+ 
+<li class='<%= request.request_uri =~ /subjects/? 'active': 'link' %>'> <%= link_to "Master records", admin_subjects_path %></li>
+<li class='<%= request.request_uri =~ /students/? 'active': 'link' %>'> <%= link_to "Admissions", admin_students_path %></li>
 
-<li class='<%= request.request_uri =~ /academic_years/? 'active': 'link' %>'> <%= link_to "Academic Years", admin_academic_years_path %></li>
  </ul>
    </div>
    <div id = 'report-links'>
@@ -96,7 +97,15 @@
    </ul>
    <%end%>
    </div>
+ <div id = 'report-links'>
+  <%if request.request_uri =~ /subjects/ or request.request_uri =~ /academic_years/ or request.request_uri =~ /groups/ %>
+   <ul>
+<li class='<%= request.request_uri =~ /subjects/? 'active': 'link' %>'> <%= link_to "subjects", admin_subjects_path %></li>
+<li class='<%= request.request_uri =~ /academic_years/? 'active': 'link' %>'> <%= link_to "Academic Years", admin_academic_years_path %></li>
+<li class='<%= request.request_uri =~ /groups/? 'active': 'link' %>'> <%= link_to "Classes", admin_groups_path %></li>
+ </div>
  <%end%>
+<%end%>
 <%end%>
 </div> <!-- end of header -->
 <%= render :partial => 'shared/notice' %>

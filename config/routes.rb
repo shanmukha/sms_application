@@ -16,8 +16,10 @@ ActionController::Routing::Routes.draw do |map|
 
   map.namespace(:admin) do |admin|
      admin.resources :academic_years
-    
+     admin.resources :groups,:member =>{:add_students => :any,:create_students => :post,:make_active => :get,:make_inactive => :get},:collection =>{:subgroup_new => :any}
+     admin.resources :students,:collection => {:import_students_new => :any,:import_students_create => :post,:student_details=>:get},:member => {:student_letter_show => :any,:student_email_show => :any,:student_schedule_show => :any,:student_message_show => :any,:make_active => :get,:make_inactive => :get}
      admin.resources :subjects
+     admin.resources :student_classes
      admin.resources :message_templates
      admin.resources :tags
      admin.resources :class_reports

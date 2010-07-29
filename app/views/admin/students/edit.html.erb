@@ -1,0 +1,116 @@
+
+<%= stylesheet_link_tag 'style','redmond/jquery-ui-1.7.2.custom'%>
+  	<%=javascript_include_tag 'jquery-1.3.2.min','jquery-ui-1.7.2.custom.min','jrails','datepicker','jquery.cookie','jquery.simplyCountable.js','facebox','jquery.corner','dropdown.js'%>
+<hr />
+<div class="create_new">
+  <% form_for([:admin,@student],:url => admin_student_path(@student),:html => {:id => 'main-form'}) do |f| %>
+  <div class = 'left part1'>
+      <h2 class="heading">Student Details</h2><br/>
+	<fieldset>
+	   <%= f.error_messages %>
+		<table width="100%" cellspacing ="20px" cellpadding ="20px">
+                       <tr>
+    			<td><%= f.label :Student_name %><br />
+    			<%= f.text_field :name %></td>
+  		        
+    			<td><%= f.label :Gender %><br />
+    			<%= f.select :gender,[['Male','male'],['Female','female']] %></td>
+                      </tr>
+  	               <tr>
+                       <td><%= f.label :Language %><br />
+    			<%= f.text_field :language %></td>
+  		        <td><%= f.label :Blood_group %><br />
+    			<%= f.text_field :blood_group %></td>
+                       </tr>
+                         <tr>
+    			 <td><%= f.label :Date_of_birth %><br />
+                         <%= f.text_field :dob,:class =>'textbox-small' ,:id => 'date4'%></td>
+                         <td><%= f.label :Student_mobile_number %><br />
+    			<%= f.text_field :student_mobile_number %></td>
+                         </tr>  
+  		        <tr>
+    		          <td><%= f.label :Student_email %><br />
+    			  <%= f.text_field :student_email %></td>
+  		         </tr></table>
+                       <h2 class="heading">Admission Details</h2><br/>
+                       <table width="100%">
+                        <tr>
+    			  <td><%= f.label :admission_number %><br />
+       			 <%= f.text_field :admission_number%></td>
+                          <td><%= f.label :Date_of_admission %><br />
+                          <%= f.text_field :date_of_admission,:class =>'textbox-small' ,:id => 'date2'%></td>                     </tr>
+                        
+                         </table>
+                  <h2 class="heading">Parent Details</h2><br/>
+                <table width="100%">
+    			<tr>
+                         <td><%= f.label :Mother_name %><br />
+    			<%= f.text_field :mother %></td>
+  		 
+        	        <td><%= f.label :Mother_mobile %><br />
+    			<%= f.text_field :mother_mobile %></td>
+                        </tr>  
+  		
+                        <tr>            
+    			<td><%= f.label :Father_name %><br />
+    			<%= f.text_field :father %></td>
+  		
+                       <td>
+    			<%= f.label :Father_mobile %><br />
+    			<%= f.text_field :father_mobile %></td>
+                       </tr>
+  		        <tr>
+    			<td><%= f.label :Guardian_name %><br />
+    			<%= f.text_field :guardian %></td>
+  		
+<p>
+    			<td><%= f.label :Guardian_mobile %><br />
+    			<%= f.text_field :guardian_number %></td>
+                     </tr>
+  		      <tr>
+                        <td><%= f.label :email %><br />
+    			<%= f.text_field :email %></td>
+  		
+                        
+    			<td><%= f.label :address %><br />
+    			<%= f.text_area :address %></td>
+                         </tr>   		      
+   		        
+    			<tr>
+                         <td><%= f.label :Contact_mobile %><br />
+    			<%= f.text_field :number %></td>
+                
+                      <td>
+    			<%= f.label :Contact_name %><br />
+    			<%= f.text_field :contact_name %></td>
+
+  	                </tr>
+                       </table>
+               
+  		<span> <%= f.submit 'Update' %> or <%= link_to_function "Cancel",
+	"jQuery('#top').hide(); jQuery('#button').show(); return false;"%>
+		</span>
+	</fieldset>
+      </div>
+     
+  <%end%>
+
+</div>
+<script type="text/javascript">
+       	jQuery(function() {
+			  jQuery("#date2").datepicker({showOn: 'button', buttonImage: '/images/calendar.gif', buttonImageOnly: true, altField: '#date2', altFormat: 'dd-mm-yy' }) 
+			  });
+	</script>
+
+<script type="text/javascript">
+       	jQuery(function() {
+			  jQuery("#date3").datepicker({showOn: 'button', buttonImage: '/images/calendar.gif', buttonImageOnly: true, altField: '#date3', altFormat: 'dd-mm-yy' }) 
+			  });
+	</script>
+
+<script type="text/javascript">
+       	jQuery(function() {
+			  jQuery("#date4").datepicker({showOn: 'button', buttonImage: '/images/calendar.gif', buttonImageOnly: true, altField: '#date4', altFormat: 'dd-mm-yy' }) 
+			  });
+	</script>
+<div class="clear">

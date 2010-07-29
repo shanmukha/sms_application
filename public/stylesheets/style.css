@@ -280,6 +280,8 @@ h2.heading {font-size:15px;
 	margin: 18px 3px 0px 3px;
 }
 
+ 
+
 #menu ul {
 	padding: 0px;
 	list-style: none;
@@ -1532,4 +1534,9 @@ a.buttonAdd:hover span {
 
 #report-links a {margin: 0px 5px 0px 5px; color: #1d4896}
 
-.
+p, ol {font-family:verdana}
+ol li {font-size:0.9em}
+ol li i {font-size:0.8em}
+p.smallbottom {font-size:0.8em}
+p.disclaimer {font-size: 0.7em;}
+p.disclaimer b {color:red}

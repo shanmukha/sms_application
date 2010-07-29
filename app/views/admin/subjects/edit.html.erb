@@ -22,12 +22,14 @@
     <%= f.text_field :passing_marks %>
   </p>
  <p>
-    <%= f.label :select_class %><br />
-  
-               <% admin = current_user.has_role?('admin') ? current_user : User.find(current_user.parent_id) rescue ''%>
-    	       <%= f.select :group_id, [['Select class', '']] + current_user.groups.find(:all,:conditions =>['status = ?','Active']).map{|m|[m.name,m.id]} %>
+    <%= f.label :use_grade %><br />
+    Yes:<%= f.radio_button :use_grade,1,:checked=> (@subject.use_grade? ? true :false)%>
+    No:<%=f.radio_button :use_grade, 0,:checked=> (!@subject.use_grade? ? true :false)%>
   </p>
-  
+   <p>
+    <%= f.label :description %><br />
+    <%= f.text_area :description%>
+  </p>
     <span><%= f.submit 'Update' %></span>
  
 <% end %>

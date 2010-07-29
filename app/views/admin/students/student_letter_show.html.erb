@@ -1,0 +1,18 @@
+<div class="form_wrapper">
+  <h1 class = 'heading left'> <%= @student.name%> <span>-<%= @letter.group.name%></span> </h1>
+  <div class = 'right'><%= link_to image_tag("closelabel.gif", :title=> "close") ,:back%> </div>
+  <div class="clear" ></div>
+  <hr />
+
+ <table class="show_page">
+	
+		<tr>
+			 <tr> <td colspan = '2' style ='border: 1px solid #ccc; background: #eef2f6; width: 300px;'><%=h @letter.content %></td>
+		</tr>
+                <tr>
+  		   <td ><%=h @letter.created_at.strftime('%d/%M/%Y') %></td><td class ='blue'><%=h @letter.user.name %></td>
+		</tr> 
+              
+	</table>
+</div>
+

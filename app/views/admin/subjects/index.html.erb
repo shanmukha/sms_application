@@ -1,6 +1,6 @@
 <div class='form_wrapper'>
   <div>
-    <span class ='right'><%= link_to "<span>Create subject</span>", new_admin_subject_path , :class => 'buttonAdd'%></span>
+    <span class ='right'><%= link_to "<span>Add new subject</span>", new_admin_subject_path , :class => 'buttonAdd'%></span>
     <h1 class ="heading left">Listing subjects</h1>
     <div class="clear"></div>
   </div>
@@ -10,8 +10,8 @@
     <th>Short code</th>
     <th>Max marks</th>
     <th>Passing marks</th>
-      <th>Class name</th>
-     <th>Action</th> 
+    <th>Use grade</th>
+      <th>Action</th> 
   </tr>
 
 <% @subjects.each do |subject| %>
@@ -20,7 +20,7 @@
     <td><%=h subject.short_code %></td>
     <td><%=h subject.max_marks %></td>
     <td><%=h subject.passing_marks %></td>
-    <td><%=h subject.group.name %></td>
+    <td><%= h (subject.use_grade? ? "Yes" :"No")%>
     <td><%= link_to 'Edit', edit_admin_subject_path(subject) %></td>
   </tr>
 <% end %>
