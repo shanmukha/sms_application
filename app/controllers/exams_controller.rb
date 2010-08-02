@@ -56,12 +56,12 @@ class ExamsController < ApplicationController
     respond_to do |format|
      if @exam.update_attributes(params[:exam])
         @classes = @exam.groups.find(:all,:conditions=>['status =?','Active'])
-        @exam_subjects = @exam.exam_subjects.delete_all
-        school = School.find(:first,:conditions=>['administrator_id=?',current_user.id])
+         @exam.exam_subjects.delete_all
+          school = School.find(:first,:conditions=>['administrator_id=?',current_user.id])
         academic_year = AcademicYear.current_academic_year_school(school.id)
         @classes.each do |clas|
         clas.subjects.find(:all).each do|subject|
-   ExamSubject.create(:exam_id => @exam.id,:group_id => clas.id,:subject_id => params[:class]["#{clas.id}"]["#{subject.id}"][:subjects],:academic_year_id => academic_year.id,:maximum_marks => params[:class]["#{clas.id}"]["#{subject.id}"][:max_marks],:passing_marks => params[:class]["#{clas.id}"]["#{subject.id}"][:passing_marks],:from_date => params[:class]["#{clas.id}"]["#{subject.id}"][:from_date] ,:to_date => params[:class]["#{clas.id}"]["#{subject.id}"][:to_date] )
+ ExamSubject.create(:exam_id => @exam.id,:group_id => clas.id,:subject_id =>subject.id,:academic_year_id => academic_year.id,:maximum_marks => params[:class]["#{clas.id}"]["#{subject.id}"][:max_marks],:passing_marks => params[:class]["#{clas.id}"]["#{subject.id}"][:passing_marks],:from_date => params[:class]["#{clas.id}"]["#{subject.id}"]["from_date"] ,:to_date => params[:class]["#{clas.id}"]["#{subject.id}"][:to_date] ) if params[:class]["#{clas.id}"][:subjects].include?(subject.id.to_s)
       
     end
   end

@@ -2,8 +2,7 @@
 	<table class="student_group" >
 	<tr>
 		<th><input type='checkbox' title ="Check All/Uncheck" name='checkall' onclick='checkedAll();', checked="checked" /></th>
-	  	<th>Roll No</th>
-                <th> Student Name</th>
+	  	<th> Student Name</th>
 	  	<th>Mobile No</th>
 	  	</tr>
 	  	<%unless @students.nil?%>
@@ -11,8 +10,7 @@
 	
   	<tr class="<%=cycle("odd", "even")%>">
        		<td><%= check_box_tag("students[]", student.id, true, :id=> student.id)%></td>
-                <td><%=h student.roll_number %></td>
-    		<td><b><%=h student.name %></b></td>
+                <td><b><%=h student.name %></b></td>
 		<td><%=h student.number%></td>
   	</tr>
 	<%end%>

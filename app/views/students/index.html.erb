@@ -11,8 +11,8 @@
 <div id = 'listing-top'>
     <% if current_user.has_role?('admin')%>
        <div id = 'button'>
-            <%= link_to_function "<span>New student record </span>", "jQuery('#top').show(); jQuery('#button').hide(); return false;", :class => 'buttonAdd' %> 
-            <%= link_to "<span>Import students from csv </span>", import_students_new_students_path, :rel =>  "facebox", :class => 'buttonAdd' %>
+           <!-- <%= link_to_function "<span>New student record </span>", "jQuery('#top').show(); jQuery('#button').hide(); return false;", :class => 'buttonAdd' %> 
+            <%= link_to "<span>Import students from csv </span>", import_students_new_students_path, :rel =>  "facebox", :class => 'buttonAdd' %> -->
        </div>  
     <%end%> 	
        
@@ -30,9 +30,7 @@
                                	<th>Mobile No.</th>
                                	<th>Status</th>
                                 <th>View</th>
-                                  <% if current_user.has_role?('admin')%>
-                                  <th>Edit</th>
-                                  <%end%>
+                                  
   			</tr>
 		     <% @students.each do |student| %>
   			 <tr class="<%=cycle("odd", "even")%> small">
@@ -45,11 +43,7 @@
     				
 				   <%= link_to image_tag('view.gif', :title=> "View"),student_path(student)%>
                                 </td>
-                                <% if current_user.has_role?('admin')%>
-                                <td>
-				   <%= link_to image_tag('edit.gif', :title=> "Edit"), edit_student_path(student)%>
-                                </td> 
-                              <%end%>  
+                                 
   			   </tr>
 			<% end %>
 			

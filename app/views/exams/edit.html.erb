@@ -36,7 +36,7 @@
  <%@array =[]%>
   <%clas.subjects.find(:all).each do |subject|%>
    <tr class="<%=cycle("odd", "even")%>">
-    <td><%= check_box_tag("class[#{clas.id}][#{subject.id}]subjects[]", subject.id, true,:id=> subject.id)%></td>
+    <td><%= check_box_tag("class[#{clas.id}]subjects[]", subject.id, true,:id=> subject.id)%></td>
      <td><%=h subject.name%></td>
      <td><%= text_field_tag("class[#{clas.id}][#{subject.id}]max_marks",subject.max_marks) %></td> 
      <td><%= text_field_tag("class[#{clas.id}][#{subject.id}]passing_marks",subject.passing_marks)%></td>

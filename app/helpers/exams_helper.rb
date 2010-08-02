@@ -7,4 +7,7 @@ module ExamsHelper
   def get_subjects_for_exam_group(group)
     ExamSubject.find(:all, :conditions => ['group_id = ? and exam_id = ?', group.id, @exam.id ])
   end
+ def find_marks(exam,group)
+  Mark.find(:all,:conditions=>['exam_id =? and group_id =?',exam.id,group.id]) 
+ end
 end

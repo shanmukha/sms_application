@@ -1,6 +1,6 @@
 class Admin::StudentsController < ApplicationController
   #layout proc{ |c| ['student_details'].include?(c.action_name)? 'parent' : 'main'}
-   layout "admin"
+   layout "admin",:except => [:import_students_new]
   #layout "main",:except => [:import_students_new]
   #layout "parent",:only =>[:student_details]
   before_filter :check_admin_role, :except =>[:index,:show,:student_details]

@@ -11,14 +11,17 @@
 <table class="listing">
   <tr>
     <th>Exam</th>
+    <th>Class</th>
     <th>Student</th>
     <th>Subject</th>
     <th>Mark</th>
+    <th>Action</th>
   </tr>
 
 <% @marks.each do |mark| %>
   <tr class="<%=cycle("odd", "even")%>">
     <td><%=h mark.exam.exam_type %></td>
+     <td><%=h mark.group.name %></td>
     <td><%=h mark.student.name %></td>
     <td><%=h mark.subject.name %></td>
     <td><%=h mark.mark %></td>

@@ -1,6 +1,6 @@
 class MarksController < ApplicationController
   layout "main"
-  before_filter :check_teacher_role,:except =>[:index,:show]
+  #before_filter :check_teacher_role,:except =>[:index,:show]
 
   def index
     @marks = Mark.all
@@ -15,6 +15,9 @@ class MarksController < ApplicationController
 
   def new
     @mark = Mark.new
+    @exam = Exam.find(params[:exam_id])
+    @group = Group.find(params[:group_id])
+    @students = @group.students.find(:all)
   end
 
 
@@ -24,17 +27,15 @@ class MarksController < ApplicationController
 
 
   def create
-    unless params[:student_id].blank?
-      @student = Student.find(params[:student_id])
-      params[:marks].each do |mark|
-         Mark.create(:student_id => @student.id,:exam_id => params[:mark][:exam_id],:subject_id => mark[0],:mark => mark[1])
-      end
+      exam = Exam.find(params[:exam_id])
+      group = Group.find(params[:group_id])
+      group.students.find(:all).each do|student|
+      	exam.subjects.find(:all).each do|subject|
+        Mark.create(:student_id => student.id,:exam_id =>exam.id,:group_id =>group.id,:subject_id =>subject.id,:mark => params[:marks]["#{student.id}"]["#{subject.id}"][:mark])
+   end
+   end
       flash[:notice] = 'Mark was successfully created.'
       redirect_to marks_path
-    else
-      flash[:notice] = 'Select Student.'
-      render :action => "new"
-    end
    end
 
 

@@ -12,7 +12,7 @@
     <% if current_user.has_role?('admin')%>
        <div id = 'button'>
 	   <span>
-               <%= link_to_function "<span>New class record </span>", "jQuery('#top').show(); jQuery('#button').hide(); return false;", :class => 'buttonAdd' %>
+              <!-- <%= link_to_function "<span>New class record </span>", "jQuery('#top').show(); jQuery('#button').hide(); return false;", :class => 'buttonAdd' %> -->
            </span>
        </div>
     <%end%> 	
@@ -28,14 +28,14 @@
     					<th><%= order @search, :by => :name, :as => "Name"%></th>
     		   			<th><%= order @search, :by => :status, :as => "Status"%></th>
     					<th>View</th>
-                                        <th>Edit</th>
+                                        
   				</tr>
 			<% @groups.each do |g| %>
   				<tr class="<%=cycle("odd", "even")%>">
     					<td><%=h g.name %></td>
     					<td><%= h g.status%></td>
     					<td><%= link_to '<img src="/images/view.gif" title="View"/>', g%> </td>
-                                        <td><%= link_to image_tag('edit.gif', :title=> "Edit"), edit_group_path(g) %>  </td>
+                                       
   				</tr>
 			<% end %>
 			</table>

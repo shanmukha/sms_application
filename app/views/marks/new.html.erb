@@ -1,27 +1,23 @@
 <div class='form_wrapper'>
   <div class ="create_new">
 
-<% form_for (:mark, :url=>marks_path, :html => {:id => 'main-form'}) do |f| %>
-  <%= f.error_messages %>
-  
-       <label> Select Class </label><br />
-        <%= select_tag :group_id, options_for_select([['Select Class','']] + all_groups)%>
-      	      		<%= image_tag("spinner.gif",
-               		:border => 0,
-              		:id => "spinner1",
-             	 	 :style =>"display: none;" ) %>  
-          
-         <%= observe_field("group_id", :frequency => 1,
-                  :before => "jQuery('#spinner1').show();",
-                  :success => "jQuery('#spinner1').hide();",
-                  :url => {:action=>'group_exams'}, :method => :get,
-                  :with => "'group_id=' + value")%>
-  
-
-  <div id="exams"></div>
-
-   
-
+<% form_for (:mark, :url=>marks_path(:exam_id => @exam.id,:group_id => @group.id), :html => {:id => 'main-form'}) do |f| %>
+  <table width="40%"> 
+<tr> 
+   <th> Student name</th>
+   <%@exam.subjects.find(:all).each do |subject|%>
+<th> <%=subject.name%></th>
+   <%end%>   
+</tr>
+ <%@group.students.find(:all).each do |student|%>
+   <tr><td> <%=student.name%></td>
+<%@exam.subjects.find(:all).each do |subject|%>
+  <td><%= text_field_tag("marks[#{student.id}][#{subject.id}]mark",'',:class => "text-small") %></td>
+  <%end%>
+</tr>
+<% end %>
+ </table>
+<div id="exams"></div>
   <span>
     <%= f.submit 'Create' %>
   </span>
