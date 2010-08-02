@@ -22,7 +22,10 @@ class MarksController < ApplicationController
 
 
   def edit
-    @mark = Mark.find(params[:id])
+    @mark = Mark.find(:first)
+    @exam = Exam.find(params[:exam_id])
+    @group = Group.find(params[:group_id])
+    @students = @group.students.find(:all)
   end
 
 
@@ -41,19 +44,22 @@ class MarksController < ApplicationController
 
   def update
     @mark = Mark.find(params[:id])
-
+     exam = Exam.find(params[:exam_id])
+     group = Group.find(params[:group_id])
+     exam.marks.each do|mark|
+     mark.destroy
+     end
     respond_to do |format|
-      if @mark.update_attributes(params[:mark])
+      group.students.find(:all).each do|student|
+      	exam.subjects.find(:all).each do|subject|
+        Mark.create(:student_id => student.id,:exam_id =>exam.id,:group_id =>group.id,:subject_id =>subject.id,:mark => params[:marks]["#{student.id}"]["#{subject.id}"][:mark])
+   end
+   end
         flash[:notice] = 'Mark was successfully updated.'
         format.html { redirect_to(marks_path) }
         format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @mark.errors, :status => :unprocessable_entity }
-      end
-    end
+     end
   end
-
 
   def destroy
     @mark = Mark.find(params[:id])

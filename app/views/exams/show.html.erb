@@ -23,7 +23,11 @@
       
     <table class="student_list" border="1" width ="100%">
      
-        <%= group.name  %> <%= link_to "Enter marks",new_mark_path(:exam_id => @exam.id,:group_id => group.id)%>
+        <%= group.name  %> <%if find_marks(@exam,group).blank?%> 
+<%= link_to "Enter marks",new_mark_path(:exam_id => @exam.id,:group_id => group.id)%>
+<%else%>
+  <%= link_to "Edit marks",edit_mark_path(:exam_id => @exam.id,:group_id => group.id)%>
+<%end%>
        <tr> <th> Subject </th> <th> Maximum mark </th> <th>  passing mark </th><th>From</th><th>To</th> </tr>
        <% get_subjects_for_exam_group(group).each do |exam_subject| %>
          <tr>

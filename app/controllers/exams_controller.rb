@@ -56,7 +56,9 @@ class ExamsController < ApplicationController
     respond_to do |format|
      if @exam.update_attributes(params[:exam])
         @classes = @exam.groups.find(:all,:conditions=>['status =?','Active'])
-         @exam.exam_subjects.delete_all
+         @exam.exam_subjects.each do|exam_subject|
+         exam_subject.destroy
+         end
           school = School.find(:first,:conditions=>['administrator_id=?',current_user.id])
         academic_year = AcademicYear.current_academic_year_school(school.id)
         @classes.each do |clas|
