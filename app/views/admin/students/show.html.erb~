@@ -1,6 +1,6 @@
 <div class = 'form_wrapper'> 
 <h1 class = 'heading left'>Student details </h1>
- <div class = 'right'><%= link_to image_tag("closelabel.gif", :title=> "close"),students_path%> </div>
+ <div class = 'right'><%= link_to image_tag("closelabel.gif", :title=> "close"),admin_students_path%> </div>
  <div class="clear" ></div>	
 <hr />
 
@@ -43,7 +43,7 @@
   		</tr>
                <tr>
   			<th>Date of birth:</th>
-  			<td><%=h @student.dob.strftime('%d-%m-%Y') unless @student.dob.nil?  %></td>
+  			<td><%=h @student.dob.strftime('%d-%m-%Y') unless @student.dob.nil? %></td>
 
 
   		</tr>
@@ -54,12 +54,12 @@
 		</tr>
                  <tr>
   			<th>Date of admission:</th>
-  			<td><%=h @student.date_of_admission.strftime('%d-%m-%Y') unless @student.date_of_admission.nil?%></td>
+  			<td><%=h @student.date_of_admission.strftime('%d-%m-%Y') unless @student.date_of_admission.nil? %></td>
 
 
   		</tr>
                
-                                
+            
                   <tr>
   			<th>Mother name:</th>
   			<td><%=h @student.mother %></td>
@@ -120,12 +120,10 @@
 
   		</tr> 
         	<tr>
-  			<th>Class:</th>
-
-                         <td><%= find_groups(@student)%>
-        	</tr>
-        
-  		</table>
+  			<t>Class:</th>
+        	<td><%= find_groups(@student)%></td>
+</tr>
+                 		</table>
 
 
 

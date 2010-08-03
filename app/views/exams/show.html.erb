@@ -28,7 +28,7 @@
 <%else%>
   <%= link_to "Edit marks",edit_mark_path(:exam_id => @exam.id,:group_id => group.id)%>
 <%end%>
-       <tr> <th> Subject </th> <th> Maximum mark </th> <th>  passing mark </th><th>From</th><th>To</th> </tr>
+       <tr> <th> Subject </th> <th> Maximum mark </th> <th>  Passing mark </th><th>From</th><th>To</th> </tr>
        <% ExamSubject.find(:all, :conditions => ['group_id = ? and exam_id = ?', group.id, @exam.id ]).each do |exam_subject| %>
          <tr>
              <td><%= exam_subject.subject.name%></td>

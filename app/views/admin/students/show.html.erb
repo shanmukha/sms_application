@@ -43,7 +43,7 @@
   		</tr>
                <tr>
   			<th>Date of birth:</th>
-  			<td><%=h @student.dob.strftime('%d-%m-%Y')  %></td>
+  			<td><%=h @student.dob.strftime('%d-%m-%Y') unless @student.dob.nil? %></td>
 
 
   		</tr>
@@ -54,7 +54,7 @@
 		</tr>
                  <tr>
   			<th>Date of admission:</th>
-  			<td><%=h @student.date_of_admission.strftime('%d-%m-%Y') %></td>
+  			<td><%=h @student.date_of_admission.strftime('%d-%m-%Y') unless @student.date_of_admission.nil? %></td>
 
 
   		</tr>
@@ -120,12 +120,10 @@
 
   		</tr> 
         	<tr>
-  			<th colspan ='2'> Classes this student belongs to:</th>
-        	</tr>
-                <tr>
-  			<td colspan ='2'><%= find_groups(@student)%></td>
-        	</tr>
-  		</table>
+  			<th>Class:</th>
+        	<td><%= find_groups(@student)%></td>
+</tr>
+                 		</table>
 
 
 
