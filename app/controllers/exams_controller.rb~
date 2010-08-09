@@ -1,5 +1,5 @@
 class ExamsController < ApplicationController
- #before_filter :check_admin_role
+ before_filter :check_admin_role
  layout "main"
   
   def index

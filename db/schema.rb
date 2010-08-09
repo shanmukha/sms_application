@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100716092145) do
+ActiveRecord::Schema.define(:version => 20100809111722) do
 
   create_table "academic_years", :force => true do |t|
     t.date     "from_date"
@@ -21,10 +21,10 @@ ActiveRecord::Schema.define(:version => 20100716092145) do
     t.datetime "updated_at"
   end
 
-  create_table "academics", :force => true do |t|
-    t.string   "year"
-    t.date     "start_date"
-    t.date     "end_date"
+  create_table "class_subjects", :force => true do |t|
+    t.integer  "group_id"
+    t.integer  "subject_id"
+    t.integer  "handled_by_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -62,16 +62,20 @@ ActiveRecord::Schema.define(:version => 20100716092145) do
     t.boolean  "use_grade"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "subject_id"
+    t.datetime "to_date"
+    t.datetime "from_date"
   end
 
   create_table "exams", :force => true do |t|
-    t.integer  "group_id"
     t.string   "exam_type"
-    t.date     "conducted_on"
     t.integer  "maximum_marks"
-    t.integer  "subject_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "name"
+    t.date     "to_date"
+    t.date     "from_date"
+    t.integer  "school_id"
   end
 
   create_table "groups", :force => true do |t|
@@ -113,6 +117,7 @@ ActiveRecord::Schema.define(:version => 20100716092145) do
     t.integer  "mark"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "group_id"
   end
 
   create_table "message_students", :force => true do |t|
@@ -207,7 +212,6 @@ ActiveRecord::Schema.define(:version => 20100716092145) do
 
   create_table "students", :force => true do |t|
     t.string   "name"
-    t.string   "parent"
     t.string   "number"
     t.text     "address"
     t.string   "email"
@@ -232,6 +236,7 @@ ActiveRecord::Schema.define(:version => 20100716092145) do
     t.date     "date_of_admission"
     t.date     "date_of_passing"
     t.string   "blood_group"
+    t.string   "contact_name"
   end
 
   create_table "subjects", :force => true do |t|
@@ -239,10 +244,12 @@ ActiveRecord::Schema.define(:version => 20100716092145) do
     t.string   "short_code"
     t.integer  "max_marks"
     t.integer  "passing_marks"
-    t.datetime "created_at"
-    t.datetime "updated_at"
     t.integer  "group_id"
     t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "use_grade"
+    t.text     "description"
   end
 
   create_table "tags", :force => true do |t|
@@ -260,8 +267,6 @@ ActiveRecord::Schema.define(:version => 20100716092145) do
     t.string   "crypted_password"
     t.string   "mail_id"
     t.string   "balance",           :default => "0"
-    t.string   "server_user_name"
-    t.string   "server_password"
     t.string   "password_salt"
     t.string   "persistence_token"
     t.integer  "parent_id"

@@ -15,7 +15,7 @@ class GroupsController < ApplicationController
   end
 	
 	def show
-     admin = current_user.has_role?('admin') ? current_user : User.find(current_user.parent_id)
+	   admin = current_user.has_role?('admin') ? current_user : User.find(current_user.parent_id)
      @group = admin.groups.find(params[:id])
      @students = @group.students.find(:all)
     respond_to do |format|

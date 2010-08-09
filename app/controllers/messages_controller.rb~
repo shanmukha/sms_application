@@ -31,7 +31,7 @@ class MessagesController < ApplicationController
     @message = Message.find(params[:id])
     @message.destroy
     respond_to do |format|
-      format.html { redirect_to(messages_url) }
+      format.html { redirect_to(message_s_url) }
       format.xml  { head :ok }
     end
   end

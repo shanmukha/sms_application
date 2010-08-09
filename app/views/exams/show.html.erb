@@ -24,9 +24,9 @@
     <table class="student_list" border="1" width ="100%">
      
         <%= group.name  %> <%if find_marks(@exam,group).blank?%> 
-<%= link_to "Enter marks",new_mark_path(:exam_id => @exam.id,:group_id => group.id)%>
+<%= link_to "Enter marks",new_group_exam_mark_path(group.id,@exam.id)%>
 <%else%>
-  <%= link_to "Edit marks",edit_mark_path(:exam_id => @exam.id,:group_id => group.id)%>
+  <%= link_to "Edit marks",edit_group_exam_mark_path(group.id,@exam.id,1)%>
 <%end%>
        <tr> <th> Subject </th> <th> Maximum mark </th> <th>  Passing mark </th><th>From</th><th>To</th> </tr>
        <% ExamSubject.find(:all, :conditions => ['group_id = ? and exam_id = ?', group.id, @exam.id ]).each do |exam_subject| %>

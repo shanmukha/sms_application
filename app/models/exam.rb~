@@ -1,5 +1,5 @@
 class Exam < ActiveRecord::Base
-# belongs_to :group
+ belongs_to :group
  belongs_to :school
  has_many :marks
  has_many :exam_classes

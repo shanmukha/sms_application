@@ -16,7 +16,7 @@
                    <%end%>
                    <li class='<%= request.request_uri =~ /emails/? 'active': 'link' %>'><%= link_to "Emails", emails_path %></li>
          	   <li class='<%= request.request_uri =~ /letters/? 'active': 'link' %>'><%= link_to "Letters", letters_path %></li>
-             
+             <li class='<%= request.request_uri =~ /marks/? 'active': 'link' %>'><%= link_to "Marks", marks_path %></li>
              <li class='<%= request.request_uri =~ /exams/? 'active': 'link' %>'> <%= link_to "exams", exams_path %></li>
                  </ul>
                  <ul class = 'right'>
