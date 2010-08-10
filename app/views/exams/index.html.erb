@@ -21,7 +21,17 @@
 <% @exams.each do |exam| %>
   <tr class="<%=cycle("odd", "even")%>">
    
-    <td><%=h exam.exam_type %></td>
+    <td><%=h exam.exam_type %>
+  <%exam.groups.find(:all,:conditions=>['status =?','Active']).each do |group|%>
+  <br />
+  <%= group.name%>
+<%if find_marks(exam,group).blank?%> 
+<%= link_to "Enter marks",new_group_exam_mark_path(group.id,exam.id)%>
+<%else%>
+  <%= link_to "Edit marks",edit_group_exam_mark_path(group.id,exam.id,1)%>
+  <%end%>
+<%end%>
+</td>
      <td><%=h exam.name %></td>
     <td><%=change_format_to_long(exam.from_date)%></td>
      <td><%=change_format_to_long(exam.to_date)%></td>
@@ -30,5 +40,7 @@
 <% end %>
 <%end%>
 </table><br/>
+<div id="pg"><%=will_paginate @exams%>	</div>
+
 <div class="clear"></div>
 </div

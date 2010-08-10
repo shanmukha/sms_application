@@ -4,7 +4,7 @@ class Admin::SubjectsController < ApplicationController
   # GET /subjects
   # GET /subjects.xml
   def index
-    @subjects = Subject.find(:all,:conditions =>['user_id =?',current_user.id])
+    @subjects = Subject.find(:all,:conditions =>['user_id =?',current_user.id]).paginate :page => params[:page],:per_page => 25
 
     respond_to do |format|
       format.html # index.html.erb

@@ -2,7 +2,8 @@ class Admin::AcademicYearsController < ApplicationController
   layout "admin"
   before_filter :check_admin_role
   def index
-    @academic_years = AcademicYear.all
+   school = School.find(:first,:conditions=>['administrator_id=?',current_user.id])
+    @academic_years = AcademicYear.find(:all,:conditions=>['school_id =?',school.id])
   end
 
 
@@ -31,7 +32,7 @@ class Admin::AcademicYearsController < ApplicationController
         format.html { redirect_to admin_academic_years_path }
         format.xml  { render :xml => @academic_year, :status => :created, :location => @academic_year }
       else
-        format.html { render :action => "new" }
+i        format.html { render :action => "new" }
         format.xml  { render :xml => @academic_year.errors, :status => :unprocessable_entity }
       end
     end
