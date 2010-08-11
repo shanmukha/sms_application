@@ -9,13 +9,13 @@
 
 
 <div id = 'listing-top'>
-    <% if current_user.has_role?('admin')%>
+    
        <div id = 'button'>
 	   <span>
                  <%= link_to_function "<span>New letter</span>", "jQuery('#top').show(); jQuery('#button').hide(); return false;", :class => 'buttonAdd' %>
            </span>
        </div>
-    <%end%> 	
+     	
          
     <h1>Listing all letters</h1>
     <div class="clear"></div>

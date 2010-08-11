@@ -1,6 +1,6 @@
 class MessagesController < ApplicationController
  layout proc{ |c| ['new', 'create'].include?(c.action_name)? 'message' : 'main'}
- before_filter :check_role,:only=>"new"
+# before_filter :check_role,:only=>"new"
 
   def new
     @message = Message.new
@@ -8,8 +8,8 @@ class MessagesController < ApplicationController
 
   def index
      @search =  Message.search(params[:search]) 
-     @search.user_id = current_user.id if current_user.has_role?('teacher') || current_user.has_role?('admin')
-     @search.user_id = user_ids if current_user.has_role?('admin') && !current_user.has_role?('admin')
+     @search.user_id = current_user.id if current_user.has_role?('teacher') || current_user.has_role?('super_admin')
+     @search.user_id = user_ids if current_user.has_role?('admin') && !current_user.has_role?('super_admin')
      @search.order ||= "descend_by_created_at"
      @messages = @search.all.paginate :page => params[:page],:per_page => 25
      respond_to do |format|

@@ -10,4 +10,8 @@ module ExamsHelper
  def find_marks(exam,group)
   Mark.find(:all,:conditions=>['exam_id =? and group_id =?',exam.id,group.id]) 
  end
+ def find_groups(exam)
+  groups = exam.groups.find(:all,:conditions=>['status =?','Active']) rescue ""
+  return groups
+end
 end

@@ -9,11 +9,10 @@
 
 
 <div id = 'listing-top'>
-    <% if current_user.has_role?('admin')%>
        <div id = 'button'>
 	   <%= link_to_function '<span>Write new email</span>', "jQuery('#top').show(); jQuery('#button').hide(); return false;", :class => 'buttonAdd' %>
        </div>
-    <%end%> 	
+     	
          
     <h1>Listing all sent emails</h1>
     <div class="clear"></div>
