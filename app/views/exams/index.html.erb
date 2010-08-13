@@ -1,6 +1,6 @@
 <div class='form_wrapper'>
   <div>
-    <%if current_user.has_role?('admin') && !current_user.has_role?('super_admin')%>
+    <%if current_user.has_role?('admin')%>
       <span class ='right'><%= link_to "<span>New exam</span>", new_exam_path, :class => 'buttonAdd'%></span>
     <%end%>
     <h1 class ="heading left">Listing exams</h1>

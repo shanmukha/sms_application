@@ -5,7 +5,7 @@ class ExamsController < ApplicationController
   def index
    admin = current_user.has_role?('admin') ? current_user : User.find(current_user.parent_id) 
    school = School.find(:first,:conditions=>['administrator_id=?',admin.id])
-   @exams = school.exams.paginate :page => params[:page],:per_page => 25
+   @exams = school.exams.find(:all,:order => "created_at DESC").paginate :page => params[:page],:per_page => 25
   end
 
 

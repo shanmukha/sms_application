@@ -1,5 +1,6 @@
 class Subject < ActiveRecord::Base
  belongs_to :user
+ belongs_to :school
  belongs_to :group
  has_many :exam_subjects
  has_many :exams,:through => :exam_subjects

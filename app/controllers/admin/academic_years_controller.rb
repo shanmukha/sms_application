@@ -3,7 +3,7 @@ class Admin::AcademicYearsController < ApplicationController
   before_filter :check_admin_role
   def index
    school = School.find(:first,:conditions=>['administrator_id=?',current_user.id])
-    @academic_years = AcademicYear.find(:all,:conditions=>['school_id =?',school.id])
+    @academic_years = AcademicYear.find(:all,:order => "created_at DESC",:conditions=>['school_id =?',school.id]).paginate :page => params[:page],:per_page => 25
   end
 
 

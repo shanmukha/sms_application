@@ -4,7 +4,8 @@ class Admin::SubjectsController < ApplicationController
   # GET /subjects
   # GET /subjects.xml
   def index
-    @subjects = Subject.find(:all,:conditions =>['user_id =?',current_user.id]).paginate :page => params[:page],:per_page => 25
+   school = School.find(:first,:conditions=>['administrator_id=?',current_user.id])
+    @subjects = Subject.find(:all,:order => "created_at DESC",:conditions=>['school_id =?',school.id]).paginate :page => params[:page],:per_page => 25
 
     respond_to do |format|
       format.html # index.html.erb
@@ -42,8 +43,9 @@ class Admin::SubjectsController < ApplicationController
   # POST /subjects
   # POST /subjects.xml
   def create
-    @subject = current_user.subjects.new(params[:subject])
-
+    @subject = Subject.new(params[:subject])
+    school = School.find(:first,:conditions=>['administrator_id=?',current_user.id])
+    @subject.school_id = school.id
     respond_to do |format|
       if @subject.save
         flash[:notice] = 'Subject was successfully created.'
