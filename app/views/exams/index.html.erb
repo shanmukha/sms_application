@@ -1,5 +1,4 @@
-<div class='form_wrapper'>
-  <div>
+<div id = 'listing-top'>
     <%if current_user.has_role?('admin')%>
       <span class ='right'><%= link_to "<span>New exam</span>", new_exam_path, :class => 'buttonAdd'%></span>
     <%end%>
@@ -7,7 +6,7 @@
     <div class="clear"></div>
   </div>
 
-
+<div id="listing_file">
 <table class="listing">
   <tr>
    <th>Exam type</th>
@@ -22,7 +21,7 @@
   <tr class="<%=cycle("odd", "even")%>">
    
     <td><%=h exam.exam_type %>
-  <%exam.groups.find(:all,:conditions=>['status =?','Active']).each do |group|%>
+  <%find_exam_groups(exam).each do |group|%>
   <br />
   <%= group.name%>
 <%if find_marks(exam,group).blank?%> 
@@ -42,5 +41,38 @@
 </table><br/>
 <div id="pg"><%=will_paginate @exams%>	</div>
 
-<div class="clear"></div>
 </div
+<div class="sidebar">
+	<h1>Search </h1>
+	<% form_for @search do |f| %>
+ 		<table>
+                        <tr>
+       				<th>Exam Type</th>
+			</tr>
+			
+			<tr>
+				<td><%= f.text_field :exam_type_like%></td>
+			</tr>
+     			<tr>
+      				<th>Name</th>
+			</tr>
+			<tr>
+				<td><%= f.text_field :name_like %></td>
+			</tr>
+			
+			<tr>
+       				<th>Class name </th>
+			</tr>
+			<tr>
+				<td><%= f.text_field :groups_name_like%></td>
+			</tr>
+				
+			
+			<tr>
+       				<td class="btn"><%= f.submit "Search" %> <input type="reset" value="Reset" /></td>
+  			</tr>
+  		</table>
+  	<%end%>
+</div>
+  <div class="clear" ></div>
+

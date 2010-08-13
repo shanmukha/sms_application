@@ -27,12 +27,10 @@
 		<table class="student_list">
 		<tr>
 			<th>Student name</th>
-			<th>Roll number</th>
 		</tr>
 		<%@students.each do  |student|%>
 	 	<tr class="<%=cycle("odd", "even")%>">
 			<td><%= student.name%></td>
-			<td><%= student.roll_number%></td>
   		</tr>
   		<%end%>
 	</table>

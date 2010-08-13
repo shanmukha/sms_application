@@ -154,7 +154,7 @@
     			<%else%>
     			 <td><%=h message.number%></td>
     			<%end%>
-    			<td class="view"><%= link_to '<img src="/images/view.gif" title="View"/>', student_message_show_student_path(:message_id => message,:student_id => @student)%></td>
+    			<td class="view"><%= link_to '<img src="/images/view.gif" title="View"/>', student_message_show_admin_student_path(:message_id => message,:student_id => @student)%></td>
   		</tr>
   		<%end%>
 </table>
@@ -182,7 +182,7 @@
     			  <%else%>
     			    <td><%=h schedule.number%></td>
     			 <%end%>
-    		   	  <td class="view"><%= link_to '<img src="/images/view.gif" title="View"/>',student_schedule_show_student_path(:schedule_id => schedule,:student_id => @student)%></td>
+    		   	  <td class="view"><%= link_to '<img src="/images/view.gif" title="View"/>',student_schedule_show_admin_student_path(:schedule_id => schedule,:student_id => @student)%></td>
   		</tr>
 		<% end %>
 	</table>
@@ -226,6 +226,24 @@
      			<td><%= letter.group.name %></td>
     			<td class="view"><%= link_to '<img src="/images/view.gif" title="View"/>',show_letter_letter_path(letter)%></td>
   		</tr>
+		<% end %>
+	</table>
+	<%end%>
+<%unless @marks.blank?%>
+   <h1 class='heading'>Marks</h1>
+		<table class ="listing">
+  		<tr>
+  		    <th>Exam</th>
+    			<th>Subject</th>
+    			<th>Mark</th>
+    		
+  		</tr>
+		<% @marks.each do |mark| %>
+  		<tr class="<%=cycle("odd", "even")%>">
+  		    <td><%= mark.exam.name%></td>
+    			<td><%= mark.subject.name%></td>
+     			<td><%= mark.mark %></td>
+    			 		</tr>
 		<% end %>
 	</table>
 	<%end%>

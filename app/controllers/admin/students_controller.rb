@@ -3,7 +3,7 @@ class Admin::StudentsController < ApplicationController
    layout "admin",:except => [:import_students_new]
   #layout "main",:except => [:import_students_new]
   #layout "parent",:only =>[:student_details]
-  before_filter :check_admin_role, :except =>[:index,:show,:student_details]
+  before_filter :check_admin_role, :except =>[:index,:show,:student_details,:student_message_show,:student_schedule_show,:student_letter_show,:student_email_show]
   require "csv"
 
   def index
@@ -26,11 +26,16 @@ class Admin::StudentsController < ApplicationController
 	
   def show
     admin = current_user.has_role?('admin') ? current_user : User.find(current_user.parent_id)
+    school = School.find(:first,:conditions=>['administrator_id=?',admin.id])
+    academic_year = AcademicYear.current_academic_year_school(school.id)
     @student = admin.students.find(params[:id])
     @emails = @student.emails.find(:all)
     @messages = Student.find_student_messages(@student)
     @letters = @student.letters.find(:all)
-    @schedules = @student.schedules.find(:all)
+    @schedules = @student.schedules.find(:all) 
+    from_date = "#{academic_year.from_date} 00:00:00"
+    to_date = "#{academic_year.to_date} 23:59:59"   
+    @marks = @student.marks.find(:all,:conditions => ['created_at >= ? and created_at <= ?',from_date,to_date]) 
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @student }
