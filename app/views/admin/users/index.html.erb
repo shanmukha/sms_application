@@ -8,7 +8,7 @@
   </div>
 
 <% form_for @search do |f| %>
- 	User name:&nbsp;<%= f.text_field :name_like %>
+ 	    Name:&nbsp;<%= f.text_field :name_like %>
 		<span><%= f.submit "Search" %></span>
 <%end%>
 
@@ -31,7 +31,8 @@
    </tr>
 <% end %>
 </table>
-<%= will_paginate @users%>
+<div id="pg"><%= will_paginate @users%></div>
 <br />
 <div class="clear"></div>
+</div>
 </div>

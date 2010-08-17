@@ -16,7 +16,7 @@
      		    <th>Name</th>
                      <th>Subject handled by</th>
                      </tr>
-   		  <%current_user.subjects.find(:all).each do |subject| %>
+   		  <%@subjects.each do |subject| %>
   		     <tr class="<%=cycle("odd", "even")%>">
        			 <td><%= check_box_tag("subjects[]", subject.id, false,:id=> subject.id)%></td>
     			 <td><%=h subject.name %></td>

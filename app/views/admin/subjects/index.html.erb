@@ -21,7 +21,7 @@
     <td><%=h subject.max_marks %></td>
     <td><%=h subject.passing_marks %></td>
     <td><%= h (subject.use_grade? ? "Yes" :"No")%>
-    <td><%= link_to 'Edit', edit_admin_subject_path(subject) %></td>
+    <td><%= link_to image_tag('edit.gif', :title=> "Edit"), edit_admin_subject_path(subject) %></td>
   </tr>
 <% end %>
 </table>

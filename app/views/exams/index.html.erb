@@ -34,7 +34,7 @@
      <td><%=h exam.name %></td>
     <td><%=change_format_to_long(exam.from_date)%></td>
      <td><%=change_format_to_long(exam.to_date)%></td>
-    <td><%= link_to 'Show', exam_path(exam) %></td>
+    <td><%= link_to '<img src="/images/view.gif" title="View"/>', exam_path(exam) %></td>
   </tr>
 <% end %>
 <%end%>

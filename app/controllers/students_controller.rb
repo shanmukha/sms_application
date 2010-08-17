@@ -10,11 +10,7 @@ class StudentsController < ApplicationController
     @search.user_id = admin.id 
     @search.status = "Active"  if !params[:search]
     @search.order ||= "descend_by_created_at"
-    #if params[:role] == "teacher" 
-    @students = Student.find(:all,:include => {:groups => 'school' }, :conditions =>['schools.id = ?', current_user.school_id]).paginate :page => params[:page], :per_page => 25
-    #else
-       @students = @search.all.paginate :page => params[:page],:per_page => 25
-    #end
+    @students = @search.all.paginate :page => params[:page],:per_page => 25
     @groups = admin.groups.find(:all,:conditions =>['status =?','Active'])
     respond_to do |format|
       format.html # index.html.erb

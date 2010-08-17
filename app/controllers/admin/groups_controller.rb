@@ -8,6 +8,9 @@ class Admin::GroupsController < ApplicationController
     @search.user_id = admin.id
     @search.order ||= "ascend_by_name_status"
     @groups = @search.all.paginate :page => params[:page],:per_page => 25
+    school = School.find(:first,:conditions=>['administrator_id=?',current_user.id])
+    @subjects = Subject.find(:all,:order => "created_at DESC",:conditions=>['school_id =?',school.id]).paginate :page => params[:page],:per_page => 25
+
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @groups }

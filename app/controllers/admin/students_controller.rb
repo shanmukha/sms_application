@@ -12,11 +12,7 @@ class Admin::StudentsController < ApplicationController
     @search.user_id = admin.id 
     @search.status = "Active"  if !params[:search]
     @search.order ||= "descend_by_created_at"
-    #if params[:role] == "teacher" 
-    @students = Student.find(:all,:include => {:groups => 'school' }, :conditions =>['schools.id = ?', current_user.school_id]).paginate :page => params[:page], :per_page => 25
-    #else
-       @students = @search.all.paginate :page => params[:page],:per_page => 25
-    #end
+    @students = @search.all.paginate :page => params[:page],:per_page => 25
     @groups = admin.groups.find(:all,:conditions =>['status =?','Active'])
     respond_to do |format|
       format.html # index.html.erb
@@ -147,7 +143,7 @@ end
   def import_students_create
   	@parsed_file =  CSV::Reader.parse(params[:students][:file])
     @parsed_file.each do |row|
-     	Student.create(:roll_number => row[0],:name => row[1],:parent => row[2],:address => row[3],:number => row[4],:email => row[5],:user_id => current_user.id) 
+     	Student.create(:name => row[0],:gender => row[1],:language => row[2],:blood_group => row[3],:dob => row [4],:student_mobile_number => row[5],:student_email => row[6],:admission_number => row[7],:date_of_admission => row[8],:mother => row[9],:mother_mobile => row[10],:father => row[11],:father_mobile => row[12],:guardian => row[13],:guardian_number => row[14],:email => row[15],:address => row[16],:number => row[17],:contact_name => row[18],:user_id => current_user.id) 
     end
      respond_to do |format|
      		flash[:notice] = 'Student record is successfully imported.'
