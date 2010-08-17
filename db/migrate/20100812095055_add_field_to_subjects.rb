@@ -6,4 +6,4 @@ class AddFieldToSubjects < ActiveRecord::Migration
 
   def self.down
   end
-ende 
+end
