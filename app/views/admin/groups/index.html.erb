@@ -38,7 +38,7 @@
     					<td><%= link_to '<img src="/images/view.gif" title="View"/>', admin_group_path(g)%> </td>
                                         <td><%= link_to image_tag('edit.gif', :title=> "Edit"), edit_admin_group_path(g) %>  </td>
                            
-                                        <td><%= link_to "Student list", admin_student_classes_path(:id => g.id) %>  </td>
+                                        <td><%= link_to "Student list", admin_group_student_classes_path(g.id) %>  </td>
   				</tr>
 			<% end %>
 			</table>

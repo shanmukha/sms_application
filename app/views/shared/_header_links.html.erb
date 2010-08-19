@@ -15,6 +15,11 @@
              <%end%>
              <li class='<%= request.request_uri == "/helps"? 'active': 'link' %>'> <%= link_to "Help", helps_path %> | </li>
           	  <li><%= link_to "Logout", logout_path %></li> 
+            <br /><br /><br />
+                 <%admin = current_user.has_role?('admin') ? current_user : User.find(current_user.parent_id)%> 
+		         <%school = School.find(:first,:conditions=>['administrator_id=?',admin.id])%>
+                 <%academic_year = AcademicYear.current_academic_year_school(school.id)%>
+                 <%= academic_year.identification_name%>  
               </ul>
        <%else%>
               <ul>

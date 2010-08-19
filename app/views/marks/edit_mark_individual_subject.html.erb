@@ -1,0 +1,29 @@
+<div class='form_wrapper'>
+  <div class ="create_new">
+
+<% form_for (:mark, :url=> update_mark_individual_subject_mark_path(:exam_id => @exam.id,:group_id => @group.id,:subject_id => @subject.id),:html => {:method =>:put}) do |f| %>
+  <table width="40%">
+  <%= hidden_field_tag("exam_id",@exam.id)%>
+ <%= hidden_field_tag("group_id",@group.id)%>
+<tr> 
+   <th> Student name</th>
+   
+<th> <%=@subject.name%></th>
+  
+</tr>
+ <%@group.students.find(:all).each do |student|%>
+   <tr><td> <%=student.name%></td>
+
+  <td><%= text_field_tag("marks[#{student.id}][#{@subject.id}]mark",find_mark(@group,@exam,@subject,student),:class => "text-small") %></td>
+
+</tr>
+<% end %>
+ </table>
+<div id="exams"></div>
+  <span>
+    <%= f.submit 'Update' %>
+  </span>
+
+<% end %>
+</div>
+</div>

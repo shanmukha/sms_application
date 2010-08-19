@@ -2,7 +2,7 @@ class Admin::StudentClassesController < ApplicationController
 before_filter :check_admin_role
  layout "admin"
  def index
-  @group = Group.find(params[:id])
+  @group = Group.find(params[:group_id])
   @students = @group.students.find(:all)
 end
 
@@ -30,7 +30,7 @@ end
       end
        Group.copy_students_from_group(params[:group_id],@group,current_user) unless params[:group_id].blank?
        flash[:notice] = "#{@group.name} record is successfully created."
-       format.html { redirect_to(admin_student_classes_url(:id => @group.id)) }
+       format.html { redirect_to(admin_group_student_classes_url(@group.id)) }
        format.xml  { render :xml => @group, :status => :created, :location => @group }
      end
    end
@@ -53,7 +53,7 @@ end
           end
         end
         flash[:notice] = "#{@group.name} is successfully updated."
-        format.html { redirect_to(admin_student_classes_url(:id => @group.id)) }
+        format.html { redirect_to(admin_group_student_classes_url(@group.id)) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

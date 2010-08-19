@@ -28,14 +28,15 @@
 <%else%>
   <%= link_to "Edit marks",edit_group_exam_mark_path(group.id,@exam.id,1)%>
 <%end%>
-       <tr> <th> Subject </th> <th> Maximum mark </th> <th>  Passing mark </th><th>From</th><th>To</th> </tr>
+       <tr> <th> Subject </th> <th> Maximum mark </th> <th>  Passing mark </th><th>Exam date</th><th>From time</th><th>To time</th> </tr>
        <% ExamSubject.find(:all, :conditions => ['group_id = ? and exam_id = ?', group.id, @exam.id ]).each do |exam_subject| %>
          <tr>
              <td><%= exam_subject.subject.name%></td>
              <td> <%= exam_subject.maximum_marks %></td>
              <td> <%= exam_subject.passing_marks %></td>
-              <td> <%= exam_subject.from_date.strftime('%d-%m-%Y %H:%M') %></td>
-               <td> <%= exam_subject.to_date.strftime('%d-%m-%Y %H:%M') %></td>
+              <td> <%= exam_subject.exam_date.strftime('%d-%m-%Y') unless exam_subject.exam_date.nil? %></td>
+               <td> <%= exam_subject.from_time.strftime('%H:%M') unless exam_subject.from_time.nil? %></td>
+               <td> <%= exam_subject.to_time.strftime('%H:%M') unless exam_subject.to_time.nil? %></td>
          </tr>
        <%end%>
        

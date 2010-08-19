@@ -24,11 +24,22 @@
   <%find_exam_groups(exam).each do |group|%>
   <br />
   <%= group.name%>
+  
 <%if find_marks(exam,group).blank?%> 
 <%= link_to "Enter marks",new_group_exam_mark_path(group.id,exam.id)%>
 <%else%>
   <%= link_to "Edit marks",edit_group_exam_mark_path(group.id,exam.id,1)%>
   <%end%>
+
+<%group.subjects.find(:all).each do |subject|%>
+<br />
+   <%= subject.name%>
+<%if find_subject_marks(exam,group,subject).blank?%>
+    <%= link_to "Enter Mark",mark_individual_subject_group_exam_mark_path(group.id,exam.id,subject.id)%>
+   <%else%>
+  <%= link_to "Edit marks",edit_mark_individual_subject_group_exam_mark_path(group.id,exam.id,subject.id)%>
+  <%end%>
+<%end%>
 <%end%>
 </td>
      <td><%=h exam.name %></td>

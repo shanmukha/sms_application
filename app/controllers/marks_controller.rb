@@ -78,5 +78,42 @@ class MarksController < ApplicationController
         page.replace_html 'exams', :partial => 'group_exams'
      end
    end 
-
+   def mark_individual_subject
+     @exam = Exam.find(params[:exam_id])
+     @group = Group.find(params[:group_id])
+     @subject = Subject.find(params[:id])
+  end
+   def create_mark_individual_subject
+      @exam = Exam.find(params[:exam_id])
+     @group = Group.find(params[:group_id])
+     @subject = Subject.find(params[:subject_id])
+        @group.students.find(:all).each do|student|
+      	Mark.create(:student_id => student.id,:exam_id =>@exam.id,:group_id =>@group.id,:subject_id =>@subject.id,:mark => params[:marks]["#{student.id}"]["#{@subject.id}"][:mark])
+   end
+   flash[:notice] = 'Mark was successfully created.'
+    redirect_to exam_path(@exam.id)
+  end
+  def edit_mark_individual_subject
+    @exam = Exam.find(params[:exam_id])
+    @group = Group.find(params[:group_id])
+    @subject = Subject.find(params[:id])
+    @students = @group.students.find(:all)
+ end
+  def update_mark_individual_subject
+   @exam = Exam.find(params[:exam_id])
+    @group = Group.find(params[:group_id])
+    @subject = Subject.find(params[:id])
+    @group.students.find(:all).each do|student|
+       get_marks(@exam,@group,@subject,student).each do|mark|
+     mark.destroy
+    end
+     Mark.create(:student_id => student.id,:exam_id =>@exam.id,:group_id =>@group.id,:subject_id =>@subject.id,:mark => params[:marks]["#{student.id}"]["#{@subject.id}"][:mark])
+   end
+   flash[:notice] = 'Mark was successfully created.'
+    redirect_to exam_path(@exam.id)
+  end
+    private
+  def get_marks(exam,group,subject,student)
+     Mark.find(:all,:conditions => ['exam_id =? and group_id =? and subject_id =? and student_id =?',exam.id,group.id,subject.id,student.id])
+ end
 end

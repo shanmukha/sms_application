@@ -30,8 +30,9 @@
      <th>Subject name</th>
      <th>Maximum marks</th>
      <th>Passing marks</th> 
-     <th>From</th>
-     <th>To</th>
+      <th>Exam date</th>
+     <th>From time</th>
+     <th>To time</th>
     </tr>
  <%@array =[]%>
   <%clas.subjects.find(:all).each do |subject|%>
@@ -40,11 +41,11 @@
      <td><%=h subject.name%></td>
      <td><%= text_field_tag("class[#{clas.id}][#{subject.id}]max_marks",subject.max_marks) %></td> 
      <td><%= text_field_tag("class[#{clas.id}][#{subject.id}]passing_marks",subject.passing_marks)%></td>
-       <td width ="100%"><%= text_field_tag("class[#{clas.id}][#{subject.id}]from_date","#{@exam.from_date} 00:00:00")%></td>
-      <td><%= text_field_tag("class[#{clas.id}][#{subject.id}]to_date","#{@exam.to_date} 00:00:00")%></td>
+      <td width ="100%">  <%= date_select "class[#{clas.id}][#{subject.id}]exam_date", "exam_date",:default => find_exam_date(clas,subject,@exam)%></td>
+    <td width ="100%">   <%= time_select "class[#{clas.id}][#{subject.id}]from_time", "from_time",{:default => find_from_time(clas,subject,@exam) ,:ignore_date => true }%></td>
+      <td width ="100%">   <%= time_select "class[#{clas.id}][#{subject.id}]to_time", "to_time",{:default => find_to_time(clas,subject,@exam),:ignore_date => true }%></td>
 
-<%@array << "#class_#{clas.id}_#{subject.id}from_date"%>
-<%@array << "#class_#{clas.id}_#{subject.id}to_date"%>
+
    </tr>     
    <%end%>
   </table>

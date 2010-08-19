@@ -10,8 +10,20 @@ module ExamsHelper
  def find_marks(exam,group)
   Mark.find(:all,:conditions=>['exam_id =? and group_id =?',exam.id,group.id]) 
  end
+ def find_subject_marks(exam,group,subject)
+   Mark.find(:all,:conditions=>['exam_id =? and group_id =? and subject_id =?',exam.id,group.id,subject.id]) 
+ end
  def find_exam_groups(exam)
   groups = exam.groups.find(:all,:conditions=>['status =?','Active']) rescue ""
   return groups
+end
+ def find_exam_date(clas,subject,exam)
+   ExamSubject.find(:first,:conditions =>['group_id =? and subject_id =? and exam_id =?',clas.id,subject.id,exam.id]).exam_date rescue ""
+ end
+  def find_from_time(clas,subject,exam)
+       ExamSubject.find(:first,:conditions =>['group_id =? and subject_id =? and exam_id =?',clas.id,subject.id,exam.id]).from_time rescue ""
+end
+def find_to_time(clas,subject,exam)
+       ExamSubject.find(:first,:conditions =>['group_id =? and subject_id =? and exam_id =?',clas.id,subject.id,exam.id]).to_time rescue ""
 end
 end
