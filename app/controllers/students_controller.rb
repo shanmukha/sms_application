@@ -1,4 +1,5 @@
 class StudentsController < ApplicationController
+  require 'gchart'
   layout proc{ |c| ['student_details'].include?(c.action_name)? 'parent' : 'main'}
   #layout "main",:except => [:import_students_new]
   #layout "parent",:only =>[:student_details]
@@ -29,7 +30,8 @@ class StudentsController < ApplicationController
     @schedules = @student.schedules.find(:all) 
     from_date = "#{academic_year.from_date} 00:00:00"
     to_date = "#{academic_year.to_date} 23:59:59"   
-    @marks = @student.marks.find(:all,:conditions => ['created_at >= ? and created_at <= ?',from_date,to_date]) 
+    @marks = @student.marks.find(:all,:conditions => ['created_at >= ? and created_at <= ?',from_date,to_date])
+    @exam_names = Exam.find_exam_names_and_percentage(academic_year,school)
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @student }
