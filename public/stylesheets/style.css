@@ -959,6 +959,11 @@ table.mark_listing tr.even:hover{
         margin-top: 10px;
         width: 100%;
 }
+.create_new_class
+{ 
+    width:75%;
+     float:left;
+}
 
 .create_new span input{
 

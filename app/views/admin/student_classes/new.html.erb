@@ -1,6 +1,6 @@
 <% form_for(:student_class,:url => admin_student_classes_path(:id => @group.id),:html => {:method => :post,:id =>'main-form'} )do |f| %>
 <%= f.error_messages %>
-<div class="create_new">
+<div class="create_new_class">
 	<fieldset>
   	             <div id = 'students_list'>
               <label> Select students from below list or <%= link_to_function "Copy students from another class", "$('#copy_students').show(); $('#students_list').hide(); return false;" %> </label> 
@@ -11,7 +11,7 @@
                      <th>Contact name</th>
                       <th>Contact mobile</th> 
 		     </tr>
-   		  <%current_user.students.find(:all).each do |student| %>
+   		  <%@students.each do |student| %>
   		     <tr class="<%=cycle("odd", "even")%>">
        			 <td><%= check_box_tag("students[]", student.id, false,:id=> student.id)%></td>
     			 <td><%=h student.name %></td>
@@ -20,6 +20,7 @@
 			 </tr>	
     		  <%end%>
 		</table>
+<div id="pg"><%=will_paginate @students%>	</div>
               </div>
     		
         <p id = 'copy_students' style ="display:none">  
@@ -28,11 +29,34 @@
         </p>
       <br />
       <span>
-    	 <%= f.submit 'Create record' %> or <%= link_to_function "Cancel",
-		"jQuery('#top').hide(); jQuery('#button').show(); return false;"%>
+    	 <%= f.submit 'Create record' %> or <%= link_to "Cancel",admin_group_student_classes_path(@group.id)%>
   	 </span>
   	</fieldset>  
 </div>
 
 <% end %>
+
+<div class="sidebar">
+		<h1>Search</h1>
+		<% form_for @search do |t| %>
+		 <table>
+    			<tr>
+      				<th>student name</th>
+			</tr>
+				<td><%= t.text_field :name_like %></td>
+			</tr>
+			<tr>
+       				<th>Date of admission</th>
+			</tr>
+			<tr>
+				<td><%= t.text_field :date_of_admission_like%></td>
+			</tr>
+			<tr>
+       				<td class="btn"><%= t.submit "Search" %> <input type="reset" value="Reset"></td>
+  			</tr>
+  		</table>
+  		<%end%>
+	</div>
+
+<div class="clear" ></div>
 

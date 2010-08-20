@@ -1,5 +1,5 @@
 <div class = 'form_wrapper'>
-<div class = 'right'><%= link_to image_tag("closelabel.gif", :title=> "close"), admin_student_classes_url(:id => @group.id) %> </div>
+<div class = 'right'><%= link_to image_tag("closelabel.gif", :title=> "close"), admin_student_classes_url(:group_id => @group.id) %> </div>
 <h1 class = 'heading'>Editing class record</h1>	
 <fieldset>
 	<% form_for([:admin,@group],:url => admin_student_class_path(@group),:html => {:multipart => true} ) do |f| %>

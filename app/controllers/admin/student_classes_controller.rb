@@ -7,12 +7,13 @@ before_filter :check_admin_role
 end
 
 def new
-  @group = Group.find(params[:id])
-  @students = current_user.students.find(:all,:conditions =>['status =?','Active'])
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @group }
- end
+  @group = Group.find(params[:group_id])
+   @search =  Student.search(params[:search]) 
+   @search.user_id = current_user.id
+   @search.status = 'Active'
+   @students = @search.all.paginate :page => params[:page],:per_page => 2
+    
+
 end
  def create
   #@group = current_user.groups.new(params[:student_class])
