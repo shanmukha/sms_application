@@ -1,6 +1,4 @@
 class Group < ActiveRecord::Base
- acts_as_tree :order => "name"
- #has_and_belongs_to_many :students
  belongs_to :user
  has_many :marks 
  has_many :messages
@@ -8,7 +6,6 @@ class Group < ActiveRecord::Base
  has_many :emails
  has_many :letters
  has_many :subjects
- #has_many :exams
  has_many :student_classes
  has_many :students,:through => :student_classes
  has_many :exam_classes
@@ -18,7 +15,9 @@ class Group < ActiveRecord::Base
  belongs_to :school
  validates_presence_of  :name
  attr_accessible :name
- #copy students from another group
+ fires :new_group, :on => :create, :actor => :user
+ fires :edit_group, :on => :update, :actor => :user
+#copy students from another group
   def self.copy_students_from_group(group_id,group,current_user)
      school = School.find(:first,:conditions=>['administrator_id=?',current_user.id])
      academic_year = AcademicYear.current_academic_year_school(school.id)
@@ -43,13 +42,14 @@ class Group < ActiveRecord::Base
   end
   
   def self.find_group_all_subjects(group_id,current_user)
-       @group = current_user.groups.find(group_id)
+       school = School.find(:first,:conditions=>['administrator_id=?',current_user.id])
+       @group = school.groups.find(group_id)
        @group_subjects = @group.subjects.find(:all)
        group_subject_ids = @group.subjects.find(:all).map{|h|h.id}
       unless group_subject_ids.blank?
-       @non_group_subjects = current_user.subjects.find(:all,:conditions => ['id not IN (?)',group_subject_ids])
+       @non_group_subjects = school.subjects.find(:all,:conditions => ['id not IN (?)',group_subject_ids])
      else
-       @non_group_subjects = current_user.subjects.find(:all)
+       @non_group_subjects = school.subjects.find(:all)
      end
     return @group,@group_subjects,@non_group_subjects
   end   

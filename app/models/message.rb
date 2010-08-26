@@ -9,5 +9,5 @@ class Message < ActiveRecord::Base
  attr_accessor :message_id, :scheduled_date
 
  validates_presence_of :message_body
- 
+ fires :new_message, :on => :create, :actor => :user
 	end

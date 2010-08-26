@@ -119,24 +119,11 @@
                <tr>
   			<th>Email:</th>
   			<td><%=h @student.email %></td>
-
-
-  		</tr> 
-        	
-        
-  		</table>
-
-
-
-
-
-
-
-
-                <br /><br />
+       </tr> 
+        	</table>
+          <br /><br />
   		<%unless @messages.blank?%>
-
-  		<h1 class='heading'>Total delivered messages -<%= @messages.blank? ? 0 : @messages.size%></h1>
+         <h1 class='heading'>Total delivered messages -<%= @messages.blank? ? 0 : @messages.size%></h1>
   		<table class="listing">
   		<tr>
     			<th>Sent date</th>
@@ -162,10 +149,9 @@
 <%end%>
 <%unless @schedules.blank?%>
 <h1 class='heading'>Total scheduled messages -<%= @schedules.blank? ? 0 : @schedules.size%></h1>
- 
  <table class="listing">
   		<tr>
-  		<th>Created by</th>
+  		       <th>Created by</th>
     			<th>Schedule date</th>
     			<th>Time</th>
     			<th>Message</th>
@@ -231,26 +217,42 @@
 	<%end%>
  <%unless @marks.blank?%>
    <h1 class='heading'>Marks</h1>
-		<table class ="listing">
+		<% @exams.each do |exam|%>
+         <h1 class='heading'> <%= exam.name%></h1><br />
+<table class ="listing">
   		<tr>
-  		    <th>Exam</th>
-    			<th>Subject</th>
-    			<th>Mark</th>
+  		    
+        <th>Subject</th>
+        <th>Maximum marks</th>
+        <th>Passing marks</th>
+    	<th>Score</th>
     		
   		</tr>
-		<% @marks.each do |mark| %>
+         <%total_max_marks =0%>
+          <%total_score=0%>
+   		<% exam.marks.find(:all,:conditions =>['created_at >= ? and created_at <= ? and student_id =?',@from_date,@to_date,@student.id]).each do |mark| %>
   		<tr class="<%=cycle("odd", "even")%>">
-  		    <td><%= mark.exam.name%></td>
-    			<td><%= mark.subject.name%></td>
-     			<td><%= mark.mark %></td>
+  		    <td><%= mark.subject.name%></td>
+               <td><%= mark.subject.max_marks%></td>
+                <%total_max_marks+= mark.subject.max_marks%>
+                <td><%= mark.subject.passing_marks%></td>
+      			<td><%= mark.mark %></td>
+                <%total_score+= mark.mark%>
     			 		</tr>
-		<% end %>
+           <% end %>
+        <tr><td>Total score:<%= total_score%></td>
+            <td>Total max marks:<%= total_max_marks%> </td>
+            <td>Percentage:<%= total_score/total_max_marks.to_f*100%>% </td>
+</tr>
 	</table>
+<% end %> 
 	<%end%>
+<p>
+<%unless @exam_names.blank?%>
 <%= image_tag Gchart.line(:size => '900x320',
 :title => "Performance Graph",
 :bg => 'efefef',
-:axis_with_labels => 'x',
+:axis_with_labels => 'x,y',
 :axis_labels => @exam_names,
 :bar_colors => '458B74,C1CDCD,838B8B,000000,FFEBCD,0000FF,A52A2A,DEB887,8B7355,FF4040,98F5FF,7FFF00,D2691E,458B00,
 8B4513,FF7F50,8B3E2F,6495ED,FFF8DC,8B8878,DC143C,00FFFF,00CDCD,008B8B,00008B,B8860B,FFB90F,CD950C,8B6508,A9A9A9,
@@ -268,10 +270,11 @@ FFFFE0,CDCDB4,32CD32,FF00FF,A2B5CD,8B008B,8B8B7A,66CDAA,B03060,0000CD,BA55D3,937
 B4EEB4,698B69,483D8B,2F4F4F,97FFFF,79CDCD,2F4F4F,9400D3,FF1493,8B0A50,CD1076,00BFFF,00688B,696969,B22222,FF3030,
 8B1A1A,228B22,FFD700,DCDCDC,CDAD00,8B7500,DAA520',
 :stacked => false,
+:max_value => 100,
 :data =>@percentages) %>
-
-
-
+ </p>
+<%end%>
 <div class ="clear">
   		</div>
 </div>
+

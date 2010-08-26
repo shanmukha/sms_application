@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100812095055) do
+ActiveRecord::Schema.define(:version => 20100826094319) do
 
   create_table "academic_years", :force => true do |t|
     t.date     "from_date"
@@ -63,8 +63,9 @@ ActiveRecord::Schema.define(:version => 20100812095055) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "subject_id"
-    t.datetime "to_date"
-    t.datetime "from_date"
+    t.date     "exam_date"
+    t.time     "from_time"
+    t.time     "to_time"
   end
 
   create_table "exams", :force => true do |t|
@@ -256,6 +257,18 @@ ActiveRecord::Schema.define(:version => 20100812095055) do
     t.string   "name"
     t.text     "description"
     t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "timeline_events", :force => true do |t|
+    t.string   "event_type"
+    t.string   "subject_type"
+    t.string   "actor_type"
+    t.string   "secondary_subject_type"
+    t.integer  "subject_id"
+    t.integer  "actor_id"
+    t.integer  "secondary_subject_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

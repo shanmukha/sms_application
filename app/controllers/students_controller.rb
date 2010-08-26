@@ -28,10 +28,10 @@ class StudentsController < ApplicationController
     @messages = Student.find_student_messages(@student)
     @letters = @student.letters.find(:all)
     @schedules = @student.schedules.find(:all) 
-    from_date = "#{academic_year.from_date} 00:00:00"
-    to_date = "#{academic_year.to_date} 23:59:59"   
-    @marks = @student.marks.find(:all,:conditions => ['created_at >= ? and created_at <= ?',from_date,to_date])
-    @exam_names,@percentages = Exam.find_exam_names_and_percentage(@student,academic_year,school)
+    @from_date = "#{academic_year.from_date} 00:00:00"
+    @to_date = "#{academic_year.to_date} 23:59:59"   
+    @marks = @student.marks.find(:all,:conditions => ['created_at >= ? and created_at <= ?',@from_date,@to_date])
+    @exam_names,@percentages,@exams = Exam.find_exam_names_and_percentage(@student,academic_year,school)
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @student }

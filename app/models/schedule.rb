@@ -11,4 +11,6 @@ class Schedule < ActiveRecord::Base
  attr_accessible :scheduled_date,:message_body,:scheduled_time,:group_id,:status,:sms_id,:number,:tag_id
  attr_accessor :message_id
  validates_presence_of :scheduled_date,:message_body,:scheduled_time
+ fires :new_schedule, :on => :create, :actor => :user
+   
 end

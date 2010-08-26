@@ -5,4 +5,5 @@ class Letter < ActiveRecord::Base
   belongs_to :letter
   belongs_to :group
   validates_presence_of  :reference, :content,:group_id
+  fires :new_letter, :on => :create, :actor => :user
 end

@@ -4,6 +4,7 @@ class Email < ActiveRecord::Base
   belongs_to :user
   belongs_to :group
   validates_presence_of  :subject,:body,:group_id
+   fires :new_email, :on => :create, :actor => :user
 end 
  
  
