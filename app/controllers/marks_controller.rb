@@ -25,14 +25,14 @@ class MarksController < ApplicationController
     @mark = Mark.find(:first)
     @exam = Exam.find(params[:exam_id])
     @group = Group.find(params[:group_id])
-    @students = @group.students.find(:all)
+    @students = @group.students.find(:all,:conditions =>['status =?','Active'])
   end
 
 
   def create
       exam = Exam.find(params[:exam_id])
       group = Group.find(params[:group_id])
-      group.students.find(:all).each do|student|
+      group.students.find(:all,:conditions =>['status =?','Active']).each do|student|
       	exam.subjects.find(:all).each do|subject|
         Mark.create(:student_id => student.id,:exam_id =>exam.id,:group_id =>group.id,:subject_id =>subject.id,:mark => params[:marks]["#{student.id}"]["#{subject.id}"][:mark])
    end
@@ -50,7 +50,7 @@ class MarksController < ApplicationController
      mark.destroy
      end
     respond_to do |format|
-      group.students.find(:all).each do|student|
+      group.students.find(:all,:conditions =>['status =?','Active']).each do|student|
       	exam.subjects.find(:all).each do|subject|
         Mark.create(:student_id => student.id,:exam_id =>exam.id,:group_id =>group.id,:subject_id =>subject.id,:mark => params[:marks]["#{student.id}"]["#{subject.id}"][:mark])
    end
@@ -87,7 +87,7 @@ class MarksController < ApplicationController
       @exam = Exam.find(params[:exam_id])
      @group = Group.find(params[:group_id])
      @subject = Subject.find(params[:subject_id])
-        @group.students.find(:all).each do|student|
+        @group.students.find(:all,:conditions =>['status =?','Active']).each do|student|
       	Mark.create(:student_id => student.id,:exam_id =>@exam.id,:group_id =>@group.id,:subject_id =>@subject.id,:mark => params[:marks]["#{student.id}"]["#{@subject.id}"][:mark])
    end
    flash[:notice] = 'Mark was successfully created.'
@@ -97,13 +97,13 @@ class MarksController < ApplicationController
     @exam = Exam.find(params[:exam_id])
     @group = Group.find(params[:group_id])
     @subject = Subject.find(params[:id])
-    @students = @group.students.find(:all)
+    @students = @group.students.find(:all,:conditions =>['status =?','Active'])
  end
   def update_mark_individual_subject
    @exam = Exam.find(params[:exam_id])
     @group = Group.find(params[:group_id])
     @subject = Subject.find(params[:id])
-    @group.students.find(:all).each do|student|
+    @group.students.find(:all,:conditions =>['status =?','Active']).each do|student|
        get_marks(@exam,@group,@subject,student).each do|mark|
      mark.destroy
     end

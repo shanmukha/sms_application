@@ -87,12 +87,19 @@
   	                </tr>
                        </table>
                
-  		<span> <%= f.submit 'Update' %></span>
+  		<span> <%= f.submit 'Update' %></span><%= link_to "Back",:back%>
 	</fieldset>
       </div>
      
   <%end%>
-
+<%if current_user.has_role?('admin')%>
+	      
+               <%if @student.status=='Active'%>
+                  <td><span> <%= button_to 'Make this student inactive', make_inactive_admin_student_path(@student.id),:method => :get %> </span></td>
+               <%else%>
+                  <td><span><%= button_to 'Make this student active', make_active_admin_student_path(@student.id),:method => :get %></span></td> 
+               <%end%>
+             <%end%>
 </div>
 <script type="text/javascript">
        	jQuery(function() {

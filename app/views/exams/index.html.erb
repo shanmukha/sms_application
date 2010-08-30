@@ -23,7 +23,7 @@
     <td><%=h exam.exam_type %>
   <%find_exam_groups(exam).each do |group|%>
   <br />
-  <%= group.name%>
+  <b><%= group.name%></b>
   
 <%if find_marks(exam,group).blank?%> 
 <%= link_to "Enter marks",new_group_exam_mark_path(group.id,exam.id)%>

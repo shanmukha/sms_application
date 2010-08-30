@@ -10,4 +10,4 @@ class Message < ActiveRecord::Base
 
  validates_presence_of :message_body
  fires :new_message, :on => :create, :actor => :user
-	end
+end

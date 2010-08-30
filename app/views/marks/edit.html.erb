@@ -6,14 +6,14 @@
   <%= hidden_field_tag("exam_id",@exam.id)%>
  <%= hidden_field_tag("group_id",@group.id)%>
 <tr> 
-   <th> Student name</th>
-   <%@exam.subjects.find(:all).each do |subject|%>
+   <th> <b>Student name</b></th>
+   <%@exam.subjects.find(:all,:group => :name).each do |subject|%>
 <th> <%=subject.name%></th>
    <%end%>   
 </tr>
- <%@group.students.find(:all).each do |student|%>
+ <%@group.students.find(:all,:group => :name,:conditions =>['status =?','Active']).each do |student|%>
    <tr><td> <%=student.name%></td>
-<%@exam.subjects.find(:all).each do |subject|%>
+<%@exam.subjects.find(:all,:group => :name).each do |subject|%>
   <td><%= text_field_tag("marks[#{student.id}][#{subject.id}]mark",find_mark(@group,@exam,subject,student),:class => "text-small") %></td>
   <%end%>
 </tr>

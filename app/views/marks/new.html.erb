@@ -4,14 +4,14 @@
 <% form_for (:mark, :url=>marks_path(:exam_id => @exam.id,:group_id => @group.id), :html => {:id => 'main-form'}) do |f| %>
   <table width="40%"> 
 <tr> 
-   <th> Student name</th>
-   <%@exam.subjects.find(:all).each do |subject|%>
+   <th><b> Student name</b></th>
+   <%@exam.subjects.find(:all,:group => :name).each do |subject|%>
 <th> <%=subject.name%></th>
    <%end%>   
 </tr>
- <%@group.students.find(:all).each do |student|%>
+ <%@group.students.find(:all,:group => :name,:conditions =>['status =?','Active']).each do |student|%>
    <tr><td> <%=student.name%></td>
-<%@exam.subjects.find(:all).each do |subject|%>
+<%@exam.subjects.find(:all,:group => :name).each do |subject|%>
   <td><%= text_field_tag("marks[#{student.id}][#{subject.id}]mark",'',:class => "text-small") %></td>
   <%end%>
 </tr>
