@@ -96,13 +96,13 @@ h1.heading {font-size:18px;
 }
 h1.heading span{color: #c8287b;}
 
-h2.heading {font-size:15px;
+h2.heading {
+        font-size:15px;
 	color: #005ca1;
 	font-family : "arial", helvetica, sans-serif;
 	font-weight:bold;
 	padding:0px 0px 5px 0px;
 	letter-spacing:1px;
-        margin-left :5px;
 }
 
 .button_small {
