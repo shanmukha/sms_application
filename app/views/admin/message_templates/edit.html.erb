@@ -1,6 +1,6 @@
 <div class = 'right'><%= link_to image_tag("closelabel.gif", :title=> "close") ,:back%> </div>
 <div class="clear"></div>
-<div class="Edit_show">
+<div class="create_new form_wrapper">
 	<fieldset>
 	<% form_for(@message_template,:url => admin_message_template_path(@message_template),:html => {:multipart => true} ) do |f| %>
 	
@@ -16,9 +16,9 @@
   		
   		<p><%= f.label :Tag_name %><br />
   		  <%= f.select :tag_id, all_tags, options={:prompt =>@message_template.tag_id} %>
-  		<p>
-    			<span><%= f.submit 'Update' %></span>
   		</p>
+    			<span><%= f.submit 'Update' %></span>
+  		
 		<% end %>
 	</fieldset>
 </div>

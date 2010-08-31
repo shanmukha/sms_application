@@ -1,4 +1,3 @@
-<div class='form_wrapper'>
 <div id = 'top' style ="display:none ; clear:both">
      <div class = 'right'> 
         <%= link_to_function image_tag("cancel.gif", :title=> "Cancel"), "jQuery('#top').hide(); jQuery('#button').show(); return false;" %> 
@@ -15,14 +14,10 @@
            </span>
        </div>
  <h1 class ="heading left">Listing all message tags</h1>
-  <div class="clear"></div>
+ <div class="clear"></div>
   </div>
 
- <% form_for @search do |f| %>
- 	  		 &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;Tag name:&nbsp; <%= f.text_field :name_like %>
-		<span><%= f.submit "Search" %> </span></div>
-<%end%>
-  <br />
+<hr />
  <div id="listing_file">
 <table class ="listing">
   <tr>
@@ -42,8 +37,19 @@
 <%= will_paginate @tags%>
 <br />
 </div>
+<div class="sidebar">
+ <h1>Search </h1>
+ <% form_for @search do |f| %>
+<table>
+<tr><th>Tag name</th></tr>
+ 	 <tr><td> 		 <%= f.text_field :name_like %></td></tr>
+		<tr><td class="btn"><%= f.submit "Search" %> </td></tr>
+</table>
+<%end%>
+  
+</div>
 
   <div class="clear"></div>
-  </div>
+
 
 

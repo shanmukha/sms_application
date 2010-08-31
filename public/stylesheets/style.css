@@ -903,6 +903,7 @@ table.mark_listing tr.even:hover{
     	border:1px solid #ddd;
     	width:18.5%;
     	float:right;
+	min-height: 500px;
         background: #f6f5f0;
         padding: 10px;
 }

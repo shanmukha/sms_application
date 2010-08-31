@@ -1,17 +1,13 @@
-<div class='form_wrapper'>
-  <div>
+<div id = 'listing-top'>
     <%if current_user.has_role?('admin') && !current_user.has_role?('super_admin')%>
       <span class ='right'><%= link_to "<span>New teacher</span>", new_admin_user_path(:role =>'teacher',:school_id=>@school.id) , :class => 'buttonAdd'%></span>
     <%end%>
     <h1 class ="heading left">Listing teachers</h1>
     <div class="clear"></div>
-  </div>
+</div>
 
-<% form_for @search do |f| %>
- 	    Name:&nbsp;<%= f.text_field :name_like %>
-		<span><%= f.submit "Search" %></span>
-<%end%>
-
+<hr />
+<div id="listing_file">
 <table class="listing">
   <tr>
     <th>Name</th>
@@ -32,7 +28,23 @@
 <% end %>
 </table>
 <div id="pg"><%= will_paginate @users%></div>
-<br />
+</div>
+<div class="sidebar">
+ <h1>Search </h1>
+<% form_for @search do |f| %>
+<table>
+  <tr>
+    <th>Teacher name</th>
+  </tr>
+  <tr>
+    <td><%= f.text_field :name_like %></td>
+  </tr>
+  <tr>
+    <td class="btn"><%= f.submit "Search" %></td>
+  </tr>
+</table>
+<%end%>
+</div>
 <div class="clear"></div>
-</div>
-</div>
+
+

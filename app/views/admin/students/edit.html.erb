@@ -1,91 +1,82 @@
-
 <%= stylesheet_link_tag 'style','redmond/jquery-ui-1.7.2.custom'%>
   	<%=javascript_include_tag 'jquery-1.3.2.min','jquery-ui-1.7.2.custom.min','jrails','datepicker','jquery.cookie','jquery.simplyCountable.js','facebox','jquery.corner','dropdown.js'%>
 <hr />
-<div class="create_new">
+<div class='form_wrapper'>
+  <div class="create_new">
   <% form_for([:admin,@student],:url => admin_student_path(@student),:html => {:id => 'main-form'}) do |f| %>
-  <div class = 'left part1'>
-      <h2 class="heading">Student Details</h2><br/>
-	<fieldset>
-	   <%= f.error_messages %>
-		<table width="100%" cellspacing ="20px" cellpadding ="20px">
-                       <tr>
-    			<td><%= f.label :Student_name %><br />
-    			<%= f.text_field :name %></td>
+    <br/><h2 class="heading">Student Details</h2>
+      <fieldset>
+        <%= f.error_messages %>
+	  <div class = 'left'>
+            <p><%= f.label :Student_name %><br />
+    	    <%= f.text_field :name %></p>
+             
+            <p><%= f.label :Student_name %><br />
+    	    <%= f.text_field :name %></p>
   		        
-    			<td><%= f.label :Gender %><br />
-    			<%= f.select :gender,[['Male','male'],['Female','female']] %></td>
-                      </tr>
-  	               <tr>
-                       <td><%= f.label :Language %><br />
-    			<%= f.text_field :language %></td>
-  		        <td><%= f.label :Blood_group %><br />
-    			<%= f.text_field :blood_group %></td>
-                       </tr>
-                         <tr>
-    			 <td><%= f.label :Date_of_birth %><br />
-                         <%= f.text_field :dob,:class =>'textbox-small' ,:id => 'date4'%></td>
-                         <td><%= f.label :Student_mobile_number %><br />
-    			<%= f.text_field :student_mobile_number %></td>
-                         </tr>  
-  		        <tr>
-    		          <td><%= f.label :Student_email %><br />
-    			  <%= f.text_field :student_email %></td>
-  		         </tr></table>
-                       <h2 class="heading">Admission Details</h2><br/>
-                       <table width="100%">
-                        <tr>
-    			  <td><%= f.label :admission_number %><br />
-       			 <%= f.text_field :admission_number%></td>
-                          <td><%= f.label :Date_of_admission %><br />
-                          <%= f.text_field :date_of_admission,:class =>'textbox-small' ,:id => 'date2'%></td>                     </tr>
-                        
-                         </table>
-                  <h2 class="heading">Parent Details</h2><br/>
-                <table width="100%">
-    			<tr>
-                         <td><%= f.label :Mother_name %><br />
-    			<%= f.text_field :mother %></td>
-  		 
-        	        <td><%= f.label :Mother_mobile %><br />
-    			<%= f.text_field :mother_mobile %></td>
-                        </tr>  
-  		
-                        <tr>            
-    			<td><%= f.label :Father_name %><br />
-    			<%= f.text_field :father %></td>
-  		
-                       <td>
-    			<%= f.label :Father_mobile %><br />
-    			<%= f.text_field :father_mobile %></td>
-                       </tr>
-  		        <tr>
-    			<td><%= f.label :Guardian_name %><br />
-    			<%= f.text_field :guardian %></td>
-  		
-<p>
-    			<td><%= f.label :Guardian_mobile %><br />
-    			<%= f.text_field :guardian_number %></td>
-                     </tr>
-  		      <tr>
-                        <td><%= f.label :email %><br />
-    			<%= f.text_field :email %></td>
-  		
-                        
-    			<td><%= f.label :address %><br />
-    			<%= f.text_area :address %></td>
-                         </tr>   		      
-   		        
-    			<tr>
-                         <td><%= f.label :Contact_mobile %><br />
-    			<%= f.text_field :number %></td>
-                
-                      <td>
-    			<%= f.label :Contact_name %><br />
-    			<%= f.text_field :contact_name %></td>
+    	    <p><%= f.label :Gender %><br />
+    	    <%= f.select :gender,[['Male','male'],['Female','female']] %></p>
+                                
+            <p><%= f.label :Language %><br />
+    	    <%= f.text_field :language %></p>
 
-  	                </tr>
-                       </table>
+	    <p><%= f.label :Blood_group %><br />
+    	    <%= f.text_field :blood_group %></p>
+                                 
+    	    <p><%= f.label :Date_of_birth %><br />
+            <%= f.text_field :dob,:class =>'textbox-small' ,:id => 'date4'%></p>
+
+            <p><%= f.label :Student_mobile_number %><br />
+    	    <%= f.text_field :student_mobile_number %></p>
+                            
+            <p><%= f.label :Student_email %><br />
+    	    <%= f.text_field :student_email %></p>
+  		        
+            <br/><h2 class="heading">Admission Details</h2>
+              <div class="left">
+                <p><%= f.label :admission_number %><br />
+       		<%= f.text_field :admission_number%></p>
+              </div>
+              <div class="left" style="padding-left:30px;">
+                <p><%= f.label :Date_of_admission %><br /><%= f.text_field :date_of_admission,:class =>'textbox-small' ,:id => 'date2'%><p> 
+              </div>                    
+              <br/><h2 class="heading">Parent Details</h2>
+              <div class = 'left'>
+                <p><%= f.label :Mother_name %><br />
+    			<%= f.text_field :mother %></p>
+
+                 <p><%= f.label :Father_name %><br />
+    			<%= f.text_field :father %></p>
+
+                 <p><%= f.label :Guardian_name %><br />
+    			<%= f.text_field :guardian %></p>
+
+                <p><%= f.label :email %><br />
+    			<%= f.text_field :email %></p>
+
+                <p><%= f.label :Contact_mobile %><br />
+    			<%= f.text_field :number %></p>
+
+              </div>
+
+              <div class = 'left' style="padding-left:30px;">
+                 <p><%= f.label :Mother_mobile %><br />
+    			<%= f.text_field :mother_mobile %></p>
+
+                 <p><%= f.label :Father_mobile %><br />
+    			<%= f.text_field :father_mobile %></p>
+
+		<p><%= f.label :Guardian_mobile %><br />
+    			<%= f.text_field :guardian_number %></p>
+
+		<p><%= f.label :address %><br />
+    			<%= f.text_area :address %></p>
+
+                <p><%= f.label :Contact_name %><br />
+    			<%= f.text_field :contact_name %></p>
+
+              </div>
+              <div class="clear"></div>
                
   		<span> <%= f.submit 'Update' %></span><%= link_to "Back",:back%>
 	</fieldset>
@@ -95,11 +86,12 @@
 <%if current_user.has_role?('admin')%>
 	      
                <%if @student.status=='Active'%>
-                  <td><span> <%= button_to 'Make this student inactive', make_inactive_admin_student_path(@student.id),:method => :get %> </span></td>
+                  <span> <%= button_to 'Make this student inactive', make_inactive_admin_student_path(@student.id),:method => :get %> </span>
                <%else%>
-                  <td><span><%= button_to 'Make this student active', make_active_admin_student_path(@student.id),:method => :get %></span></td> 
+                 <span><%= button_to 'Make this student active', make_active_admin_student_path(@student.id),:method => :get %></span>
                <%end%>
              <%end%>
+</div>
 </div>
 <script type="text/javascript">
        	jQuery(function() {
@@ -118,4 +110,4 @@
 			  jQuery("#date4").datepicker({showOn: 'button', buttonImage: '/images/calendar.gif', buttonImageOnly: true, altField: '#date4', altFormat: 'dd-mm-yy' }) 
 			  });
 	</script>
-<div class="clear">
+<div class="clear"></div>
