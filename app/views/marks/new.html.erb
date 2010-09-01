@@ -1,6 +1,6 @@
 <div class='form_wrapper'>
   <div class ="create_new">
-
+  <h1 class='heading'> <%= @exam.name%></h1>
 <% form_for (:mark, :url=>marks_path(:exam_id => @exam.id,:group_id => @group.id), :html => {:id => 'main-form'}) do |f| %>
   <table width="40%"> 
 <tr> 
@@ -9,9 +9,9 @@
 <th> <%=subject.name%></th>
    <%end%>   
 </tr>
- <%@group.students.find(:all,:group => :name,:conditions =>['status =?','Active']).each do |student|%>
+ <%find_group_studnets(@group).each do |student|%>
    <tr><td> <%=student.name%></td>
-<%@exam.subjects.find(:all,:group => :name).each do |subject|%>
+<%find_exam_subjects(@exam).each do |subject|%>
   <td><%= text_field_tag("marks[#{student.id}][#{subject.id}]mark",'',:class => "text-small") %></td>
   <%end%>
 </tr>
@@ -19,9 +19,17 @@
  </table>
 <div id="exams"></div>
   <span>
-    <%= f.submit 'Create' %>
+    <%= f.submit 'Create' %><%=link_to "Back",:back%>
   </span>
 
 <% end %>
 </div>
 </div>
+
+
+
+
+
+
+
+

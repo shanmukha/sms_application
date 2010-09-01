@@ -1,6 +1,6 @@
 <div class='form_wrapper'>
   <div class ="create_new">
-
+<h1 class='heading'> <%= @exam.name%></h1>
 <% form_for (:mark, :url=> update_mark_individual_subject_mark_path(:exam_id => @exam.id,:group_id => @group.id,:subject_id => @subject.id),:html => {:method =>:put}) do |f| %>
   <table width="40%">
   <%= hidden_field_tag("exam_id",@exam.id)%>
@@ -21,7 +21,7 @@
  </table>
 <div id="exams"></div>
   <span>
-    <%= f.submit 'Update' %>
+    <%= f.submit 'Update' %><%=link_to "Back",:back%>
   </span>
 
 <% end %>
