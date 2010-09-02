@@ -1,34 +1,34 @@
 <div class="form_wrapper">
   <h1 class ='heading'><%= "#{@user.name}'s account"%></h1>
-<table class="show_page">
-<tr>
-  <th>Name:</th>
-  <td><%=h @user.name %></td>
-</tr>
+  <table class="show_page">
+    <tr>
+      <th>Name:</th>
+      <td><%=h @user.name %></td>
+    </tr>
 
-<tr>
-  <th>User name:</th>
-  <td><%=h @user.username %></td>
-</tr>
+    <tr>
+      <th>User name:</th>
+      <td><%=h @user.username %></td>
+   </tr>
 
-<tr>
-<th>Password:</th>
-   <td>**************</td>
-</tr>
- 
+   <tr>
+     <th>Password:</th>
+     <td>**************</td>
+   </tr>
 
+   <tr>
+     <th>Designation:</th>
+     <td><%=h @user.designation %></td>
+   </tr>
 
-<tr>
-  <th>Designation:</th>
-  <td><%=h @user.designation %></td>
-</tr>
+   <tr>
+     <th>Email:</th>
+     <td><%=h @user.mail_id%></td>
+   </tr>
 
-<tr>
-  <th>Email:</th>
-   <td><%=h @user.mail_id%></td>
-  </tr>
- </table> 
-<table><tr><td><%= button_to 'Edit record', edit_admin_user_path(@user),:method => :get %> &nbsp;</td>
-<td><%= button_to 'Delete record', admin_user_path(@user), :confirm => 'Are you sure?', :method => :delete %></td>
-</tr></table>
+   <tr>
+     <td class="btn"><%= button_to 'Edit record', edit_admin_user_path(@user),:method => :get %> &nbsp;</td>
+     <td class="btn"><%= button_to 'Delete record', admin_user_path(@user), :confirm => 'Are you sure?', :method => :delete %></td>
+   </tr>
+  </table>
 </div>

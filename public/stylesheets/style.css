@@ -60,8 +60,7 @@ color: #bbb;
 background-color: #fff;
 border-top: 1px solid #ddd;
 border-bottom: 1px solid #fafbfc;
-width: 98.4%;
-margin: 12px 0px 20px 10px;
+margin: 12px 0px 20px 0px;
 
 }
 
@@ -156,7 +155,7 @@ h2.heading {
 
 #wrapper{ 
         background: #ffffff url('/images/content_bg.gif') repeat-x top;
-        padding: 15px 0px 10px 0px;
+        padding: 15px 10px;
         
 }
 
@@ -544,6 +543,8 @@ color:#0e8ab8;
 
 
 /*---------------------------------Table styles ---------------------*/
+
+
 
 .listing { 
 	border-collapse: collapse;
@@ -1041,6 +1042,8 @@ table.mark_listing tr.even:hover{
 	margin:7px 0px 6px 5px;
 }
 
+.create_new label{width:200px;}
+
 
 /*......................................................Show-page..............................*/
 
@@ -1068,7 +1071,7 @@ table.show_page tr th{
 	color:#304a66;
 	font-family: Verdana, Helvetica, Arial;
 	font-weight:bold;
-	text-align:left;
+	text-align:right;
 	padding:10px 10px 10px 5px;
 }
 
@@ -1078,8 +1081,20 @@ table.show_page tr td{
 	font-family: Verdana, Helvetica, Arial;
 	font-weight:normal;
 	text-align:left;
-        padding:10px 10px 10px 5px;
+    padding:10px 10px 10px 5px;
 }
+
+table.show_page tr td.btn input{
+	margin:5px 5px 5px 0px;
+	padding:5px 10px 5px 10px;
+	color:#1e476d;
+	font-size:13px;
+	font-weight:bold;
+	font-family: Verdana, Helvetica, Arial;
+}
+
+table.show_page tr td.btn input:hover{}
+
  table.show_page tr td.blue{
     color: #004e9d;
 
@@ -1550,3 +1565,96 @@ p.disclaimer b {color:red}
 {
  width: 90px;
 }
+
+.marklisting { 
+	border-collapse: collapse;
+        width: 99.5%;
+        color: #000;
+	margin: 0px 5px 0px 4px;
+      	float:left;
+        border: 1px solid #ccc;
+      
+}
+
+.marklisting th {
+	  background: #2693d2/* url(/images/table_header.jpg) repeat-x*/;
+          color: #fff;
+          text-align: left;
+
+          padding: 0.5em .5em .5em .5em;
+          font-weight: bold; 
+ 	  font-size:13px;
+	  letter-spacing:1px;
+          border: 1px solid #ccc;
+
+}
+.marklisting tr{margin:5px 0px;}
+ 
+.marklisting td { 
+        padding: 0.6em .5em .6em .5em;
+	color: #000; 
+	font-size:13px;
+        vertical-align: center;
+    
+	
+}
+
+.marklisting tr.odd {
+      background-color:#fff;
+
+      
+}
+.marklisting tr.even {background-color:#fff;}
+
+
+
+.marklisting tr.odd1 {
+      background-color:#fff; 
+}
+
+.marklisting tr.even1 {
+      background-color:#fff;
+
+      
+}
+
+
+
+.marklisting tr.bt{border-bottom:2px solid #ddd;}
+
+
+.marks{padding:0px;margin:0px 0px;width:100%;}
+.marks p{margin:5px 0px;}
+.marks a{padding-left:5px;text-decoration:none;font-size:11px;}
+.marks span{border:1px solid #ddd;margin:5px 10px 5px 0px; padding:2px 5px;line-height:40px;}
+
+h3.exam{font-size:15px;color:#333;}
+
+.form_style tr td{padding:10px;}
+
+.form_style span input:hover{}
+
+.form_style span a{
+	text-decoration:underline;
+	font-family: Verdana, Helvetica, Arial;
+	padding:5px;
+	font-size:13px;
+	color:#000;
+}
+.form_style tr th{width:180px;text-align:right;}
+.form_style tr td input{
+	border:1px solid #8a8b8c;
+	padding:5px;
+	width:250px;
+	background:#fff url(/images/input.png) repeat-x bottom;
+	
+}
+
+
+.form_style tr td textarea {
+	border:1px solid #8a8b8c;
+	padding:2px;
+	background:#fff url(/images/input.png) repeat-x bottom;
+	width:250px;
+}
+

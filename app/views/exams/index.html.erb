@@ -1,52 +1,66 @@
 <div id = 'listing-top'>
-    <%if current_user.has_role?('admin')%>
-      <span class ='right'><%= link_to "<span>New exam</span>", new_exam_path, :class => 'buttonAdd'%></span>
-    <%end%>
-    <h1 class ="heading left">Listing exams</h1>
-    <div class="clear"></div>
-  </div>
+  <%if current_user.has_role?('admin')%>
+    <span class ='right'><%= link_to "<span>New exam</span>", new_exam_path, :class => 'buttonAdd'%></span>
+  <%end%>
+  <h1 class ="heading left">Listing exams</h1>
+  <div class="clear"></div>
+</div>
 
 <div id="listing_file">
-<table class="listing">
-  <tr>
-   <th>Exam type</th>
-    <th>Name</th>
-    <th>From date</th>
+  <table class="marklisting">
+   <tr class="<%=cycle("odd","even")%>">
+      <th>Exam type</th>
+      <th>Name</th>
+      <th>From date</th>
       <th>To date</th>
       <th>Action</th>
-  </tr>
-
-<%unless @exams.blank?%>
-<% @exams.each do |exam| %>
-  <tr class="<%=cycle("odd", "even")%>">
-   
-    <td><%=h exam.exam_type %>
-  <%find_exam_groups(exam).each do |group|%>
-  <br />
-  <b><%= group.name%></b>
+    </tr> <tr class="<%=cycle("odd","even")%>">
+   <%unless @exams.blank?%>
+   <% @exams.each do |exam| %>
   
-<%if find_marks(exam,group).blank?%> 
-<%= link_to "Enter marks",new_group_exam_mark_path(group.id,exam.id)%>
-<%else%>
-  <%= link_to "Edit marks",edit_group_exam_mark_path(group.id,exam.id,1)%>
-  <%end%>
-
-<%group.subjects.find(:all).each do |subject|%>
-<br />
-   <%= subject.name%>
-<%if find_subject_marks(exam,group,subject).blank?%>
-    <%= link_to "Enter Mark",mark_individual_subject_group_exam_mark_path(group.id,exam.id,subject.id)%>
-   <%else%>
-  <%= link_to "Edit marks",edit_mark_individual_subject_group_exam_mark_path(group.id,exam.id,subject.id)%>
-  <%end%>
-<%end%>
-<%end%>
-</td>
+      <td>
+        <%=h exam.exam_type %>
+     </td>
      <td><%=h exam.name %></td>
-    <td><%=change_format_to_long(exam.from_date)%></td>
+     <td><%=change_format_to_long(exam.from_date)%></td>
      <td><%=change_format_to_long(exam.to_date)%></td>
-    <td><%= link_to '<img src="/images/view.gif" title="View"/>', exam_path(exam) %></td>
-  </tr>
+     <td><%= link_to '<img src="/images/view.gif" title="View"/>', exam_path(exam) %></td>
+   </tr>
+  
+   <tr class="bt">
+   <td colspan="5">
+  <%find_exam_groups(exam).each do |group|%>
+     
+	 <div class="marks">
+       <br /> <p> <b><%= group.name%></b>
+         <%if find_marks(exam,group).blank?%> 
+              <%= link_to "Enter marks for an entire class",new_group_exam_mark_path(group.id,exam.id)%>
+         <%else%>
+              <%= link_to "Edit marks",edit_group_exam_mark_path(group.id,exam.id,1)%>
+         <%end%></p>
+
+         <%group.subjects.find(:all).each do |subject|%>
+          <span> <%= subject.name%>
+         <%if find_subject_marks(exam,group,subject).blank?%>
+            <%= link_to "Enter Mark",mark_individual_subject_group_exam_mark_path(group.id,exam.id,subject.id)%>
+         <%else%>
+            <%= link_to "Edit marks",edit_mark_individual_subject_group_exam_mark_path(group.id,exam.id,subject.id)%>
+         <%end%>
+     </span>
+    <%end%>
+  </div>
+     
+ <%end%>
+
+
+</td>
+</tr>
+
+
+
+
+
+
 <% end %>
 <%end%>
 </table><br/>
