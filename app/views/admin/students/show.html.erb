@@ -3,193 +3,152 @@
  <div class = 'right'><%= link_to image_tag("closelabel.gif", :title=> "close"),admin_students_path%> </div>
  <div class="clear" ></div>	
 <hr />
-
-<table class="show_page" >
-               
-		<tr>
-  			<th>Student Name:</th>
-  			<td><%=h @student.name %></td>
-		</tr>
-             <tr>
-  			<th>Class:</th>
-        	<td><%= find_groups(@student)%></td>
-</tr>     
-			<tr>
-  			<th>Status:</th>
-  			<td><%=h @student.status %></td>
-		</tr>
-		
-		<tr>
-  			<th>Gender:</th>
-  			<td><%=h @student.gender %></td>
-		</tr>
-		<tr>
-  			<th>Language:</th>
-  			<td><%=h @student.language %></td>
-		</tr>
-		
-  		<tr>
-  			<th> Student email:</th>
-  			<td><%=h @student.student_email %></td>
-  		</tr>
-               <tr>
-  			<th> Student mobile number:</th>
-  			<td><%=h @student.student_mobile_number %></td>
-
-
-  		</tr>
-                  <tr>
-  			<th> Blood group:</th>
-  			<td><%=h @student.blood_group %></td>
-
-
-  		</tr>
-               <tr>
-  			<th>Date of birth:</th>
-  			<td><%=h @student.dob.strftime('%d-%m-%Y') unless @student.dob.nil? %></td>
-
-
-  		</tr>
-               
-                    <tr>
-  			<th>Admission number:</th>
-  			<td><%=h @student.admission_number %></td>
-		</tr>
-                 <tr>
-  			<th>Date of admission:</th>
-  			<td><%=h @student.date_of_admission.strftime('%d-%m-%Y') unless @student.date_of_admission.nil? %></td>
-
-
-  		</tr>
-               
-            
-                  <tr>
-  			<th>Mother name:</th>
-  			<td><%=h @student.mother %></td>
-
-
-  		</tr> 
-                  
-                 <tr>
-  			<th>Mother mobile:</th>
-  			<td><%=h @student.mother_mobile %></td>
-
-
-  		</tr> 
-
-                    <tr>
-  			<th>Father name:</th>
-  			<td><%=h @student.father%></td>
-
-
-  		</tr> 
-
-  	              <tr>
-  			<th>Father mobile:</th>
-  			<td><%=h @student.father_mobile %></td>
-
-
-  		</tr> 
-
-     <tr>
-  			<th>Guardian name:</th>
-  			<td><%=h @student.guardian %></td>
-
-
-  		</tr> 
-
-          <tr>
-  			<th>Guardian Mobile:</th>
-  			<td><%=h @student.guardian_number %></td>
-
-
-  		</tr> 
-            <tr>
-  			<th>Contact mobile:</th>
-  			<td><%=h @student.number %></td>
-  		</tr>
-                 <tr>
-  			<th>Contact name:</th>
-  			<td><%=h @student.contact_name %></td>
-  		</tr>
-  		<tr> 
-  			<th>Address:</th>
-  			<td><%=h @student.address %></td>
-  		</tr>
-               <tr>
-  			<th>Email:</th>
-  			<td><%=h @student.email %></td>
-
-
-  		</tr> 
-
-        	
-                 		</table>
-
-
-
-
-
-
-
-
-                <br /><br />
-  		<%unless @messages.blank?%>
-
-  		<h1 class='heading'>Total delivered messages -<%= @messages.blank? ? 0 : @messages.size%></h1>
-  		<table class="listing">
-  		<tr>
-    			<th>Sent date</th>
-    			<th>Sent by</th>
-    			<th>Message</th>
-    			<th>Sent to.</th>
-           <th>View</th>
-  		</tr>
+<div class="left">
+<table class="show_page" >         
+  <tr>
+    <th>Student Name:</th>
+  	<td><%=h @student.name %></td>
+  </tr>
+  <tr>
+    <th>Class:</th>
+    <td><%= find_groups(@student)%></td>
+  </tr>     
+  <tr>
+    <th>Status:</th>
+  	<td><%=h @student.status %></td>
+  </tr>	
+  <tr>
+    <th>Gender:</th>
+  	<td><%=h @student.gender %></td>
+  </tr>
+  <tr>
+    <th>Language:</th>
+  	<td><%=h @student.language %></td>
+  </tr>
+  <tr>
+    <th>Student email:</th>
+  	<td><%=h @student.student_email %></td>
+  </tr>
+  <tr>
+    <th>Student mobile number:</th>
+  	<td><%=h @student.student_mobile_number %></td>
+  </tr>
+  <tr>
+    <th> Blood group:</th>
+  	<td><%=h @student.blood_group %></td>
+  </tr>
+  <tr>
+    <th>Date of birth:</th>
+  	<td><%=h @student.dob.strftime('%d-%m-%Y') unless @student.dob.nil? %></td>
+  </tr>
+  <tr>
+    <th>Admission number:</th>
+  	<td><%=h @student.admission_number %></td>
+  </tr>
+  <tr>
+    <th>Date of admission:</th>
+  	<td><%=h @student.date_of_admission.strftime('%d-%m-%Y') unless @student.date_of_admission.nil? %></td>
+  </tr>
+ </table>
+</div>
+<div class="right">
+ <table class="show_page">
+  <tr>
+    <th>Mother name:</th>
+  	<td><%=h @student.mother %></td>
+  </tr> 
+  <tr>
+    <th>Mother mobile:</th>
+  	<td><%=h @student.mother_mobile %></td>
+  </tr> 
+  <tr>
+    <th>Father name:</th>
+  	<td><%=h @student.father%></td>
+  </tr> 
+  <tr>
+    <th>Father mobile:</th>
+  	<td><%=h @student.father_mobile %></td>
+  </tr> 
+  <tr>
+    <th>Guardian name:</th>
+  	<td><%=h @student.guardian %></td>
+  </tr> 
+  <tr>
+    <th>Guardian Mobile:</th>
+  	<td><%=h @student.guardian_number %></td>
+  </tr> 
+  <tr>
+    <th>Contact mobile:</th>
+  	<td><%=h @student.number %></td>
+  </tr>
+  <tr>
+    <th>Contact name:</th>
+  	<td><%=h @student.contact_name %></td>
+  </tr>
+  <tr> 
+    <th>Address:</th>
+  	<td><%=h @student.address %></td>
+  </tr>
+  <tr>
+    <th>Email:</th>
+  	<td><%=h @student.email %></td>
+  </tr> 
+ </table>
+</div>
+<div class="clear"></div>
+ <br /><br />
+ <%unless @messages.blank?%>
+  <h1 class='heading'>Total delivered messages -<%= @messages.blank? ? 0 : @messages.size%></h1>
+  <table class="listing">
+    <tr>
+      <th>Sent date</th>
+      <th>Sent by</th>
+      <th>Message</th>
+      <th>Sent to.</th>
+      <th>View</th>
+  	</tr>
    <% @messages.each do |message| %>
-  		<tr class="<%=cycle("odd", "even")%>">
-    			<td><%=h Time.parse(message.created_at.to_s).strftime('%Y-%m-%d') %></td>
-    			<td><%= message.user.name%></td>
-    			<td><%=h message_body_filter(message.message_body)%></td>
-    			<%unless message.group_id.nil?%>
-    			<td><%=h message.group.name%></td>
-    			<%else%>
-    			 <td><%=h message.number%></td>
-    			<%end%>
-    			<td class="view"><%= link_to '<img src="/images/view.gif" title="View"/>', student_message_show_admin_student_path(:message_id => message,:student_id => @student)%></td>
-  		</tr>
-  		<%end%>
-</table>
-<%end%>
+  	 <tr class="<%=cycle("odd", "even")%>">
+    	<td><%=h Time.parse(message.created_at.to_s).strftime('%Y-%m-%d') %></td>
+    	<td><%= message.user.name%></td>
+    	<td><%=h message_body_filter(message.message_body)%></td>
+    	<%unless message.group_id.nil?%>
+    	<td><%=h message.group.name%></td>
+    	<%else%>
+    	<td><%=h message.number%></td>
+    	<%end%>
+    	<td class="view"><%= link_to '<img src="/images/view.gif" title="View"/>', student_message_show_admin_student_path(:message_id => message,:student_id => @student)%></td>
+  	</tr>
+  	<%end%>
+  </table>
+ <%end%>
 <%unless @schedules.blank?%>
 <h1 class='heading'>Total scheduled messages -<%= @schedules.blank? ? 0 : @schedules.size%></h1>
- 
- <table class="listing">
-  		<tr>
-  		<th>Created by</th>
-    			<th>Schedule date</th>
-    			<th>Time</th>
-    			<th>Message</th>
-    			<th>sent to</th>
-    			<th>View</th> 
-  		</tr>
-		<% @schedules.each do |schedule| %>
-  		   <tr class="<%=cycle("odd", "even")%>">
-  		    <td><%= schedule.user.name%></td>
-    			<td><%=h schedule.scheduled_date%></td>
-    			<td><%= Time.parse(schedule.scheduled_time.to_s).strftime('%H:%M') %></td>
-    			<td><%=h message_body_filter(schedule.message_body)%></td>
-    		   <%unless schedule.group_id.nil?%>
-    			    <td><%=h schedule.group.name%></td>
-    			  <%else%>
-    			    <td><%=h schedule.number%></td>
-    			 <%end%>
-    		   	  <td class="view"><%= link_to '<img src="/images/view.gif" title="View"/>',student_schedule_show_admin_student_path(:schedule_id => schedule,:student_id => @student)%></td>
+  <table class="listing">
+    <tr>
+  	  <th>Created by</th>
+      <th>Schedule date</th>
+      <th>Time</th>
+      <th>Message</th>
+      <th>sent to</th>
+      <th>View</th> 
+  	 </tr>
+	 <% @schedules.each do |schedule| %>
+  	 <tr class="<%=cycle("odd", "even")%>">
+  	   <td><%= schedule.user.name%></td>
+       <td><%=h schedule.scheduled_date%></td>
+       <td><%= Time.parse(schedule.scheduled_time.to_s).strftime('%H:%M') %></td>
+       <td><%=h message_body_filter(schedule.message_body)%></td>
+    	<%unless schedule.group_id.nil?%>
+       <td><%=h schedule.group.name%></td>
+    	<%else%>
+    	<td><%=h schedule.number%></td>
+    	<%end%>
+    	<td class="view"><%= link_to '<img src="/images/view.gif" title="View"/>',student_schedule_show_admin_student_path(:schedule_id => schedule,:student_id => @student)%></td>
   		</tr>
 		<% end %>
-	</table>
+	 </table>
 <%end%>
-
-
 <%unless @emails.blank?%>
 <h1 class='heading'>Total sent emails -<%= @emails.blank? ? 0 : @emails.size%></h1>
 <table class ="listing">
@@ -231,10 +190,9 @@
 	</table>
 	<%end%>
 <%unless @marks.blank?%>
-   <h1 class='heading'>Marks</h1>
-		
-        <% @exams.each do |exam|%>
-         <h1 class='heading'> <%= exam.name%></h1><br />
+   <h1 class='heading'>Marks</h1><hr />
+   <% @exams.each do |exam|%>
+   <h3 class="exam_name"><%= exam.name%></h3><div class="clear"></div>
 <table class ="listing">
   		<tr>
   		    
@@ -261,8 +219,11 @@
             <td>Percentage:<%= total_score/total_max_marks.to_f*100%>% </td>
 </tr>
 	</table>
-<% end %> 
+
+<% end %>
+
 	<%end%>
+
 <p>
 <%unless @exam_names.blank?%>
 <%= image_tag Gchart.line(:size => '900x320',
@@ -293,4 +254,4 @@ B4EEB4,698B69,483D8B,2F4F4F,97FFFF,79CDCD,2F4F4F,9400D3,FF1493,8B0A50,CD1076,00B
 <div class ="clear">
   		</div>
 </div>
-</div>
+

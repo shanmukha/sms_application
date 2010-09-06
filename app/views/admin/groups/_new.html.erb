@@ -1,11 +1,11 @@
 <% form_for(:group,:url => admin_groups_path,:html => {:method => :post,:id =>'main-form'} )do |f| %>
 <%= f.error_messages %>
-<div class="create_new">
-	<fieldset>
-  	   <p>
-   	      <%= f.label :class_name %><br />
-    	      <%= f.text_field :name %>
-  	   </p>
+  	   <table class="form_style">
+         <tr>
+   	      <th><%= f.label :class_name %></th>
+    	  <td><%= f.text_field :name %></td>
+         </tr>
+  	   </table>
 	   <br />
 
            <div id = 'students_list'>
@@ -28,12 +28,12 @@
               </div>
     		
        
-      <span>
+      <div class="btns"><span>
     	 <%= f.submit 'Create record' %> or <%= link_to_function "Cancel",
 		"jQuery('#top').hide(); jQuery('#button').show(); return false;"%>
   	 </span>
-  	</fieldset>  
-</div>
+     </div>
+ 
 
 <% end %>
 
