@@ -1,4 +1,3 @@
-<div class ='form_wrapper'>
  <h1 class ='heading'>Monthly report</h1>
  <hr /><br />
  <% form_for(:report, :url => admin_month_reports_path, :html => {:id => 'main-form',:method => :get}) do |f| %>
@@ -10,26 +9,28 @@
   <br /><br />
 <div id = 'graph' style ="display:none ; clear:both; border: 1px solid #ccc; width: auto;">
    <%= render :partial =>"shared/pie_graph"%>
-   </div> 
-   <div id = "list">
+</div> 
+<div id = "list">
       <br /> 
-      <label>Communication <%= @month.blank? ? display('tm') : display(@month)%> </lablel
+      <label>Communication <%= @month.blank? ? display('tm') : display(@month)%></lablel
       <br /> <br />
     <table class="student_group" width="100%" border="1" cellpadding="5px">
      <tr>
-     <th>Communication</th>
-     <th>Total</th>
+       <th>Communication</th>
+       <th>Total</th>
      </tr>
      <tr>
-     <td> Message</td>
-<td> <%= @messages_size.nil? ? 0 : @messages_size%> </td>
-</tr>
- <tr><td>Letter</td>
- <td><%= @letters_size.nil? ? 0 : @letters_size%></td></tr>
- 
-<tr><td>Email</td>
- <td><%= @emails_size.nil? ? 0 : @emails_size%>
-</td></tr>
+       <td> Message</td>
+       <td> <%= @messages_size.nil? ? 0 : @messages_size%> </td>
+    </tr>
+    <tr>
+      <td>Letter</td>
+      <td><%= @letters_size.nil? ? 0 : @letters_size%></td>
+    </tr>
+    <tr>
+      <td>Email</td>
+      <td><%= @emails_size.nil? ? 0 : @emails_size%></td>
+   </tr>
 </table>
- </div>
-  </div>
+</div>
+

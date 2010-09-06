@@ -1,22 +1,21 @@
 <div class = 'right'><%= link_to image_tag("closelabel.gif", :title=> "close") ,:back%> </div>
-<div class="create_new form_wrapper">
-<% form_for(@tag,:url => admin_tag_path(@tag) ,:html => {:multipart => true}) do |f|%>
+  <% form_for(@tag,:url => admin_tag_path(@tag) ,:html => {:multipart => true}) do |f|%>
   <%= f.error_messages %>
-<fieldset>
-  <p>
-    <%= f.label :Tag_name %><br />
-    <%= f.text_field :name %>
-  </p>
-  <p>
-    <%= f.label :description %><br />
-    <%= f.text_area :description %>
-  </p>
-   <span>
-    <%= f.submit 'Update' %>
-</span>
+<table class="form_style">
+  <tr>
+    <th><%= f.label :Tag_name %></th>
+    <td><%= f.text_field :name %></td>
+  </tr>
+  <tr>
+    <th><%= f.label :description %></th>
+    <td><%= f.text_area :description %></td>
+  </tr>
+</table>
+   <div class="btns" style="margin-left:85px;">
+    <span><%= f.submit 'Update' %></span>
+   </div>
 <% end %>
 
-</fieldset>
 
-</div>
+
 
