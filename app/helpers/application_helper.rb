@@ -1,7 +1,7 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
  def message_body_filter(body)
-    body.slice!(0,40) + "..." unless body.nil?
+    body.slice!(0,400) + "..." unless body.nil?
   end
   
   def all_templates 

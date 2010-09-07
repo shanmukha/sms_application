@@ -3,7 +3,7 @@ margin : 0;
 padding : 0;
 border : 0;
 outline : 0;
-vertical-align : baseline;
+
 font-size:100%;
 font-style:normal;
 font-weight:normal;
@@ -642,7 +642,7 @@ color:#0e8ab8;
 
 #listing_file {
         background: #fff; /*url(/images/main_line_lt.gif) repeat-y;*/
-	      width:73%;
+	      width:74%;
       	float:left;
 	      margin: 0px 0px 15px 0px;
         padding-left: 15px;
@@ -1623,12 +1623,12 @@ p.disclaimer b {color:red}
 .marklisting tr.bt{border-bottom:2px solid #ddd;}
 
 
-.marks{padding:0px;margin:0px 0px;width:100%;}
+.marks{padding:0px;margin:0px 10px;width:275px;float:left;}
 .marks p{margin:5px 0px;}
 .marks a{padding-left:5px;text-decoration:none;font-size:11px;}
-.marks span{border:1px solid #ddd;margin:5px 10px 5px 0px; padding:2px 5px;line-height:40px;}
 
-h3.exam{font-size:18px;color:#333;padding:20px 0px 0px 0px;}
+
+h3.exam{font-size:18px;color:#a4397f;padding:0px 0px 0px 5px;}
 
 .form_style tr td{padding:10px;}
 
@@ -1675,4 +1675,79 @@ h3.exam{font-size:18px;color:#333;padding:20px 0px 0px 0px;}
 
 h3.exam_name{font-size:15px;font-weight:bold;margin:15px 0px 0px 0px;}
 
+
+.list { 
+	border-collapse: collapse;
+        width: 99.5%;
+        color: #000;
+	margin: 0px 5px 0px 4px;
+      
+        border: 1px solid #ccc;
+      
+}
+
+
+.list td { 
+        padding: 0.6em .5em .6em .5em;
+	color: #000; 
+	font-size:13px;
+        vertical-align: center;
+	
+}
+
+.list td h3{font-size:15px;color:#a4397f;font-weight:bold;line-height:30px;}
+
+
+.list tr.odd {
+      background-color:#fff;
+
+      
+}
+
+.list tr.even td {
+      border-top: #ddd 1px solid;
+      border-bottom: #ddd 1px solid;
+}
+
+.list tr.odd td {
+      border-top: #ddd 1px solid;
+      border-bottom: #ddd 1px solid;
+}
+
+.list tr.odd td {
+      border-top: #ddd 1px solid;
+      border-bottom: #ddd 1px solid;
+}
+
+
+.list tr:hover {
+      background-color:#fffbbd;
+      
+}
+
+.list tr.even{
+      background-color:#f3f8ff;
+               
+}
+
+.list tr.even:hover{
+      background-color:#fffbbd;
+               
+}
+
+.marklist { 
+	border-collapse: collapse;
+    width: 99.5%;
+    color: #000;
+    border: 1px solid #ccc;
+      
+}
+
+.marklist tr { border: 1px solid #ccc;}
+
+.marklist tr th {border-right:1px solid #ccc;padding:3px;}
+
+.box{border:1px solid #ece8ca;margin-bottom:30px;padding:10px 5px;background-color:#fffdf1;}
+
+.box h3{font-size:15px;color:#a4397f;padding:0px 0px 10px 0px;}
 

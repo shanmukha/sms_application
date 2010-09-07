@@ -5,31 +5,20 @@
   <h1 class ="heading left">Listing exams</h1>
   <div class="clear"></div>
 </div>
-
+<hr />
 <div id="listing_file">
-  <table class="marklisting">
-   <tr class="<%=cycle("odd","even")%>">
-      <th>Exam type</th>
-      <th>Name</th>
-      <th>From date</th>
-      <th>To date</th>
-      <th>Action</th>
-    </tr> <tr class="<%=cycle("odd","even")%>">
-   <%unless @exams.blank?%>
+
+<table class="list" border="1">
+<%unless @exams.blank?%>
    <% @exams.each do |exam| %>
-  
-      <td>
-        <%=h exam.exam_type %>
-     </td>
-     <td><%=h exam.name %></td>
-     <td><%=change_format_to_long(exam.from_date)%></td>
-     <td><%=change_format_to_long(exam.to_date)%></td>
-     <td><%= link_to '<img src="/images/view.gif" title="View"/>', exam_path(exam) %></td>
-   </tr>
-  
-   <tr class="bt">
-   <td colspan="5">
-  <%find_exam_groups(exam).each do |group|%>
+<tr class="<%=cycle("odd", "even")%>">
+<td valign="top">
+<div class="left"><h3> <%=h exam.exam_type %></h3><p>From : <%=change_format_to_long(exam.from_date)%></p></div>
+<div class="right"><h3><%=h exam.name %></h3><p>To : <%=change_format_to_long(exam.to_date)%></p></div>
+
+
+<div class="clear"></div>
+<%find_exam_groups(exam).each do |group|%>
      
 	 <div class="marks">
        <br /> <p> <b><%= group.name%></b>
@@ -38,35 +27,37 @@
          <%else%>
               <%= link_to "Edit marks",edit_group_exam_mark_path(group.id,exam.id,1)%>
          <%end%></p>
-
+<table class="marklist">
          <%group.subjects.find(:all).each do |subject|%>
-          <span> <%= subject.name%>
-         <%if find_subject_marks(exam,group,subject).blank?%>
+          <tr><th><%= subject.name%></th>
+         <td><%if find_subject_marks(exam,group,subject).blank?%>
             <%= link_to "Enter Mark",mark_individual_subject_group_exam_mark_path(group.id,exam.id,subject.id)%>
          <%else%>
-            <%= link_to "Edit marks",edit_mark_individual_subject_group_exam_mark_path(group.id,exam.id,subject.id)%>
-         <%end%>
-     </span>
-    <%end%>
+       <%= link_to "Edit marks",edit_mark_individual_subject_group_exam_mark_path(group.id,exam.id,subject.id)%>
+         <%end%></td>
+     </tr>
+    <%end%></table>
   </div>
      
  <%end%>
 
 
 </td>
+
+<td valign="top">
+<%= link_to '<img src="/images/view.gif" title="View"/>', exam_path(exam) %>
+</td>
 </tr>
-
-
-
-
-
-
 <% end %>
 <%end%>
-</table><br/>
+</table>
+
+
+
+
 <div id="pg"><%=will_paginate @exams%>	</div>
 
-</div
+</div>
 <div class="sidebar">
 	<h1>Search </h1>
 	<% form_for @search do |f| %>
@@ -100,4 +91,5 @@
   	<%end%>
 </div>
   <div class="clear" ></div>
+
 

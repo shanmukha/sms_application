@@ -1,7 +1,6 @@
-<div class = 'form_wrapper'> 
-  <h1 class = 'heading left'>Student details </h1>
-  <div class = 'right'><%= link_to image_tag("closelabel.gif", :title=> "close"),students_path%> </div>
-  <div class="clear" ></div>	
+<h1 class = 'heading left'>Student details </h1>
+<div class = 'right'><%= link_to image_tag("closelabel.gif", :title=> "close"),students_path%> </div>
+<div class="clear" ></div>	
 <hr />
 <div class="left">
 <table class="show_page" >         
@@ -95,32 +94,30 @@
   </tr> 
 </table>
 </div>
+
 <div class="clear"></div>
 <%unless @messages.blank?%>
   <h1 class='heading'>Total delivered messages -<%= @messages.blank? ? 0 : @messages.size%></h1>
-  <table class="listing">
-    <tr>
-  	  <th>Sent date</th>
-      <th>Sent by</th>
-      <th>Message</th>
-      <th>Sent to.</th>
-      <th>View</th>
-  	</tr>
    <% @messages.each do |message| %>
-  	<tr class="<%=cycle("odd", "even")%>">
-      <td><%=h Time.parse(message.created_at.to_s).strftime('%Y-%m-%d') %></td>
-      <td><%= message.user.name%></td>
-      <td><%=h message_body_filter(message.message_body)%></td>
+  	 <div class="box">
+      <div class="left"><h3>Sent date:<%=h Time.parse(message.created_at.to_s).strftime('%Y-%m-%d') %></h3></div>
+      <div class="left"><h3>Sent by:<%= message.user.name%></h3></div>
+      <div class="right">
       <%unless message.group_id.nil?%>
-      <td><%=h message.group.name%></td>
+        <h3>Sent to:<%=h message.group.name%></h3>
       <%else%>
-      <td><%=h message.number%></td>
+        <h3>Sent to:<%=h message.number%></h3>
       <%end%>
-      <td class="view"><%= link_to '<img src="/images/view.gif" title="View"/>', student_message_show_student_path(:message_id => message,:student_id => @student)%></td>
-  	</tr>
+      </div>
+      <div class="clear"></div>
+      <div class="left"><%=h message_body_filter(message.message_body)%></div>
+       <div class="clear"></div>
+      <div class="right"><%= link_to '<img src="/images/view.gif" title="View"/>', student_message_show_student_path(:message_id => message,:student_id => @student)%></div>
+  	</div>
   	<%end%>
-  </table>
 <%end%>
+
+
 <%unless @schedules.blank?%>
   <h1 class='heading'>Total scheduled messages -<%= @schedules.blank? ? 0 : @schedules.size%></h1>
   <table class="listing">
@@ -148,6 +145,7 @@
 		<% end %>
   </table>
 <%end%>
+
 <%unless @emails.blank?%>
 <h1 class='heading'>Total sent emails -<%= @emails.blank? ? 0 : @emails.size%></h1>
 <table class ="listing">
@@ -168,56 +166,58 @@
 	<% end %>
 </table>
 <%end%>
+
 <%unless @letters.blank?%>
-  <h1 class='heading'>Total sent letters-<%= @letters.blank? ? 0 : @letters.size%></h1>
-  <table class ="listing">
-    <tr>
-  	  <th>Created by</th>
-      <th>Content</th>
-      <th>Class</th>
-      <th>View</th>
-  	</tr>
-		<% @letters.each do |letter| %>
-  	<tr class="<%=cycle("odd", "even")%>">
-  	  <td><%= letter.user.name%></td>
-      <td><%= message_body_filter(letter.content)%></td>
-      <td><%= letter.group.name %></td>
-      <td class="view"><%= link_to '<img src="/images/view.gif" title="View"/>', student_letter_show_student_path(:letter_id => letter,:student_id => @student)%></td>
-  	</tr>
-	<% end %>
-  </table>
-  <%end%>
-<%unless @marks.blank?%>
-  <h1 class='heading'>Marks</h1>
-	<% @exams.each do |exam|%>
-    <h3 class="exam"> <%= exam.name%></h3>
-<table class ="listing">
-  <tr>		    
-    <th>Subject</th>
-    <th>Maximum marks</th>
-    <th>Passing marks</th>
-    <th>Score</th>		
-  </tr>
-  <%total_max_marks =0%>
-  <%total_score=0%>
-  <% exam.marks.find(:all,:conditions =>['created_at >= ? and created_at <= ? and student_id =?',@from_date,@to_date,@student.id]).each do |mark| %>
-  <tr class="<%=cycle("odd", "even")%>">
-    <td><%= mark.subject.name%></td>
-    <td><%= mark.subject.max_marks%></td>
-    <%total_max_marks+= mark.subject.max_marks%>
-    <td><%= mark.subject.passing_marks%></td>
-    <td><%= mark.mark %></td>
-    <%total_score+= mark.mark%>
-  </tr>
+<br /><h1 class='heading'>Total sent letters-<%= @letters.blank? ? 0 : @letters.size%></h1>
+  <% @letters.each do |letter| %>
+    <div class="box">
+      <div class="left"><h3>Created by : <%= letter.user.name%></h3></div>
+      <div class="right"><h3><%= letter.group.name %></h3></div>
+      <div class="clear"></div>
+      <p><%= message_body_filter(letter.content)%></p>
+      <div class="right">
+        <p><%= link_to '<img src="/images/view.gif" title="View"/>', student_letter_show_student_path(:letter_id => letter,:student_id => @student)%></p>
+      </div>
+       <div class="clear"></div>
+    </div>
   <% end %>
-  <tr>
-    <td>Total score:<%= total_score%></td>
-    <td>Total max marks:<%= total_max_marks%> </td>
-    <td>Percentage:<%= total_score/total_max_marks.to_f*100%>% </td>
-  </tr>
-</table>
-<% end %> 
 <%end%>
+
+
+<%unless @marks.blank?%>
+<br /><h1 class='heading'>Marks</h1>
+<% @exams.each do |exam|%>
+  <div style="width:630px;float:left;min-height:320px;margin-right:15px;margin-top:10px;">
+    <h3 class="exam"><%= exam.name%></h3> 
+    <table class="listing" border="1">
+      <tr>		    
+        <td width="30%">Subject</td>
+        <td width="25%">Maximum marks</td>
+        <td width="25%">Passing marks</td>
+        <td width="18%">Score</td>		
+     </tr>
+   <%total_max_marks =0%>
+   <%total_score=0%>
+   <% exam.marks.find(:all,:conditions =>['created_at >= ? and created_at <= ? and student_id =?',@from_date,@to_date,@student.id]).each do |mark| %>
+     <tr>
+       <td><%= mark.subject.name%></td>
+       <td><%= mark.subject.max_marks%></td>
+       <%total_max_marks+= mark.subject.max_marks%>
+       <td><%= mark.subject.passing_marks%></td>
+       <td><%= mark.mark %></td>
+       <%total_score+= mark.mark%>
+    </tr>
+   <% end %>
+     <tr>
+       <td><b>Total score : <%= total_score%></b></td>
+       <td><b>Total max marks : <%= total_max_marks%></b></td>
+       <td><b>Percentage : <%= total_score/total_max_marks.to_f*100%>% </b></td>
+    </tr>
+   </table>
+  </div> 
+<% end %>
+<%end%>
+
 <p>
 <%unless @exam_names.blank?%>
 <%= image_tag Gchart.line(:size => '900x320',
@@ -248,5 +248,5 @@ B4EEB4,698B69,483D8B,2F4F4F,97FFFF,79CDCD,2F4F4F,9400D3,FF1493,8B0A50,CD1076,00B
 <div class ="clear">
   		</div>
 </div>
-</div>
+
 
