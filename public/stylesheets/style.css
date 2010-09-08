@@ -52,51 +52,51 @@ img {
 	border: none;
 }
 textarea{
-  height: 100px;
+   height: 100px;
 }
 
 hr {
-color: #bbb;
-background-color: #fff;
-border-top: 1px solid #ddd;
-border-bottom: 1px solid #fafbfc;
-margin: 12px 0px 20px 0px;
-
+	color: #bbb;
+	background-color: #fff;
+	border-top: 1px solid #ddd;
+	border-bottom: 1px solid #fafbfc;
+	margin: 12px 0px 20px 0px;
 }
 
 a:link, a:visited {
-color:#365D95;
-text-decoration:underline;
+	color:#365D95;
+	text-decoration:underline;
 }
+
 a:hover, a:active {
-color:#1F2126;
-text-decoration:underline;
+	color:#1F2126;
+	text-decoration:underline;
 }
 
 label{
-font-weight: bold;
-color: #49566f;
-font-size: 14px;
-margin: 5px 0px 5px 0px;
+	font-weight: bold;
+	color: #49566f;
+	font-size: 14px;
+	margin: 5px 0px 5px 0px;
 }
 
 label a{
-
-color: #3775b5;
-
+	color: #3775b5;
 }
 
-h1.heading {font-size:18px;
+h1.heading {
+	font-size:18px;
 	color: #005ca1;
 	font-family : "arial", helvetica, sans-serif;
 	font-weight:bold;
 	padding:0px 0px 5px 0px;
 	letter-spacing:1px;
 }
+
 h1.heading span{color: #c8287b;}
 
 h2.heading {
-        font-size:15px;
+    font-size:15px;
 	color: #005ca1;
 	font-family : "arial", helvetica, sans-serif;
 	font-weight:bold;
@@ -105,17 +105,18 @@ h2.heading {
 }
 
 .button_small {
-  -moz-border-radius-bottomleft:5px;
-  -moz-border-radius-bottomright:5px;
-  -moz-border-radius-topleft:5px;
-  -moz-border-radius-topright:5px;
-  background:transparent url(/images/button-large.png) repeat-x scroll center top;
-  border:1px solid #999999;
-  color:inherit;eaebee
-  margin:0;
-  overflow:visible;
-  padding: 2px;
-  font-size: 12px;}
+	-moz-border-radius-bottomleft:5px;
+  	-moz-border-radius-bottomright:5px;
+  	-moz-border-radius-topleft:5px;
+  	-moz-border-radius-topright:5px;
+  	background:transparent url(/images/button-large.png) repeat-x scroll center top;
+  	border:1px solid #999999;
+  	color:inherit;eaebee
+  	margin:0;
+  	overflow:visible;
+  	padding: 2px;
+  	font-size: 12px;
+}
 /*..................................................header............................*/
 .clear{
 	clear:both;
@@ -157,10 +158,6 @@ h2.heading {
         background: #ffffff url('/images/content_bg.gif') repeat-x top;
         padding: 15px 10px;
         
-}
-
-.form_wrapper{
-  padding: 10px 15px 0px 15px;
 }
 
 #message_wrapper{
@@ -324,7 +321,7 @@ h2.heading {
 	float: left;
 	background: url(/images/line.gif) no-repeat right;
 	display:inline;	
-   margin-top: 0px;
+   margin-top: 5px;
 } 
 
 #report-links ul li.active a{ color: #86b050;  }
@@ -576,9 +573,6 @@ color:#0e8ab8;
         vertical-align: center;
 	
 }
-
-
-.form_wrapper .listing { margin: 5px 5px 0px 0px;}
 
  
 .listing  th a { 
@@ -1658,7 +1652,9 @@ h3.exam{font-size:18px;color:#a4397f;padding:0px 0px 0px 5px;}
 	width:250px;
 }
 
+.large tr td input {width:500px;}
 
+.large tr td textarea {width:500px;height:300px;}
 
 
 .btns span input{

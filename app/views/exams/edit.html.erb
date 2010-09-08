@@ -1,27 +1,26 @@
 <%= javascript_include_tag "/datetimepicker/jquery13/jquery-1.3.2.min.js","/datetimepicker/jquery_ui_datepicker/jquery_ui_datepicker.js","/datetimepicker/jquery_ui_datepicker/i18n/ui.datepicker-de.js","/datetimepicker/jquery_ui_datepicker/timepicker_plug/timepicker.js" %>
 <%= stylesheet_link_tag "/datetimepicker/jquery_ui_datepicker/timepicker_plug/css/style.css","/datetimepicker/jquery_ui_datepicker/smothness/jquery_ui_datepicker.css"%> 
-<div class='form_wrapper'>
   <h1 class ='heading'>Editing exam</h1>
-    <div class="create_new">
-
 <% form_for(@exam,:html => {:id =>'main-form'}) do |f| %>
+ <table class="form_style">
   <%= f.error_messages %>
-  <p>
-    <%= f.label :exam_type %><br />
-    <%= f.text_field :exam_type %>
-  </p>
-   <p>
-    <%= f.label :name %><br />
-    <%= f.text_field :name,:id =>"date3"%>
-  </p>
-  <p>
-    <%= f.label :from_date %><br />
-    <%= f.text_field :from_date,:class =>'textbox-small' ,:id => 'date'%>
-  </p>
-      <p>
-    <%= f.label :to_date %><br />
-    <%= f.text_field :to_date,:class =>'textbox-small' ,:id => 'date1'%>
-  </p>
+  <tr>
+    <th><%= f.label :exam_type %></th>
+    <td><%= f.text_field :exam_type %></td>
+  </tr>
+   <tr>
+    <th><%= f.label :name %></th>
+    <td><%= f.text_field :name,:id =>"date3"%></td>
+  </tr>
+  <tr>
+    <th><%= f.label :from_date %></th>
+    <td><%= f.text_field :from_date,:class =>'textbox-small' ,:id => 'date'%></td>
+  </tr>
+   <tr>
+    <th><%= f.label :to_date %></th>
+    <td><%= f.text_field :to_date,:class =>'textbox-small' ,:id => 'date1'%></td>
+  </tr>
+</table>
 <%@classes.each do |clas|%>
    <h2><%=h clas.name%><br />
    <table class="student_list" border="1" width ="100%">
@@ -50,7 +49,9 @@
    <%end%>
   </table>
 <%end%>
+<div class="btns">
  <span><%= f.submit 'Update' %></span>
+</div>
 <% end %>
 </div>
 <script type="text/javascript">

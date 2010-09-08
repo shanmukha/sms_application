@@ -1,14 +1,16 @@
-<div class = 'form_wrapper'>
 <div class = 'right'><%= link_to image_tag("closelabel.gif", :title=> "close"), admin_student_classes_url(:group_id => @group.id) %> </div>
 <h1 class = 'heading'>Editing class record</h1>	
-<fieldset>
+<hr />
+
 	<% form_for([:admin,@group],:url => admin_student_class_path(@group),:html => {:multipart => true} ) do |f| %>
   	<%= f.error_messages %>
-  	<p>
-    		<%= f.label :class_name %><br />
-    		<%= f.text_field :name %>
-  	</p><br /><br />
-       <label>Students of this class</label>
+  	<table class="form_style">
+       <tr>
+    		<th><%= f.label :class_name %></th>
+    		<td><%= f.text_field :name %></td>
+       </tr>
+  	 </table>
+     <br /> <label>Students of this class</label>
 	<table class="student_list">
 		<tr>
 		<th><input type='checkbox' title ="Check All/Uncheck" name='checkall' onclick='checkedAll();'/></th>
@@ -40,18 +42,10 @@
     		 </tr>
     		<%end%>
 	</table>
-	<br />
-	<p>
-	<table>
-	<tr>
-		<td width ="165"><span><%= f.submit 'Update' %></span> &nbsp;</td>
+	<div class="btns">
+	  <span><%= f.submit 'Update' %></span>
+    </div>
   	<% end %>
-           
-        </p>
 
-</fieldset>
-</tr>
-</table>
-</div>
    
 

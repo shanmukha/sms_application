@@ -1,6 +1,6 @@
-<div class='form_wrapper'>
+
 <h1 class ='heading'><%= "#{@user.name}'s account"%></h1>
-<div class="create_new">
+
 	<% if @user.has_role?('admin') && !@user.has_role?('super_admin')%>
 	 <h3><%= @user.client_type=="Unlimited" ? "End date: #{@user.end_date.strftime('%d-%m-%y')}" :"Sms balance: #{@user.balance}"%></h3>
 	<%end%>
@@ -8,6 +8,6 @@
 	<%= render :partial =>"form"%>
 		<span><%= f.submit "Submit" %></span>
 	<%end%>
-	</div>
+
 	<div class="clear"></div> 
-	</div>
+

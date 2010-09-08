@@ -1,42 +1,39 @@
-<div class='form_wrapper'>
-  <div class ="create_new">
-
 <% form_for(@exam)do |f| %>
-
- <div class = 'right'> 
-   <p>
-    <%= f.label :select_class %><br />
-       <% get_groups.each do  |group| %>
-    	    <%= group.name %>   <%= check_box_tag "group_ids[]", group.id %>
-    	  <%end%>  
-  </p>
-  </div>
-  <div class="left">
-   <%= f.error_messages %>
-  
-   <p>
-    <%= f.label :exam_type %><br />
-    <%= f.text_field :exam_type %>
-  </p>
-    <p>
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </p>
-  <p>
-    <%= f.label :from_date %><br />
-    <%= f.text_field :from_date, :class =>'textbox-small' ,:id => 'date' %>
-  </p>
+<div class = 'right'> 
  <p>
-    <%= f.label :to_date %><br />
-    <%= f.text_field :to_date, :class =>'textbox-small' ,:id => 'date1' %>
-  </p>
+  <%= f.label :select_class %><br />
+  <% get_groups.each do  |group| %>
+  <%= group.name %>   <%= check_box_tag "group_ids[]", group.id %>
+  <%end%>  
+ </p>
+</div>
+<div class="left">
+   <%= f.error_messages %>
+   <table class="form_style">
+    <tr>
+      <th><%= f.label :exam_type %></th>
+      <td><%= f.text_field :exam_type %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :name %></th>
+      <td><%= f.text_field :name %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :from_date %></th>
+      <td><%= f.text_field :from_date, :class =>'textbox-small' ,:id => 'date' %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :to_date %></th>
+      <td><%= f.text_field :to_date, :class =>'textbox-small' ,:id => 'date1' %></td>
+   </tr>
+  </table>
     
-  <span>
-    <%= f.submit 'Create' %>
-  </span>
+  <div class="btns" style="margin-left:80px;">
+  <span><%= f.submit 'Create' %></span>
  </div>
-  <% end %>
-  </div>
+</div>
+ <% end %>
+
 
 <script type="text/javascript">
        	jQuery(function() {
@@ -53,4 +50,4 @@
 
 
 <div class="clear"></div>
-</div>
+

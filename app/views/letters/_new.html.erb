@@ -1,26 +1,26 @@
 <% form_for(@letter||Letter.new,:html => {:id => 'main-form'}) do |f| %>
-        <%= f.error_messages %>
-     <div class="create_new">
-   <div class="left part1">
-	  <fieldset>
-             <p>
-    	      <%= f.label :reference %><br />
-    	      <%= f.text_field :reference, :class => 'email' %>
-  	    </p> 
-            <br />
-  	    <p>
-    	      <%= f.label :letter_content %><br />
-    	      <%= f.text_area :content %>
-  	    </p> 
-	    <span>
-    		 <%= f.submit 'Print letter' %> 
-  	    </span>
-	  </fieldset>
-        </div>
+  <%= f.error_messages %>
+    <div class="left">
+	  <table class="form_style large">
+        <tr>
+    	  <th><%= f.label :reference %></th>
+    	  <td><%= f.text_field :reference, :class => 'email' %></td>
+  	    </tr>
+        <tr>
+  	      <th><%= f.label :letter_content %></th>
+    	  <td><%= f.text_area :content %></td>
+  	    </tr> 
+      </table>
+      <div class="btns" style="margin-left:110px;">
+	    <span><%= f.submit 'Print letter' %></span>
+	  </div>
+     </div>
 
      <div id="select_group" class ='part2'>
-        <label> Select class</label><br /><br />
-         <%= f.select :group_id, all_groups%>
+      <table class="form_style">
+        <tr>
+          <th><%= f.label :Select_class %></th>
+          <td><%= f.select :group_id, all_groups%>
       	      		<%= image_tag("spinner.gif",
                		:border => 0,
               		:id => "spinner1",
@@ -31,11 +31,13 @@
                   :success => "jQuery('#spinner1').hide();",
                   :url => {:action=>'group_students'}, :method => :get,
                   :with => "'group_id=' + value")%>
-                <br /><br />
+                </td>
+             </tr>
+           </table>
                 <div id="students"></div> 
 	</div>
     <div class = 'clear'> </div>	
-  </div>
+
 <% end %>
 
 

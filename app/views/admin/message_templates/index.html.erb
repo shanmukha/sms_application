@@ -21,7 +21,7 @@
 <hr />
 
 <div id="listing_file">
-    <table class="listing">
+    <table class="listing" border="1">
   	<tr>
   	  <th><%= order @search, :by => :message_title,:as => "Message Title"%></th>
     	   <th>Message Body</th>
@@ -31,7 +31,7 @@
 	<% @message_templates.each do |message_template| %>
   	<tr class="<%=cycle("odd", "even")%>">
   	  <td><%=h message_template.message_title %></td>
-   	  <td><%=h message_body_filter(message_template.message_body)%></td>
+   	  <td width="50%"><%=h message_body_filter(message_template.message_body)%></td>
    	  <td><%= message_template.tag.name%>
     	  <td><%= link_to '<img src="/images/edit.gif" title="View"/>', edit_admin_message_template_path(message_template) %></td>
   	</tr>

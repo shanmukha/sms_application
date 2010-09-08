@@ -1,4 +1,3 @@
-<div class='form_wrapper'>
   <div>
     <%if current_user.has_role?('admin') && !current_user.has_role?('super_admin')%>
       <span class ='right'><%= link_to "<span>New exam</span>", new_admin_exam_path, :class => 'buttonAdd'%></span>
@@ -30,4 +29,4 @@
 <%end%>
 </table><br/>
 <div class="clear"></div>
-</div
+
