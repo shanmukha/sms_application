@@ -10,7 +10,7 @@
         <th><br/><h2 class="heading">Student Details</h2></th><td></td>
       </tr>
       <tr>
-        <th width="180px;"><%= f.label :Student_name %></th>
+        <th><%= f.label :Student_name %></th>
     	<td><%= f.text_field :name %></td>
       </tr>
       <tr>      
@@ -25,13 +25,8 @@
         <th><%= f.label :Blood_group %></th>
     	<td><%= f.text_field :blood_group %></td>
       </tr>
-    </table>
-  </div>
-  <div class = 'right'>
-    <table class="form_style">
-     <tr><th></th><td></td></tr>
-      <tr>
-        <th width="180px;"><%= f.label :Date_of_birth %></th>
+     <tr>
+        <th><%= f.label :Date_of_birth %></th>
         <td><%= f.text_field :dob,:class =>'textbox-small' ,:id => 'date4'%></td>
       </tr>
       <tr>
@@ -44,12 +39,12 @@
       </tr>
     </table>
   </div>
-  <div class="clear"></div>
-  <div class="left">
-    <table class="form_style">
-      <tr><th><br/><h2 class="heading">Admission Details</h2></th><td></td></tr>
+  
+  <div class="right">
+   <table class="form_style">
+    <tr><th><br/><h2 class="heading">Admission Details</h2></th><td></td></tr>
       <tr>
-         <th width="180px;"><%= f.label :admission_number %></th>
+         <th><%= f.label :admission_number %></th>
          <td><%= f.text_field :admission_number%></td>
       </tr>
       <tr>
@@ -72,12 +67,8 @@
        <th><%= f.label :Contact_mobile %></th>
        <td><%= f.text_field :number %></td>
      </tr>
-   </table>
-  </div>
-  <div class="right">
-   <table class="form_style">
      <tr>
-        <th width="180px;"><%= f.label :Date_of_admission %></th>
+        <th><%= f.label :Date_of_admission %></th>
         <td><%= f.text_field :date_of_admission,:class =>'textbox-small' ,:id => 'date2'%></td>
      </tr>
      <tr>
@@ -103,9 +94,9 @@
    </table>
   </div>
   <div class="clear"></div>
-   <div class="btns"><span> <%= f.submit 'Create record' %> or <%= link_to_function "Cancel",
+  <center> <div class="btns"><span> <%= f.submit 'Create record' %> or <%= link_to_function "Cancel",
 	"jQuery('#top').hide(); jQuery('#button').show(); return false;"%>
-	</span></div>
+	</span></div></center>
   <%end%>
 <script type="text/javascript">
        	jQuery(function() {
