@@ -18,8 +18,8 @@
             <br /><br /><br />
                  <%admin = current_user.has_role?('admin') ? current_user : User.find(current_user.parent_id)%> 
 		         <%school = School.find(:first,:conditions=>['administrator_id=?',admin.id])%>
-                 <%academic_year = AcademicYear.current_academic_year_school(school.id)%>
-                 <%= academic_year.identification_name%>  
+                 <%academic_year = AcademicYear.current_academic_year_school(school.id) unless school.nil?%>
+                 <%= academic_year.identification_name unless academic_year.nil?%>  
               </ul>
        <%else%>
               <ul>

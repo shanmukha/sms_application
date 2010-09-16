@@ -6,7 +6,7 @@ class ExamsController < ApplicationController
    admin = current_user.has_role?('admin') ? current_user : User.find(current_user.parent_id) 
    school = School.find(:first,:conditions=>['administrator_id=?',admin.id])
     @search =  Exam.search(params[:search]) 
-    @search.school_id = school.id
+    @search.school_id = school.id unless school.nil?
     @search.order ||= "descend_by_created_at"
     @exams = @search.all.paginate :page => params[:page],:per_page => 25
   end

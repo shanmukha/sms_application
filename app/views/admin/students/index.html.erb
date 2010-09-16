@@ -12,7 +12,7 @@
     <% if current_user.has_role?('admin')%>
        <div id = 'button'>
             <%= link_to_function "<span>New student record </span>", "jQuery('#top').show(); jQuery('#button').hide(); return false;", :class => 'buttonAdd' %> 
-            <%= link_to "<span>Import students from csv </span>", import_students_new_admin_students_path, :rel =>  "facebox", :class => 'buttonAdd' %>
+            <!-- <%= link_to "<span>Import students from csv </span>", import_students_new_admin_students_path, :rel =>  "facebox", :class => 'buttonAdd' %>-->
        </div>  
     <%end%> 	
        
