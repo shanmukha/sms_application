@@ -1,37 +1,29 @@
-<div class='form_wrapper'>
- <h1 class ='heading'>Editing academic year</h1>
-  <div class="create_new">
-
-   <% form_for([:admin,@academic_year],:url => admin_academic_year_path(@academic_year)) do |f| %>
-     <%= f.error_messages %>
-
-     <p>
-      <%= f.label :from_date %><br />
-       <%= f.text_field :from_date,:class =>'textbox-small' ,:id => 'date'%>
-     </p>
-
-    <p>
-      <%= f.label :to_date %><br />
-      <%= f.text_field :to_date,:class =>'textbox-small' ,:id => 'date1'%>
-    </p>
-   
-    <p>
-      <%= f.label :identification_name %><br />
-      <%= f.text_field :identification_name %>
-    </p>
-
-    <p>
-      <%= f.label :current %><br />
-      <%= f.check_box :current %>
-    </p>
-
-    <span>
-      <%= f.submit 'Update' %>
-    </span>
+<h1 class ='heading'>Editing academic year</h1>
+<% form_for([:admin,@academic_year],:url => admin_academic_year_path(@academic_year)) do |f| %>
+<%= f.error_messages %>
+ <table class="form_style">
+  <tr>
+    <th><%= f.label :from_date %></th>
+    <td><%= f.text_field :from_date,:class =>'textbox-small' ,:id => 'date'%></td>
+  </tr>
+  <tr>
+    <th><%= f.label :to_date %></th>
+    <td><%= f.text_field :to_date,:class =>'textbox-small' ,:id => 'date1'%></td>
+  </tr>
+  <tr>
+    <th><%= f.label :identification_name %></th>
+    <td><%= f.text_field :identification_name %></td>
+  </tr>
+  <tr>
+    <th><%= f.label :current %></th>
+    <td><%= f.check_box :current %></td>
+  </tr>
+ </table>
+ <div class="btns" style="margin-left:140px;">
+    <span><%= f.submit 'Update' %></span>
+ </div>
 <% end %>
+<div class="clear"></div> 
 
-  </div>
- <div class="clear"></div> 
-</div>
 
 

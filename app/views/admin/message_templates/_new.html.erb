@@ -1,22 +1,24 @@
-<div class="create_new">
-	<% form_for(:message_template,:url => admin_message_templates_path ,:html => {:multipart => true,:method => :post}) do |f|%>
-	<fieldset>
-  		<%= f.error_messages %>
- 		<p>
-    			<%= f.label :message_title %><br />
-    			<%= f.text_field :message_title %>
-  		</p>
-  		<p>
-    			<%= f.label :message_body %><br />
-    			<%= f.text_area :message_body %>
-  		</p>
-  			<p><%= f.label :Tag_name%><br />
-  			   <%= f.select :tag_id, all_tags %></p>
- 		<span>
-    			<%= f.submit 'Create' %>
-  		</span>
+<% form_for(:message_template,:url => admin_message_templates_path ,:html => {:multipart => true,:method => :post}) do |f|%>
+  <%= f.error_messages %>
+     <table class="form_style">
+ 		<tr>
+    		<th><%= f.label :message_title %></th>
+    		<td><%= f.text_field :message_title %></td>
+  		</tr>
+  		<tr>
+    		<th><%= f.label :message_body %></th>
+    		<td><%= f.text_area :message_body %></td>
+  		</tr>
+        <tr>
+  			<th><%= f.label :Tag_name%></th>
+  			<td><%= f.select :tag_id, all_tags %></td>
+        </tr>
+    </table>
+    <div class="btns" style="margin-left:110px;">
+ 	  <span><%= f.submit 'Create' %></span>
+    </div>
 	<% end %>
-	</fieldset>
-</div>
+
+
 
 

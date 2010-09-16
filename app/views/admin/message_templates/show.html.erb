@@ -1,19 +1,18 @@
-<div class="form_wrapper">
-  <h1 class = 'heading left'> <span>%=h @message_template.message_title %><</span> </h1>
-  <div class = 'right'><%= link_to image_tag("closelabel.gif", :title=> "close") ,:back%> </div>
-  <div class="clear" ></div>
-  <hr />
-<table class="show_page">
-   <tr>
-  		   <td colspan ='2'>Tag <%=h @message_template.tag.name %></td>
-		</tr>
-		<tr>
-  		   <td  style ='border: 1px solid #ccc;background: #eef2f6' colspan ='2'><%=h @message_template.message_body %></td>
-		</tr>
-	
-	</table>
- </div>
+<h1 class = 'heading left'> <span><%=h @message_template.message_title %></span> </h1>
+<div class = 'right'><%= link_to image_tag("closelabel.gif", :title=> "close") ,:back%> </div>
 <div class="clear" ></div>
+<hr />
+<table class="show_page">
+  <tr>
+    <td colspan ='2'>Tag <%=h @message_template.tag.name %></td>
+  </tr>
+  <tr>
+    <td  style ='border: 1px solid #ccc;background: #eef2f6' colspan ='2'><%=h @message_template.message_body %></td>
+  </tr>
+</table>
+<div class="clear" ></div>
+<table>
+     <tr>
 		<td class="facebox_btn"><%= link_to 'Edit', edit_admin_message_template_path(@message_template) %> 
  		<%= link_to 'Delete', admin_message_template_path(@message_template), :confirm => 'This action will delete the saved message. Are you sure??', :method => :delete %></td>
  	</tr>

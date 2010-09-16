@@ -1,4 +1,3 @@
-<div class = 'form_wrapper'>
    <table class="show_page">
      <tr>
        <th>From date:</th>
@@ -25,13 +24,12 @@
         <td><%=h @academic_year.school.school_name %></td>
      </tr>
     </table>
+    <div class="btns">
+      <span><%= button_to 'Edit record', edit_admin_academic_year_path(@academic_year),:method => :get %> &nbsp;</span>
+    </div>
+   
 
-<table>
-   <tr>
-      <td><%= button_to 'Edit record', edit_admin_academic_year_path(@academic_year),:method => :get %> &nbsp;</td>
-   </tr>
-</table>
 
-</div>
+
 
 

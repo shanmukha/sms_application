@@ -1,11 +1,9 @@
-<div class='form_wrapper'>
-  <div class ="create_new">
+
   <% form_for([:admin,@school]) do |f| %>
      <%= f.error_messages %>
 	<%= render :partial =>"form",:locals =>{:f => f}%>
-	<center><span><%= f.submit "Submit" %></span></center>
+	<center><div class="btns"><span><%= f.submit "Submit" %></span></div></center>
 	<%end%>
-  </div>
 <div class="clear"></div>
-</div>
+
 

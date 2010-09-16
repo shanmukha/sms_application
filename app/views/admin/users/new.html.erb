@@ -1,13 +1,13 @@
-<div class='form_wrapper'>
-  <div class ="create_new">
+
   <% form_for(:user,:url => admin_users_path,:html => {:method => :post} )do |f| %>
 	<%= render :partial =>"form"%>
         <%unless params[:school_id].blank?%>
           <%=hidden_field_tag :school_id,params[:school_id]%>
         <%end%>
+    <div class="btns" style="margin-left:165px;">
 	<span><%= f.submit "Submit" %></span>
+    </div>
 	<%end%>
-  </div>
 <div class="clear"></div>
-</div>
+
 

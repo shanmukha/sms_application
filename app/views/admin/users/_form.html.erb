@@ -1,38 +1,36 @@
 <%fields_for :user do |f|%>
-<fieldset>
+<table class="form_style">
 <%= f.error_messages %>
-  <p>
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </p>
+  <tr>
+    <th><%= f.label :name %></th>
+    <td><%= f.text_field :name %></td>
+  </tr>
  
-  <p>
-    <%= f.label :username %><br />
-    <%= f.text_field :username %>
-  </p>
+  <tr>
+    <th><%= f.label :username %></th>
+    <td><%= f.text_field :username %></td>
+  </tr>
 
-   <p>
-    <%= f.label :password %><br />
-    <%= f.password_field :password %>
-  </p>
+   <tr>
+    <th><%= f.label :password %></th>
+    <td><%= f.password_field :password %></td>
+ </tr>
 
-  <p>
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation %>
-  </p>
+  <tr>
+    <th><%= f.label :password_confirmation %></th>
+    <td><%= f.password_field :password_confirmation %></td>
+  </tr>
 
-   <p>
-    <%= f.label :email %><br />
-    <%= f.text_field :mail_id %>
-  </p>
+   <tr>
+    <th><%= f.label :email %></th>
+    <td><%= f.text_field :mail_id %></td>
+  </tr>
 
- <p>
-    <%= f.label :designation %><br />
-    <%= f.text_field :designation %>
-  </p>
-
- 
-</fieldset>
+  <tr>
+    <th><%= f.label :designation %></th>
+    <td><%= f.text_field :designation %></td>
+  </tr>
+</table>
 <%end%>
 <div class="clear"></div>
 

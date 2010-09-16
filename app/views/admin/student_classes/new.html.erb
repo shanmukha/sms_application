@@ -28,9 +28,9 @@
             <%= select_tag :group_id,  options_for_select(all_groups) %>    
         </p>
       <br />
-      <span>
+      <div class="btns"><span>
     	 <%= f.submit 'Create record' %> or <%= link_to "Cancel",admin_group_student_classes_path(@group.id)%>
-  	 </span>
+  	 </span></div>
   	</fieldset>  
 </div>
 

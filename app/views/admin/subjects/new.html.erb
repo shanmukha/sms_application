@@ -1,39 +1,33 @@
-<div class='form_wrapper'>
-  <div class ="create_new">
-
 <% form_for(:subject,:url => admin_subjects_path,:html => {:method => :post} )do |f| %>
   <%= f.error_messages %>
-
-  <p>
-    <%= f.label :subject_name %><br />
-    <%= f.text_field :name %>
-  </p>
-  <p>
-    <%= f.label :short_code %><br />
-    <%= f.text_field :short_code %>
-  </p>
-  <p>
-    <%= f.label :max_marks %><br />
-    <%= f.text_field :max_marks %>
-  </p>
-  <p>
-    <%= f.label :passing_marks %><br />
-    <%= f.text_field :passing_marks %>
-  </p>
-  <p>
-   <%= f.label :use_grade %><br/>
-  Yes:<%=f.radio_button :use_grade, 1%>
-   No:<%=f.radio_button :use_grade, 0%>
-  </p>
-   <p>
-   <%= f.label :description %><br/>
-  <%=f.text_area :description%>
-  </p>
-  <span>
-    <%= f.submit 'Create' %>
-</span>
-<% end %>
-
- </div>
+<table class="form_style">
+  <tr>
+    <th><%= f.label :subject_name %></th>
+    <td><%= f.text_field :name %></td>
+  </tr>
+  <tr>
+    <th><%= f.label :short_code %></th>
+    <td><%= f.text_field :short_code %></td>
+  </tr>
+  <tr>
+    <th><%= f.label :max_marks %></th>
+    <td><%= f.text_field :max_marks %></td>
+  </tr>
+  <tr>
+    <th><%= f.label :passing_marks %></th>
+    <td><%= f.text_field :passing_marks %></td>
+  </tr>
+  <tr>
+   <th><%= f.label :use_grade %></th>
+   <td>Yes:<%=f.radio_button :use_grade, 1%>
+  No:<%=f.radio_button :use_grade, 0%></td>
+  </tr>
+  <tr>
+   <th><%= f.label :description %></th>
+   <td><%=f.text_area :description%></td>
+  </tr>
+</table>
+<div class="btns" style="margin-left:190px;"><span><%= f.submit 'Create' %></span></div>
+  <% end %>
 <div class="clear"></div>
-</div>
+

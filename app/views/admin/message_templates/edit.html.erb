@@ -1,26 +1,27 @@
 <div class = 'right'><%= link_to image_tag("closelabel.gif", :title=> "close") ,:back%> </div>
 <div class="clear"></div>
-<div class="create_new form_wrapper">
-	<fieldset>
-	<% form_for(@message_template,:url => admin_message_template_path(@message_template),:html => {:multipart => true} ) do |f| %>
-	
-  		<%= f.error_messages %>
-		<p>
-    			<%= f.label :message_title %><br />
-    			<%= f.text_field :message_title %>
-  		</p>
-  		<p>
-    			<%= f.label :message_body %><br />
-    			<%= f.text_area :message_body %>
-  		</p>
+<% form_for(@message_template,:url => admin_message_template_path(@message_template),:html => {:multipart => true} ) do |f| %>
+  <%= f.error_messages %>
+    <table class="form_style">
+      <tr>
+    		<th><%= f.label :message_title %></th>
+    		<td><%= f.text_field :message_title %></td>
+  	  </tr>
+  	  <tr>
+    		<th><%= f.label :message_body %></th>
+    		<td><%= f.text_area :message_body %></td>
+  	  </tr>
   		
-  		<p><%= f.label :Tag_name %><br />
-  		  <%= f.select :tag_id, all_tags, options={:prompt =>@message_template.tag_id} %>
-  		</p>
-    			<span><%= f.submit 'Update' %></span>
-  		
-		<% end %>
-	</fieldset>
-</div>
+  	   <tr>
+           <th><%= f.label :Tag_name %></th>
+  		   <td><%= f.select :tag_id, all_tags, options={:prompt =>@message_template.tag_id} %></td>
+  	  </tr>
+    </table>
+    <div class="btns" style="margin-left:110px;">
+    	<span><%= f.submit 'Update' %></span>
+    </div>	
+<% end %>
+
+
 
 
