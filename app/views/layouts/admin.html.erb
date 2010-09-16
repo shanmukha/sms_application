@@ -50,7 +50,7 @@
 	       <ul>    	     
           
         
-		            <li><%= link_to "Go to application", root_path %>|</li
+		            <li><%= link_to "Go to application", root_path %>|</li>
       
 		            <li class='<%= request.request_uri == "/admin/users/#{current_user.id}/edit"? 'active': 'link' %>'> 
                           <%= link_to "My account",edit_admin_user_path(current_user) %>|</li> 
@@ -105,14 +105,16 @@
    </ul>
    <%end%>
    </div>
+
  <div id = 'report-links'>
   <%if request.request_uri =~ /subjects/ or request.request_uri =~ /academic_years/ or request.request_uri =~ /groups/ %>
    <ul>
 <li class='<%= request.request_uri =~ /subjects/? 'active': 'link' %>'> <%= link_to "Subjects", admin_subjects_path %></li>
 <li class='<%= request.request_uri =~ /academic_years/? 'active': 'link' %>'> <%= link_to "Academic Years", admin_academic_years_path %></li>
 <li class='<%= request.request_uri =~ /groups/? 'active': 'link' %>'> <%= link_to "Classes", admin_groups_path %></li>
- </div>
- <%end%>
+   </ul>
+ 
+ <%end%></div>
 <%end%>
 <%end%>
 </div> <!-- end of header -->

@@ -1,8 +1,10 @@
 <%fields_for :school do |f|%>
-   <p>
-        <%= f.label :End_date%><br />
-   <%= f.text_field :end_date,:class =>'textbox-small' ,:id => 'date'%>
-   </p>
+   <table class="form_style">
+    <tr>
+        <th width="150px"><%= f.label :End_date%></th>
+        <td><%= f.text_field :end_date,:class =>'textbox-small' ,:id => 'date'%></td>
+    </tr>
+   </table>
 <%end%>
 <script type="text/javascript">
        	jQuery(function() {
