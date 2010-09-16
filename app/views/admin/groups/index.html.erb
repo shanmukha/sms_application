@@ -23,47 +23,46 @@
 </div>
 <hr />
 <div id="listing_file">
-   <table class="listing">
-                       		<tr>
-    					<th><%= order @search, :by => :name, :as => "Name"%></th>
-    		   			<th><%= order @search, :by => :status, :as => "Status"%></th>
-    					<th>View</th>
-                                        <th>Edit</th>
-                                           <th>Student list</th>
-  				</tr>
-			<% @groups.each do |g| %>
-  				<tr class="<%=cycle("odd", "even")%>">
-    					<td><%=h g.name %></td>
-    					<td><%= h g.status%></td>
-    					<td><%= link_to '<img src="/images/view.gif" title="View"/>', admin_group_path(g)%> </td>
-                                        <td><%= link_to image_tag('edit.gif', :title=> "Edit"), edit_admin_group_path(g) %>  </td>
-                           
-                                        <td><%= link_to "Student list", admin_group_student_classes_path(g.id) %>  </td>
-  				</tr>
-			<% end %>
-			</table>
-			<div id="pg"><%=will_paginate @groups%>	</div>
-	</div>
-	<div class="sidebar">
-		<h1>Search</h1>
-		<% form_for @search do |f| %>
-		 <table>
-    			<tr>
-      				<th>Class name</th>
-			</tr>
-				<td><%= f.text_field :name_like %></td>
-			</tr>
-			<tr>
-       				<th>Student name</th>
-			</tr>
-			<tr>
-				<td><%= f.text_field :students_name_like%></td>
-			</tr>
-			<tr>
-       				<td class="btn"><%= f.submit "Search" %> <input type="reset" value="Reset"></td>
-  			</tr>
-  		</table>
-  		<%end%>
-	</div>
-
+   <table class="listing" border="1">
+     <tr>
+    	<th><%= order @search, :by => :name, :as => "Name"%></th>
+    	<th><%= order @search, :by => :status, :as => "Status"%></th>
+    	<th>View</th>
+        <th>Edit</th>
+        <th>Student list</th>
+    </tr>
+	<% @groups.each do |g| %>
+    <tr class="<%=cycle("odd", "even")%>">
+    	<td><%=h g.name %></td>
+    	<td><%= h g.status%></td>
+    	<td><%= link_to '<img src="/images/view.gif" title="View"/>', admin_group_path(g)%> </td>
+        <td><%= link_to image_tag('edit.gif', :title=> "Edit"), edit_admin_group_path(g) %>  </td>
+        <td><%= link_to "Student list", admin_group_student_classes_path(g.id) %>  </td>
+    </tr>
+   <% end %>
+  </table>
+ <div id="pg"><%=will_paginate @groups%></div>
+</div>
+<div class="sidebar">
+  <h1>Search</h1>
+	<% form_for @search do |f| %>
+	<table>
+    	  <tr>
+      	    <th>Class name</th>
+	  </tr>
+          <tr>
+	    <td><%= f.text_field :name_like %></td>
+	  </tr>
+	  <tr>
+       	    <th>Student name</th>
+	  </tr>
+	  <tr>
+	    <td><%= f.text_field :students_name_like%></td>
+	  </tr>
+	  <tr>
+       	    <td class="btn"><%= f.submit "Search" %> <input type="reset" value="Reset"></td>
+  	  </tr>
+  	</table>
+    <%end%>
+</div>
 <div class="clear" ></div>

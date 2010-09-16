@@ -22,16 +22,17 @@
   </tr>
 </table>
 <%@classes.each do |clas|%>
-   <h2><%=h clas.name%><br />
-   <table class="student_list" border="1" width ="100%">
+   <div id="students">
+   <h1 class ='heading'><%=h clas.name%></h2>
+   <table class="student_list" border="2">
     <tr>
      <th><input type='checkbox' title ="Check All/Uncheck" name='checkall' onclick='checkedAll();'/></th>
-     <th>Subject name</th>
-     <th>Maximum marks</th>
-     <th>Passing marks</th> 
-      <th>Exam date</th>
-     <th>From time</th>
-     <th>To time</th>
+     <th width='15%'>Subject name</th>
+     <th width="15%">Maximum marks</th>
+     <th width="15%">Passing marks</th> 
+     <th width="20%">Exam date</th>
+     <th width="20%">From time</th>
+     <th width="10%">To time</th>
     </tr>
  <%@array =[]%>
   <%clas.subjects.find(:all).each do |subject|%>
@@ -40,14 +41,15 @@
      <td><%=h subject.name%></td>
      <td><%= text_field_tag("class[#{clas.id}][#{subject.id}]max_marks",subject.max_marks) %></td> 
      <td><%= text_field_tag("class[#{clas.id}][#{subject.id}]passing_marks",subject.passing_marks)%></td>
-      <td width ="100%">  <%= date_select "class[#{clas.id}][#{subject.id}]exam_date", "exam_date",:default => find_exam_date(clas,subject,@exam)%></td>
-    <td width ="100%">   <%= time_select "class[#{clas.id}][#{subject.id}]from_time", "from_time",{:default => find_from_time(clas,subject,@exam) ,:ignore_date => true }%></td>
+     <td><%= date_select "class[#{clas.id}][#{subject.id}]exam_date", "exam_date",:default => find_exam_date(clas,subject,@exam)%></td>
+     <td><%= time_select "class[#{clas.id}][#{subject.id}]from_time", "from_time",{:default => find_from_time(clas,subject,@exam) ,:ignore_date => true }%></td>
       <td width ="100%">   <%= time_select "class[#{clas.id}][#{subject.id}]to_time", "to_time",{:default => find_to_time(clas,subject,@exam),:ignore_date => true }%></td>
 
 
    </tr>     
    <%end%>
   </table>
+</div>
 <%end%>
 <div class="btns">
  <span><%= f.submit 'Update' %></span>

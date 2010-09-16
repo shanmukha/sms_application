@@ -265,7 +265,9 @@ h2.heading {
   color:red;
  }
 
-#notice {background: #64a049; color: #fff; font-weight: bold; border: 1px solid #4e9131; padding: 5px;  width: 94%; margin: 0 auto 10px auto;}
+.notice{margin:10px 0px;}
+
+#notice {background: #64a049; color: #fff; font-weight: bold; border: 1px solid #4e9131; padding: 5px;  width: 94%;margin: 0px auto 10px auto;}
 #error {background: #c95343; color: #fff; font-weight: bold; border: 1px solid #a9462b; padding: 5px;  width: 94%; margin: 0 auto 10px auto;}
 #notice a{color: #eac600; margin: 0px 20px 0px 30px;}
 /* menu *******************************************************************************/
@@ -311,7 +313,7 @@ h2.heading {
 
 #report-links a {margin: 0px 5px 0px 5px; color: #1d4896; font-weight: bold;}
 
-#report-links ul {
+#report-links ul {
 	padding: 0px;
 	list-style: none;
 }
@@ -321,7 +323,7 @@ h2.heading {
 	float: left;
 	background: url(/images/line.gif) no-repeat right;
 	display:inline;	
-   margin-top: 5px;
+        margin:5px 0px;
 } 
 
 #report-links ul li.active a{ color: #86b050;  }
