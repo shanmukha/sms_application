@@ -114,22 +114,21 @@
             </table>
            </div>
            <div class="clear"></div> 
-		  <table class="btns">
+	   <center>
+            <table class="btns">
              <tr>
-               <td><span><%= f.submit 'Update' %></span></td><td><%= link_to "Back",:back%></td>
-             
-       <%end%>
-   <%if current_user.has_role?('admin')%>
-	          
-               <%if @student.status=='Active'%>
-                  <td><span> <%= button_to 'Make this student inactive', make_inactive_admin_student_path(@student.id),:method => :get %> </span></td>
-               <%else%>
-                 <td><span><%= button_to 'Make this student active', make_active_admin_student_path(@student.id),:method => :get %></span></td>
-               <%end%>
-              </tr>
+               <td><span><%= f.submit 'Update' %></span></td><td><%= link_to "Back",:back%> </td>
              <%end%>
-</table>
-
+             <%if current_user.has_role?('admin')%>
+	     <%if @student.status=='Active'%>
+              <td><span> <%= button_to 'Make this student inactive', make_inactive_admin_student_path(@student.id),:method => :get %></span></td>
+             <%else%>
+               <td><span><%= button_to 'Make this student active', make_active_admin_student_path(@student.id),:method => :get %></span></td>
+             <%end%>
+             </tr>
+            <%end%>
+         </table>
+         </center>
 <script type="text/javascript">
        	jQuery(function() {
 			  jQuery("#date2").datepicker({showOn: 'button', buttonImage: '/images/calendar.gif', buttonImageOnly: true, altField: '#date2', altFormat: 'dd-mm-yy' }) 

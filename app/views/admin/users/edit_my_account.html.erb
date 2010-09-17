@@ -6,7 +6,7 @@
 	<%end%>
 <% form_for([:admin,@user],:url => admin_user_path(@user),:html => {:multipart => true} ) do |f| %>
 	<%= render :partial =>"form"%>
-		<span><%= f.submit "Submit" %></span>
+		<div class="btns"><span><%= f.submit "Submit" %></span></div>
 	<%end%>
 
 	<div class="clear"></div> 

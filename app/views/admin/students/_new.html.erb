@@ -37,12 +37,21 @@
         <th><%= f.label :Student_email %></th>
     	<td><%= f.text_field :student_email %></td>
       </tr>
+      <tr><th><br/><h2 class="heading">Admission Details</h2></th><td></td></tr>
+      <tr>
+         <th><%= f.label :admission_number %></th>
+         <td><%= f.text_field :admission_number%></td>
+      </tr>
+     <tr>
+        <th><%= f.label :Date_of_admission %></th>
+        <td><%= f.text_field :date_of_admission,:class =>'textbox-small' ,:id => 'date2'%></td>
+     </tr>
     </table>
   </div>
   
   <div class="right">
    <table class="form_style">
-    <tr><th><br/><h2 class="heading">Admission Details</h2></th><td></td></tr>
+    <tr><th><br/><h2 class="heading">Parent Details</h2></th><td></td></tr>
       <tr>
          <th><%= f.label :admission_number %></th>
          <td><%= f.text_field :admission_number%></td>
@@ -67,10 +76,7 @@
        <th><%= f.label :Contact_mobile %></th>
        <td><%= f.text_field :number %></td>
      </tr>
-     <tr>
-        <th><%= f.label :Date_of_admission %></th>
-        <td><%= f.text_field :date_of_admission,:class =>'textbox-small' ,:id => 'date2'%></td>
-     </tr>
+     
      <tr>
        <th><%= f.label :Mother_mobile %></th>
        <td><%= f.text_field :mother_mobile %></td>
