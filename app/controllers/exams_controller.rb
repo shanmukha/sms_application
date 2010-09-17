@@ -13,7 +13,7 @@ class ExamsController < ApplicationController
 
 
   def show
-    @exam = Exam.find(params[:id], :include => [:groups, :subjects])
+    @exam = Exam.find(params[:id])
     
   end
 
@@ -26,6 +26,7 @@ class ExamsController < ApplicationController
   def edit
     @exam = Exam.find(params[:id])
     @classes = @exam.groups.find(:all,:conditions=>['status =?','Active'])
+    @exam_subjects = @exam.exam_subjects
   end
 
 

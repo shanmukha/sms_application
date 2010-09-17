@@ -12,7 +12,7 @@
    
     <th>Current</th>
     <th>School</th>
-    <th>Action</th>
+    <th>Show</th>
   </tr>
 
 <% @academic_years.each do |academic_year| %>
@@ -23,7 +23,7 @@
  
     <td><%=h academic_year.current %></td>
     <td><%=h academic_year.school.school_name %></td>
-    <td><%= link_to '<img src="/images/view.gif" title="View"/>', admin_academic_year_path(academic_year)%></td>
+    <td><%= link_to "Show", admin_academic_year_path(academic_year)%></td>
   </tr>
 <% end %>
 </table>

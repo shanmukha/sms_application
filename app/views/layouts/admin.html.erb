@@ -79,7 +79,12 @@
          <li class='<%= request.request_uri =~ /class_reports/ || request.request_uri =~/class_reports/ || request.request_uri=~/class_reports/ || request.request_uri=~/teacher_reports/ || request.request_uri=~/tag_reports/ || request.request_uri=~/month_reports/ ? 'active': 'link' %>'> <%= link_to "Reports", admin_class_reports_path %> </li> 
          <li class='<%= request.request_uri =~ /subjects/? 'active': 'link' %>'> <%= link_to "Master records", admin_subjects_path %></li>
          <li class='<%= request.request_uri =~ /students/? 'active': 'link' %>'> <%= link_to "Admissions", admin_students_path %></li>
-        </ul>
+   
+       <li class='<%= request.request_uri =~ /subjects/? 'active': 'link' %>'> <%= link_to "Subjects", admin_subjects_path %></li>
+       <li class='<%= request.request_uri =~ /academic_years/? 'active': 'link' %>'> <%= link_to "Academic Years", admin_academic_years_path %></li>
+       <li class='<%= request.request_uri =~ /groups/? 'active': 'link' %>'> <%= link_to "Classes", admin_groups_path %></li>
+     </ul>     
+
      </div>
     
      <%if request.request_uri =~/class_reports/ or request.request_uri=~/class_reports/ or request.request_uri=~/teacher_reports/ or request.request_uri=~/tag_reports/ or request.request_uri=~/month_reports/  %>
@@ -94,11 +99,7 @@
     <%end%>
     <%if request.request_uri =~ /subjects/ or request.request_uri =~ /academic_years/ or request.request_uri =~ /groups/ %>
      <div id = 'report-links'> 
-      <ul>
-       <li class='<%= request.request_uri =~ /subjects/? 'active': 'link' %>'> <%= link_to "Subjects", admin_subjects_path %></li>
-       <li class='<%= request.request_uri =~ /academic_years/? 'active': 'link' %>'> <%= link_to "Academic Years", admin_academic_years_path %></li>
-       <li class='<%= request.request_uri =~ /groups/? 'active': 'link' %>'> <%= link_to "Classes", admin_groups_path %></li>
-     </ul>
+      
     </div>
     <%end%> 
    <%end%>

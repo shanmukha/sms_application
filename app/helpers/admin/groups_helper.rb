@@ -16,7 +16,7 @@ a
 end
 def find_subject_handled_by(group,subject)
  a = ClassSubject.find(:first,:conditions =>['subject_id =? and group_id=?',subject.id,group.id]).handled_by_id rescue ''
- b = User.find(a).name
+ b = User.find(a).name rescue ''
 return b
 end
 end

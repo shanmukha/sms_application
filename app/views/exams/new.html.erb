@@ -20,11 +20,11 @@
     </tr>
     <tr>
       <th><%= f.label :from_date %></th>
-      <td><%= f.text_field :from_date, :class =>'textbox-small' ,:id => 'date' %></td>
+      <td><%= f.text_field :from_date, :class =>'textbox-small' ,:id => 'date2' %></td>
     </tr>
     <tr>
       <th><%= f.label :to_date %></th>
-      <td><%= f.text_field :to_date, :class =>'textbox-small' ,:id => 'date1' %></td>
+      <td><%= f.text_field :to_date, :class =>'textbox-small' ,:id => 'date4' %></td>
    </tr>
   </table>
     
@@ -36,18 +36,21 @@
 
 
 <script type="text/javascript">
-       	jQuery(function() {
-			  jQuery("#date").datepicker({showOn: 'button', buttonImage: '/images/calendar.gif', buttonImageOnly: true, altField: '#date', altFormat: 'dd-mm-yy' }) 
-			  });
+	$(function() {
+		$('#date4').datepicker({showOn: 'button', buttonImage: '/images/calendar.gif', buttonImageOnly: true, altField: '#date4', altFormat: 'dd-mm-yy',
+			changeMonth: true,
+			changeYear: true
+		});
+	});
 	</script>
-
-<script type="text/javascript">
-       	jQuery(function() {
-			  jQuery("#date1").datepicker({showOn: 'button', buttonImage: '/images/calendar.gif', buttonImageOnly: true, altField: '#date1', altFormat: 'dd-mm-yy' }) 
-			  });
+ <script type="text/javascript">
+	$(function() {
+		$('#date2').datepicker({showOn: 'button', buttonImage: '/images/calendar.gif', buttonImageOnly: true, altField: '#date2', altFormat: 'dd-mm-yy',
+			changeMonth: true,
+			changeYear: true
+		});
+	});
 	</script>
-         
-
 
 <div class="clear"></div>
 

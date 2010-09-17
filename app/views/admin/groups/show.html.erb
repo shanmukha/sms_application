@@ -19,4 +19,14 @@
 		<%end%>
 </table>
 </div>
-   
+<br />
+<br />
+   <%if current_user.has_role?('admin')%>
+	      
+               <%if @group.status=='Active'%>
+                  <td class="btns"><span><%= button_to 'Make this class inactive', make_inactive_admin_group_path(@group),:method => :get %></span> </td>
+               <%else%>
+                  <td class="btns"><span><%= button_to 'Make this class active', make_active_admin_group_path(@group),:method => :get %></span></td> 
+               <%end%>
+             <%end%>
+      

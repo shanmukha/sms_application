@@ -28,7 +28,7 @@
     	<th><%= order @search, :by => :name, :as => "Name"%></th>
     	<th><%= order @search, :by => :status, :as => "Status"%></th>
     	<th>View</th>
-        <th>Edit</th>
+        <th>Subjects</th>
         <th>Student list</th>
     </tr>
 	<% @groups.each do |g| %>
@@ -36,7 +36,7 @@
     	<td><%=h g.name %></td>
     	<td><%= h g.status%></td>
     	<td><%= link_to '<img src="/images/view.gif" title="View"/>', admin_group_path(g)%> </td>
-        <td><%= link_to image_tag('edit.gif', :title=> "Edit"), edit_admin_group_path(g) %>  </td>
+        <td><%= link_to "Subjects", edit_admin_group_path(g) %>  </td>
         <td><%= link_to "Student list", admin_group_student_classes_path(g.id) %>  </td>
     </tr>
    <% end %>
