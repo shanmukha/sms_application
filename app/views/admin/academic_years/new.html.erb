@@ -4,11 +4,11 @@
  <table class="form_style">
     <tr>
       <th><%= f.label :from_date %></th>
-      <td><%= f.text_field :from_date,:class =>'textbox-small' ,:id => 'date'%></td>
+      <td><%= f.text_field :from_date,:class =>'textbox-small' ,:id => 'date-academic'%></td>
     </tr>
     <tr>
       <th><%= f.label :to_date %></th>
-      <td><%= f.text_field :to_date,:class =>'textbox-small' ,:id => 'date1'%></td>
+      <td><%= f.text_field :to_date,:class =>'textbox-small' ,:id => 'date2'%></td>
     </tr>
     <p>
       <th><%= f.label :identification_name %></th>
@@ -29,4 +29,21 @@
 </div>
 <% end %>
 <div class="clear"></div>
+<script type="text/javascript">
+	$(function() {
+		$('#date-academic').datepicker({showOn: 'button', buttonImage: '/images/calendar.gif', buttonImageOnly: true, altField: '#date-academic', altFormat: 'dd-mm-yy',
+			changeMonth: true,
+			changeYear: true
+		});
+	});
+	</script>
+<script type="text/javascript">
+	$(function() {
+		$('#date2').datepicker({showOn: 'button', buttonImage: '/images/calendar.gif', buttonImageOnly: true, altField: '#date2', altFormat: 'dd-mm-yy',
+			changeMonth: true,
+			changeYear: true
+		});
+	});
+	</script>
+
 
