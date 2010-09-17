@@ -23,10 +23,11 @@
       <h2 style="margin:20px 0px 0px 0px; padding:0px; color:#bd2e75">
         <%= group.name  %> &nbsp;
          <%if find_marks(@exam,group).blank?%> 
-        <span style="font-size:12px"><%= link_to "Enter marks",new_group_exam_mark_path(group.id,@exam.id)%></span></h2>
+        <span style="font-size:12px"><%= link_to "Enter marks",new_group_exam_mark_path(group.id,@exam.id)%></span>
          <%else%>
-        <%= link_to "Edit marks",edit_group_exam_mark_path(group.id,@exam.id,1)%>
+         <span style="font-size:12px"><%= link_to "Edit marks",edit_group_exam_mark_path(group.id,@exam.id,1)%></span>
        <%end%>
+       </h2>
        <table class="student_list" border="1"> 
           <tr><th> Subject </th> <th> Maximum mark </th> <th>  Passing mark </th><th>Exam date</th><th>From time</th><th>To time</th></tr>
          <% ExamSubject.find(:all, :conditions => ['group_id = ? and exam_id = ?', group.id, @exam.id ]).each do |exam_subject| %>
