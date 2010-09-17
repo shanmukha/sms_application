@@ -68,15 +68,15 @@
           <table class="form_style">
            <tr><th><br/><h2 class="heading">Parent Details</h2></th><td></td></tr>
             <tr>
-              <th width="180px;"><%= f.label :Mother_name %></th>
+              <th width="180px;">Mother's name</th>
     		  <td><%= f.text_field :mother %></td>
             </tr>
             <tr>
-              <th><%= f.label :Father_name %></th>
+              <th>Father's name</th>
     		  <td><%= f.text_field :father %></td>
             </tr>
             <tr>
-              <th><%= f.label :Guardian_name %></th>
+              <th>Guardian's name</th>
     		  <td><%= f.text_field :guardian %></td>
             </tr>
             <tr>
@@ -92,15 +92,15 @@
           <div class = 'right' style="padding-right:15px;">
             <table class="form_style">
               <tr>
-                 <th width="180px;"><%= f.label :Mother_mobile %></th>
+                 <th width="180px;">Mother's mobile</th>
     			 <td><%= f.text_field :mother_mobile %></td>
               </tr>
               <tr>
-                <th><%= f.label :Father_mobile %></th>
+                <th>Father's mobile</th>
     			<td><%= f.text_field :father_mobile %></td>
               </tr>
               <tr>
-		        <th><%= f.label :Guardian_mobile %></th>
+		        <th>Guardian's mobile</th>
     			<td><%= f.text_field :guardian_number %></td>
               </tr>
               <tr>
@@ -129,26 +129,47 @@
             <%end%>
          </table>
          </center>
-<script type="text/javascript">
-       	jQuery(function() {
-			  jQuery("#date2").datepicker({showOn: 'button', buttonImage: '/images/calendar.gif', buttonImageOnly: true, altField: '#date2', altFormat: 'dd-mm-yy' }) 
-			  });
-	</script>
 
-<script type="text/javascript">
-       	jQuery(function() {
-			  jQuery("#date3").datepicker({showOn: 'button', buttonImage: '/images/calendar.gif', buttonImageOnly: true, altField: '#date3', altFormat: 'dd-mm-yy' }) 
-			  });
-	</script>
-
-<script type="text/javascript">
-       	jQuery(function() {
-			  jQuery("#date4").datepicker({showOn: 'button', buttonImage: '/images/calendar.gif', buttonImageOnly: true, altField: '#date4', altFormat: 'dd-mm-yy' }) 
-			  });
-	</script>
 <div class="clear"></div>
 
+<meta charset="UTF-8" />
+	
+	
+	
+	
+	<script type="text/javascript">
+	$(function() {
+		$('#date4').datepicker({showOn: 'button', buttonImage: '/images/calendar.gif', buttonImageOnly: true, altField: '#date4', altFormat: 'dd-mm-yy',
+			changeMonth: true,
+			changeYear: true
+		});
+	});
+	</script>
 
+	
+	
+	<script type="text/javascript">
+	$(function() {
+		$('#date2').datepicker({showOn: 'button', buttonImage: '/images/calendar.gif', buttonImageOnly: true, altField: '#date2', altFormat: 'dd-mm-yy',
+			changeMonth: true,
+			changeYear: true
+		});
+	});
+	</script>
+
+
+
+<div class="demo">
+
+<p>Date: <input type="text" id="datepicker"></p>
+
+</div><!-- End demo -->
+
+<div class="demo-description">
+
+<p>Show month and year dropdowns in place of the static month/year header to facilitate navigation through large timeframes.  Add the boolean <code>changeMonth</code> and <code>changeYear</code> options.</p>
+
+</div><!-- End demo-description -->
 
 
 
