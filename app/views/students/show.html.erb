@@ -54,7 +54,7 @@
 <table class="show_page" >
   <tr>
     <th>Mother's name:</th>
-  	<td><%=h @student.mother %></td>
+  <td><%=h @student.mother %></td>
   </tr> 
   <tr>
     <th>Mother's mobile:</th>
@@ -99,7 +99,7 @@
 <%unless @messages.blank?%>
   <h1 class='heading'>Total delivered messages -<%= @messages.blank? ? 0 : @messages.size%></h1>
    <% @messages.each do |message| %>
-  	 <div class="box">
+      <div class="box">
       <div class="left"><h3>Sent date:<%=h Time.parse(message.created_at.to_s).strftime('%Y-%m-%d') %></h3></div>
       <div class="left"><h3>Sent by:<%= message.user.name%></h3></div>
       <div class="right">
@@ -122,7 +122,7 @@
   <h1 class='heading'>Total scheduled messages -<%= @schedules.blank? ? 0 : @schedules.size%></h1>
   <table class="listing">
     <tr>
-  	  <th>Created by</th>
+      <th>Created by</th>
       <th>Schedule date</th>
       <th>Time</th>
       <th>Message</th>
@@ -132,15 +132,15 @@
     <% @schedules.each do |schedule| %>
   	<tr class="<%=cycle("odd", "even")%>">
   	  <td><%= schedule.user.name%></td>
-      <td><%=h schedule.scheduled_date%></td>
-      <td><%= Time.parse(schedule.scheduled_time.to_s).strftime('%H:%M') %></td>
-      <td><%=h message_body_filter(schedule.message_body)%></td>
+          <td><%=h schedule.scheduled_date%></td>
+          <td><%= Time.parse(schedule.scheduled_time.to_s).strftime('%H:%M') %></td>
+          <td><%=h message_body_filter(schedule.message_body)%></td>
     <%unless schedule.group_id.nil?%>
-      <td><%=h schedule.group.name%></td>
+          <td><%=h schedule.group.name%></td>
     <%else%>
-      <td><%=h schedule.number%></td>
+          <td><%=h schedule.number%></td>
     <%end%>
-       <td class="view"><%= link_to '<img src="/images/view.gif" title="View"/>',student_schedule_show_student_path(:schedule_id => schedule,:student_id => @student)%></td>
+          <td class="view"><%= link_to '<img src="/images/view.gif" title="View"/>',student_schedule_show_student_path(:schedule_id => schedule,:student_id => @student)%></td>
      </tr>
 		<% end %>
   </table>
@@ -168,7 +168,7 @@
 <%end%>
 
 <%unless @letters.blank?%>
-<br /><h1 class='heading'>Total sent letters-<%= @letters.blank? ? 0 : @letters.size%></h1>
+<br /><h2 class='heading' style="margin:0px;">Total sent letters-<%= @letters.blank? ? 0 : @letters.size%></h2>
   <% @letters.each do |letter| %>
     <div class="box">
       <div class="left"><h3>Created by : <%= letter.user.name%></h3></div>
@@ -185,7 +185,7 @@
 
 
 <%unless @marks.blank?%>
-<br /><h1 class='heading'>Marks</h1>
+<br /><h2 class='heading' style="margin:0px;">Marks</h2>
 <% @exams.each do |exam|%>
   <div style="width:630px;float:left;min-height:320px;margin-right:15px;margin-top:10px;">
     <h3 class="exam"><%= exam.name%></h3> 

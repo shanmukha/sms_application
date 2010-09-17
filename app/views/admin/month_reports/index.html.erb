@@ -12,7 +12,7 @@
 </div> 
 <div id = "list">
       <br /> 
-      <label>Communication <%= @month.blank? ? display('tm') : display(@month)%></lablel
+      <label>Communication <%= @month.blank? ? display('tm') : display(@month)%></lablel>
       <br /> <br />
     <table class="student_group" width="100%" border="1" cellpadding="5px">
      <tr>
@@ -21,7 +21,7 @@
      </tr>
      <tr>
        <td> Message</td>
-       <td> <%= @messages_size.nil? ? 0 : @messages_size%> </td>
+       <td><%= @messages_size.nil? ? 0 : @messages_size%> </td>
     </tr>
     <tr>
       <td>Letter</td>

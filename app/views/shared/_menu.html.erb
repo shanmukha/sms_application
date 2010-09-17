@@ -1,23 +1,22 @@
 <% if current_user %> 
-           <div class = 'clear'> </div>
-
-      	    <div id="menu">
-            	<ul class = 'left'>
-                   <% if request.request_uri == "/messages/new"%>
-		      <li class='<%= request.request_uri == "/messages/new"? 'active': 'link' %>'> <%= link_to "New Message", new_message_path%></li>
-		   <%elsif request.request_uri == "/"%>
-		      <li class='<%= request.request_uri == "/"? 'active': 'link' %>'><%= link_to "New Message", new_message_path %></li>
-	           <%else%>
-		      <li><%= link_to "New Message", new_message_path %></li>
-		   <%end%>
-                   <li class='<%= request.request_uri =~ /emails/? 'active': 'link' %>'><%= link_to "Emails", emails_path %></li>
-         	   <li class='<%= request.request_uri =~ /letters/? 'active': 'link' %>'><%= link_to "Letters", letters_path %></li>
-<li class='<%= request.request_uri =~ /exams/? 'active': 'link' %>'><%= link_to "Exams", exams_path %></li>                 
-                 </ul>
-                 <ul class = 'right'>
-		     <li class='<%= request.request_uri =~ /students/? 'active': 'link' %>'> <%= link_to "Students", students_path %> </li> 
-                     <li class='<%= request.request_uri =~ /groups/? 'active': 'link' %>'><%= link_to "Classes",  groups_path %></li>
-                     <li class='<%= request.request_uri =~ /messages$/? 'active last': 'link last' %>'><%= link_to "Sent messages", messages_path %></li>
-                 </ul>
-             </div>
-        <%end%>
+   <div class ='clear'> </div>
+      <div id="menu">
+         <ul class = 'left'>
+           <% if request.request_uri == "/messages/new"%>
+	    <li class='<%= request.request_uri == "/messages/new"? 'active': 'link' %>'> <%= link_to "New Message", new_message_path%></li>
+	   <%elsif request.request_uri == "/"%>
+	    <li class='<%= request.request_uri == "/"? 'active': 'link' %>'><%= link_to "New Message", new_message_path %></li>
+	   <%else%>
+	    <li><%= link_to "New Message", new_message_path %></li>
+	   <%end%>
+            <li class='<%= request.request_uri =~ /emails/? 'active': 'link' %>'><%= link_to "Emails", emails_path %></li>
+            <li class='<%= request.request_uri =~ /letters/? 'active': 'link' %>'><%= link_to "Letters", letters_path %></li>
+            <li class='<%= request.request_uri =~ /exams/? 'active': 'link' %>'><%= link_to "Exams", exams_path %></li>                 
+           </ul>
+           <ul class = 'right'>
+		<li class='<%= request.request_uri =~ /students/? 'active': 'link' %>'> <%= link_to "Students", students_path %> </li> 
+                <li class='<%= request.request_uri =~ /groups/? 'active': 'link' %>'><%= link_to "Classes",  groups_path %></li>
+                <li class='<%= request.request_uri =~ /messages$/? 'active last': 'link last' %>'><%= link_to "Sent messages", messages_path %></li>
+            </ul>
+   </div>
+<%end%>

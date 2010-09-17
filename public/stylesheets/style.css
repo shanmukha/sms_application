@@ -312,10 +312,18 @@ h2.heading {
 }
 
 
-#menu ul li.active a{ color: #fff963;  }
+#menu ul li.active a{ color: #fff963;}
 
 
-#report-links a {margin: 0px 5px 0px 5px; color: #1d4896; font-weight: bold;}
+#report-links{
+	background-color:#f1f1ff;
+	height:28px;
+	margin:0px 10px;
+	-moz-border-radius-bottomleft:5px;
+	-moz-border-radius-bottomright:5px;
+}
+
+#report-links a {color: #1d4896;text-decoration:none;}
 
 #report-links ul {
 	padding: 0px;
