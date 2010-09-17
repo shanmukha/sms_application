@@ -1,5 +1,4 @@
-  <h1 class = 'heading left'>email sent to <span> <%= @email.group.name %></span> </h1>
-  <div class = 'right'><%= link_to image_tag("closelabel.gif", :title=> "close"),emails_path%> </div>
+  <h1 class = 'heading left'>Email sent to <span> <%= @email.group.name %></span> </h1>
   <div class="clear" ></div>
   <hr />
   <div class = 'left part1'>
@@ -18,7 +17,7 @@
  </div>
  <div class = 'right part2'>
  	<table  class="student_list">
-           <h1 class = 'heading'>Students list </h1>
+           <h2 class = 'heading' style="margin:0px;">Students list </h2>
 		<tr>
 			<th>Student name</th>
 		</tr>
@@ -26,7 +25,7 @@
 		<tr class="<%=cycle("odd", "even")%>">
 			<td><%= student.name%></td>
   		</tr>
-  			<%end%>
+  		<%end%>
 	</table>
 	<!-- <td><%= link_to 'Destroy', @email, :confirm => 'Are you sure?', :method => :delete %></td> -->
   </div>

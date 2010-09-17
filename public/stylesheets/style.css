@@ -152,15 +152,15 @@ h2.heading {
 	margin: 0 auto;
 	width: 95.3%;
         padding: 1px;
-	-webkit-border-radius: 8px;
-	-moz-border-radius: 8px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
 }
 
 #wrapper{ 
         background: #ffffff url('/images/content_bg.gif') repeat-x top;
         padding: 15px 10px;
-	-webkit-border-radius: 8px;
-	-moz-border-radius: 8px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
         
 }
 

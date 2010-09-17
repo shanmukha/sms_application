@@ -22,70 +22,62 @@
  
 <hr />
 <div id="listing_file">
-   <table class="listing">
+   <table class="listing" border="1">
      <tr>
    	<th><%= order @search, :by => :admission_number ,:as => "Admission no."%></th>
-     				<th><%= order @search, :by => :name ,:as => "Student name"%></th>
-                                
-                               	<th>Mobile No.</th>
-                               	<th>Status</th>
-                                <th>View</th>
-                                  
-  			</tr>
-		     <% @students.each do |student| %>
-  			 <tr class="<%=cycle("odd", "even")%> small">
-  			      <td><%=h student.admission_number %></td>
-    				<td> <%= image_tag('student.gif')%> <%=h student.name %></td>
-                               
-    	    	                <td><%=h student.number %></td>
-    			 <td><%=h student.status %></td>
-    				<td>
-    				
-				   <%= link_to image_tag('view.gif', :title=> "View"),student_path(student)%>
-                                </td>
-                                 
-  			   </tr>
-			<% end %>
-			
-		</table>
- 		<div id="pg"><%=will_paginate @students%></div>
-	</div>
-	<div class="sidebar">
+     	<th><%= order @search, :by => :name ,:as => "Student name"%></th>
+        <th>Mobile No.</th>
+        <th>Status</th>
+        <th>View</th>
+      </tr>
+	<% @students.each do |student| %>
+      <tr class="<%=cycle("odd", "even")%> small">
+  	 <td><%=h student.admission_number %></td>
+    	 <td> <%= image_tag('student.gif')%> <%=h student.name %></td>
+         <td><%=h student.number %></td>
+    	 <td><%=h student.status %></td>
+    	 <td><%= link_to image_tag('view.gif', :title=> "View"),student_path(student)%> </td>
+       </tr>
+         <% end %>
+     </table>
+     <div id="pg"><%=will_paginate @students%></div>
+</div>
+<div class="sidebar">
 		<h1>Search </h1>
 		<% form_for @search do |f| %>
- 			<table>
-  				<tr>
-      					<th>Student Name </th>
-				</tr>
-				<tr>
-					<td> <%= f.text_field :name_like %></td>
-				</tr>
-                                <tr>
-      					<th>Class Name </th>
-				</tr>
-				<tr>
-					<td><%= f.text_field :groups_name_like%></td>
-				</tr>
+ 		<table>
+  			<tr>
+      				<th>Student Name </th>
+			</tr>
+			<tr>
+				<td> <%= f.text_field :name_like %></td>
+			</tr>
+                        <tr>
+      				<th>Class Name </th>
+			</tr>
+			<tr>
+				<td><%= f.text_field :groups_name_like%></td>
+			</tr>
 		        	
-				<tr>
-      					<th>Admission number </th>
-				</tr>
-				<tr>
-					<td><%= f.text_field :admission_number_like %></td>
-				</tr>
+			<tr>
+      				<th>Admission number </th>
+			</tr>
+			<tr>
+				<td><%= f.text_field :admission_number_like %></td>
+			</tr>
 				
-				<tr>
-      					<th>Mobile Number</th>	
-				</tr>
-				<tr>
-					<td><%= f.text_field :number_equals%></td>
-				</tr>
+			<tr>
+      				<th>Mobile Number</th>	
+			</tr>
+			<tr>
+				<td><%= f.text_field :number_equals%></td>
+			</tr>
 				
-				<tr>
-       					<td class="btn"> <%= f.submit "Search" %> <input type="reset" value="Reset" /></td>
-  				</tr>
-  			</table>
-  		<%end%>
-	</div>
-	<div class="clear" ></div>
+			<tr>
+       				<td class="btn"> <%= f.submit "Search" %> <input type="reset" value="Reset" /></td>
+  			</tr>
+  		</table>
+  	<%end%>
+</div>
+<div class="clear" ></div>
 

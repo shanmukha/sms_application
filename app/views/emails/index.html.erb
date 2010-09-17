@@ -7,7 +7,6 @@
      <div class = 'clear'> </div>
 </div>
 
-
 <div id = 'listing-top'>
        <div id = 'button'>
 	   <%= link_to_function '<span>Write new email</span>', "jQuery('#top').show(); jQuery('#button').hide(); return false;", :class => 'buttonAdd' %>
@@ -19,23 +18,23 @@
 </div>
 <hr />
 <div id="listing_file">
-	<table class ="listing">
-  		<tr>
-  		    <th>Sent by</th>
-    			<th>Subject</th>
-    			<th>Class</th>
-    			<th>View</th>
-  		</tr>
-		<% @emails.each do |email| %>
-  		<tr class="<%=cycle("odd", "even")%>">
-  		     <td><%= email.user.name%></td>
-     			<td><%=h message_body_filter(email.subject) %></td>
-     			<td><%=h email.group.name%></td>
-     			<td class="view"><%= link_to '<img src="/images/view.gif" title="View"/>', email%></td>
-      		</tr>
-		<% end %>
-	</table>
-	<div id="pg"><%=will_paginate @groups%></div>
+  <table class ="listing" border="1">
+    <tr>
+      <th>Sent by</th>
+      <th>Subject</th>
+      <th>Class</th>
+      <th>View</th>
+    </tr>
+    <% @emails.each do |email| %>
+    <tr class="<%=cycle("odd", "even")%>">
+      <td><%= email.user.name%></td>
+      <td><%=h message_body_filter(email.subject) %></td>
+      <td><%=h email.group.name%></td>
+      <td class="view"><%= link_to '<img src="/images/view.gif" title="View"/>', email%></td>
+    </tr>
+   <% end %>
+  </table>
+  <div id="pg"><%=will_paginate @groups%></div>
 </div>
 
 <div class="sidebar">
@@ -67,7 +66,7 @@
 			<tr>
 				<td><%= f.text_field :group_name_like%></td>
 			</tr>
-		<tr>
+		         <tr>
        				<th>Sender name </th>
 			</tr>
 			<tr>
