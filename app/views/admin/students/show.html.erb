@@ -1,9 +1,10 @@
-<h1 class = 'heading left'>Student details </h1>
- <div class = 'right'><%= link_to image_tag("closelabel.gif", :title=> "close"),admin_students_path%> </div>
- <div class="clear" ></div>	
+<div class="clear" ></div>	
 <hr />
 <div class="left">
 <table class="show_page" >         
+  <tr>
+        <th><br/><h2 class="heading">Student Details</h2></th><td></td>
+  </tr>
   <tr>
     <th>Student Name:</th>
   	<td><%=h @student.name %></td>
@@ -40,6 +41,7 @@
     <th>Date of birth:</th>
   	<td><%=h @student.dob.strftime('%d-%m-%Y') unless @student.dob.nil? %></td>
   </tr>
+  <tr><th><br/><h2 class="heading">Admission Details</h2></th><td></td></tr>
   <tr>
     <th>Admission number:</th>
   	<td><%=h @student.admission_number %></td>
@@ -52,6 +54,7 @@
 </div>
 <div class="right">
  <table class="show_page">
+   <tr><th><br/><h2 class="heading">Parent Details</h2></th><td></td></tr>
   <tr>
     <th>Mother name:</th>
   	<td><%=h @student.mother %></td>
