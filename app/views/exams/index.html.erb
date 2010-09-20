@@ -28,12 +28,12 @@
               <%= link_to "Edit marks",edit_group_exam_mark_path(group.id,exam.id,1)%>
          <%end%></p>
 <table class="marklist">
-         <%group.subjects.find(:all).each do |subject|%>
-          <tr><th><%= subject.name%></th>
-         <td><%if find_subject_marks(exam,group,subject).blank?%>
-            <%= link_to "Enter Mark",mark_individual_subject_group_exam_mark_path(group.id,exam.id,subject.id)%>
+          <%ExamSubject.find(:all, :conditions => ['group_id = ? and exam_id = ?', group.id, exam.id ]).each do |subject| %>
+          <tr><th><%= subject.subject.name%></th>
+         <td><%if find_subject_marks(exam,group,subject.subject).blank?%>
+            <%= link_to "Enter Mark",mark_individual_subject_group_exam_mark_path(group.id,exam.id,subject.subject.id)%>
          <%else%>
-       <%= link_to "Edit marks",edit_mark_individual_subject_group_exam_mark_path(group.id,exam.id,subject.id)%>
+       <%= link_to "Edit marks",edit_mark_individual_subject_group_exam_mark_path(group.id,exam.id,subject.subject.id)%>
          <%end%></td>
      </tr>
     <%end%></table>

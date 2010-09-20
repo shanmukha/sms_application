@@ -71,11 +71,12 @@ class ExamsController < ApplicationController
         academic_year = AcademicYear.current_academic_year_school(school.id)
         @classes.each do |clas|
         clas.subjects.find(:all).each do|subject|
+if params[:class]["#{clas.id}"][:subjects].include?(subject.id.to_s)
         to_time = params[:class]["#{clas.id}"]["#{subject.id}"][:to_time]
         from_time = params[:class]["#{clas.id}"]["#{subject.id}"][:from_time]
         exam_date = params[:class]["#{clas.id}"]["#{subject.id}"][:exam_date] 
-        ExamSubject.create(:exam_id => @exam.id,:group_id => clas.id,:subject_id =>subject.id,:academic_year_id => academic_year.id,:maximum_marks => params[:class]["#{clas.id}"]["#{subject.id}"][:max_marks],:passing_marks => params[:class]["#{clas.id}"]["#{subject.id}"][:passing_marks],:exam_date => Time.parse("#{exam_date['exam_date(1i)']}-#{exam_date['exam_date(2i)']}-#{exam_date['exam_date(3i)']}"),:to_time =>Time.parse("#{to_time['to_time(4i)']}:#{to_time['to_time(5i)']}") ,:from_time =>Time.parse("#{from_time['from_time(4i)']}:#{from_time['from_time(5i)']}") ) if params[:class]["#{clas.id}"][:subjects].include?(subject.id.to_s)
-      
+        ExamSubject.create(:exam_id => @exam.id,:group_id => clas.id,:subject_id =>subject.id,:academic_year_id => academic_year.id,:maximum_marks => params[:class]["#{clas.id}"]["#{subject.id}"][:max_marks],:passing_marks => params[:class]["#{clas.id}"]["#{subject.id}"][:passing_marks],:exam_date => Time.parse("#{exam_date['exam_date(1i)']}-#{exam_date['exam_date(2i)']}-#{exam_date['exam_date(3i)']}"),:to_time =>Time.parse("#{to_time['to_time(4i)']}:#{to_time['to_time(5i)']}") ,:from_time =>Time.parse("#{from_time['from_time(4i)']}:#{from_time['from_time(5i)']}") ) 
+      end
     end
   end
         flash[:notice] = 'Subject was successfully updated.'
