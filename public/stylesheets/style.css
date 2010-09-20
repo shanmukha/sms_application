@@ -96,7 +96,7 @@ h1.heading {
 h1.heading span{color: #c8287b;}
 
 h2.heading {
-    font-size:15px;
+    	font-size:15px;
 	color: #005ca1;
 	font-family : "arial", helvetica, sans-serif;
 	font-weight:bold;
@@ -125,25 +125,23 @@ h2.heading {
 }
 
 #body_outer_wrapper{
-  margin: 12px;
-  background: #796646;
-
+  	margin: 12px;
+  	background: #796646;
 }
 
 #body_wrapper{
-  background: #fff url(/images/content_bg.gif) repeat-x top;
-  padding-bottom: 20px;
-  
+  	background: #fff url(/images/content_bg.gif) repeat-x top;
+  	padding-bottom: 20px;
 }
+
 #login_outer_wrapper{
- margin: 20px;
- padding: 20px;
- background: #fff  url(/images/content_bg.gif) repeat-x top;
+ 	margin: 20px;
+ 	padding: 20px;
+ 	background: #fff  url(/images/content_bg.gif) repeat-x top;
 }
 
 #login_wrapper{
    background: #fff;
-   
 }
 
  
@@ -160,8 +158,7 @@ h2.heading {
         background: #ffffff url('/images/content_bg.gif') repeat-x top;
         padding: 15px 10px;
 	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-        
+	-moz-border-radius: 5px;       
 }
 
 #message_wrapper{
@@ -185,9 +182,6 @@ h2.heading {
 	margin: 0px;
 }
 
-.right_space{float :left;margin-left :120px;}
-
-#midddle{float:left;margin-left :40px;margin-top :20px;}
 
 .part1 {width: 55%;}
 
@@ -254,20 +248,16 @@ h2.heading {
 }
 
 .header_links ul li a:hover{
-	color:#86b050;border-top: 1px solid #ccc;
+	color:#86b050;
+	border-top: 1px solid #ccc;
 	text-decoration:underline;
 }
 
-.header_links ul li.active a{ color:#964515; }
+.header_links ul li.active a{color:#964515; }
 
 
-.header_links li a:hover{color: #0e8ab8; }
+.header_links li a:hover{color:#0e8ab8; }
 
-.welcome {
-  float:right;
-  padding: 10px 0px 0px 600px;
-  color:red;
- }
 
 .notice{margin:10px 0px;}
 
@@ -282,8 +272,6 @@ h2.heading {
 	margin: 18px 3px 0px 3px;
 }
 
- 
-
 #menu ul {
 	padding: 0px;
 	list-style: none;
@@ -296,7 +284,7 @@ h2.heading {
         margin-top: 8px;
 } 
 
-#menu ul li.last { background: none; }
+#menu ul li.last {background: none; }
 
 #menu ul li a{
 	text-align:left;
@@ -311,6 +299,7 @@ h2.heading {
 	font-family : "arial", helvetica, sans-serif;
 }
 
+#menu li a:hover{color: #8bde87;}
 
 #menu ul li.active a{ color: #fff963;}
 
@@ -321,9 +310,11 @@ h2.heading {
 	margin:0px 10px;
 	-moz-border-radius-bottomleft:5px;
 	-moz-border-radius-bottomright:5px;
+	border:1px solid #e8e8e8;
+	border-top:none;
 }
 
-#report-links a {color: #1d4896;text-decoration:none;}
+#report-links a {color: #1d4896;text-decoration:none;margin: 0px 5px 0px 5px;}
 
 #report-links ul {
 	padding: 0px;
@@ -340,39 +331,18 @@ h2.heading {
 
 #report-links ul li.active a{ color: #86b050;  }
 
-#menu li a:hover{
-	color: #8bde87;
-	
-}
-
-/*Drop down menu*/
-#menu ul li.Nav{
-	background: url(/images/space.gif) no-repeat right;
-	width:204px;
-}
-
-#menu ul li.Nav a{
-	color:#000;
-}
-
-#menu ul li.Nav a:hover{
-	color:red;
-}
-
 
 /*..............................message-services(new message)................................*/
 
 #page-heading{
- font-size: 15px;
- font-weight: bold;
- width: 94%;
- margin: 10px auto 10px auto;
- padding: 0px;
- background: #fff;
- color: #ca3a85;
+	font-size: 15px;
+ 	font-weight: bold;
+ 	width: 94%;
+ 	margin: 10px auto 10px auto;
+ 	padding: 0px;
+ 	background: #fff;
+ 	color: #ca3a85;
 }
-
-
 
 .message_left{
         padding: 0px 0px 10px 0px;
@@ -412,11 +382,11 @@ h2.heading {
 }
 
 .message_left hr{
-  margin-top: 20px;
-  border-top: 1px solid #bbb;
-  border-bottom: 1px solid #fff;
-  background: #fff;
-  width: 97%;
+	margin-top: 20px;
+	border-top: 1px solid #bbb;
+	border-bottom: 1px solid #fff;
+	background: #fff;
+	width: 97%;
 }
 
 
@@ -430,10 +400,10 @@ h2.heading {
 
 
 .message_left  textarea{
-background:#fbfbfb url(/images/inputshadow.gif) no-repeat scroll left top;
-border:1px solid #999999;
-margin:3px 0;
-padding:3px 5px;
+	background:#fbfbfb url(/images/inputshadow.gif) no-repeat scroll left top;
+	border:1px solid #999999;
+	margin:3px 0;
+	padding:3px 5px;
 	width: 385px;
 	height: 125px;
 }
@@ -449,19 +419,19 @@ padding:3px 5px;
 	width:50.5%;
 	min-height:360px;
 	height:auto !important;
-  height:360px;
-  padding: 0px 0px 10px 0px;
+  	height:360px;
+  	padding: 0px 0px 10px 0px;
 }
 
 .message_right input.text-box{
- -moz-border-radius-bottomleft:3px;
--moz-border-radius-bottomright:3px;
--moz-border-radius-topleft:3px;
--moz-border-radius-topright:3px;
-background:#fbfbfb url(/images/inputshadow.gif) no-repeat scroll left top;
-border:1px solid #bbb;
-margin:3px 0;
-padding:3px 5px;
+ 	-moz-border-radius-bottomleft:3px;
+	-moz-border-radius-bottomright:3px;
+	-moz-border-radius-topleft:3px;
+	-moz-border-radius-topright:3px;
+	background:#fbfbfb url(/images/inputshadow.gif) no-repeat scroll left top;
+	border:1px solid #bbb;
+	margin:3px 0;
+	padding:3px 5px;
 	width: 280px;
 }
 
@@ -471,8 +441,6 @@ padding:3px 5px;
 	margin:18px 0px 5px 0px;
 	padding:2px 5px 5px 25px;
 }
-
- 
 
 #send{
 	margin: 10px 0px 0px 20px;
@@ -521,20 +489,20 @@ padding:3px 5px;
 }
 
 #schedule span input{
--moz-border-radius-bottomleft:5px;
--moz-border-radius-bottomright:5px;
--moz-border-radius-topleft:5px;
--moz-border-radius-topright:5px;
-background:transparent url(/images/button-large.png) repeat-x scroll center top;
-border:1px solid #999999;
-color:inherit;
-font-family:Arial,Helvetica,Calibri,sans-serif;
-overflow:visible;
-padding: 5px;
+	-moz-border-radius-bottomleft:5px;
+	-moz-border-radius-bottomright:5px;
+	-moz-border-radius-topleft:5px;
+	-moz-border-radius-topright:5px;
+	background:transparent url(/images/button-large.png) repeat-x scroll center top;
+	border:1px solid #999999;
+	color:inherit;
+	font-family:Arial,Helvetica,Calibri,sans-serif;
+	overflow:visible;
+	padding: 5px;
 }
 
 #schedule span input:hover{
-color:#0e8ab8;
+	color:#0e8ab8;
 	text-decoration:underline;
 }
 
@@ -562,16 +530,13 @@ color:#0e8ab8;
         width: 99.5%;
         color: #000;
 	margin: 0px 5px 0px 4px;
-      
         border: 1px solid #ccc;
-      
 }
 
 .listing th {
 	  background: #2693d2/* url(/images/table_header.jpg) repeat-x*/;
           color: #fff;
           text-align: left;
-
           padding: 0.5em .5em .5em .5em;
           font-weight: bold; 
  	  font-size:13px;
@@ -649,16 +614,14 @@ color:#0e8ab8;
 /*...................................content.......................*/
 
 #listing_file {
-        background: #fff; /*url(/images/main_line_lt.gif) repeat-y;*/
-	      width:74%;
+        background: #fff; 
+	width:74%;
       	float:left;
-	      margin: 0px 0px 15px 0px;
+	margin: 0px 0px 15px 0px;
         padding-left: 15px;
         min-height:500px;
-		height:auto !important;
+	height:auto !important;
         height:500px;
-        /*border-top: 1px solid #ccc;*/
-        /*border-bottom: 1px solid #ccc;*/
 }
 
 #listing-top{ margin: 5px 10px 0px 10px; padding-top: 2px; width:95%;}
@@ -675,7 +638,8 @@ color:#0e8ab8;
 }
 
 #listing-top a{ font-weight: bold; color: #235d94; font-size: 14px; font-family : "arial", helvetica, sans-serif; }
- 
+
+#top {background: #fafafa; margin: 0px 0px 20px 0px; border-bottom: 5px solid #eee; padding: 10px 25px 20px 25px;}
 
 #top h1 {
 	font-size:18px;
@@ -688,8 +652,6 @@ color:#0e8ab8;
 }
 
 
-
- 
 #button  {
 	float:right
 }
@@ -825,9 +787,11 @@ table.student_group tr th h3{
 	text-align:left;
 	
 }
+
 table.student_group tr.odd {
 	background-color:#fff;
 }
+
 table.student_group tr.even {
 	background-color:#eaf2ff;
 }
@@ -899,11 +863,6 @@ table.mark_listing tr.even:hover{
 	font-weight:bold;
 }
 
-#select_groups{
-  
-	
-}
-
 /*.........................sidebar.....................................*/
 
 
@@ -927,11 +886,11 @@ table.mark_listing tr.even:hover{
 }
 
 .sidebar th {
-	  color: #000;
-    text-align: left;
-    padding: 0.5em 0em .5em 0em;
-    font-size:13px;
-	  }
+	color: #000;
+    	text-align: left;
+    	padding: 0.5em 0em .5em 0em;
+    	font-size:13px;
+}
  
 .sidebar td { 
 	padding: .5em 0em .5em 0em; 
@@ -940,7 +899,6 @@ table.mark_listing tr.even:hover{
 }
 
 .sidebar td input{ 
- 
 	width: 96%;
  
 }
@@ -958,22 +916,14 @@ table.mark_listing tr.even:hover{
 	font-weight:bold;
 	margin:25px 0px 0px 0px;
 	font-family: Verdana, Helvetica, Arial;
-	
 }
 
 /*...............................................create new record.......................*/
 
-#top {background: #fafafa; margin: 0px 0px 20px 0px; border-bottom: 5px solid #eee; padding: 10px 25px 20px 25px;}
 
-.create_new{
-        margin-top: 10px;
-        width: 100%;
-}
-.create_new_class
-{ 
-    width:75%;
-     float:left;
-}
+.create_new{margin-top: 10px;width: 100%;}
+
+.create_new_class{width:75%;float:left;}
 
 .create_new span input{
 
@@ -1055,21 +1005,6 @@ table.mark_listing tr.even:hover{
 
 /*......................................................Show-page..............................*/
 
-.showpage_content{
-	margin:10px 25px 0px 25px;
-	color:#ae216a;
-	padding-bottom:15px;
-	background-color:#fff;
-	 
-}
-
-.showpage_content h3{
-	color:#fff;	
-	font-family: Verdana, Helvetica, Arial;
-	background-color:#a91b35;
-	padding:8px 10px 8px 10px;
-}
-
 table.show_page{
 	margin: 5px 40px 10px 0px;
 }
@@ -1089,7 +1024,7 @@ table.show_page tr td{
 	font-family: Verdana, Helvetica, Arial;
 	font-weight:normal;
 	text-align:left;
-    padding:10px 10px 10px 5px;
+    	padding:10px 10px 10px 5px;
 }
 
 table.show_page tr td.btn input{
@@ -1101,12 +1036,8 @@ table.show_page tr td.btn input{
 	font-family: Verdana, Helvetica, Arial;
 }
 
-table.show_page tr td.btn input:hover{}
 
- table.show_page tr td.blue{
-    color: #004e9d;
-
-}
+table.show_page tr td.blue{color: #004e9d;}
 
  
 table.student_letter{
@@ -1148,70 +1079,6 @@ table.student_letter tr.even:hover{
 	background-color:#fff;
 }
 
-.showpage_content a{
-	padding:2px 10px 2px 15px;
-	color:#000;
-	font-size:13px;
-	width:183px;
-	height:25px;
-	text-transform:uppercase;
-	font-weight:bold;
-	font-family: Verdana, Helvetica, Arial;
-	background: url(/images/button.gif) repeat-x;
-	border:1px solid #ccc;
-	margin-left:35px;
-}
-
-.showpage_content a:hover{
-	background: url(/images/button_hover.gif) repeat-x;
-}
-
-
-
-
-/**************************Edit page***************************/
-
-.Edit_show {
-	padding: 15px 10px 10px 15px;
-	height: 0 auto;
-}
-
-
-.Edit_show p input{
-	background:#fff url(/images/input.png) repeat-x bottom;
-	margin:5px 5px 5px 0px;
-	padding:5px 10px 5px 10px;
-	border:1px solid #808080;
-	
-}
-
-.Edit_show p{
-	color:#000;
-	padding:5px 5px 5px 12px;
-}
-
- 
-
-.Edit_show p textarea{
-	border:1px solid #808080;
-	padding:2px;
-	background:#fff url(/images/input.png) repeat-x bottom;
-	width:250px;
-	height:100px;
-}
-
-.Edit_show p textarea:focus{
-	border:1px solid #e8c382;
-}
-
-.Edit_show  span input{
-	margin:5px 5px 5px 5px;
-	padding:5px 10px 5px 10px;
-	color:#31608f;
-        font-weight: bold;
-}
-
- 
 
 /*...............................pagination..........................................*/
 
@@ -1276,9 +1143,9 @@ table.student_letter tr.even:hover{
         text-align: center;
 }
 
-#footer a { color: #3972ac;}
+#footer a {color: #3972ac;}
 
-#footer a:hover { color: #c8287b;}
+#footer a:hover {color: #c8287b;}
  
 /* end of footer */
 
@@ -1290,28 +1157,25 @@ table.student_letter tr.even:hover{
 	font-size:14px;
 	margin-right:5px;	
 }
- 
 
 #login {
-  width: 360px;
-  padding:10px 10px 10px 10px;
+  	width: 360px;
+  	padding:10px 10px 10px 10px;
 	margin:20px 20px 0px 20px;
 	border:2px solid #ddd;
-  background: #fbfbfb;
+  	background: #fbfbfb;
 }
-
- 
 
 #login fieldset input.field{
         margin:5px 10px 5px 10px;
         padding: 3px;
         width: 120px;
-         -moz-border-radius-bottomleft:3px;
--moz-border-radius-bottomright:3px;
--moz-border-radius-topleft:3px;
--moz-border-radius-topright:3px;
-background:#fbfbfb url(/images/inputshadow.gif) no-repeat scroll left top;
-border:1px solid #bbb;
+        -moz-border-radius-bottomleft:3px;
+	-moz-border-radius-bottomright:3px;
+	-moz-border-radius-topleft:3px;
+	-moz-border-radius-topright:3px;
+	background:#fbfbfb url(/images/inputshadow.gif) no-repeat scroll left top;
+	border:1px solid #bbb;
 }
 
 #login fieldset a{
@@ -1319,12 +1183,12 @@ border:1px solid #bbb;
 	color:#44586d;
 	margin:10px 5px 5px 5px;
 }
+
 #login fieldset a:hover{
 	font-size:12px;
 	color:green;
 	margin:5px 5px 5px 5px;
 }
-
 
 #login  input:focus{
 	background-color:#fff;
@@ -1332,114 +1196,12 @@ border:1px solid #bbb;
 }
 
 #login_wrapper #cover_image{
-  width: 410px;
-  margin: 0 auto;
+	width: 410px;
+  	margin: 0 auto;
 }
 
-#user-show {
-  float:left;
-  padding:20px 90px 10px 30px;
-	margin:80px 10px 0px 140px;
-	border:1px solid;
-	background-color:#eeedee;
-	font-size :18px;
-}
 
-#user-show  a{
-  background-color:#771919;
-	margin:5px 5px 5px 10px;
-	padding:5px 10px 5px 10px;
-	color:#fff;
-	font-size:13px;
-	text-transform:uppercase;
-	font-weight:bold;
-	font-family: Verdana, Helvetica, Arial;
-}
 
-#user-show  a:hover{
-	background-color:#371c6d;
-	text-decoration:none;
-}
-
-.letter_show{
-	margin:30px 40px 0px 30px;
-	color:#ae216a;
-	font-weight:bold;
-	padding-bottom:15px;
-	background-color:#eaf2ff;
-	border:1px solid;
-	width:500px;
-}
-.letter_show a{
-	padding:2px 10px 2px 15px;
-	color:#000;
-	font-size:13px;
-	width:183px;
-	height:25px;
-	text-transform:uppercase;
-	font-weight:bold;
-	font-family: Verdana, Helvetica, Arial;
-	background: url(/images/button.gif) repeat-x;
-	border:1px solid #ccc;
-	margin-left:35px;
-}
-
-.letter_show a:hover{
-	background: url(/images/button_hover.gif) repeat-x;
-}
-
-#user-new{
-  float:right;
-  margin:10px 30px 10px 10px;
-  }
- 
- #user-new  a{
-  	background-color:#120f24;
-  	margin:5px 5px 5px 10px;
-		padding:5px 10px 5px 10px;
-  	color:#fff;
-		font-size:13px;
-		text-transform:uppercase;
-		font-weight:bold;
-		font-family: Verdana, Helvetica, Arial;
-		text-decoration:none;
-}
- #user-new  a:hover{
-		background-color:#371c6d;
-		text-decoration:none;
-}
-  
- h1.users-list{
-    font-size:16px;
-	  color:#6d8e13;
-    font-family : "arial", helvetica, sans-serif;
-	  margin:9px 0px 0px 7px;
-	  font-weight:bold;
-    padding:0px 50px 10px 28px;
-	  width:45%;
-	  float:left;
-	  letter-spacing:1px;
-	  background:url(/images/users.png) no-repeat;
-  } 
-.user-search {
-  font-size:18px;
-  font-weight:bold;
-  width:39%;
-  border:2px solid #ccc;
-  padding :5px 10px 25px 20px;
-  margin:20px 20px 20px 20px;
-  background-color:#eeecde;
-  }
- .user-search span input{
-	 height:25px;
-	 padding:0px 4px 3px 0px;
-	 border:0px solid #575656;
-	 background: url(/images/button.jpg) no-repeat top;
-	 font-weight:bold;
-	 margin:25px 0px 0px 20px;
-	 font-family: Verdana, Helvetica, Arial;
-	
-}
 /*................................................ Error Reporting Styles */
 
 .Errors_left{
@@ -1561,7 +1323,6 @@ a.buttonAdd:hover span {
 .orange {background: #edad00; }
 .red {background:red; }
 
-#report-links a {margin: 0px 5px 0px 5px; color: #1d4896}
 
 p, ol {font-family:verdana}
 ol li {font-size:0.9em}
@@ -1569,10 +1330,7 @@ ol li i {font-size:0.8em}
 p.smallbottom {font-size:0.8em}
 p.disclaimer {font-size: 0.7em;}
 p.disclaimer b {color:red}
-.text-small
-{
- width: 90px;
-}
+.text-small{width: 90px;}
 
 .marklisting { 
 	border-collapse: collapse;
@@ -1580,56 +1338,38 @@ p.disclaimer b {color:red}
         color: #000;
 	margin: 0px 5px 0px 4px;
       	float:left;
-        border: 1px solid #ccc;
-      
+        border: 1px solid #ccc;  
 }
 
 .marklisting th {
-	  background: #2693d2/* url(/images/table_header.jpg) repeat-x*/;
+	  background-color: #2693d2;
           color: #fff;
           text-align: left;
-
           padding: 0.5em .5em .5em .5em;
           font-weight: bold; 
  	  font-size:13px;
 	  letter-spacing:1px;
           border: 1px solid #ccc;
-
 }
+
 .marklisting tr{margin:5px 0px;}
  
 .marklisting td { 
         padding: 0.6em .5em .6em .5em;
 	color: #000; 
 	font-size:13px;
-        vertical-align: center;
-    
-	
+        vertical-align: center;	
 }
 
-.marklisting tr.odd {
-      background-color:#fff;
+.marklisting tr.odd {background-color:#fff;}
 
-      
-}
 .marklisting tr.even {background-color:#fff;}
 
+.marklisting tr.odd1 {background-color:#fff;}
 
-
-.marklisting tr.odd1 {
-      background-color:#fff; 
-}
-
-.marklisting tr.even1 {
-      background-color:#fff;
-
-      
-}
-
-
+.marklisting tr.even1 {background-color:#fff;}
 
 .marklisting tr.bt{border-bottom:2px solid #ddd;}
-
 
 .marks{padding:0px;margin:0px 10px;width:275px;float:left;}
 .marks p{margin:5px 0px;}
@@ -1640,7 +1380,6 @@ h3.exam{font-size:18px;color:#a4397f;padding:0px 0px 0px 5px;}
 
 .form_style tr td{padding:10px;}
 
-.form_style span input:hover{}
 
 .form_style span a{
 	text-decoration:underline;
@@ -1650,6 +1389,7 @@ h3.exam{font-size:18px;color:#a4397f;padding:0px 0px 0px 5px;}
 	color:#000;
 }
 .form_style tr th{text-align:left;}
+
 .form_style tr td input{
 	border:1px solid #8a8b8c;
 	padding:5px;
@@ -1657,7 +1397,6 @@ h3.exam{font-size:18px;color:#a4397f;padding:0px 0px 0px 5px;}
 	background:#fff url(/images/input.png) repeat-x bottom;
 	
 }
-
 
 .form_style tr td textarea {
 	border:1px solid #8a8b8c;
@@ -1686,40 +1425,33 @@ h3.exam{font-size:18px;color:#a4397f;padding:0px 0px 0px 5px;}
 h3.exam_name{font-size:15px;font-weight:bold;margin:15px 0px 0px 0px;}
 
 
-.list { 
+.list{ 
 	border-collapse: collapse;
         width: 99.5%;
         color: #000;
 	margin: 0px 5px 0px 4px;
-      
         border: 1px solid #ccc;
-      
 }
 
 
-.list td { 
+.list td{ 
         padding: 0.6em .5em .6em .5em;
 	color: #000; 
 	font-size:13px;
         vertical-align: center;
-	
 }
 
 .list td h3{font-size:15px;color:#a4397f;font-weight:bold;line-height:30px;}
 
 
-.list tr.odd {
-      background-color:#fff;
+.list tr.odd {background-color:#fff;}
 
-      
-}
-
-.list tr.even td {
+.list tr.even td{
       border-top: #ddd 1px solid;
       border-bottom: #ddd 1px solid;
 }
 
-.list tr.odd td {
+.list tr.odd td{
       border-top: #ddd 1px solid;
       border-bottom: #ddd 1px solid;
 }
@@ -1747,10 +1479,9 @@ h3.exam_name{font-size:15px;font-weight:bold;margin:15px 0px 0px 0px;}
 
 .marklist { 
 	border-collapse: collapse;
-    width: 99.5%;
-    color: #000;
-    border: 1px solid #ccc;
-      
+    	width: 99.5%;
+    	color: #000;
+    	border: 1px solid #ccc;   
 }
 
 .marklist tr { border: 1px solid #ccc;}
