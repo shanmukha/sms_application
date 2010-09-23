@@ -9,6 +9,8 @@ class Student < ActiveRecord::Base
  has_many :groups,:through => :student_classes
  has_many :letter_students
  has_many :marks
+ has_many :student_subjects
+ has_many :subjects,:through => :student_subjects
  has_many :letters,:through => :letter_students
  has_one :parent_user,:class_name => 'User'
  belongs_to :user

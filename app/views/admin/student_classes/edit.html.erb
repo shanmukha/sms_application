@@ -17,7 +17,7 @@
  		<%@group_students.each do |group_student|%>
 		<tr class="<%=cycle("odd", "even")%>">
     			<td><%= check_box_tag("students[]", group_student.id, true,:id=> group_student.id)%></td>
-   			
+   			<td>
    			<td><%= h group_student.name%></td>
 				<td><%= h group_student.contact_name%></td>
 	      <td><%= h group_student.number%></td>
@@ -26,6 +26,21 @@
 	
 	   		<%end%>
 </table>
+
+
+<select id="control_8" name="control_8[]" multiple="multiple" size="5">
+<p>
+<%@subjects.each do |subject|%>
+
+				
+										<option value= "<%=subject.id%>"><%= subject.name%></option>
+					
+				
+
+			
+		<%end%>	
+</p>
+</select>
       <table class="student_list">
 <tr>
 		<th><input type='checkbox' title ="Check All/Uncheck" name='checkall' onclick='checkedAll();'/></th>

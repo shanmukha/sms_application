@@ -37,6 +37,9 @@ end
    end
  
   def edit
+       admin = current_user.has_role?('admin') ? current_user : User.find(current_user.parent_id) 
+       @school = School.find(:first,:conditions=>['administrator_id=?',admin.id])
+       @subjects = Subject.find(:all,:conditions => ['school_id =?',@school.id])
     @group,@group_students,@non_group_students = Group.find_group_all_students(params[:id],current_user)
   end
  

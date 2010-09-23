@@ -24,15 +24,15 @@
   	<td><%=h @student.language %></td>
   </tr>	
   <tr>
-    <th> Student email:</th>
+    <th>Student email:</th>
   	<td><%=h @student.student_email %></td>
   </tr>
   <tr>
-    <th> Student mobile number:</th>
+    <th>Student mobile number:</th>
   	<td><%=h @student.student_mobile_number %></td>
   </tr>
   <tr>
-    <th> Blood group:</th>
+    <th>Blood group:</th>
   	<td><%=h @student.blood_group %></td>
   </tr>
    <tr>
@@ -186,14 +186,14 @@
 <%unless @marks.blank?%>
 <br /><h2 class='heading' style="margin:0px;">Marks</h2>
 <% @exams.each do |exam|%>
-  <div style="width:630px;float:left;min-height:320px;margin-right:15px;margin-top:10px;">
+  <div style="margin-bottom:30px;">
     <h3 class="exam"><%= exam.name%></h3> 
-    <table class="listing" border="1">
+    <table class="listing" border="1" width="100%">
       <tr>		    
-        <td width="30%">Subject</td>
-        <td width="25%">Maximum marks</td>
-        <td width="25%">Passing marks</td>
-        <td width="18%">Score</td>		
+        <td width="30%"><b>Subject</b></td>
+        <td width="25%"><b>Maximum marks</b></td>
+        <td width="25%"><b>Passing marks</b></td>
+        <td width="18%"><b>Score</b></td>		
      </tr>
    <%total_max_marks =0%>
    <%total_score=0%>

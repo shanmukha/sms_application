@@ -4,8 +4,8 @@
 <head>
 	<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
   	<title><%= configatron.site_name%></title>
-   	<%= stylesheet_link_tag 'style','redmond/jquery-ui-1.7.2.custom'%>
-  	<%=javascript_include_tag 'jquery-1.3.2.min','jquery-ui-1.7.2.custom.min','jrails','datepicker','jquery.cookie','jquery.simplyCountable.js','facebox','jquery.corner','dropdown.js'%>
+   	<%= stylesheet_link_tag 'style','redmond/jquery-ui-1.7.2.custom','jquery.multiSelect'%>
+  	<%=javascript_include_tag 'jquery-1.3.2.min','jquery-ui-1.7.2.custom.min','jrails','datepicker','jquery.cookie','jquery.simplyCountable.js','jquery.bgiframe.min','jquery.multiSelect','facebox','jquery.corner','dropdown.js'%>
 
 	<script type="text/javascript">
      		checked = false;
@@ -36,6 +36,31 @@
       	jQuery(document).ready(function() {
       	jQuery('a[rel*=facebox]').facebox() })
 	</script>
+
+
+		<script type="text/javascript">
+			
+			$(document).ready( function() {
+				
+				// Default options
+				$("#control_1, #control_3, #control_4, #control_5").multiSelect();
+				
+				// With callback
+				$("#control_6").multiSelect( null, function(el) {
+					$("#callbackResult").show().fadeOut();
+				});
+				
+				// Options displayed in comma-separated list
+				$("#control_7").multiSelect({ oneOrMoreSelected: '*' });
+				
+				// 'Select All' text changed
+				$("#control_8").multiSelect({ selectAllText: 'Pick &lsquo;em all!' });
+				
+				
+				
+			});
+			
+		</script>
 </head>
 <body>
 <div id="body_outer_wrapper">
