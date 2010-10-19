@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100826094319) do
+ActiveRecord::Schema.define(:version => 20100920095312) do
 
   create_table "academic_years", :force => true do |t|
     t.date     "from_date"
@@ -207,6 +207,13 @@ ActiveRecord::Schema.define(:version => 20100826094319) do
     t.integer  "student_id"
     t.integer  "roll_number"
     t.integer  "group_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "student_subjects", :force => true do |t|
+    t.integer  "student_id"
+    t.integer  "subject_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

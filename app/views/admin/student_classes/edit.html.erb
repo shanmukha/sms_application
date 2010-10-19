@@ -1,10 +1,10 @@
-<h1 class = 'heading'>Editing student list</h1>	
+<h1 class = 'heading'>Editing student list</h1>
 <hr />
 
 	<% form_for([:admin,@group],:url => admin_student_class_path(@group),:html => {:multipart => true} ) do |f| %>
   	<%= f.error_messages %>
+ Selected students are in this class currently, unselect to remove.
   	
-     Selected students are in this class currently, unselect to remove.
 	<table class="student_list">
 		<tr>
 		<th><input type='checkbox' title ="Check All/Uncheck" name='checkall' onclick='checkedAll();'/></th>
@@ -17,7 +17,7 @@
  		<%@group_students.each do |group_student|%>
 		<tr class="<%=cycle("odd", "even")%>">
     			<td><%= check_box_tag("students[]", group_student.id, true,:id=> group_student.id)%></td>
-   			<td>
+   			
    			<td><%= h group_student.name%></td>
 				<td><%= h group_student.contact_name%></td>
 	      <td><%= h group_student.number%></td>
@@ -25,31 +25,6 @@
 		</tr>
 	
 	   		<%end%>
-</table>
-
-
-<select id="control_8" name="control_8[]" multiple="multiple" size="5">
-<p>
-<%@subjects.each do |subject|%>
-
-				
-										<option value= "<%=subject.id%>"><%= subject.name%></option>
-					
-				
-
-			
-		<%end%>	
-</p>
-</select>
-      <table class="student_list">
-<tr>
-		<th><input type='checkbox' title ="Check All/Uncheck" name='checkall' onclick='checkedAll();'/></th>
-     			
-     			<th>Student name</th>
-     			<th>Contact name</th>
-     			<th>Contact Mobile </th>
-                        <th>Roll number</th>   
-                      </tr>
   		<%@non_group_students.each do |non_group_student| %>
   		<tr class="<%=cycle("odd", "even")%>">
       		<td><%= check_box_tag("students[]", non_group_student.id, false,:id=> non_group_student.id)%></td>
