@@ -1,0 +1,20 @@
+ <% form_for(@class_subject_attendance,:url => attendances_path,:html =>{:method => :post}) do |f| %>
+    <p>Class:<%= f.select :group_id,all_groups %></p>
+     <p>Date:<%= f.date_select :date%></p>
+   <%= observe_field("class_subject_attendance_group_id", :frequency => 1,
+                  :before => "jQuery('#spinner1').show();",
+                  :success => "jQuery('#spinner1').hide();",
+                  :url => {:action=>'group_subject_students'}, 
+				    :method => :get,
+                  :with => "'group_id=' + value") %>
+				  
+    	 <div id="subject_students"></div>
+           
+            <%= image_tag("spinner.gif",
+               			:border => 0,
+              			:id => "spinner1",
+			        :style =>"display: none;" ) %>  
+
+  <%= f.submit 'Create record' %>
+  <% end -%>
+

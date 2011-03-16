@@ -7,6 +7,7 @@ class Subject < ActiveRecord::Base
  has_many :marks
  has_many :class_subjects
  has_many :groups,:through => :class_subjects
+ has_many :class_subject_attendances
  validates_presence_of :name
 
 end

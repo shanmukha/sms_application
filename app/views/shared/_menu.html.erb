@@ -11,7 +11,8 @@
 	   <%end%>
             <li class='<%= request.request_uri =~ /emails/? 'active': 'link' %>'><%= link_to "Emails", emails_path %></li>
             <li class='<%= request.request_uri =~ /letters/? 'active': 'link' %>'><%= link_to "Letters", letters_path %></li>
-            <li class='<%= request.request_uri =~ /exams/? 'active': 'link' %>'><%= link_to "Exams", exams_path %></li>                 
+            <li class='<%= request.request_uri =~ /exams/? 'active': 'link' %>'><%= link_to "Exams", exams_path %></li>         
+           <li class='<%= request.request_uri =~ /attendances/? 'active': 'link' %>'><%= link_to "Attendance",new_attendance_path %></li>                    
            </ul>
            <ul class = 'right'>
 		<li class='<%= request.request_uri =~ /students/? 'active': 'link' %>'> <%= link_to "Students", students_path %> </li> 

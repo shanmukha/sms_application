@@ -111,13 +111,14 @@
 
      </div>
     
-     <%if request.request_uri =~/class_reports/ or request.request_uri=~/class_reports/ or request.request_uri=~/teacher_reports/ or request.request_uri=~/tag_reports/ or request.request_uri=~/month_reports/  %>
+     <%if request.request_uri =~/class_reports/ or request.request_uri=~/class_reports/ or request.request_uri=~/teacher_reports/ or request.request_uri=~/tag_reports/ or request.request_uri=~/month_reports/ or request.request_uri=~/attendance_reports/  %>
       <div id = 'report-links'>
 	<ul>
    	<li class='<%= request.request_uri =~ /class_reports/? 'active': 'link' %>'> <%= link_to "Class wise reports",admin_class_reports_path%></li> 
    	<li class='<%= request.request_uri =~ /teacher_reports/? 'active': 'link' %>'><%= link_to "Teacher wise reports",admin_teacher_reports_path%></li>
    	<li class='<%= request.request_uri =~ /tag_reports/? 'active': 'link' %>'><%= link_to "Tag wise reports",admin_tag_reports_path%></li>
   	<li class='<%= request.request_uri =~ /month_reports/? 'active': 'link' %>'><%= link_to "Monthly reports",admin_month_reports_path%></li>
+<li class='<%= request.request_uri =~ /attendance_reports/? 'active': 'link' %>'><%= link_to "Attendance reports",admin_attendance_reports_path%></li>
       </ul>
      </div>
     <%end%>

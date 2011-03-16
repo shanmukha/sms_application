@@ -42,7 +42,7 @@
           <div class ='left heading'>Student list</div> 
 	  <div class = 'right'>
                <% admin = current_user.has_role?('admin') ? current_user : User.find(current_user.parent_id) rescue ''%>
-    	       <%= f.select :group_id, [['Select class', '']] + current_user.groups.find(:all,:conditions =>['status = ?','Active']).map{|m|[m.name,m.id]} %>
+    	       <%= f.select :group_id, [['Select class', '']] + admin.groups.find(:all,:conditions =>['status = ?','Active']).map{|m|[m.name,m.id]} %>
 	  </div>
           <div class = 'clear'> </div>
 	 </div>

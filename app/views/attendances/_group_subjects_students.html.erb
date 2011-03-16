@@ -1,0 +1,27 @@
+<table>
+	
+	  	<%unless @subjects.nil?%>
+		<tr> <td><%@subjects.each do |subject| %>
+	               <%=h subject.name %>
+  	       		<%= check_box_tag("subjects[]", subject.id, true, :id=> subject.id)%>
+	<%end%></td>
+                
+                  	</tr>
+	<%end%>	
+</table>
+
+<table class="student_list" width="100%" border="1" cellpadding="5px">
+	<tr>
+		<th><input type='checkbox' title ="Check All/Uncheck" name='checkall' onclick='checkedAll();', checked="checked" /></th>
+	  	<th> Student Name</th>
+               	  	</tr>
+	  	<%unless @students.nil?%>
+		<%@students.each do |student| %>
+	
+  	<tr class="<%=cycle("odd", "even")%>">
+       		<td><%= check_box_tag("students[]", student.id, true, :id=> student.id)%></td>
+                <td><%=h student.name %></td>
+                  	</tr>
+	<%end%>
+	<%end%>	
+<div class="clear" ></div>	 

@@ -6,6 +6,7 @@ class Group < ActiveRecord::Base
  has_many :emails
  has_many :letters
  has_many :subjects
+ has_many :class_subject_attendances
  has_many :student_classes
  has_many :students,:through => :student_classes
  has_many :exam_classes

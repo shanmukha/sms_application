@@ -1,0 +1,39 @@
+<h1 class ="heading left">Attendance report</h1>
+ <div class="clear"></div>
+ <hr /><br />
+ <% form_for(:report, :url => admin_attendance_reports_path, :html => {:id => 'main-form',:method => :get}) do |f| %>
+Class:<%= f.select :group_id, all_groups,:selected => (@group.id unless @group.nil?)%>
+
+Subject:<%= f.select :subject_id, find_all_subjects,:selected => (@subject.id unless @subject.nil?)%>
+    
+ <%= f.submit "Get report" %>&nbsp;&nbsp;&nbsp;&nbsp;
+<br />
+<%unless @class.nil?%>
+   <h1 class ="heading left">Class:<%= @class.name%>, Subject:<%= @subject.name%></h1>
+<%end%>
+<%= observe_field("report_group_id", :frequency => 1,
+                  :before => "jQuery('#spinner1').show();",
+                  :success => "jQuery('#spinner1').hide();",
+                  :url => {:action=>'render_subjects'}, 
+				    :method => :get,
+                  :with => "'group_id=' + value") %>
+ <%= image_tag("spinner.gif",
+               			:border => 0,
+              			:id => "spinner1",
+			        :style =>"display: none;" ) %> 
+<%end%>
+
+ <%unless @students.nil?%>
+  <table class="student_group" width="100%" border="1" cellpadding="5px">
+   <th>Student name</th>
+   <th>Percentage</th>
+<%i=0%>
+  <%@students.each do |student|%>
+  <tr>
+    <td><%= student.name%></td>
+    <td><%= @percentage[i].nil? ? 0 : @percentage[i]%>%</td>
+  </tr>
+<%i+=1%>
+  <%end%>
+   </table>
+ <%end%>

@@ -1,5 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
   map.resources :helps 
+  map.resources :attendances,:collection => {:group_subject_students => :any}
   map.resources :letters,:collection =>{:group_students => :get},:member => {:print => :any, :print_labels => :any,:show_letter=>:get}
   map.resources :emails,:collection =>{:group_students => :get},:member => {:show_email=>:get}
   map.resources :schedules,:collection =>{:render_message_template => :get,:student_groups => :get,:edit_student_groups => :get},:member => {:status_update => :any}
@@ -32,6 +33,7 @@ ActionController::Routing::Routes.draw do |map|
      admin.resources :tag_reports
      admin.resources :teacher_reports
      admin.resources :month_reports 
+     admin.resources :attendance_reports,:collection => {:render_subjects => :any}
      admin.resources :schools,:collection=>{:plan_type => :any}
      admin.resources :users,:collection =>{:forgot_password =>:any},:member =>{:edit_my_account => :get}
  end

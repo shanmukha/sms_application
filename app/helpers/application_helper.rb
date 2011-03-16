@@ -86,7 +86,10 @@ module ApplicationHelper
      admin = current_user.has_role?('admin') ? current_user : User.find(current_user.parent_id) rescue ''
     [['All', '']] +  admin.groups.find(:all,:conditions =>['status = ?','Active']).map{|m|[m.name,m.id]} rescue ''
   end
-
+  def find_all_subjects
+   admin = current_user.has_role?('admin') ? current_user : User.find(current_user.parent_id) rescue ''
+    [['All', '']] +  admin.subjects.find(:all).map{|m|[m.name,m.id]} rescue ''
+  end
   def all_groups
      groups = Group.find(:all,:conditions =>['school_id =?',current_user.school_id]).collect {|e| [e.name,e.id]} rescue ''
   end

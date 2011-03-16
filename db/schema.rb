@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100920095312) do
+ActiveRecord::Schema.define(:version => 20110301095616) do
 
   create_table "academic_years", :force => true do |t|
     t.date     "from_date"
@@ -17,6 +17,14 @@ ActiveRecord::Schema.define(:version => 20100920095312) do
     t.string   "identification_name"
     t.boolean  "current"
     t.integer  "school_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "class_subject_attendances", :force => true do |t|
+    t.integer  "group_id"
+    t.date     "date"
+    t.integer  "subject_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -198,6 +206,14 @@ ActiveRecord::Schema.define(:version => 20100920095312) do
     t.string   "credits"
     t.date     "end_date"
     t.string   "school_email"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "student_attendances", :force => true do |t|
+    t.integer  "student_id"
+    t.integer  "class_subject_attendance_id"
+    t.boolean  "present"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
