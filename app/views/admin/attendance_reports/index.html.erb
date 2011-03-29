@@ -5,11 +5,12 @@
 Class:<%= f.select :group_id, all_groups,:selected => (@group.id unless @group.nil?)%>
 
 Subject:<%= f.select :subject_id, find_all_subjects,:selected => (@subject.id unless @subject.nil?)%>
-    
+Date:<%= f.date_select :date,:prompt=>{:day=>'Select day', :month=>'Select month', :year=>'Select year'}%>
+
  <%= f.submit "Get report" %>&nbsp;&nbsp;&nbsp;&nbsp;
 <br />
 <%unless @class.nil?%>
-   <h1 class ="heading left">Class:<%= @class.name%>, Subject:<%= @subject.name%></h1>
+   
 <%end%>
 <%= observe_field("report_group_id", :frequency => 1,
                   :before => "jQuery('#spinner1').show();",
@@ -24,6 +25,7 @@ Subject:<%= f.select :subject_id, find_all_subjects,:selected => (@subject.id un
 <%end%>
 
  <%unless @students.nil?%>
+<h1 class ="heading left">Class:<%= @class.name%>, Subject:<%= @subject.name%></h1>
   <table class="student_group" width="100%" border="1" cellpadding="5px">
    <th>Student name</th>
    <th>Percentage</th>
@@ -34,6 +36,22 @@ Subject:<%= f.select :subject_id, find_all_subjects,:selected => (@subject.id un
     <td><%= @percentage[i].nil? ? 0 : @percentage[i]%>%</td>
   </tr>
 <%i+=1%>
+  <%end%>
+   </table>
+ <%end%>
+
+<%unless @students_attendance.nil?%>
+   <h1 class ="heading left">Class:<%= @class.name%>, Subject:<%= @subject.name%>, Date:<%= @date%></h1><br />
+   <h1 class ="heading left">Present students</h1>
+  <table class="student_group" width="100%" border="1" cellpadding="5px">
+   <th>Student name</th>
+
+  <%@students_attendance.each do |students_attendance|%>
+  <tr>
+    <td><%= students_attendance.student.name%></td>
+   
+  </tr>
+
   <%end%>
    </table>
  <%end%>

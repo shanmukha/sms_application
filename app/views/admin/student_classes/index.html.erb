@@ -1,5 +1,5 @@
 <h1 class = 'heading left'>Students list of class <span><%=h @group.name %></span> </h1>	
- <% if @students.blank?%><span class ='right'><%= link_to "<span>Add new class record</span>", new_admin_group_student_class_path(@group.id) , :class => 'buttonAdd'%></span>
+ <% if @students.blank?%><span class ='right'><%= link_to "<span>Add student list</span>", new_admin_group_student_class_path(@group.id) , :class => 'buttonAdd'%></span>
 <%else%>
   <span class ='right'><%= link_to "<span>Edit students list</span>", edit_admin_student_class_path(:id => @group.id) , :class => 'buttonAdd'%></span>
 <%end%>
