@@ -3,7 +3,7 @@ before_filter :check_admin_role
  layout "admin"
  def index
   @group = Group.find(params[:group_id])
-  @students = @group.students.find(:all)
+  @students = @group.students.find(:all,:conditions =>['status =?','Active'])
 end
 
 def new
@@ -65,4 +65,16 @@ end
       end
     end
   end
+
+ def promote_students
+   unless params[:class_id].blank? 
+     @group = Group.find(params[:group_id])
+     StudentClass.delete_all(["group_id = ?", params[:group_id]])
+     Group.copy_students_from_group(params[:class_id],@group,current_user) 
+     flash[:notice] = "Students are successfully promoted."
+     redirect_to(admin_group_student_classes_url(params[:group_id])) 
+    else
+     redirect_to(admin_group_student_classes_url(params[:group_id])) 
+   end
  end
+end

@@ -22,6 +22,19 @@ class Admin::SchoolsController < ApplicationController
     end
   end
 
+  def edit
+   @school = School.find(params[:id])
+   @school.administrator || @school.build_administrator
+  end
+
+  def update
+    @school = School.find(params[:id])
+    if @school.update_attributes(params[:school])
+     redirect_to admin_schools_path
+    else
+     render edit_admin_school_path(@school)
+    end
+  end   
   def show
     @school = School.find(params[:id])
     @user = @school.administrator

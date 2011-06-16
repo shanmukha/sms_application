@@ -1,28 +1,49 @@
 <h1 class ="heading left">Attendance report</h1>
  <div class="clear"></div>
- <hr /><br />
+ <hr />
+
+ 
  <% form_for(:report, :url => admin_attendance_reports_path, :html => {:id => 'main-form',:method => :get}) do |f| %>
-Class:<%= f.select :group_id, all_groups,:selected => (@group.id unless @group.nil?)%>
+
+Class:<%= f.select :group_id, all_groups,:selected => (@group.id unless @group.nil?), :class => 'group_id'%>
 
 Subject:<%= f.select :subject_id, find_all_subjects,:selected => (@subject.id unless @subject.nil?)%>
-Date:<%= f.date_select :date,:prompt=>{:day=>'Select day', :month=>'Select month', :year=>'Select year'}%>
-
- <%= f.submit "Get report" %>&nbsp;&nbsp;&nbsp;&nbsp;
+<div id="attendance_by_date" style="display:none;">
 <br />
-<%unless @class.nil?%>
-   
+ Date:<%= f.date_select :date,:prompt=>{:day=>'Select day', :month=>'Select month', :year=>'Select year'}%>
+
+<div style="float:right;"><%= link_to_function "All Attendance" ,"jQuery('#attendance_without_date').show(); jQuery('#attendance_by_date').hide();" %> 
+</div>
+</div>
+<div id="attendance_without_date">
+<div style="float:right;"><%= link_to_function "Attendance by date" ,"jQuery('#attendance_without_date').hide(); jQuery('#attendance_by_date').show();" %> 
+</div>
+</div>
+
+<br />
+<div style="padding-left:50px;"> <%= f.submit "Get report" %>&nbsp;&nbsp;&nbsp;&nbsp;
+</div>
+<br />
 <%end%>
+
+
+
+
+
+
+
 <%= observe_field("report_group_id", :frequency => 1,
                   :before => "jQuery('#spinner1').show();",
                   :success => "jQuery('#spinner1').hide();",
                   :url => {:action=>'render_subjects'}, 
 				    :method => :get,
                   :with => "'group_id=' + value") %>
+
  <%= image_tag("spinner.gif",
                			:border => 0,
               			:id => "spinner1",
 			        :style =>"display: none;" ) %> 
-<%end%>
+
 
  <%unless @students.nil?%>
 <h1 class ="heading left">Class:<%= @class.name%>, Subject:<%= @subject.name%></h1>

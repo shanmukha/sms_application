@@ -11,6 +11,7 @@
     <th>Plan Type</th>
      <th>Sms Limit</th>
      <th>View</th>
+     <th>Edit</th>
    </tr>
 
 <% @schools.each do |school| %>
@@ -19,6 +20,7 @@
     <td><%=h school.plan_type %></td>
      <td><%=h school.sms_limit %></td>
     <td><%= link_to '<img src="/images/view.gif" title="View"/>', admin_school_path(school)%></td>
+       <td><%= link_to 'Edit', edit_admin_school_path(school)%></td>
    </tr>
 <% end %>
 </table>

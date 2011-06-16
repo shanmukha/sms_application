@@ -45,13 +45,15 @@ class MessagesController < ApplicationController
   def create
      admin = current_user.has_role?('admin') ? current_user : User.find(current_user.parent_id)
      school = School.find(:first,:conditions=>['administrator_id=?',admin.id])
-     if params[:students].blank? and params[:message][:number].blank?
+     if params[:students].nil? and params[:message][:number].blank?
+      @message = current_user.messages.new(params[:message]) 
       flash.now[:error] = "Please select at least one student or enter mobile number."
       render :action => "new"
       return nil
     end
       
     if params[:message][:message_body].blank?
+      @message = current_user.messages.new(params[:message]) 
       flash.now[:error] = "Please enter message content."
       render :action => "new"
       return nil
@@ -134,8 +136,8 @@ class MessagesController < ApplicationController
            render :action => "new"
          end 
        end
-         rescue #ActiveResource::ResourceInvalid => e  
-         flash[:error] = 'There seems to be some problem upadting the delevery status. Please try again latter.'    
+        rescue #ActiveResource::ResourceInvalid => e  
+         flash[:error] = 'There seems to be some problemin message delivery. Please try again latter.'    
          redirect_to(messages_url) 
      end
   

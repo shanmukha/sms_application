@@ -2,7 +2,7 @@
 <h1 class ='heading'><%= "#{@user.name}'s account"%></h1>
 
 	<% if @user.has_role?('admin') && !@user.has_role?('super_admin')%>
-	 <h3 style="color:#ab0a7c; font-size:14px; margin:10px 0px;"><%= @user.client_type=="Unlimited" ? "End date: #{@user.end_date.strftime('%d-%m-%y')}" :"Sms balance: #{@user.balance}"%></h3>
+	 <h3 style="color:#ab0a7c; font-size:14px; margin:10px 0px;"><%= find_school(@user).plan_type=="Unlimited" ? "End date: #{ find_school(@user).end_date.strftime('%d-%m-%y')}" :"Sms balance: #{find_school(@user).balance}"%></h3>
 	<%end%>
 <% form_for([:admin,@user],:url => admin_user_path(@user),:html => {:multipart => true} ) do |f| %>
 	<%= render :partial =>"form"%>

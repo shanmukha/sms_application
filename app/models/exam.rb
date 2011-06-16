@@ -19,12 +19,12 @@ class Exam < ActiveRecord::Base
    exams =  Exam.find(:all,:include=>[:exam_classes,:marks],:conditions => ['exam_classes.academic_year_id =? and school_id =? and marks.student_id =?',academic_year.id,school.id,student.id])
    subjects = Subject.find(:all,:conditions =>['school_id =?',school.id])
    exams.each do |exam|
-    total_maximum_marks =0
-    total_marks =0
+    total_maximum_marks = 0
+    total_marks = 0
    subjects.each do |subject|
    mark= Mark.find(:first,:conditions =>['exam_id =? and subject_id =? and student_id =?',exam.id,subject.id,student.id]) rescue ""
-    total_marks= total_marks + mark.mark unless mark.blank?
-   total_maximum_marks= total_maximum_marks + mark.subject.max_marks  unless mark.blank?
+    total_marks= total_marks.to_i + (mark.mark.blank? ? 0 : mark.mark) unless mark.blank?
+   total_maximum_marks= total_maximum_marks.to_i + mark.subject.max_marks  unless mark.blank?
     end
    percentages<<  total_marks/total_maximum_marks.to_f*100 rescue 0
   end

@@ -1,0 +1,49 @@
+ <% form_tag(attendances_path,:method => :get) do  %>
+    <p>Class:<%= select_tag 'group_id',options_for_select(all_groups,params[:group_id]) %></p>
+     <br />
+     <p>Subject: <%= select_tag :subject_id, options_for_select(find_all_subjects,:selected => (@subject.id unless @subject.nil?))%></p>
+    <br />
+     <p>Date:<%= text_field_tag 'date'%></p>
+     <br />
+     <%= submit_tag "Get attendance" %>
+ <%end%>   
+
+
+
+<%= observe_field("group_id", :frequency => 1,
+                  :before => "jQuery('#spinner1').show();",
+                  :success => "jQuery('#spinner1').hide();",
+                  :url => {:action=>'render_subjects'}, 
+				    :method => :get,
+                  :with => "'group_id=' + value") %>
+
+ <%= image_tag("spinner.gif",
+               			:border => 0,
+              			:id => "spinner1",
+			        :style =>"display: none;" ) %> 
+ <br />
+<% unless @present_students.blank? and @absent_students.blank?%>
+  <h1 class ="heading left">Class:<%= @class.name%>, Subject:<%= @subject.name%>, Date:<%= @date%></h1><br />
+ <%end%>
+
+ <% unless @present_students.blank?%>
+   <h2>Following students are present </h2>
+  <% @present_students.each do |attendance| %>
+
+<div style="padding-left:70px;">
+  <%= attendance.student.name %>
+ </div>
+  <%end%>
+  <%end%>
+  <br />
+  
+ <% unless @absent_students.blank?%>
+   <h2>Following students are present</h2>
+  <% @absent_students.each do |student| %>
+  <div style="padding-left:70px;">
+  <%= student.name %>
+</div>
+  <%end%>
+  <%end%>
+
+    

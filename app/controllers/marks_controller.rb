@@ -104,8 +104,8 @@ class MarksController < ApplicationController
     @group = Group.find(params[:group_id])
     @subject = Subject.find(params[:id])
     @group.students.find(:all,:conditions =>['status =?','Active']).each do|student|
-       get_marks(@exam,@group,@subject,student).each do|mark|
-     mark.destroy
+     get_marks(@exam,@group,@subject,student).each do|mark|
+      mark.destroy
     end
      Mark.create(:student_id => student.id,:exam_id =>@exam.id,:group_id =>@group.id,:subject_id =>@subject.id,:mark => params[:marks]["#{student.id}"]["#{@subject.id}"][:mark])
    end

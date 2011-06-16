@@ -1,4 +1,6 @@
- <% form_for(@class_subject_attendance,:url => attendances_path,:html =>{:method => :post}) do |f| %>
+  <div style="float:right;width:20%"><%= link_to "View attendance" ,attendances_path %></div>
+
+ <div style="width:66%;"><% form_for(@class_subject_attendance,:url => attendances_path,:html =>{:method => :post}) do |f| %>
     <p>Class:<%= f.select :group_id,all_groups %></p>
      <p>Date:<%= f.date_select :date%></p>
    <%= observe_field("class_subject_attendance_group_id", :frequency => 1,
@@ -17,4 +19,6 @@
 
   <%= f.submit 'Create record' %>
   <% end -%>
+</div>
+
 

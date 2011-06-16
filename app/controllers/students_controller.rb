@@ -32,6 +32,7 @@ class StudentsController < ApplicationController
     @to_date = "#{academic_year.to_date} 23:59:59"   
     @marks = @student.marks.find(:all,:conditions => ['created_at >= ? and created_at <= ?',@from_date,@to_date])
     @exam_names,@percentages,@exams = Exam.find_exam_names_and_percentage(@student,academic_year,school)
+    @subjects,@percentage = StudentAttendance.find_attendance(academic_year,@student.groups.last,@student)
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @student }

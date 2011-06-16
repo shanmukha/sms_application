@@ -1,6 +1,6 @@
-<h1 class = 'heading'>Editing student list</h1>
+<h1 class = 'heading'>Editing student list- <%= @group.name %></h1>
 <hr />
-
+ <div style="float:left;width:66%;">
 	<% form_for([:admin,@group],:url => admin_student_class_path(@group),:html => {:multipart => true} ) do |f| %>
   	<%= f.error_messages %>
  Selected students are in this class currently, unselect to remove.
@@ -40,6 +40,15 @@
 	  <span><%= f.submit 'Update student list' %></span>
     </div>
   	<% end %>
+</div>
+    <div style ="float:right;width:32%;">
+     <p>Promote students from another class </p>
+     <% form_tag(promote_students_admin_group_student_classes_path(@group), :method => :post) do %>
+      Class :<%= select_tag :class_id,options_for_select(all_groups) %>
+       <%= submit_tag 'Promote students' %>
+      <%end%>      
+   </div>
+ <div class="clear"></div>
 
-   
+  
 

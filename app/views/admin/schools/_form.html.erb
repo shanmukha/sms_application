@@ -40,23 +40,23 @@
 				    :method => :get,
                   :with => "'plan_type=' + value") %></td>		             
   </tr>	
-<div class="clear"></div>	   
+<div class="clear"></div>	
+</table>   
   <div id = "type">
      <%if @school.plan_type == "Unlimited"%>
-        <tr>
-        <th><%= f.label :End_date%></th>
-        <td><%= f.text_field :end_date,:class =>'textbox-small' ,:id => 'date'%></td>
-        </tr>
+      
+       <%= f.label :End_date%>
+        <%= f.text_field :end_date,:class =>'textbox-small' ,:id => 'date'%>
     <%elsif @school.plan_type == "Limited" %>
-        <tr>
-        <th><%= f.label :credits%></th>
-        <td><%= f.text_field :credits%></td>
-        </tr>
+     
+       <%= f.label :credits%>
+        <%= f.text_field :credits,:class =>'textbox-small'%>
+        
      <%else%>
     <%end%>  
    </div>
   <%end%>
- </table>
+ 
 </div>
 
 <div class="right">

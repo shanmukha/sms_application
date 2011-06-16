@@ -181,8 +181,21 @@
     </div>
   <% end %>
 <%end%>
-
-
+ <% unless @subjects.blank? %>
+   <br /><h2 class='heading' style="margin:0px;">Attendance</h2>      
+      <table class="listing" border="1" width="100%">
+      <tr>		    
+        <th width="30%"><b>Subject</b></th>
+        <td width="25%"><b>Percentage</b></td>
+       <tr>
+    <% @subjects.each do |subject| %>
+        <tr>
+       <td><%= subject.name%></td>
+       <td><%= @percentage[subject.id]%></td> 
+     </tr>
+    <%end%>
+   </table>
+<%end%>
 <%unless @marks.blank?%>
 <br /><h2 class='heading' style="margin:0px;">Marks</h2>
 <% @exams.each do |exam|%>
@@ -204,7 +217,7 @@
        <%total_max_marks+= mark.subject.max_marks%>
        <td><%= mark.subject.passing_marks%></td>
        <td><%= mark.mark %></td>
-       <%total_score+= mark.mark%>
+       <%total_score+= (mark.mark.blank? ? 0 :mark.mark)%>
     </tr>
    <% end %>
      <tr>

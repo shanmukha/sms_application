@@ -95,7 +95,7 @@
          <%if current_user.has_role?('super_admin')%>
          <li class='<%= request.request_uri =~ /schools/? 'active': 'link' %>'> <%= link_to "Schools list", admin_schools_path %></li>
          <%else%>
-         <li class='<%= request.request_uri =~ /schools/? 'active': 'link' %>'> <%= link_to "Teachers list", admin_users_path %></li>
+         <li class='<%= request.request_uri =~ /users/? 'active': 'link' %>'> <%= link_to "Teachers list", admin_users_path %></li>
          <%end%>
          <li class='<%= request.request_uri =~ /message_templates/? 'active': 'link' %>'> <%= link_to "Saved Messages", admin_message_templates_path%></li> 
          <li class='<%= request.request_uri =~ /tags/? 'active': 'link' %>'> <%= link_to "Tags", admin_tags_path %> </li> 

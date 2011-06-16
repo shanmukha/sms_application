@@ -1,0 +1,8 @@
+
+  <% form_for([:admin,@school]) do |f| %>
+     <%= f.error_messages %>
+	<%= render :partial =>"form",:locals =>{:f => f}%>
+	<center><div class="btns"><span><%= f.submit "Submit" %></span></div></center>
+	<%end%>
+<div class="clear"></div>
+
