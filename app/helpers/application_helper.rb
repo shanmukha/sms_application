@@ -167,4 +167,13 @@ module ApplicationHelper
    date = object.nil? ? object : object.to_s(:long)
    date 
   end
+
+  def find_groups(student)
+  admin = current_user.has_role?('admin') ? current_user : User.find(current_user.parent_id)
+  school = School.find(:first,:conditions=>['administrator_id=?',admin.id])
+  academic_year = AcademicYear.current_academic_year_school(school.id)
+ groups = Student.find(student.id).groups.find(:last,:include =>[:student_classes],:conditions =>['user_id =? and status =? and student_classes.academic_year_id = ?',admin.id,'Active',academic_year.id]).name
+end
+
+
 end

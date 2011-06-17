@@ -24,7 +24,9 @@ class Admin::AttendanceReportsController < ApplicationController
        @percentage<< (student_attendance/total_attendance.to_f*100).round(1)
       end
     else
-      @students_attendance = StudentAttendance.find(:all,:joins =>[:class_subject_attendance],:conditions =>['class_subject_attendances.subject_id =? and class_subject_attendances.group_id  =? and  class_subject_attendances.date like ? and class_subject_attendances.academic_year_id =?',@subject.id,@class.id,'%'+@date+'%',academic_year.id])
+      @present_students = StudentAttendance.find(:all,:joins =>[:class_subject_attendance],:conditions =>['class_subject_attendances.subject_id =? and class_subject_attendances.group_id  =? and  class_subject_attendances.date like ? and class_subject_attendances.academic_year_id =?',@subject.id,@class.id,'%'+@date+'%',academic_year.id])
+
+      @absent_students = @class.students.find(:all,:include =>[:student_classes],:conditions =>['students.id not in(?) and student_classes.academic_year_id =? and status =?',@present_students.map{|a|a.student_id},academic_year.id,'Active'])
 
    end
  end

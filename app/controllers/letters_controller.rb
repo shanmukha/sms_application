@@ -79,7 +79,10 @@ class LettersController < ApplicationController
   end
   
    def group_students
-      @students = Group.find(params[:group_id]).students.find(:all, :order => 'students.name ASC',:conditions =>['status =?','Active']) rescue ''
+      admin = current_user.has_role?('admin') ? current_user : User.find(current_user.parent_id)
+    school = School.find(:first,:conditions=>['administrator_id=?',admin.id])
+    academic_year = AcademicYear.current_academic_year_school(school.id)
+    @students = Group.find(params[:group_id]).students.find(:all, :order => 'students.name ASC',:include =>[:student_classes],:conditions =>['status =? and student_classes.academic_year_id = ?','Active',academic_year.id]) rescue ''
       render :update do |page|
      	page.replace_html 'students', :partial => 'group_student'
       end

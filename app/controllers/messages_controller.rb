@@ -137,7 +137,7 @@ class MessagesController < ApplicationController
          end 
        end
         rescue #ActiveResource::ResourceInvalid => e  
-         flash[:error] = 'There seems to be some problemin message delivery. Please try again latter.'    
+         flash[:error] = 'Some thing went wrong. Please try again latter.'    
          redirect_to(messages_url) 
      end
   
@@ -181,8 +181,11 @@ class MessagesController < ApplicationController
   end
   
   def student_groups
-      @students = Group.find(params[:group_id]).students.find(:all, :order => 'students.name ASC',:conditions =>['status =?','Active']) rescue ''
-      render :update do |page|
+    admin = current_user.has_role?('admin') ? current_user : User.find(current_user.parent_id)
+    school = School.find(:first,:conditions=>['administrator_id=?',admin.id])
+    academic_year = AcademicYear.current_academic_year_school(school.id)
+    @students = Group.find(params[:group_id]).students.find(:all, :order => 'students.name ASC',:include =>[:student_classes],:conditions =>['status =? and student_classes.academic_year_id = ?','Active',academic_year.id]) rescue ''
+    render :update do |page|
      	page.replace_html 'students', :partial => 'group_student'if !@students.blank?
       page.replace_html 'students', :partial => 'mobile_number' if @students.blank?
    end

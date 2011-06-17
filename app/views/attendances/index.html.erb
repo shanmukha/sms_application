@@ -22,23 +22,26 @@
               			:id => "spinner1",
 			        :style =>"display: none;" ) %> 
  <br />
-<% unless @present_students.blank? and @absent_students.blank?%>
+<% unless @present_students.blank? or @absent_students.blank?%>
   <h1 class ="heading left">Class:<%= @class.name%>, Subject:<%= @subject.name%>, Date:<%= @date%></h1><br />
  <%end%>
 
  <% unless @present_students.blank?%>
-   <h2>Following students are present </h2>
+   <h2>Following <font color="red"> <%= @present_students.count %> </font>students are present </h2>
   <% @present_students.each do |attendance| %>
 
 <div style="padding-left:70px;">
   <%= attendance.student.name %>
  </div>
+ 
   <%end%>
+ 
   <%end%>
+
   <br />
   
  <% unless @absent_students.blank?%>
-   <h2>Following students are present</h2>
+   <h2>Following <font color="red"><%= @absent_students.count %></font>  students are absent</h2>
   <% @absent_students.each do |student| %>
   <div style="padding-left:70px;">
   <%= student.name %>

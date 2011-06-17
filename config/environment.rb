@@ -5,7 +5,7 @@
 # ENV['RAILS_ENV'] ||= 'production'
 
 # Specifies gem version of Rails to use when vendor/rails is not present
-#RAILS_GEM_VERSION = '2.3.2' unless defined? RAILS_GEM_VERSION
+RAILS_GEM_VERSION = '2.3.6' unless defined? RAILS_GEM_VERSION
 
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
@@ -32,7 +32,7 @@ require File.join(File.dirname(__FILE__), 'boot')
   # config.gem "bj"
   # config.gem "hpricot", :version => '0.6', :source => "http://code.whytheluckystiff.net"
   # config.gem "aws-s3", :lib => "aws/s3"
-   config.gem "authlogic",:lib =>"authlogic.rb",:version =>"2.1.1"
+   config.gem "authlogic",:lib =>"authlogic",:version =>"2.1.1"
    config.gem "googlecharts",:lib => "gchart.rb",:version => "1.4.0"
    config.gem "searchlogic"
   # Only load the plugins named here, in the order given. By default, all plugins 
@@ -68,12 +68,15 @@ require File.join(File.dirname(__FILE__), 'boot')
 =end
 
 
-config.action_mailer.smtp_settings = {
-  :address => "mail.isiritech.com",
-  :user_name => "sanath@isiritech.com",
-  :password => "",
-  :authentication => :login
- }
+ config.action_mailer.smtp_settings = {
+  :address              => "smtp.gmail.com",
+  :port                 => 587,
+  :domain               => "shoolit.in",
+  :user_name            => "schoolit99@gmail.com",
+  :password             => "isiritech99",
+  :authentication       => "plain",
+  :enable_starttls_auto => true
+}
 
 
  # Your secret key for verifying cookie session data integrity.

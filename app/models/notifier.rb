@@ -1,7 +1,7 @@
 class Notifier < ActionMailer::Base
 
 def email_notification(email, current_user, student)
-    recipients    [student.email]
+    recipients    "#{student.email}"
     from          current_user.mail_id
     subject       email.subject
     sent_on       Time.now

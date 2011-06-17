@@ -6,8 +6,11 @@ class AttendancesController < ApplicationController
     @date = params[:date]
     @subject = Subject.find(params[:subject_id])
     @class = Group.find(params[:group_id])
-    @present_students = StudentAttendance.find(:all,:joins =>[:class_subject_attendance],:conditions =>['class_subject_attendances.subject_id =? and class_subject_attendances.group_id  =? and  class_subject_attendances.date like ?',params[:subject_id],params[:group_id],'%'+ Time.parse(params[:date]).strftime("%Y-%m-%d")+ '%'])
-    @absent_students = @class.students.find(:all,:conditions =>['students.id not in(?)',@present_students.map{|a|a.student_id}])
+    admin = current_user.has_role?('admin') ? current_user : User.find(current_user.parent_id)
+    school = School.find(:first,:conditions=>['administrator_id=?',admin.id])
+    academic_year = AcademicYear.current_academic_year_school(school.id)
+    @present_students = StudentAttendance.find(:all,:joins =>[:class_subject_attendance],:conditions =>['class_subject_attendances.subject_id =? and class_subject_attendances.group_id  =? and  class_subject_attendances.date like ? and class_subject_attendances.academic_year_id =?',params[:subject_id],params[:group_id],'%'+ Time.parse(params[:date]).strftime("%Y-%m-%d")+ '%',academic_year.id])
+    @absent_students = @class.students.find(:all,:include =>[:student_classes],:conditions =>['students.id not in(?) and student_classes.academic_year_id =? and status =?',@present_students.map{|a|a.student_id},academic_year.id,'Active'])
   end
  end  
 
@@ -15,7 +18,8 @@ class AttendancesController < ApplicationController
   @class_subject_attendance = ClassSubjectAttendance.new
  end
  def create
-   school = School.find(:first,:conditions=>['administrator_id=?',admin.id])
+     admin = current_user.has_role?('admin') ? current_user : User.find(current_user.parent_id)
+    school = School.find(:first,:conditions=>['administrator_id=?',admin.id])
     academic_year = AcademicYear.current_academic_year_school(school.id)
   for subject in params[:subjects] 
     class_subject_attendance = ClassSubjectAttendance.new(params[:class_subject_attendance])

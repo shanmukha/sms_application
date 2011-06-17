@@ -27,11 +27,6 @@ Subject:<%= f.select :subject_id, find_all_subjects,:selected => (@subject.id un
 <%end%>
 
 
-
-
-
-
-
 <%= observe_field("report_group_id", :frequency => 1,
                   :before => "jQuery('#spinner1').show();",
                   :success => "jQuery('#spinner1').hide();",
@@ -39,7 +34,7 @@ Subject:<%= f.select :subject_id, find_all_subjects,:selected => (@subject.id un
 				    :method => :get,
                   :with => "'group_id=' + value") %>
 
- <%= image_tag("spinner.gif",
+    <%= image_tag("spinner.gif",
                			:border => 0,
               			:id => "spinner1",
 			        :style =>"display: none;" ) %> 
@@ -61,18 +56,42 @@ Subject:<%= f.select :subject_id, find_all_subjects,:selected => (@subject.id un
    </table>
  <%end%>
 
-<%unless @students_attendance.nil?%>
-   <h1 class ="heading left">Class:<%= @class.name%>, Subject:<%= @subject.name%>, Date:<%= @date%></h1><br />
-   <h1 class ="heading left">Present students</h1>
+
+ <%unless @present_students.blank? or @absent_students.blank? %>
+ <h1 class ="heading left">Class:<%= @class.name%>, Subject:<%= @subject.name%>, Date:<%= Time.parse(@date).strftime("%d-%m-%Y")%></h1><br />
+
+<br />
+<%end%>
+
+<%unless @present_students.nil?%>
+   <h1 class ="heading left">Present students<font color="red">(<%= @present_students.count %> )</font></h1>
   <table class="student_group" width="100%" border="1" cellpadding="5px">
    <th>Student name</th>
 
-  <%@students_attendance.each do |students_attendance|%>
+  <%@present_students.each do |ps|%>
   <tr>
-    <td><%= students_attendance.student.name%></td>
+    <td><%= ps.student.name%></td>
+  </tr>
+
+  <%end%>
+   </table>
+ <%end%>
+
+
+<br />
+<%unless @absent_students.nil?%>
+     <h1 class ="heading left">Absent students<font color="red">(<%= @absent_students.count %> )</font></h1>
+  <table class="student_group" width="100%" border="1" cellpadding="5px">
+   <th>Student name</th>
+
+  <%@absent_students.each do |as|%>
+  <tr>
+    <td><%= as.name%></td>
    
   </tr>
 
   <%end%>
    </table>
  <%end%>
+
+

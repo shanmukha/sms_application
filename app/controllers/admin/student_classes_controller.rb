@@ -12,9 +12,8 @@ def new
    @search.user_id = current_user.id
    @search.status = 'Active'
    @students = @search.all
-    
+ end
 
-end
  def create
   #@group = current_user.groups.new(params[:student_class])
    @group = Group.find(params[:id]) 

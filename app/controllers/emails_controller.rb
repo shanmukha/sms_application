@@ -43,19 +43,19 @@ class EmailsController < ApplicationController
      if  @email.save
       	  body = params[:email][:body]
           params[:students].each do  |student_id|
-          student = Student.find(student_id)
-          body.gsub!(/@student/, student.name) 
-       	  body.gsub!(/@parent/, student.parent)
-       	  body.gsub!(/@address/, student.address)
-       	  body.gsub!(/@Student/, student.name) 
-       	  body.gsub!(/@Parent/, student.parent)
-       	  body.gsub!(/@Address/, student.address)
-          EmailStudent.create(:email_id => @email.id,:student_id => student_id)
-          Notifier.deliver_email_notification(@email,current_user,student)
-          body.gsub!(/#{student.name}/,'@student') 
-        	body.gsub!(/#{student.parent}/,'@parent') 
-        	body.gsub!(/#{student.address}/,'@address') 
-        end 
+            student = Student.find(student_id)
+            body.gsub!(/@student/, student.name) 
+       	    body.gsub!(/@parent/, student.contact_name)
+       	    body.gsub!(/@address/, student.address)
+       	    body.gsub!(/@Student/, student.name) 
+       	    body.gsub!(/@Parent/, student.contact_name)
+       	    body.gsub!(/@Address/, student.address)
+            EmailStudent.create(:email_id => @email.id,:student_id => student_id)
+            Notifier.deliver_email_notification(@email,current_user,student)
+            body.gsub!(/#{student.name}/,'@student') 
+        	  body.gsub!(/#{student.contact_name}/,'@parent') 
+        	  body.gsub!(/#{student.address}/,'@address') 
+         end 
         flash[:notice] = 'Email is successfully sent.'
         format.html { redirect_to(emails_url)  }
         format.xml  { render :xml => @email, :status => :created, :location => @email }
@@ -64,10 +64,7 @@ class EmailsController < ApplicationController
         format.xml  { render :xml => @email.errors, :status => :unprocessable_entity }
        end
      end
-     rescue 
-      flash.now[:error] = 'There seems to be some problem in sending email. Please try later.'    
-      render :action => "new"
-      return nil
+    
   end
  
   def destroy
@@ -80,8 +77,11 @@ class EmailsController < ApplicationController
   end
     
    def group_students
-  @students = Group.find(params[:group_id]).students.find(:all, :order => 'students.name ASC',:conditions =>['status =?','Active']) rescue ''
-      render :update do |page|
+    admin = current_user.has_role?('admin') ? current_user : User.find(current_user.parent_id)
+    school = School.find(:first,:conditions=>['administrator_id=?',admin.id])
+    academic_year = AcademicYear.current_academic_year_school(school.id)
+    @students = Group.find(params[:group_id]).students.find(:all, :order => 'students.name ASC',:include =>[:student_classes],:conditions =>['status =? and student_classes.academic_year_id = ?','Active',academic_year.id]) rescue ''
+    render :update do |page|
       page.replace_html 'students', :partial => 'group_student'
    end
   end 

@@ -5,7 +5,7 @@ y_val = box.top - 42
 for data in @students
   counter = counter + 1
   
-  name = data.parent
+  name = data.contact_name
   address = data.address
 
   case counter % 3 
