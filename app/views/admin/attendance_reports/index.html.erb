@@ -21,7 +21,7 @@ Subject:<%= f.select :subject_id, find_all_subjects,:selected => (@subject.id un
 </div>
 
 <br />
-<div style="padding-left:50px;"> <%= f.submit "Get report" %>&nbsp;&nbsp;&nbsp;&nbsp;
+<div style="padding-left:50px;"> <%= f.submit "Get report",:disable_with => 'Please wait…' %>&nbsp;&nbsp;&nbsp;&nbsp;
 </div>
 <br />
 <%end%>
@@ -41,6 +41,7 @@ Subject:<%= f.select :subject_id, find_all_subjects,:selected => (@subject.id un
 
 
  <%unless @students.nil?%>
+
 <h1 class ="heading left">Class:<%= @class.name%>, Subject:<%= @subject.name%></h1>
   <table class="student_group" width="100%" border="1" cellpadding="5px">
    <th>Student name</th>
@@ -54,6 +55,7 @@ Subject:<%= f.select :subject_id, find_all_subjects,:selected => (@subject.id un
 <%i+=1%>
   <%end%>
    </table>
+
  <%end%>
 
 
@@ -63,7 +65,7 @@ Subject:<%= f.select :subject_id, find_all_subjects,:selected => (@subject.id un
 <br />
 <%end%>
 
-<%unless @present_students.nil?%>
+<%unless @present_students.blank?%>
    <h1 class ="heading left">Present students<font color="red">(<%= @present_students.count %> )</font></h1>
   <table class="student_group" width="100%" border="1" cellpadding="5px">
    <th>Student name</th>
@@ -79,7 +81,7 @@ Subject:<%= f.select :subject_id, find_all_subjects,:selected => (@subject.id un
 
 
 <br />
-<%unless @absent_students.nil?%>
+<%unless @absent_students.blank?%>
      <h1 class ="heading left">Absent students<font color="red">(<%= @absent_students.count %> )</font></h1>
   <table class="student_group" width="100%" border="1" cellpadding="5px">
    <th>Student name</th>

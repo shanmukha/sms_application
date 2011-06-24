@@ -15,14 +15,14 @@ class Admin::AttendanceReportsController < ApplicationController
        day=params[:report]['date(3i)']
        @date = Time.parse("#{year}-#{month}-#{day}").strftime("%y-%m-%d")
       
-       if params[:report]["date(1i)"].blank? and params[:report]["date(2i)"].blank? and params[:report]["date(3i)"].blank?
+      if params[:report]["date(1i)"].blank? and params[:report]["date(2i)"].blank? and params[:report]["date(3i)"].blank?
          @students = @class.students.find(:all, :order => 'students.name ASC',:conditions =>['status =?','Active'])
         total_attendance = ClassSubjectAttendance.count(:all,:conditions =>['subject_id = ? and group_id = ? and academic_year_id = ?',@subject.id,@class.id,academic_year.id])
         @percentage = []
         @students.each do |student|
-          student_attendance = StudentAttendance.count(:all,:joins =>[:class_subject_attendance],:conditions =>['student_id=? and class_subject_attendances.subject_id =? and class_subject_attendances.group_id =? and class_subject_attendances.academic_year_id =?',student.id,@subject.id,@class.id,academic_year.id])
-       @percentage<< (student_attendance/total_attendance.to_f*100).round(1)
-      end
+          student_attendance = StudentAttendance.count(:all,:include =>[:class_subject_attendance],:conditions =>['student_id=? and class_subject_attendances.subject_id =? and class_subject_attendances.group_id =? and class_subject_attendances.academic_year_id =?',student.id,@subject.id,@class.id,academic_year.id])
+       @percentage<< (student_attendance/total_attendance.to_f*100.0).round(1)    
+        end
     else
       @present_students = StudentAttendance.find(:all,:joins =>[:class_subject_attendance],:conditions =>['class_subject_attendances.subject_id =? and class_subject_attendances.group_id  =? and  class_subject_attendances.date like ? and class_subject_attendances.academic_year_id =?',@subject.id,@class.id,'%'+@date+'%',academic_year.id])
 
@@ -43,4 +43,6 @@ render :update do |page|
        page << "jQuery('#report_subject_id').html('#{str}');"
       end 
     end
+  
+ 
 end
